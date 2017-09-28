@@ -1,0 +1,9 @@
+<?php
+
+/**
+ * Consumers configuration
+ * 
+ */
+return [
+//    ['command' => 'networkDiscovery/network-discovery/init', 'limit' => 20],
+];

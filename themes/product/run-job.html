@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Page Title -->
+        <title>Home - Infinity Labs</title>
+
+        <!-- Text Fonts CSS -->
+        <link href='css/lab/fonts.css' rel='stylesheet' type='text/css' />
+
+        <!-- Icons Fonts CSS -->
+        <link href='css/lab/font-awesome.min.css' rel='stylesheet' type='text/css' />
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/bootstrap/jquery.datetimepicker.css" rel="stylesheet" />
+
+        <!-- Infinity Labs Custom Styles  -->
+        <link href="css/lab/custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="js/vendors/html5shiv.min.js"></script>
+          <script src="js/vendors/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+    <body>
+
+        <!-- #main-wrapper = This should be a container for every page -->
+        <div id="main-wrapper" class="container-fluid">
+
+
+            <!--Header Starts Here-->
+            <nav class="navbar lab-navbar">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="index.html" class="navbar-brand site-logo">
+                            <img class="logo" alt="Brand" src="./images/Logo-small.png" />
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse text-uppercase" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="#">NETWORK DISCOVERY</a></li>
+                            <li><a href="#">TOPOLOGY</a></li>
+                            <li class="active"><a href="icm.html">ICM</a></li>
+                            <li><a href="#">SETTINGS</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right lab-profile-menu">
+                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                                <!--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"></button>-->
+                                <ul class="dropdown-menu lab-notification">
+                                    <li class="dropdown-header">First Time User</li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">How to do Network Discovery</a></li>
+                                    <li><a href="#">How to setup device credentials </a></li>
+                                    <li><a href="#">How to create ICM rues </a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                                <!--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"></button>-->
+                                <ul class="dropdown-menu lab-notification">
+                                    <li class="dropdown-header">Notifications</li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-toggle-on lab-icons" aria-hidden="true"></i> 10.122.3.140 is conflicting</a></li>
+                                    <li><a href="#"><i class="fa fa-sitemap lab-icons" aria-hidden="true"></i> 10.122.3.140 is Not Working</a></li>
+
+
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <!--<a class="btn btn-default lab-btn" href="#">Sign In</a>-->
+                                <button type="button" class="btn btn-default lab-btn" data-toggle="modal" data-target=".bs-example-modal-sm">Sign In</button>
+                            </li>
+                            <li class="dropdown lab-profile">
+                                <a class="btn btn-default lab-btn" data-toggle="dropdown" href="#">JOHN MILLER</a>
+                                <ul class="dropdown-menu labs-dropdown">
+                                    <!-- links -->
+                                    <li><a href="#">Profile Setting</a></li>
+                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--Header Ends Here-->
+
+            <div class="lab-panel-wrapper">
+                <div class="lab-panel-sidebar">
+                    <a href="#" class="lab-toggle-sidebar"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+
+                    <header class="lab-sidebar-header">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                        <strong>ICM Menu</strong>
+                    </header>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"><i class="fa fa-line-chart" aria-hidden="true"></i> Dashboard</a>
+                    </h4>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-cogs" aria-hidden="true"></i> CONFIGURATION <i class="fa fa-caret-down"></i></a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a class="active" href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-arrows-alt" aria-hidden="true"></i> Rules</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-briefcase" aria-hidden="true"></i> Jobs</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-list-alt" aria-hidden="true"></i> COMPLIANCE <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"><i class="fa fa-arrows-alt" aria-hidden="true"></i> Rules</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab"><i class="fa fa-credit-card" aria-hidden="true"></i> Batch</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#tab6" aria-controls="tab6" role="tab" data-toggle="tab"><i class="fa fa-briefcase" aria-hidden="true"></i> Jobs</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a href="#tab7" aria-controls="tab7" role="tab" data-toggle="tab"><i class="fa fa-file-text-o" aria-hidden="true"></i> Reports</a>
+                    </h4>
+
+                </div>
+
+                <div class="lab-panel-content">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="tab1">
+                            <p class="lab-date"><i class="fa fa-calendar" aria-hidden="true"></i> May 16, 2016</p>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="text-center lab-box-style">
+                                        <h2 class="lab-inner-title">Job</h2>
+                                        <div class="lab-donut" id="job" data-total="16"></div>
+                                        <ul class="lab-donut-list" data-pie-id="job" data-options='{"donut":"true", "donut_inner_ratio":"0.82", "percent_offset": "0"}'>
+                                            <li class="lab-passed" data-value="5"><strong>Passed</strong><span>5</span></li>
+                                            <li class="lab-in-process" data-value="4"><strong>In Process</strong><span>4</span></li>
+                                            <li class="lab-failed" data-value="7"><strong>Failed</strong><span>7</span></li>
+                                        </ul>
+                                        <h2 class="lab-inner-title lab-overall">Job Overall Performance</h2>
+                                        <ul class="lab-performance-list">
+                                            <li class="lab-passed"><span>5</span><strong>Passed</strong></li>
+                                            <li class="lab-in-process"><strong><span>4</span>In Process</strong></li>
+                                            <li class="lab-failed"><span>7</span><strong>Failed</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="text-center lab-box-style">
+                                        <h2 class="lab-inner-title">Audit Processing</h2>
+                                        <div class="lab-donut" id="audit" data-total="21"></div>
+                                        <ul class="lab-donut-list" data-pie-id="audit" data-options='{"donut":"true", "donut_inner_ratio":"0.82", "percent_offset": "0"}'>
+                                            <li class="lab-passed" data-value="3"><strong>Passed</strong><span>3</span></li>
+                                            <li class="lab-in-process" data-value="12"><strong>In Process</strong><span>12</span></li>
+                                            <li class="lab-failed" data-value="6"><strong>Failed</strong><span>6</span></li>
+                                        </ul>
+                                        <h2 class="lab-inner-title lab-overall">Job Overall Performance</h2>
+                                        <ul class="lab-performance-list">
+                                            <li class="lab-passed"><span>5</span><strong>Passed</strong></li>
+                                            <li class="lab-in-process"><strong><span>4</span>In Process</strong></li>
+                                            <li class="lab-failed"><span>7</span><strong>Failed</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane active" id="tab2">
+
+                            <div class="lab-single-header">
+                                <a href="file:///Users/sagar/Work/infinitylabs/html/icm.html" class="lab-back-to">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </a>
+                                <span>View ICM Configuration Rule</span>
+                                <a href="#" class="lab-edit">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <span class="lab-separator">|</span>
+                                <a href="#" class="lab-delete">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+
+                                <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#run-job">Run Job</a>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">ID</div>
+                                        <div class="lab-desc">1</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Device Type</div>
+                                        <div class="lab-desc">Router</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Run Type</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Template</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Rule Name</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Run Type</div>
+                                        <div class="lab-desc">et elitr lorem consequat.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab3">
+                            <h1>Tab3</h1>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab4">
+                            <h1>Tab4</h1>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab5">
+                            <h1>Tab5</h1>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab6">
+                            <h1>Tab6</h1>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab7">
+                            <h1>Tab7</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Footer Starts Here-->
+            <footer class="lab-footer">
+                <div class="row">
+                    <div class="col-sm-6 lab-copyright">
+                        <p>&copy; 2016 Copyright Infinitylabs. All Rights Resrved</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <nav class="lab-footer-menu">
+                            <a href="#">Terms & Conditions</a>|
+                            <a href="#">Privacy Policy</a>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+            <!--Footer Ends Here-->
+
+        </div>
+        <!-- #main-wrapper Ends here -->
+
+
+        <!--Modal-->
+        <div class="modal fade lab-form-modal" id="run-job" role="dialog">
+            <div class="modal-dialog lab-modal-lg modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create ICM Configuration Job</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="tabs-wrap">
+                            <ul class="nav nav-tabs lab-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#lab-select" aria-controls="lab-select" role="tab" data-toggle="tab" aria-expanded="true">Select</a>
+                                </li>
+                                <li>
+                                    <a href="#lab-schedule-tab" aria-controls="lab-schedule-tab" role="tab" data-toggle="tab" aria-expanded="false">Schedule</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="lab-select">
+                                    <form data-toggle="validator" role="form">
+
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="ruleName" class="control-label">Job Name <span class="required">*</span></label>
+                                                    <input type="text" class="form-control" id="ruleName" data-error="Error message will come over here" required>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-md-offset-1">
+                                                <div class="form-group">
+                                                    <p>Execute Via</p>
+
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">Ssh
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">Telnet
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div>
+                                            <p>Select Target Device List</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="Reachable" class="control-label">Reachable</label>
+                                                        <select id="Reachable" multiple class="form-control lab-multiple">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+
+                                                        <a class="btn btn-default lab-btn lab-orange" href="#" role="button">Download Sample File</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="nonReachable" class="control-label">Non Reachable</label>
+                                                        <select id="nonReachable" multiple class="form-control lab-multiple">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+
+                                                        <a class="btn btn-default lab-btn lab-orange" href="#" role="button">Download Non Reachable Device</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="lab-btn-container">
+                                            <a class="btn btn-primary continue lab-btn lab-orange-bg">Next</a>
+                                            <a class="btn btn-default lab-btn lab-save-draft">Save as Draft</a>
+                                        </p>
+                                    </form>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="lab-schedule-tab">
+                                    <form data-toggle="validator" role="form">
+
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <a class="btn btn-default lab-btn lab-orange" href="#" role="button">Upload Job Input</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="lab-schedule-container">
+                                            <p><span>Select Schedule</span></p>
+                                            <input type="text" class="form-control btn btn-default lab-btn show lab-btn-plain" id="lab-schedule" value="4/15/2015 12:50 PM" />
+                                        </div>
+
+                                        <p class="lab-btn-container">
+                                            <a class="btn btn-default lab-btn back">Previous</a>
+                                            <a class="btn btn-primary continue lab-btn lab-orange-bg">Generate</a>
+                                            <a class="btn btn-default lab-btn lab-save-draft">Save as Draft</a>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/vendors/jquery.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/vendors/jquery.datetimepicker.full.min.js"></script>
+        <script src="js/vendors/dependencies.js"></script>
+        <script src="js/vendors/chart.min.js"></script>
+        <script src="js/vendors/validator.min.js"></script>
+
+
+        <script>
+            $( window ).load( function () {
+                Pizza.init();
+            } );
+
+            $( 'a[data-toggle="tab"]' ).on( 'click', function () {
+                $( 'a[data-toggle="tab"]' ).removeClass( 'active' );
+                $( this ).addClass( 'active' );
+            } );
+
+            if ( window['localStorage'] ) {
+                var panelState = localStorage.getItem( 'lab-panel-state' );
+
+                if ( panelState !== null && 'lab-panel-closed' === panelState ) {
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+            }
+
+            $( '.lab-toggle-sidebar' ).on( 'click', function ( e ) {
+                e.preventDefault();
+                if ( !$( 'body' ).hasClass( 'lab-panel-closed' ) ) {
+                    localStorage.setItem( 'lab-panel-state', 'lab-panel-closed' );
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+
+                else if ( $( 'body' ).hasClass( 'lab-panel-closed' ) ) {
+                    localStorage.setItem( 'lab-panel-state', null );
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+
+            } );
+
+            $( '.continue' ).click( function () {
+                $( '.nav-tabs > .active' ).next( 'li' ).find( 'a' ).trigger( 'click' );
+            } );
+
+            $( '.back' ).click( function () {
+                $( '.nav-tabs > .active' ).prev( 'li' ).find( 'a' ).trigger( 'click' );
+            } );
+
+            $( '#lab-schedule' ).datetimepicker( {
+                format: 'm/d/Y H:i A',
+                inline: true,
+            } );
+
+        </script>
+    </body>
+
+</html>

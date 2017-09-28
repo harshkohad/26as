@@ -1,0 +1,31 @@
+/* Responsive css */
+@media(max-width: 767px) {
+
+    .navbar-toggle {
+        margin: 16px 0 0;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: #282828;
+    }
+
+    .navbar-nav {
+        margin: 0 -15px;
+    }
+
+    .slider-home .carousel-caption br, .slider-home .carousel-caption p {
+        display: none;
+    }
+
+    .slider-home .carousel-caption h2 {
+        font-size: 18px;
+    }
+
+    .home-feature-list {
+        padding-bottom: 0;
+    }
+
+    .home-feature-list .col-sm-4{
+        margin: 0 0 50px;
+    }
+}

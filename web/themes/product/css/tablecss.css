@@ -1,0 +1,35 @@
+
+    table.jambo_table {
+        color: #73879c;
+        font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.471;
+    }
+
+    table.jambo_table tr td span {
+        line-height: 28px;
+    }
+    table.jambo_table {
+        border: 1px solid rgba(221, 221, 221, 0.78);
+    }
+    table.jambo_table thead {
+        background: rgba(52, 73, 94, 0.94) none repeat scroll 0 0;
+        color: #ecf0f1;
+    }
+    table.jambo_table thead a{
+        background: rgba(52, 73, 94, 0.94) none repeat scroll 0 0;
+        color: #ecf0f1;
+    }
+    table.jambo_table tbody tr:hover td {
+        background: rgba(38, 185, 154, 0.07) none repeat scroll 0 0;
+        border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+        border-top: 1px solid rgba(38, 185, 154, 0.11);
+    }
+    table.jambo_table tbody tr.selected {
+        background: rgba(38, 185, 154, 0.16) none repeat scroll 0 0;
+    }
+    table.jambo_table tbody tr.selected td {
+        border-bottom: 1px solid rgba(38, 185, 154, 0.4);
+        border-top: 1px solid rgba(38, 185, 154, 0.4);
+    }

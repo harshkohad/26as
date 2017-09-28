@@ -1,0 +1,21 @@
+.navbar-nav > li > a{
+    font-size:14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: arial;
+
+
+}
+
+.nav>li.lab-profile>a:focus,
+.nav>li.lab-profile>a:hover {
+    background: transparent;
+
+}
+.labs-dropdown li a {
+
+    color:#fff;
+}
+.labs-dropdown{
+    background:darkblue;
+}

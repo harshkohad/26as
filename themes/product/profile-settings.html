@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Page Title -->
+        <title>Home - Infinity Labs</title>
+
+        <!-- Text Fonts CSS -->
+        <link href='css/lab/fonts.css' rel='stylesheet' type='text/css' />
+
+        <!-- Icons Fonts CSS -->
+        <link href='css/lab/font-awesome.min.css' rel='stylesheet' type='text/css' />
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/bootstrap/jquery.datetimepicker.css" rel="stylesheet" />
+
+        <!-- Infinity Labs Custom Styles  -->
+        <link href="css/lab/custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="js/vendors/html5shiv.min.js"></script>
+          <script src="js/vendors/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+    <body>
+
+        <!-- #main-wrapper = This should be a container for every page -->
+        <div id="main-wrapper" class="container-fluid">
+
+
+            <!--Header Starts Here-->
+            <nav class="navbar lab-navbar">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="index.html" class="navbar-brand site-logo">
+                            <img class="logo" alt="Brand" src="./images/Logo-small.png" />
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse text-uppercase" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="#">NETWORK DISCOVERY</a></li>
+                            <li><a href="#">TOPOLOGY</a></li>
+                            <li><a href="icm.html">ICM</a></li>
+                            <li class="active"><a href="#">SETTINGS</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right lab-profile-menu">
+                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+                                <!--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"></button>-->
+                                <ul class="dropdown-menu lab-notification">
+                                    <li class="dropdown-header">First Time User</li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">How to do Network Discovery</a></li>
+                                    <li><a href="#">How to setup device credentials </a></li>
+                                    <li><a href="#">How to create ICM rues </a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                                <!--<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"></button>-->
+                                <ul class="dropdown-menu lab-notification">
+                                    <li class="dropdown-header">Notifications</li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-toggle-on lab-icons" aria-hidden="true"></i> 10.122.3.140 is conflicting</a></li>
+                                    <li><a href="#"><i class="fa fa-sitemap lab-icons" aria-hidden="true"></i> 10.122.3.140 is Not Working</a></li>
+                                </ul>
+                            </li>
+                            <li class="hide">
+                                <!--<a class="btn btn-default lab-btn" href="#">Sign In</a>-->
+                                <button type="button" class="btn btn-default lab-btn" data-toggle="modal" data-target=".bs-example-modal-sm">Sign In</button>
+                            </li>
+                            <li class="dropdown lab-profile">
+                                <a class="btn btn-default lab-btn" data-toggle="dropdown" href="#">JOHN MILLER</a>
+                                <ul class="dropdown-menu labs-dropdown">
+                                    <!-- links -->
+                                    <li><a href="#">Profile Setting</a></li>
+                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--Header Ends Here-->
+
+            <div class="lab-panel-wrapper">
+                <div class="lab-panel-sidebar">
+                    <a href="#" class="lab-toggle-sidebar"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i> JOHN MILLER</a>
+                    </h4>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a class="active" href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-credit-card" aria-hidden="true"></i> PROFILE DETAILS</a>
+                    </h4>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-key" aria-hidden="true"></i> CHANGE PASSWORD</a>
+                    </h4>
+
+                    <h4 class="lb-panel-title panel-title">
+                        <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
+                    </h4>
+
+                </div>
+
+                <div class="lab-panel-content">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="tab1">
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane active" id="tab2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">First Name</div>
+                                        <div class="lab-desc">John</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Last Name</div>
+                                        <div class="lab-desc">Miller</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Contact Number</div>
+                                        <div class="lab-desc">+91 7350268585 <a href="#"><i class="fa fa-pencil-square-o lab-edit lab-space-left" aria-hidden="true"></i></a> <span class="lab-separator">|</span> <a href="#" class="lab-add"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Work Location</div>
+                                        <div class="lab-desc">India <a href="#"><i class="fa fa-pencil-square-o lab-edit lab-space-left" aria-hidden="true"></i></a></div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Designation</div>
+                                        <div class="lab-desc">Network Engineer</div>
+                                    </div>
+                                    <div class="lab-field">
+                                        <div class="lab-lebel">Email Address</div>
+                                        <div class="lab-desc">john_miller@infinitylabs.in</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab3">
+                            Change Password
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="tab4">
+                            Logout
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Footer Starts Here-->
+            <footer class="lab-footer">
+                <div class="row">
+                    <div class="col-sm-6 lab-copyright">
+                        <p>&copy; 2016 Copyright Infinitylabs. All Rights Resrved</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <nav class="lab-footer-menu">
+                            <a href="#">Terms & Conditions</a>|
+                            <a href="#">Privacy Policy</a>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+            <!--Footer Ends Here-->
+
+        </div>
+        <!-- #main-wrapper Ends here -->
+
+
+
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/vendors/jquery.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap/bootstrap.min.js"></script>
+        <script src="js/vendors/jquery.datetimepicker.full.min.js"></script>
+        <script src="js/vendors/dependencies.js"></script>
+        <script src="js/vendors/chart.min.js"></script>
+
+        <script>
+            $( window ).load( function () {
+                Pizza.init();
+            } );
+
+            $( 'a[data-toggle="tab"]' ).on( 'click', function () {
+                $( 'a[data-toggle="tab"]' ).removeClass( 'active' );
+                $( this ).addClass( 'active' );
+            } );
+
+            if ( window['localStorage'] ) {
+                var panelState = localStorage.getItem( 'lab-panel-state' );
+
+                if ( panelState !== null && 'lab-panel-closed' === panelState ) {
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+            }
+
+            $( '.lab-toggle-sidebar' ).on( 'click', function ( e ) {
+                e.preventDefault();
+                if ( !$( 'body' ).hasClass( 'lab-panel-closed' ) ) {
+                    localStorage.setItem( 'lab-panel-state', 'lab-panel-closed' );
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+
+                else if ( $( 'body' ).hasClass( 'lab-panel-closed' ) ) {
+                    localStorage.setItem( 'lab-panel-state', null );
+                    $( 'body' ).toggleClass( 'lab-panel-closed' );
+                }
+
+            } );
+
+            $( function () {
+                $( '#lab-schedule' ).datetimepicker( {
+                    format: 'm/d/Y H:i A'
+                } );
+            } );
+        </script>
+    </body>
+
+</html>

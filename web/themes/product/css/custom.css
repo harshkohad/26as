@@ -1,0 +1,148 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 May, 2017, 5:31:20 PM
+    Author     : groot
+*/
+
+.with-border{
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+.unmap-grp-emp, 
+.important{
+    color: red;
+    cursor: pointer;
+}
+
+.filter-container{
+    border: 1px solid #D2D1D1;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+.feedback-list tr td,
+.feedback-list tr th{
+    text-align: center;
+}
+
+#gctdevicetemplatemaster-base_template,
+#gcttemplatemaster_device_subtype_id,
+#gcttemplatemaster-template_content{
+    /*background: url('../../../images/textarea-background.png');*/
+    /*    background-attachment: local;
+        background-repeat: no-repeat;
+        padding-left: 35px;
+        padding-top: 10px;
+        border-color:#ccc;*/
+    margin-bottom: 2em;
+}
+
+.modal-header,
+.modal-footer button{
+    background-color: #0cad9e;
+    color: white;
+}
+.modal-content{
+    border: 5px solid #0cad9e;
+    border-radius: 0.5em;
+}
+
+.modal-body{
+    height: 800px;
+    overflow: auto;
+}
+.modal-dialog{
+    width: 90%!important;
+}
+
+.gct_action{
+    border: 1px solid #0cad9e;
+    padding: 1em;
+    border-radius: 0.2em;
+    margin-bottom: 0.5em;
+}
+
+.suggestion-label,
+.template-label,
+.suggestionList-label{
+    background-color: #0cad9e;
+    color: #FFF;
+    margin-top: 1em;
+}
+
+.template-label .glyphicon{
+    float: right;
+}
+
+.gct_action,
+.gct-template-master-form .suggestion-label{
+    display: none;
+}
+
+#gcttemplatemaster_device_subtype{
+    height: 50px;
+}
+
+.base_templae_sample,
+#gcttemplatemaster_device_subtype{
+    height: 600px;
+    border: 1px solid grey;
+    padding: 0.5em;
+    overflow: auto;
+    margin-bottom: 0.5em;
+}   
+
+.variables-list{
+    width: 222px;
+    position: fixed;
+    bottom: 1px;
+    left: 2px;
+    z-index: 999;
+}   
+
+.variables-list .variable{
+    /*    border-bottom: 1px solid grey;
+        border-right: 1px solid grey;*/
+    border-radius: 0.3em;
+    background-color: wheat;
+    height: 400px;
+    overflow: auto;
+    padding: 0.5em;
+    /*border-left: 1px solid grey;*/
+}
+#message{
+    display: none;
+    color: blue;
+}
+
+.variables-list{
+    display: none;
+}
+
+table.jambo_table {
+    border: 1px solid rgba(221, 221, 221, 0.78);
+}
+table.jambo_table thead {
+    background: rgba(52, 73, 94, 0.94) none repeat scroll 0 0;
+    color: #ecf0f1;
+}
+table.jambo_table thead a{
+    background: rgba(52, 73, 94, 0.94) none repeat scroll 0 0;
+    color: #ecf0f1;
+}
+table.jambo_table tbody tr:hover td {
+    background: rgba(38, 185, 154, 0.07) none repeat scroll 0 0;
+    border-bottom: 1px solid rgba(38, 185, 154, 0.11);
+    border-top: 1px solid rgba(38, 185, 154, 0.11);
+}
+table.jambo_table tbody tr.selected {
+    background: rgba(38, 185, 154, 0.16) none repeat scroll 0 0;
+}
+table.jambo_table tbody tr.selected td {
+    border-bottom: 1px solid rgba(38, 185, 154, 0.4);
+    border-top: 1px solid rgba(38, 185, 154, 0.4);
+}

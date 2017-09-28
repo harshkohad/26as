@@ -1,0 +1,14 @@
+<?php
+
+ini_set('display_errors', 1);     # don't show any errors...
+error_reporting(E_ALL ^ E_DEPRECATED ^ E_STRICT);
+defined('YII_DEBUG') or define('YII_DEBUG', TRUE);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('YII_ENV_DEV') or define('YII_ENV_DEV', TRUE);
+
+require(__DIR__ . '/../vendor/autoload.php');
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+
+$config = require(__DIR__ . '/../config/web.php');
+
+(new yii\web\Application($config))->run();

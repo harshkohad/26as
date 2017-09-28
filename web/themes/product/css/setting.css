@@ -1,0 +1,41 @@
+.lab-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.lab-panel {
+    width: 240px;
+}
+
+.lab-content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.lab-tableheading{
+    background: #e2e2e2;
+    color: rgb(203, 96, 9);
+}
+.pencil{
+    color:#fff;
+    padding:10px;
+    border-radius:100%;
+    background:rgb(58, 158, 184);
+    margin-left:35px;
+
+}
+.fa-cog{
+    font-size:25px;
+    color:#282828;
+    margin-right:10px;
+
+}
+.lab-panel{
+    font-size: 18px;
+    font-weight:bold;
+    padding-top:15px;
+}
+.table td,th{
+    border:none !important;
+}

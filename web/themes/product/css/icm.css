@@ -1,0 +1,69 @@
+/*.lab-panel{
+    list-style: none;
+
+}
+
+.lab-panel li{
+    padding: 20px;
+
+}
+
+.lab-panel a{
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: bold;
+    latter-spacing:1px;
+    text-transform: uppercase;
+    color: rgb(85, 85, 85);
+
+}
+
+.lab-panel .active a{
+    color: rgb(201, 74, 56);
+    text-decoration: none;
+}
+
+.lab-panel .fa{
+
+    padding-right: 25px;
+}
+
+.lab-panel li ul a{
+    color:blue;
+    font-size: 16px;
+    font-family: 'open sans'
+}
+.lab-panel li ul{
+    list-style: none;
+}*/
+.glyphicon { margin-right:10px; }
+.panel-body { padding:0px; }
+.panel-body table tr td { padding-left: 15px }
+.panel-body .table {margin-bottom: 0px; }
+
+.panel-default .fa{
+
+    padding-right: 17px;
+}
+
+.panel-title {
+    text-transform: uppercase;
+}
+.panel-body table tr td{
+    padding-left:58px;
+}
+.caret{
+    margin-left: 15px;
+
+}
+.icm-menu{
+    color:#000 !important;
+    font-size: 20px;
+
+}
+.panel-title{
+    color:rgb(85, 85, 85);
+}
+.panel-body{
+    text-transform: uppercase;
+}
