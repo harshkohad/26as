@@ -28,7 +28,7 @@ class UserController extends BaseController {
 
     private $_oldMailPath;
     public $leftMenuGroup = 'settings';
-    public $layout = '//adminlte-default';
+    //public $layout = '//adminlte-default';
 
     /**
      * @inheritdoc
@@ -130,7 +130,7 @@ class UserController extends BaseController {
      * @return string
      */
     public function actionLogin() {
-        $this->layout = '//adminlte-login';
+        $this->layout = '//main-login';
         if (!Yii::$app->getUser()->isGuest) {
             return $this->goHome();
         }
@@ -175,7 +175,7 @@ class UserController extends BaseController {
      * @return string
      */
     public function actionSignup() {
-        $this->layout = '//adminlte-login';
+        $this->layout = '//main-login';
         if (!empty(Yii::$app->user->id)) {
             return $this->goHome();
         }
@@ -205,7 +205,7 @@ class UserController extends BaseController {
      * @return string
      */
     public function actionRequestPasswordReset() {
-        $this->layout = '//adminlte-login';
+        $this->layout = '//main-login';
         $model = new PasswordResetRequest();
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             if ($model->sendEmail()) {

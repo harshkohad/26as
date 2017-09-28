@@ -24,7 +24,7 @@ class AssignmentController extends BaseController {
     public $searchClass;
     public $extraColumns = [];
     public $leftMenuGroup = 'settings';
-    public $layout = '//adminlte-default';
+    //public $layout = '//adminlte-default';
 
     /**
      * @inheritdoc

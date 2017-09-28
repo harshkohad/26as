@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'label' => 'Home',
+    'label' => 'Dashboard',
+    'icon' => 'fa fa-dashboard',
     'url' => ['/site/index']
 ];
 

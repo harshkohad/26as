@@ -11,6 +11,7 @@ $config = [
     'id' => 'anant-networks',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'menu'],
+    'layout' => 'main_layout',
     'components' => [
         'urlManager' => [
             'showScriptName' => FALSE, //!(isset($_GET['url_rewrite']) && $_GET['url_rewrite'] == 1),

@@ -14,7 +14,7 @@ use yii\rbac\Item;
 class PermissionController extends ItemController {
 
     public $leftMenuGroup = 'settings';
-    public $layout = '//adminlte-fullpage';
+    //public $layout = '//adminlte-fullpage';
 
     /**
      * @inheritdoc

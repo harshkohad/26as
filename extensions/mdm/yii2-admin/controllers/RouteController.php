@@ -16,7 +16,7 @@ use yii\filters\VerbFilter;
 class RouteController extends BaseController {
 
     public $leftMenuGroup = 'settings';
-    public $layout = '//adminlte-default';
+    //public $layout = '//adminlte-default';
 
     public function behaviors() {
         return [

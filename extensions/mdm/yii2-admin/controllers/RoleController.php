@@ -14,7 +14,7 @@ use yii\rbac\Item;
 class RoleController extends ItemController {
 
     public $leftMenuGroup = 'settings';
-    public $layout = '//adminlte-default';
+    //public $layout = '//adminlte-default';
 
     /**
      * @inheritdoc

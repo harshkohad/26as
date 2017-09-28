@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="login-box">
     <div class="login-logo">
         <!--<a href="#" style="color: white;"><b>(SWIM)</b></a>-->
-        <img src="<?php echo \yii\helpers\Url::to(Yii::$app->view->theme->baseUrl . '/images/cisco_logo.png') ?>" alt="STC" /><br/>
+        <!--<img src="<?php echo \yii\helpers\Url::to(Yii::$app->view->theme->baseUrl . '/images/cisco_logo.png') ?>" alt="STC" /><br/>-->
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
