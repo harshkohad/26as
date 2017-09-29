@@ -50,4 +50,7 @@ return [
     'test' => [
         'class' => 'app\modules\test\Module'
     ],
+    'generate_mis' => [
+        'class' => 'app\modules\generate_mis\Module'
+    ],
 ];

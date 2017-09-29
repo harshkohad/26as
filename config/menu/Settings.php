@@ -2,6 +2,7 @@
 
 return [
     'label' => 'Settings',
+    'icon' => 'fa fa-gears',
     'url' => ['#'],
     'items' => [
         [

@@ -44,6 +44,7 @@ use mdm\admin\components\Helper;
                 'items' => [
                     include \Yii::$app->basePath . '/config/menu/Home.php',
                     include \Yii::$app->basePath . '/config/menu/Test.php',
+                    include \Yii::$app->basePath . '/config/menu/GenerateMis.php',
                     include \Yii::$app->basePath . '/config/menu/Settings.php',
                     //include \Yii::$app->basePath . '/config/menu/UserProfile.php',
                 ]

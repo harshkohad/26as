@@ -56,7 +56,7 @@ class SiteController extends BaseController {
     public function beforeAction($action) {
         if (parent::beforeAction($action)) {
             if ($action->id == 'error')
-                $this->layout = 'adminlte-fullpage';
+                $this->layout = 'main_layout';
             return true;
         } else {
             return false;
