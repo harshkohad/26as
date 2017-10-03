@@ -53,4 +53,10 @@ return [
     'generate_mis' => [
         'class' => 'app\modules\generate_mis\Module'
     ],
+    'api' => [
+        'class' => 'app\modules\api\Api',
+    ],
+    'manage_mobile_app' => [
+        'class' => 'app\modules\manage_mobile_app\Module',
+    ],
 ];

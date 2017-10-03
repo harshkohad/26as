@@ -8,7 +8,7 @@ $amqp = require(__DIR__ . '/amqp.php');
 $modules = require(__DIR__ . '/modules.php');
 
 $config = [
-    'id' => 'anant-networks',
+    'id' => 'hwk-networks',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'menu'],
     'layout' => 'main_layout',
@@ -21,6 +21,9 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                // Here is the mater configuration of URL Management for Modules
+                'api/<module:\w+>/<controller:\w+>/<id:\d+>' => 'api/<module>/<controller>/view',
+                'api/<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => 'api/<module>/<controller>/<action>',
             ],
         ],
         'request' => [
