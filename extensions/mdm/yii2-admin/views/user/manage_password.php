@@ -183,7 +183,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 </div>
 
-<script>
+<?php
+$jquery = <<<JS
     $(document).ready(function () {
         $("#userdetails-user_id").on("change", function () {
             var userID = $("#userdetails-user_id").val();
@@ -191,5 +192,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 $('#manage-password-index').submit();
             }
         });
-    });
-</script>
+    });    
+JS;
+$this->registerJs($jquery, yii\web\View::POS_END);

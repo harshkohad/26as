@@ -6,6 +6,9 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use mdm\admin\models\User;
+use app\modules\api\modules\v1\models\Api;
+use app\modules\manage_mobile_app\models\TblMobileUsers;
+use app\modules\api\modules\v1\models\TblOauthIdentity;
 
 /**
  * A UserController Class.
@@ -80,12 +83,12 @@ class ApiController extends Controller {
     }
 
     public function actionAppLogin() {
-        $received_data = \app\modules\api\modules\v1\models\Api::get_input_data();
+        $received_data = Api::get_input_data();
 
         $response = '';
         $api_usage_id = '';
 
-        $api_name = 'GetAccessToken';
+        $api_name = 'AppLogin';
 
         $ip_address = Yii::$app->getRequest()->getUserIP();
 
@@ -100,22 +103,31 @@ class ApiController extends Controller {
                 $user_details = User::find()->where(['username' => $username])->one();
 
                 if (!empty($user_details)) {
-                    
-                    
                     #Register API usage
-                    $api_usage_id = \app\modules\api\modules\v1\models\Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
+                    $api_usage_id = Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
 
-                    if (Yii::$app->getSecurity()->validatePassword($password, $user_details->password_hash)) {
-                        $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 1, 'Login Successful.', '');
+                    $mobile_details = TblMobileUsers::find()->where(['user_id' => $user_details->id, 'mobile_unique_code' => $mobile_unique_code])->one();
+
+                    if (!empty($mobile_details)) {
+                        if (Yii::$app->getSecurity()->validatePassword($password, $user_details->password_hash)) {
+                            $oauth_details = TblOauthIdentity::find()->where(['user_id' => $user_details->id])->one();
+
+                            //Generate token and save it into db
+                            $return_array = Api::gen_token($oauth_details->client_id);
+
+                            $response = Api::api_response($api_usage_id, 1, 'Login Successful.', $return_array);
+                        } else {
+                            $response = Api::api_response($api_usage_id, 2, '', '', '1002');
+                        }
                     } else {
-                        $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 2, '', '', '1002');
+                        $response = Api::api_response($api_usage_id, 2, '', '', '1003');
                     }
                 } else {
-                    $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 2, '', '', '1001');
+                    $response = Api::api_response($api_usage_id, 2, '', '', '1001');
                 }
             }
         } else {
-            $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 2, '', '', '1000');
+            $response = Api::api_response($api_usage_id, 2, '', '', '1000');
         }
 
         return $response;
@@ -123,7 +135,7 @@ class ApiController extends Controller {
 
     public function actionGetAccessToken() {
 
-        $received_data = \app\modules\api\modules\v1\models\Api::get_input_data();
+        $received_data = Api::get_input_data();
 
         $response = '';
         $api_usage_id = '';
@@ -140,20 +152,20 @@ class ApiController extends Controller {
                 $client_id = $received_data_data['client_id'];
                 $client_secret = $received_data_data['client_secret'];
 
-                $oauth_details = \app\modules\api\modules\v1\models\TblOauthIdentity::find()->where(['client_id' => $client_id, 'client_secret' => $client_secret])->one();
+                $oauth_details = TblOauthIdentity::find()->where(['client_id' => $client_id, 'client_secret' => $client_secret])->one();
 
                 if (!empty($oauth_details)) {
                     //Register API usage
-                    $api_usage_id = \app\modules\api\modules\v1\models\Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
+                    $api_usage_id = Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
 
                     //Generate token and save it into db
-                    $return_array = \app\modules\api\modules\v1\models\Api::gen_token($client_id);
+                    $return_array = Api::gen_token($client_id);
 
-                    $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 1, 'API Access Token.', $return_array);
+                    $response = Api::api_response($api_usage_id, 1, 'API Access Token.', $return_array);
                 }
             }
         } else {
-            $response = \app\modules\api\modules\v1\models\Api::api_response($api_usage_id, 2, '', '', '1000');
+            $response = Api::api_response($api_usage_id, 2, '', '', '1000');
         }
 
         return $response;
