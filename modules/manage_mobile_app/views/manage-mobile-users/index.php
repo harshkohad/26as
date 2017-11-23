@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\manage_mobile_app\models\TblMobileUsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Manage Mobile Users';
+$this->title = 'Tbl Mobile Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tbl-mobile-users-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Add Mobile Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add New Mobile code', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,9 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'mobile_unique_code',
+            'field_agent_name',
+            'mobile_unique_code',           
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

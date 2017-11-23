@@ -1,19 +1,18 @@
 <?php
 
-namespace app\modules\manage_mobile_app\controllers;
+namespace app\modules\applications\controllers;
 
 use Yii;
-use app\modules\manage_mobile_app\models\TblMobileUsers;
-use app\modules\manage_mobile_app\models\TblMobileUsersSearch;
+use app\modules\applications\models\ApplicantProfile;
+use app\modules\applications\models\ApplicantProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use mdm\admin\models\UserDetails;
 
 /**
- * ManageMobileUsersController implements the CRUD actions for TblMobileUsers model.
+ * ApplicantProfileController implements the CRUD actions for ApplicantProfile model.
  */
-class ManageMobileUsersController extends Controller
+class ApplicantProfileController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,14 +30,14 @@ class ManageMobileUsersController extends Controller
     }
 
     /**
-     * Lists all TblMobileUsers models.
+     * Lists all ApplicantProfile models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TblMobileUsersSearch();
+        $searchModel = new ApplicantProfileSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -46,8 +45,8 @@ class ManageMobileUsersController extends Controller
     }
 
     /**
-     * Displays a single TblMobileUsers model.
-     * @param integer $id
+     * Displays a single ApplicantProfile model.
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -58,52 +57,28 @@ class ManageMobileUsersController extends Controller
     }
 
     /**
-     * Creates a new TblMobileUsers model.
+     * Creates a new ApplicantProfile model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TblMobileUsers();
-        
-        $sql = "SELECT u.id, CONCAT(ud.first_name, ' ', ud.last_name) as username FROM user u INNER JOIN tbl_user_details ud ON ud.user_id = u.id ORDER BY username";
-        $userData = \Yii::$app->db->createCommand($sql)->queryAll();
+        $model = new ApplicantProfile();
+        $model->created_on = date("Y-m-d H:i:s");
 
-        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } */
-        if ($model->load(Yii::$app->request->post())) {
-            $data = Yii::$app->request->post();
-            
-            $id = $data['TblMobileUsers']['user_id'];
-            $mobile_unique_code = $data['TblMobileUsers']['mobile_unique_code'];
-            
-            $mobile_details = TblMobileUsers::find()->where(['user_id' => $id])->one();
-            
-            if(empty($mobile_details)) {
-                $user_details = UserDetails::find()->where(['user_id' => $id])->one();
-                
-                $agent_name = $user_details['first_name'].' '.$user_details['last_name'];
-                $model->field_agent_name = $agent_name;
-                $model->save();
-            } else {
-                Yii::$app->getSession()->setFlash('error', 'User already added.'); 
-            }
-            
-            //die('sdfdsu');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                "userData" => $userData,
             ]);
         }
     }
 
     /**
-     * Updates an existing TblMobileUsers model.
+     * Updates an existing ApplicantProfile model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -120,9 +95,9 @@ class ManageMobileUsersController extends Controller
     }
 
     /**
-     * Deletes an existing TblMobileUsers model.
+     * Deletes an existing ApplicantProfile model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -133,15 +108,15 @@ class ManageMobileUsersController extends Controller
     }
 
     /**
-     * Finds the TblMobileUsers model based on its primary key value.
+     * Finds the ApplicantProfile model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return TblMobileUsers the loaded model
+     * @param string $id
+     * @return ApplicantProfile the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TblMobileUsers::findOne($id)) !== null) {
+        if (($model = ApplicantProfile::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

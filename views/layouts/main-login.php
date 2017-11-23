@@ -17,7 +17,8 @@ AdminLteLogin::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-<?php $this->head() ?>
+        <?php $this->head() ?>
+        <link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">  
     </head>
     <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/login_bg.png');">
 

@@ -25,6 +25,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+        <link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <?php $this->beginBody() ?>

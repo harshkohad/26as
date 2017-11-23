@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $mobile_unique_code
+ * @property string $field_agent_name
  */
 class TblMobileUsers extends \yii\db\ActiveRecord
 {
@@ -27,9 +28,9 @@ class TblMobileUsers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'user_id'], 'integer'],
+            [['user_id'], 'integer'],
             [['mobile_unique_code'], 'string', 'max' => 250],
+            [['field_agent_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,6 +43,7 @@ class TblMobileUsers extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'mobile_unique_code' => 'Mobile Unique Code',
+            'field_agent_name' => 'Field Agent Name',
         ];
     }
 }

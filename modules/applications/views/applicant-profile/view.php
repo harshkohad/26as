@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\manage_mobile_app\models\TblMobileUsers */
+/* @var $model app\modules\applications\models\ApplicantProfile */
 
-$this->title = $model->field_agent_name;
-$this->params['breadcrumbs'][] = ['label' => 'Tbl Mobile Users', 'url' => ['index']];
+$this->title = $model->first_name.' '.$model->last_name;
+$this->params['breadcrumbs'][] = ['label' => 'Applicant Profiles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tbl-mobile-users-view">
+<div class="tbl-applicant-profile-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,9 +29,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
-            //'user_id',
-            'mobile_unique_code',
-            'field_agent_name',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'pan_card',
+            'aadhaar_card',
+            'passport_number',
+            'mobile_number',
+            'itr_ack_number',
+            'bank_account_number',
+            'bank_statement_type',
+            'address',
+            //'created_on',
+            //'update_on',
+            //'is_deleted',
         ],
     ]) ?>
 

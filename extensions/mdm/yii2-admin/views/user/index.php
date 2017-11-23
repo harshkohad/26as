@@ -20,7 +20,7 @@ $controllerId = $this->context->uniqueId . '/';
         </div>
         <div class="panel-body">
             <p>
-                <?= Html::a('Manage User Password', ['manage-password'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Create New User', ['create'], ['class' => 'btn btn-success']) ?> <?= Html::a('Manage User Password', ['manage-password'], ['class' => 'btn btn-success']) ?>
             </p>
             <?=
             GridView::widget([

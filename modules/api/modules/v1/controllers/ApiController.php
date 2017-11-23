@@ -76,8 +76,6 @@ class ApiController extends Controller {
     }
 
     public function actionIndex() {
-        //echo json_encode(['status' => 1, 'code' => 200, 'message' => 'Attempt Succcessful'], JSON_PRETTY_PRINT);
-
         $this->layout = '//main-login';
         return $this->render('api');
     }
@@ -95,7 +93,7 @@ class ApiController extends Controller {
         if ($received_data != false) {
             if (isset($received_data['data'][0])) {
                 $received_data_data = isset($received_data['data'][0]) ? $received_data['data'][0] : "";
-                //Check if username and password is valid or not
+                #Check if username and password is valid or not
                 $username = $received_data_data['username'];
                 $password = $received_data_data['password'];
                 $mobile_unique_code = $received_data_data['mobile_unique_code'];
@@ -112,7 +110,7 @@ class ApiController extends Controller {
                         if (Yii::$app->getSecurity()->validatePassword($password, $user_details->password_hash)) {
                             $oauth_details = TblOauthIdentity::find()->where(['user_id' => $user_details->id])->one();
 
-                            //Generate token and save it into db
+                            #Generate token and save it into db
                             $return_array = Api::gen_token($oauth_details->client_id);
 
                             $response = Api::api_response($api_usage_id, 1, 'Login Successful.', $return_array);
@@ -148,17 +146,17 @@ class ApiController extends Controller {
 
             if (isset($received_data['data'][0])) {
                 $received_data_data = isset($received_data['data'][0]) ? $received_data['data'][0] : "";
-                //Check if client_id and client secret is valid or not
+                #Check if client_id and client secret is valid or not
                 $client_id = $received_data_data['client_id'];
                 $client_secret = $received_data_data['client_secret'];
 
                 $oauth_details = TblOauthIdentity::find()->where(['client_id' => $client_id, 'client_secret' => $client_secret])->one();
 
                 if (!empty($oauth_details)) {
-                    //Register API usage
+                    #Register API usage
                     $api_usage_id = Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
 
-                    //Generate token and save it into db
+                    #Generate token and save it into db
                     $return_array = Api::gen_token($client_id);
 
                     $response = Api::api_response($api_usage_id, 1, 'API Access Token.', $return_array);

@@ -19,7 +19,7 @@ class TblMobileUsersSearch extends TblMobileUsers
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['mobile_unique_code'], 'safe'],
+            [['mobile_unique_code', 'field_agent_name'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class TblMobileUsersSearch extends TblMobileUsers
             'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'mobile_unique_code', $this->mobile_unique_code]);
+        $query->andFilterWhere(['like', 'mobile_unique_code', $this->mobile_unique_code])
+            ->andFilterWhere(['like', 'field_agent_name', $this->field_agent_name]);
 
         return $dataProvider;
     }

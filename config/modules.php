@@ -59,4 +59,7 @@ return [
     'manage_mobile_app' => [
         'class' => 'app\modules\manage_mobile_app\Module',
     ],
+    'applications' => [
+        'class' => 'app\modules\applications\Module',
+    ],
 ];
