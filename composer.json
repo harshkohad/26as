@@ -38,7 +38,9 @@
         "kartik-v/yii2-widget-colorinput": "@dev",
         "2amigos/yii2-table-export-widget": "*",
         "kartik-v/yii2-widget-select2": "@dev",
-        "phpoffice/phpword": "v0.13.*"
+        "phpoffice/phpword": "v0.13.*",
+        "kartik-v/bootstrap-fileinput": "dev-master",
+        "2amigos/yii2-file-upload-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

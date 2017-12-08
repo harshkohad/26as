@@ -23,13 +23,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_name') ?>
 
-    <?= $form->field($model, 'pan_card') ?>
+    <?= $form->field($model, 'pan_card_no') ?>
 
-    <?php // echo $form->field($model, 'aadhaar_card') ?>
+    <?php // echo $form->field($model, 'aadhaar_card_no') ?>
 
     <?php // echo $form->field($model, 'passport_number') ?>
 
-    <?php // echo $form->field($model, 'mobile_number') ?>
+    <?php // echo $form->field($model, 'mobile_no') ?>
 
     <?php // echo $form->field($model, 'itr_ack_number') ?>
 

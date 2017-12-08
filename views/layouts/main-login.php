@@ -20,7 +20,7 @@ AdminLteLogin::register($this);
         <?php $this->head() ?>
         <link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">  
     </head>
-    <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/login_bg.png');">
+    <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/54323760_l_blurred.jpg'); overflow-y:hidden;">
 
         <?php $this->beginBody() ?>
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>

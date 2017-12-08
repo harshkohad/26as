@@ -12,32 +12,54 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="applications-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Applications', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <div class="body-wrapper">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'profile_id',
-            'first_name',
-            'middle_name',
-            'last_name',
+//            'id',
+//            'profile_id',
+//            'first_name',
+//            'middle_name',
+//            'last_name',
+            [
+                'label' => 'Applicant Name',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getApplicantName($model->first_name, $model->middle_name, $model->last_name);
+                }
+            ],
             // 'aadhaar_card_no',
             // 'pan_card_no',
             // 'mobile_no',
             // 'institute_id',
             // 'loan_type_id',
+            [
+                'label' => 'Loan Type',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getLoanType($model->loan_type_id);
+                }
+            ],        
             // 'applicant_type',
+            [
+                'label' => 'Applicant Type',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getApplicantType($model->applicant_type);
+                }
+            ], 
             // 'profile_type',
             // 'area_id',
-            // 'date_of_application',
+            'date_of_application',
             // 'resi_society_name_plate',
             // 'resi_door_name_plate',
             // 'resi_tpc_neighbor_1',
@@ -108,8 +130,16 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'update_by',
             // 'updated_on',
             // 'is_deleted',
+            [
+                'label' => 'Application Status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getApplicationStatus($model->application_status);
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>

@@ -21,9 +21,9 @@ class DedupeCheckController extends \yii\web\Controller {
 //            $queryParams['ApplicantProfileSearch']['first_name'] = $_POST['inputFirstName'];
 //            $queryParams['ApplicantProfileSearch']['middle_name'] = $_POST['inputMiddleName'];
 //            $queryParams['ApplicantProfileSearch']['last_name'] = $_POST['inputLastName'];
-//            $queryParams['ApplicantProfileSearch']['mobile_number'] = $_POST['inputMobileNumber'];
-//            $queryParams['ApplicantProfileSearch']['pan_card'] = $_POST['inputPanCard'];
-//            $queryParams['ApplicantProfileSearch']['aadhaar_card'] = $_POST['inputAadhaarCard'];
+//            $queryParams['ApplicantProfileSearch']['mobile_no'] = $_POST['inputMobileNumber'];
+//            $queryParams['ApplicantProfileSearch']['pan_card_no'] = $_POST['inputPanCard'];
+//            $queryParams['ApplicantProfileSearch']['aadhaar_card_no'] = $_POST['inputAadhaarCard'];
 //            $queryParams['ApplicantProfileSearch']['is_dedupe'] = TRUE;
 //            
 //            $searchModel = new ApplicantProfileSearch();

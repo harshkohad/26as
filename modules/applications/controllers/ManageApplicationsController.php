@@ -16,6 +16,7 @@ use app\modules\applications\models\LoanTypes;
 use app\modules\applications\models\Area;
 use kartik\date\DatePicker;
 use kartik\widgets\FileInput;
+use app\modules\applications\models\ApplicantProfile;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -69,16 +70,47 @@ class ManageApplicationsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($profile_id = NULL)
     {
         $model = new Applications();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
-            return $this->redirect(['update', 'id' => $model->id, 'step2' => $step2]);
-        } else {
+        $institutes = new Institutes();
+        $loantypes = new LoanTypes();
+        $area_model = new Area();
+        
+        if(!empty($profile_id)) {
+            $applicant_profile = ApplicantProfile::find($profile_id)->one();
+            $data = $applicant_profile->attributes;
+            $model->setAttributes($data);
+        }
+        
+        if(Yii::$app->request->post()) {
+            
+            $post_data = Yii::$app->request->post();
+            if(!empty($profile_id)) {
+                $model->profile_id = $profile_id;
+            } else {
+                #create profile
+                $new_applicant_profile = new ApplicantProfile();
+                $new_applicant_profile->first_name = $post_data['Applications']['first_name'];
+                $new_applicant_profile->middle_name = $post_data['Applications']['middle_name'];
+                $new_applicant_profile->last_name = $post_data['Applications']['last_name'];
+                $new_applicant_profile->aadhaar_card_no = $post_data['Applications']['aadhaar_card_no'];
+                $new_applicant_profile->pan_card_no = $post_data['Applications']['pan_card_no'];
+                $new_applicant_profile->mobile_no = $post_data['Applications']['mobile_no'];
+                $new_applicant_profile->save(FALSE);
+                
+                $model->profile_id = $new_applicant_profile->id;
+            }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
+                return $this->redirect(['update', 'id' => $model->id, 'step2' => $step2]);
+            }
+        } else {  
             return $this->render('create', [
                 'model' => $model,
+                'institutes' => $institutes,
+                'loantypes' => $loantypes,
+                'area_model' => $area_model,
             ]);
         }
     }
@@ -103,18 +135,9 @@ class ManageApplicationsController extends Controller
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
         
         if(Yii::$app->request->post()) {
-            if(isset($_POST['Institutes']['id'])) {
-                $model->institute_id = $_POST['Institutes']['id'];
-            }
-            if(isset($_POST['LoanTypes']['id'])) {
-                $model->loan_type_id = $_POST['LoanTypes']['id'];
-            }
-            if(isset($_POST['Area']['id'])) {
-                $model->area_id = $_POST['Area']['id'];
-            }
             #ITR
             if(isset($_POST['itr']) && !empty($_POST['itr'])) {
-                //$this->processItr($_POST['itr'], $model->id);
+                $this->processItr($_POST['itr'], $model->id);
             }            
             #NOC
             if(isset($_POST['noc']) && !empty($_POST['noc'])) {
@@ -173,27 +196,27 @@ class ManageApplicationsController extends Controller
         $return_html = '<table  class="table table-hover small-text" id="itr_table">
                         <tr class="tr-header">
                             <th>Total Income</th>
-                            <th>Date of Filing (YYYY-MM-DD)</th>
+                            <th>Date of Filing</th>
                             <th>Pan no.</th>
-                            <th>Acknowledgement No. (YYYY-YYYY)</th>
-                            <th>Assesement year</th>
+                            <th>Acknowledgement No.</th>
+                            <th>Assesement year (YYYY-YYYY)</th>
                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMoreItr" title="Add More ITR"><span class="glyphicon glyphicon-plus"></span></a></th>';
         $return_html .= '</tr>';
         if (!empty($itrs)) {
             foreach ($itrs as $itr_data) {
                 $return_html .= '<tr>';
                 $return_html .= '<td><input type="text" name="itr[total_income][]" value="'.$itr_data['total_income'].'" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="itr[date_of_filing][]" value="'.$itr_data['date_of_filing'].'" class="form-control"></td>';
+                $return_html .= '<td><input type="date" max="'.date('Y-m-d').'" name="itr[date_of_filing][]" value="'.$itr_data['date_of_filing'].'" class="form-control"></td>';
                 $return_html .= '<td><input type="text" name="itr[pan_card_no][]" value="'.$itr_data['pan_card_no'].'" class="form-control"></td>';
                 $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" value="'.$itr_data['acknowledgement_no'].'" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="itr[assessment_year][]" value="'.$itr_data['assessment_year'].'" class="form-control"></td>';
+                $return_html .= '<td><input type="text" pattern="[0-9]{4}-[0-9]{4}" name="itr[assessment_year][]" value="'.$itr_data['assessment_year'].'" class="form-control"></td>';
                 $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
             $return_html .= '<td><input type="text" name="itr[total_income][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="itr[date_of_filing][]" class="form-control"></td>';
+            $return_html .= '<td><input type="date" max="'.date('Y-m-d').'" name="itr[date_of_filing][]" class="form-control"></td>';
             $return_html .= '<td><input type="text" name="itr[pan_card_no][]" class="form-control"></td>';
             $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" class="form-control"></td>';
             $return_html .= '<td><input type="text" name="itr[assessment_year][]" class="form-control"></td>';
@@ -316,5 +339,72 @@ class ManageApplicationsController extends Controller
             $model->remarks = isset($noc_data['remarks'][$i]) ? $noc_data['remarks'][$i] : '';
             $model->save();
         }
+    }
+    
+    public function actionGetApplicantProfile() {
+        $return_data = '';
+        if(Yii::$app->request->post()) {
+            $data = Yii::$app->request->post();
+            
+            $query_condition = array();
+            
+            $query = '';
+            
+            if (!empty($data['inputFirstName'])) {
+            $query_condition["first_name"] = $data['inputFirstName'];
+            }
+            if (!empty($data['inputMiddleName'])) {
+                $query_condition["middle_name"] = $data['inputMiddleName'];
+            }
+            if (!empty($data['inputLastName'])) {
+                $query_condition["last_name"] = $data['inputLastName'];
+            }
+            if (!empty($data['inputMobileNumber'])) {
+                $query_condition["mobile_no"] = $data['inputMobileNumber'];
+            }
+            if (!empty($data['inputPanCard'])) {
+                $query_condition["pan_card_no"] = $data['inputPanCard'];
+            }
+            if (!empty($data['inputAadhaarCard'])) {
+                $query_condition["aadhaar_card_no"] = $data['inputAadhaarCard'];
+            }
+            if (!empty($query_condition)) {
+                $query = ApplicantProfile::find()->where($query_condition)->all();
+            } 
+            
+            if(!empty($query)) {
+                $return_data .= '<table class="table table-hover table-bordered table-striped">
+                    <thead align="left" style="display: table-header-group">
+                        <tr>
+                           <th>Sr No.</th>
+                           <th>Name</th>
+                           <th>Mobile No</th>
+                           <th>Pan Card</th>
+                           <th>Aadhaar</th>
+                           <th>Action</th>
+                        </tr>
+                    </thead>
+                  <tbody>';
+                $sr = 1;
+                foreach($query as $app_profile) {
+                    #Create table
+                    $return_data .= '<tr class="item_row">';
+                    $return_data .= "<td>".$sr++."</td>";
+                    $return_data .= "<td>".$app_profile['first_name'].' '.$app_profile['middle_name'].' '.$app_profile['last_name']."</td>";
+                    $return_data .= "<td>{$app_profile['mobile_no']}</td>";
+                    $return_data .= "<td>{$app_profile['pan_card_no']}</td>";
+                    $return_data .= "<td>{$app_profile['aadhaar_card_no']}</td>";
+                    $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="'.$app_profile['id'].'">
+                                     <i class="fa fa-external-link"></i> Select</button></td>';
+                    $return_data .= '</tr>';
+                }
+                $return_data .= '</tbody></table>';
+            } else {
+                $return_data = 'No records Found!!!';
+            }
+        } else {
+            $return_data = 'No records Found!!!';
+        }
+        return $return_data;
     }
 }

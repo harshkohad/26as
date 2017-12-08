@@ -35,14 +35,14 @@ $area_model->id = $model->area_id;
     <div class="row">
         <div class="col-lg-3"><?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-lg-3"><?= $form->field($institutes, 'id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Institute'])->label('Institute Name') ?></div>
-        <div class="col-lg-3"><?= $form->field($loantypes, 'id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'),['prompt'=>'Select Loan Type'])->label('Loan Type') ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Institute'])->label('Institute Name') ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'),['prompt'=>'Select Loan Type'])->label('Loan Type') ?></div>
     </div>
 
     <div class="row">
         <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'],['prompt'=>'Select Applicant Type']) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'],['prompt'=>'Select Profile Type']) ?></div>
-        <div class="col-lg-3"><?= $form->field($area_model, 'id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
         <div class="col-lg-3"><?php
             echo '<label class="control-label">Date of Application</label>';
             echo DatePicker::widget([
@@ -55,6 +55,48 @@ $area_model->id = $model->area_id;
                 ]
             ]);
             ?></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <strong>Residence Address</strong>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <?= $form->field($model, 'resi_address')->textArea()->label(false) ?>
+                    <?= $form->field($model, 'resi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <strong>Office Address</strong>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <?= $form->field($model, 'office_address')->textArea()->label(false) ?>
+                    <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <strong>Business Address</strong>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <?= $form->field($model, 'busi_address')->textArea()->label(false) ?>
+                    <?= $form->field($model, 'busi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="panel-group" id="accordion" style="margin-bottom: 20px;">
@@ -330,6 +372,12 @@ $area_model->id = $model->area_id;
             <div id="kyc" class="panel-collapse collapse">
                 <div class="panel-body">
                     <?php //echo $kycTable;?>
+<!--                    <label for="input-24">Planets and Satellites</label>
+                    <div class="file-loading">
+                        <input id="input-24" name="input24[]" type="file" multiple>
+                    </div>-->
+<input id="input-24" name="input24[]" type="file" class="file" data-preview-file-type="text" multiple>
+                    
                 </div>
             </div>
         </div>
@@ -368,5 +416,7 @@ $area_model->id = $model->area_id;
                     alert('Sorry!! Can\'t remove first row!');
                 }
             });
+            
+//            $('#input-24').fileinput({'showUpload':false, 'previewFileType':'any'});
         });  
     ");

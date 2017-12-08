@@ -17,6 +17,10 @@ return [
             'label' => 'Manage Applications',
             'url' => ['/applications/manage-applications/index']
         ],
+        [
+            'label' => 'Create Application',
+            'url' => ['/applications/manage-applications/create']
+        ],
     ]    
 ];
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\applications\models;
+use app\modules\applications\models\LoanTypes;
 
 use Yii;
 
@@ -108,7 +109,7 @@ class Applications extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            //[['profile_id'], 'required'],
+            [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'area_id', 'institute_id', 'loan_type_id'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'busi_staff', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
             [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_owner_ship_status', 'resi_locality', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status', 'busi_locality', 'busi_landmark_1', 'busi_landmark_2', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year'], 'string', 'max' => 150],
@@ -207,5 +208,67 @@ class Applications extends \yii\db\ActiveRecord
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
+    }
+    
+    public function getApplicantName($first_name, $middle_name, $last_name) {
+        return $first_name.' '.$middle_name.' '.$last_name;
+    }
+    
+    public function getLoanType($loan_type_id) {
+        
+        $loan_data = LoanTypes::findOne($loan_type_id);
+        
+        return $loan_data->loan_name;
+    }
+    
+    public function getApplicantType($applicant_type) {
+        $return = '';
+        
+        switch ($applicant_type) {
+            case 1:
+                $return = 'Salaried';
+            break;
+            case 2:
+                $return = 'Self-employed';
+            break;
+        }
+        
+        return $return;
+    }
+    
+    public function getApplicationStatus($application_status) {
+        $return = '';
+        
+        switch ($application_status) {
+            case 1:
+                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
+            break;
+            case 2:
+                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
+            break;
+            case 3:
+                $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
+            break;
+        }
+        
+        return $return;
+    }
+    
+    public function getApplicationStatus1($application_status) {
+        $return = '';
+        
+        switch ($application_status) {
+            case 1:
+                $return = '<div class="btn btn-block btn-primary btn-sm">New</div>';
+            break;
+            case 2:
+                $return = '<div class="btn btn-block btn-warning btn-sm">Inprogress</div>';
+            break;
+            case 3:
+                $return = '<div class="btn btn-block btn-success btn-sm">Completed</div>';
+            break;
+        }
+        
+        return $return;
     }
 }

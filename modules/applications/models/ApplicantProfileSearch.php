@@ -19,7 +19,7 @@ class ApplicantProfileSearch extends TblApplicantProfile
     {
         return [
             [['id', 'is_deleted'], 'integer'],
-            [['first_name', 'middle_name', 'last_name', 'pan_card', 'aadhaar_card', 'passport_number', 'mobile_number', 'itr_ack_number', 'bank_account_number', 'bank_statement_type', 'address', 'created_on', 'update_on'], 'safe'],
+            [['first_name', 'middle_name', 'last_name', 'pan_card_no', 'aadhaar_card_no', 'passport_number', 'mobile_no', 'itr_ack_number', 'bank_account_number', 'bank_statement_type', 'address', 'created_on', 'update_on'], 'safe'],
         ];
     }
 
@@ -70,10 +70,10 @@ class ApplicantProfileSearch extends TblApplicantProfile
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'middle_name', $this->middle_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'pan_card', $this->pan_card])
-            ->andFilterWhere(['like', 'aadhaar_card', $this->aadhaar_card])
+            ->andFilterWhere(['like', 'pan_card_no', $this->pan_card_no])
+            ->andFilterWhere(['like', 'aadhaar_card_no', $this->aadhaar_card_no])
             ->andFilterWhere(['like', 'passport_number', $this->passport_number])
-            ->andFilterWhere(['like', 'mobile_number', $this->mobile_number])
+            ->andFilterWhere(['like', 'mobile_no', $this->mobile_no])
             ->andFilterWhere(['like', 'itr_ack_number', $this->itr_ack_number])
             ->andFilterWhere(['like', 'bank_account_number', $this->bank_account_number])
             ->andFilterWhere(['like', 'bank_statement_type', $this->bank_statement_type])

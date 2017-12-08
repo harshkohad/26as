@@ -25,17 +25,17 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="clearfix"></div>
             <div class="col-sm-4">
-                <?= $form->field($model, 'pan_card')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">    
-                <?= $form->field($model, 'aadhaar_card')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'aadhaar_card_no')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">    
                 <?= $form->field($model, 'passport_number')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="clearfix"></div>   
             <div class="col-sm-4">
-                <?= $form->field($model, 'mobile_number')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?>
             </div>
             <div class="col-sm-4">                    
                 <?= $form->field($model, 'itr_ack_number')->textInput(['maxlength' => true]) ?>
