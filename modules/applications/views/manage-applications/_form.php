@@ -74,17 +74,18 @@ use kartik\date\DatePicker;
         <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
         <div class="col-lg-3">
             <?php
-            echo '<label class="control-label">Date Of Application</label>';
-            echo DatePicker::widget([
-                'name' => 'Applications[date_of_application]',
-                'type' => DatePicker::TYPE_INPUT,
-                'value' => $model->date_of_application,
-                'pluginOptions' => [
-                    'autoclose' => true,
-                    'format' => 'yyyy-mm-dd'
-                ]
-            ]);
+                $model->date_of_application = date('Y-m-d');
             ?>
+            <?= $form->field($model, 'date_of_application')->widget(
+                DatePicker::className(), [
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                        'endDate' => '0d',
+                        'todayHighlight' => true
+                    ]
+            ]);?>
         </div>
     </div>
     <input type="hidden" name="step2" id="step2" value="1" />

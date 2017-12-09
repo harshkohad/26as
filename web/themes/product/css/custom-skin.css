@@ -254,6 +254,8 @@ a.glyphicon:hover {
 .nip-template-input .cust-p-link{padding:3px; display: inline-block; width: 95%;}
 .remove-list-i{display: inline-block; margin-top: 0px;}
 .remove-list-i .glyphicon-remove{ font-size: 9px; display: inline-block; margin-top: 7px;cursor:hand;cursor:pointer;}
+.glyphicon{font-size: 16px;} 
+.glyphicon-trash{color: #e70606;}
 
 /*.btn-success{ background-color: #018f83; border-color: #016f65;}*/
 /*.btn-success:hover, .btn-success:hover, .open > .dropdown-toggle.btn-success:hover, .btn-success:focus, .btn-success:focus, .open > .dropdown-toggle.btn-success:focus, .btn-success.focus, .btn-success.focus, .open > .dropdown-toggle.btn-success.focus{background-color: #016f65 !important; border-color: #122b40 !important;}*/
@@ -308,4 +310,6 @@ a.asc:after, a.desc:after{float: right;}
 .filters td{padding: 4px !important;}
 .filters input{padding: 5px; margin: 0px; border-bottom: 1px solid #ddd !important; border: 0px; height: 20px;}
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{padding: 5px; font-size: 12px;}
-.table td:first-child{width: 25px;}
+/*.table td:first-child{width: 25px;}*/
+
+.readonlydiv {width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;border-color: #d2d6de;background-color: #eee;border: 1px solid #d2d6de; margin-bottom: 15px;}

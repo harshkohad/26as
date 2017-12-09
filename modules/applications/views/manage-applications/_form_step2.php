@@ -35,28 +35,31 @@ $area_model->id = $model->area_id;
     <div class="row">
         <div class="col-lg-3"><?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Institute'])->label('Institute Name') ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'),['prompt'=>'Select Loan Type'])->label('Loan Type') ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
     </div>
 
     <div class="row">
-        <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'],['prompt'=>'Select Applicant Type']) ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'],['prompt'=>'Select Profile Type']) ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
-        <div class="col-lg-3"><?php
-            echo '<label class="control-label">Date of Application</label>';
-            echo DatePicker::widget([
-                'name' => 'Applications[date_of_application]',
-                'type' => DatePicker::TYPE_INPUT,
-                'value' => $model->date_of_application,
+        <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'], ['prompt' => 'Select Applicant Type']) ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'], ['prompt' => 'Select Profile Type']) ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area') ?></div>
+        <div class="col-lg-3">
+            <?=
+            $form->field($model, 'date_of_application')->widget(
+                    DatePicker::className(), [
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
                 'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-mm-dd'
+                    'autoclose' => true,
+                    'format' => 'yyyy-mm-dd',
+                    'endDate' => '0d',
+                    'todayHighlight' => true
                 ]
             ]);
-            ?></div>
+            ?>
+
+        </div>
     </div>
-    
+
     <div class="row">
         <div class="col-lg-4">
             <div class="panel panel-default cust-panel">
@@ -168,7 +171,7 @@ $area_model->id = $model->area_id;
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'],['prompt'=>'Select Type Of Business']) ?></div>
+                        <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
                         <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->textInput(['maxlength' => true]) ?></div>
                         <div class="col-lg-3"><?= $form->field($model, 'busi_area')->textInput() ?></div>
                         <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->textInput(['maxlength' => true]) ?></div>
@@ -227,7 +230,7 @@ $area_model->id = $model->area_id;
             </div>
             <div id="itr" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <?php echo $itrTable;?>
+                    <?php echo $itrTable; ?>
                 </div>
             </div>
         </div>
@@ -245,32 +248,32 @@ $area_model->id = $model->area_id;
                         <div class="col-lg-3"><?= $form->field($model, 'financial_pan_card_no')->textInput(['maxlength' => true]) ?></div>
                         <div class="col-lg-3"><?= $form->field($model, 'financial_name')->textInput(['maxlength' => true]) ?></div>
                         <div class="col-lg-3">
-                        <?php
+                            <?php
                             echo '<label class="control-label">Assessment Year</label>';
                             echo DatePicker::widget([
                                 'name' => 'Applications[financial_assessment_year]',
                                 'type' => DatePicker::TYPE_INPUT,
                                 'value' => $model->date_of_application,
                                 'pluginOptions' => [
-                                    'autoclose'=>true,
+                                    'autoclose' => true,
                                     'format' => 'yyyy-mm-dd'
                                 ]
                             ]);
-                        ?>
+                            ?>
                         </div>
                         <div class="col-lg-3">
-                        <?php
+                            <?php
                             echo '<label class="control-label">Date Of Filing</label>';
                             echo DatePicker::widget([
                                 'name' => 'Applications[financial_date_of_filing]',
                                 'type' => DatePicker::TYPE_INPUT,
                                 'value' => $model->date_of_application,
                                 'pluginOptions' => [
-                                    'autoclose'=>true,
+                                    'autoclose' => true,
                                     'format' => 'yyyy-mm-dd'
                                 ]
                             ]);
-                        ?>
+                            ?>
                         </div>
                     </div>
 
@@ -311,32 +314,32 @@ $area_model->id = $model->area_id;
                         <div class="col-lg-3"><?= $form->field($model, 'bank_pan_card_no')->textInput(['maxlength' => true]) ?></div>
                         <div class="col-lg-3"><?= $form->field($model, 'bank_current_balance')->textInput(['maxlength' => true]) ?></div>
                         <div class="col-lg-3">
-                        <?php
+                            <?php
                             echo '<label class="control-label">Account Opening Date</label>';
                             echo DatePicker::widget([
                                 'name' => 'Applications[bank_account_opening_date]',
                                 'type' => DatePicker::TYPE_INPUT,
                                 'value' => $model->date_of_application,
                                 'pluginOptions' => [
-                                    'autoclose'=>true,
+                                    'autoclose' => true,
                                     'format' => 'yyyy-mm-dd'
                                 ]
                             ]);
-                        ?>
+                            ?>
                         </div>
                         <div class="col-lg-3">
-                        <?php
+                            <?php
                             echo '<label class="control-label">Date Of Birth</label>';
                             echo DatePicker::widget([
                                 'name' => 'Applications[bank_date_of_birth]',
                                 'type' => DatePicker::TYPE_INPUT,
                                 'value' => $model->date_of_application,
                                 'pluginOptions' => [
-                                    'autoclose'=>true,
+                                    'autoclose' => true,
                                     'format' => 'yyyy-mm-dd'
                                 ]
                             ]);
-                        ?>
+                            ?>
                         </div>
                     </div>
 
@@ -357,7 +360,7 @@ $area_model->id = $model->area_id;
             </div>
             <div id="noc" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <?php echo $nocTable;?>
+                    <?php echo $nocTable; ?>
                 </div>
             </div>
         </div>
@@ -370,14 +373,8 @@ $area_model->id = $model->area_id;
                 </h4>
             </div>
             <div id="kyc" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <?php //echo $kycTable;?>
-<!--                    <label for="input-24">Planets and Satellites</label>
-                    <div class="file-loading">
-                        <input id="input-24" name="input24[]" type="file" multiple>
-                    </div>-->
-<input id="input-24" name="input24[]" type="file" class="file" data-preview-file-type="text" multiple>
-                    
+                <div class="panel-body" id="kyc_table">
+                    <?php echo $kycTable; ?>
                 </div>
             </div>
         </div>
@@ -393,8 +390,58 @@ $area_model->id = $model->area_id;
 
 </div>
 
-<?php 
-    $this->registerJs("
+<!--Custom query modal-->    
+<div class="modal fade" id="modal-kyc-upload">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header label-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="text-white fa fa-pencil-square-o"></i> <span
+                        class="text-white bold">Upload KYC</span></h4>
+            </div>
+            <form id="kyc_form" method="post" enctype="multipart/form-data">
+                <div class="modal-body" id="kyc_modal_body">
+
+                    <div class="form-group">
+                        <label for="doc_type" class="col-form-label">Doc Type:</label>
+                        <input type="text" class="form-control" name="doc_type" id="doc_type">
+                    </div>
+                    <div class="form-group">
+                        <label for="kyc_remarks" class="col-form-label">Remarks:</label>
+                        <textarea class="form-control"  name="kyc_remarks" id="kyc_remarks"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <input class="form-control" name="kyc_file" type="file">
+                    </div>
+                    <input type="hidden" name="application_id" id="application_id" value="<?= $model->id; ?>" />
+                    <input type="hidden" name="application_number" id="application_number" value="<?= $model->application_id; ?>" />
+
+                </div>
+
+                <div class="modal-footer" id="kyc_modal_footer">
+                    <div id="button_div">
+                        <button type="submit" class="btn btn-primary" id="kyc_submit">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
+                    </div>
+                    <div id="loader_div" style="display: none;">
+                        Uploading.... <img src='../../images/acs_loader.gif'>
+                    </div>
+                    <div id="response_div" style="display: none;">
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<?php
+$this->registerJs("
         $(function(){
             $('#addMoreItr').on('click', function() {
                 var data = $('#itr_table tr:eq(1)').clone(true).appendTo('#itr_table');
@@ -405,8 +452,8 @@ $area_model->id = $model->area_id;
                 data.find('input').val('');
             });
             $('#addMoreKyc').on('click', function() {
-                var data = $('#kyc_table tr:eq(1)').clone(true).appendTo('#kyc_table');
-                data.find('input').val('');
+                // Call Modal
+                $('#modal-kyc-upload').modal('show'); 
             });
             $(document).on('click', '.remove', function() {
                 var trIndex = $(this).closest('tr').index();
@@ -417,6 +464,47 @@ $area_model->id = $model->area_id;
                 }
             });
             
-//            $('#input-24').fileinput({'showUpload':false, 'previewFileType':'any'});
-        });  
+            $(document).on('click', '.deleteKyc', function() {
+                kyc_id = this.value; 
+                alert(kyc_id);
+            });
+
+            $('#kyc_form').on('submit',(function(e) {
+                $('#button_div').hide();
+                $('#loader_div').show();
+                e.preventDefault();
+                $.ajax({
+                    url: 'upload-kyc', // Url to which the request is send
+                    type: 'POST',             // Type of request to be send, called as method
+                    data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        $('#loader_div').hide();
+                        $('#response_div').show();
+                        $('#response_div').html(data);
+                        
+                        //hide & reset modal 
+                        setTimeout(function() { 
+                            resetModal();
+                        }, 3000);
+                        
+                    }
+                });
+            }));
+            
+            function resetModal() {
+                $('#modal-kyc-upload').modal('hide'); 
+                $('#button_div').show(); 
+                $('#response_div').hide();
+                $('#kyc_form').reset;
+                
+                //reload KYC table
+                $.post('get-kyc-table?id=$model->id&isAjaxCall=1', {'data': ''}, function (response) {
+                    $('#kyc_table').html(response);
+                });
+            }
+        });    
     ");

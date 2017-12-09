@@ -1,8 +1,8 @@
 <?php
 
 namespace app\modules\applications\models;
-use app\modules\applications\models\LoanTypes;
 
+use app\modules\applications\models\LoanTypes;
 use Yii;
 
 /**
@@ -93,21 +93,19 @@ use Yii;
  * @property string $updated_on
  * @property integer $is_deleted
  */
-class Applications extends \yii\db\ActiveRecord
-{
+class Applications extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbl_applications';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'area_id', 'institute_id', 'loan_type_id'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'busi_staff', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
@@ -120,8 +118,7 @@ class Applications extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'profile_id' => 'Profile ID',
@@ -209,66 +206,109 @@ class Applications extends \yii\db\ActiveRecord
             'is_deleted' => 'Is Deleted',
         ];
     }
-    
+
     public function getApplicantName($first_name, $middle_name, $last_name) {
-        return $first_name.' '.$middle_name.' '.$last_name;
+        return $first_name . ' ' . $middle_name . ' ' . $last_name;
     }
-    
+
     public function getLoanType($loan_type_id) {
-        
+
         $loan_data = LoanTypes::findOne($loan_type_id);
-        
+
         return $loan_data->loan_name;
     }
-    
+
     public function getApplicantType($applicant_type) {
         $return = '';
-        
+
         switch ($applicant_type) {
             case 1:
                 $return = 'Salaried';
-            break;
+                break;
             case 2:
                 $return = 'Self-employed';
-            break;
+                break;
         }
-        
+
         return $return;
     }
-    
+
     public function getApplicationStatus($application_status) {
         $return = '';
-        
+
         switch ($application_status) {
             case 1:
                 $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
-            break;
+                break;
             case 2:
                 $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
-            break;
+                break;
             case 3:
                 $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
-            break;
+                break;
         }
-        
+
         return $return;
     }
-    
+
     public function getApplicationStatus1($application_status) {
         $return = '';
-        
+
         switch ($application_status) {
             case 1:
                 $return = '<div class="btn btn-block btn-primary btn-sm">New</div>';
-            break;
+                break;
             case 2:
                 $return = '<div class="btn btn-block btn-warning btn-sm">Inprogress</div>';
-            break;
+                break;
             case 3:
                 $return = '<div class="btn btn-block btn-success btn-sm">Completed</div>';
-            break;
+                break;
         }
-        
+
         return $return;
     }
+    
+    function thumbnailCreator($newfile_name, $dirname, $thumbs_folder_name, $thumb_width, $thumb_height, $file_tmp, $file_ext) {
+        //upload image path
+        $upload_image = $dirname . '/' . $newfile_name;
+
+        $thumbnail = $dirname . '/' . $thumbs_folder_name . '/' . $newfile_name;
+        list($width, $height) = getimagesize($upload_image);
+        $thumb_create = imagecreatetruecolor($thumb_width, $thumb_height);
+        switch ($file_ext) {
+            case 'jpg':
+                $source = imagecreatefromjpeg($upload_image);
+                break;
+            case 'jpeg':
+                $source = imagecreatefromjpeg($upload_image);
+                break;
+
+            case 'png':
+                $source = imagecreatefrompng($upload_image);
+                break;
+            case 'gif':
+                $source = imagecreatefromgif($upload_image);
+                break;
+            default:
+                $source = imagecreatefromjpeg($upload_image);
+        }
+
+        imagecopyresized($thumb_create, $source, 0, 0, 0, 0, $thumb_width, $thumb_height, $width, $height);
+        switch ($file_ext) {
+            case 'jpg' || 'jpeg':
+                imagejpeg($thumb_create, $thumbnail, 100);
+                break;
+            case 'png':
+                imagepng($thumb_create, $thumbnail, 100);
+                break;
+
+            case 'gif':
+                imagegif($thumb_create, $thumbnail, 100);
+                break;
+            default:
+                imagejpeg($thumb_create, $thumbnail, 100);
+        }
+    }
+
 }
