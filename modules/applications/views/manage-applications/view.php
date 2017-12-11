@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="panel-body">
                         <textarea class="form-control" readonly=""><?= $model->resi_address ?></textarea>
-                        <div><label>Sent for verification: <?= ($model->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div><label>Send for verification: <?= ($model->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="panel-body">
                         <textarea class="form-control" readonly=""><?= $model->office_address ?></textarea>
-                        <div><label>Sent for verification: <?= ($model->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div><label>Send for verification: <?= ($model->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="panel-body">
                         <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
-                        <div><label>Sent for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div><label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
                     </div>
                 </div>
             </div>
@@ -168,8 +168,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="readonlydiv"><?= $model->resi_home_area ?></div>
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_owner_ship_status') ?></label>
-                                <div class="readonlydiv"><?= $model->resi_owner_ship_status ?></div>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_ownership_status ?></div>
                             </div>
                         </div>
                         <div class="row">
@@ -254,8 +254,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="readonlydiv"><?= $model->busi_nature_of_business ?></div>
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_staff ?></div>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_staff_declared ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_years_in_business') ?></label>
@@ -517,6 +517,43 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
+
+            <!--KYC-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#kyc"><strong>KYC</strong></a>
+                    </h4>
+                </div>
+                <div id="kyc" class="panel-collapse collapse">
+                    <div class="panel-body" id="kyc_table">
+                        <?php echo $kycTable; ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <img src="" class="imagepreview" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div> 
+
+<?php
+$this->registerJs("
+        $(function(){            
+            $(document).on('click', '.pop_kyc', function() {
+                var path = $(this).find('img').attr('src');
+                var new_path = path.replace('/thumbs', '');
+                $('.imagepreview').attr('src', new_path);
+                $('#imagemodal').modal('show');   
+            });
+        });    
+");

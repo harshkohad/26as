@@ -8,9 +8,9 @@ use yii\helpers\Html;
 $step2 = isset($_GET['step2']) ? $_GET['step2'] : 0;
 
 $page_title = ($step2 == 1) ? 'Create' : 'Update';
-$this->title = $page_title.' Application';
+$this->title = $page_title.' Application: '.$model->application_id;
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->application_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="applications-update">

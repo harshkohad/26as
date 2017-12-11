@@ -9,6 +9,7 @@ use Yii;
  * This is the model class for table "tbl_applications".
  *
  * @property integer $id
+ * @property integer $application_id
  * @property integer $profile_id
  * @property string $first_name
  * @property string $middle_name
@@ -29,11 +30,13 @@ use Yii;
  * @property string $resi_met_person
  * @property string $resi_relation
  * @property integer $resi_home_area
- * @property string $resi_owner_ship_status
+ * @property string $resi_ownership_status
+ * @property string $resi_ownership_status_text
  * @property integer $resi_stay_years
  * @property integer $resi_total_family_members
  * @property integer $resi_working_members
  * @property string $resi_locality
+ * @property string $resi_locality_text
  * @property string $resi_landmark_1
  * @property string $resi_landmark_2
  * @property string $resi_remarks
@@ -43,12 +46,15 @@ use Yii;
  * @property string $busi_met_person
  * @property string $busi_designation
  * @property string $busi_nature_of_business
- * @property integer $busi_staff
+ * @property integer $busi_staff_declared
+ * @property integer $busi_staff_seen
  * @property integer $busi_years_in_business
  * @property integer $busi_type_of_business
  * @property string $busi_ownership_status
+ * @property string $busi_ownership_status_text
  * @property integer $busi_area
  * @property string $busi_locality
+ * @property string $busi_locality_text
  * @property string $busi_landmark_1
  * @property string $busi_landmark_2
  * @property string $busi_remarks
@@ -87,6 +93,12 @@ use Yii;
  * @property string $mobile_user_assigned_date
  * @property integer $mobile_user_status
  * @property string $mobile_user_status_updated_on
+ * @property string $resi_address
+ * @property integer $resi_address_verification
+ * @property string $office_address
+ * @property integer $office_address_verification
+ * @property string $busi_address
+ * @property integer $busi_address_verification
  * @property integer $created_by
  * @property string $created_on
  * @property integer $update_by
@@ -108,9 +120,9 @@ class Applications extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'area_id', 'institute_id', 'loan_type_id'], 'required'],
-            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'busi_staff', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'resi_ownership_status', 'busi_ownership_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
-            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_owner_ship_status', 'resi_locality', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status', 'busi_locality', 'busi_landmark_1', 'busi_landmark_2', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year'], 'string', 'max' => 150],
+            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration'], 'string', 'max' => 1000],
         ];
     }
@@ -121,6 +133,7 @@ class Applications extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
+            'application_id' => 'Application ID',
             'profile_id' => 'Profile ID',
             'first_name' => 'First Name',
             'middle_name' => 'Middle Name',
@@ -141,11 +154,13 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_met_person' => 'Met Person',
             'resi_relation' => 'Relation',
             'resi_home_area' => 'Home Area',
-            'resi_owner_ship_status' => 'Owner Ship Status',
+            'resi_ownership_status' => 'Ownership Status',
+            'resi_ownership_status_text' => 'Ownership Status Other',
             'resi_stay_years' => 'Stay Years',
             'resi_total_family_members' => 'Total Family Members',
             'resi_working_members' => 'Working Members',
             'resi_locality' => 'Locality',
+            'resi_locality_text' => 'Locality Other',
             'resi_landmark_1' => 'Landmark 1',
             'resi_landmark_2' => 'Landmark 2',
             'resi_remarks' => 'Remarks',
@@ -155,12 +170,15 @@ class Applications extends \yii\db\ActiveRecord {
             'busi_met_person' => 'Met Person',
             'busi_designation' => 'Designation',
             'busi_nature_of_business' => 'Nature Of Business',
-            'busi_staff' => 'Staff',
+            'busi_staff_declared' => 'Staff Declared',
+            'busi_staff_seen' => 'Staff Seen',
             'busi_years_in_business' => 'Years In Business',
             'busi_type_of_business' => 'Type Of Business',
             'busi_ownership_status' => 'Ownership Status',
+            'busi_ownership_status_text' => 'Ownership Status Other',
             'busi_area' => 'Area',
             'busi_locality' => 'Locality',
+            'busi_locality_text' => 'Locality Other',
             'busi_landmark_1' => 'Landmark 1',
             'busi_landmark_2' => 'Landmark 2',
             'busi_remarks' => 'Remarks',
@@ -199,6 +217,12 @@ class Applications extends \yii\db\ActiveRecord {
             'mobile_user_assigned_date' => 'Mobile User Assigned Date',
             'mobile_user_status' => 'Mobile User Status',
             'mobile_user_status_updated_on' => 'Mobile User Status Updated On',
+            'resi_address' => 'Residence Address',
+            'resi_address_verification' => 'Send For Verification',
+            'office_address' => 'Office Address',
+            'office_address_verification' => 'Send For Verification',
+            'busi_address' => 'Business Address',
+            'busi_address_verification' => 'Send For Verification',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
             'update_by' => 'Update By',
@@ -251,18 +275,21 @@ class Applications extends \yii\db\ActiveRecord {
         return $return;
     }
 
-    public function getApplicationStatus1($application_status) {
+    public function getVerifierStatus($id, $verifier_status) {
         $return = '';
 
-        switch ($application_status) {
+        switch ($verifier_status) {
+            case 0:
+                $return = '<button type="button" class="btn btn-block btn-primary btn-sm assignVerifier" value="'.$id.'">Assign Verifier</button>';
+                break;
             case 1:
-                $return = '<div class="btn btn-block btn-primary btn-sm">New</div>';
+                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
                 break;
             case 2:
-                $return = '<div class="btn btn-block btn-warning btn-sm">Inprogress</div>';
+                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
                 break;
             case 3:
-                $return = '<div class="btn btn-block btn-success btn-sm">Completed</div>';
+                $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
                 break;
         }
 

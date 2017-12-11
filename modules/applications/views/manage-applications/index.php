@@ -137,9 +137,79 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->getApplicationStatus($model->application_status);
                 }
             ],
+            [
+                'label' => 'Verifier Status',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->getVerifierStatus($model->id, $model->mobile_user_status);
+                }
+            ],        
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     </div>
 </div>
+
+<!--Assign Verifier modal-->    
+<div class="modal fade" id="modal-assign-verifier">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header label-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="text-white fa fa-pencil-square-o"></i> <span
+                        class="text-white bold">Assign Verifier</span></h4>
+            </div>
+            <form id="kyc_form" method="post" enctype="multipart/form-data">
+                <div class="modal-body" id="kyc_modal_body">
+
+                    <div class="form-group">
+                        <label for="doc_type" class="col-form-label">Doc Type:</label>
+                        <input type="text" class="form-control" name="doc_type" id="doc_type">
+                    </div>
+                    <div class="form-group">
+                        <label for="kyc_remarks" class="col-form-label">Remarks:</label>
+                        <textarea class="form-control"  name="kyc_remarks" id="kyc_remarks"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <input class="form-control" name="kyc_file" type="file">
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer" id="kyc_modal_footer">
+                    <div id="button_div">
+                        <button type="submit" class="btn btn-primary" id="kyc_submit">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
+                    </div>
+                    <div id="loader_div" style="display: none;">
+                        Uploading.... <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                    </div>
+                    <div id="response_div" style="display: none;">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<?php
+$this->registerJs("
+        $(function(){   
+            $(document).on('click', '.assignVerifier', function() {
+                var app_id = this.value;
+                var data = {app_id: app_id,};
+                $.post('get-verifier', data, function (response) {
+                    //reloadKycTable();
+                    $('#modal-assign-verifier').modal('show'); 
+                });
+                
+            });
+        });    
+    ");

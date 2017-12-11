@@ -5,12 +5,12 @@ namespace app\modules\applications\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\applications\models\TblApplicantProfile;
+use app\modules\applications\models\ApplicantProfile;
 
 /**
  * TblApplicantProfileSearch represents the model behind the search form about `app\modules\applications\models\TblApplicantProfile`.
  */
-class ApplicantProfileSearch extends TblApplicantProfile
+class ApplicantProfileSearch extends ApplicantProfile
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class ApplicantProfileSearch extends TblApplicantProfile
      */
     public function search($params)
     {     
-        $query = TblApplicantProfile::find();
+        $query = ApplicantProfile::find();
 
         // add conditions that should always apply here
         

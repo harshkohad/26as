@@ -95,7 +95,6 @@ use kartik\date\DatePicker;
             <?= Html::submitButton($model->isNewRecord ? 'Next' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>
@@ -110,7 +109,7 @@ yii\bootstrap\Modal::begin([
     // user must click cancel or X to close
     'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
 ]);
-echo "<div id='modalContent'><div style='text-align:center'><img src='../../images/acs_loader.gif'></div></div>";
+echo "<div id='modalContent'><div style='text-align:center'><img src='".Yii::$app->request->BaseUrl."/images/acs_loader.gif'></div></div>";
 yii\bootstrap\Modal::end();
 ?>
 

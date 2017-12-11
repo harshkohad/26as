@@ -18,8 +18,8 @@ class ApplicationsSearch extends Applications
     public function rules()
     {
         return [
-            [['id', 'profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'busi_staff', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
-            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'date_of_application', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_owner_ship_status', 'resi_locality', 'resi_landmark_1', 'resi_landmark_2', 'resi_remarks', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status', 'busi_locality', 'busi_landmark_1', 'busi_landmark_2', 'busi_remarks', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'office_remarks', 'financial_pan_card_no', 'financial_name', 'financial_assessment_year', 'financial_date_of_filing', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_dated_transaction', 'bank_pan_card_no', 'bank_current_balance', 'bank_account_opening_date', 'bank_date_of_birth', 'bank_address', 'bank_narration', 'mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
+            [['id', 'profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'date_of_application', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status', 'resi_ownership_status_text', 'resi_locality', 'resi_landmark_1', 'resi_landmark_2', 'resi_remarks', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status', 'busi_ownership_status_text', 'busi_locality', 'busi_landmark_1', 'busi_landmark_2', 'busi_remarks', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'office_remarks', 'financial_pan_card_no', 'financial_name', 'financial_assessment_year', 'financial_date_of_filing', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_dated_transaction', 'bank_pan_card_no', 'bank_current_balance', 'bank_account_opening_date', 'bank_date_of_birth', 'bank_address', 'bank_narration', 'mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
         ];
     }
 
@@ -71,7 +71,8 @@ class ApplicationsSearch extends Applications
             'resi_stay_years' => $this->resi_stay_years,
             'resi_total_family_members' => $this->resi_total_family_members,
             'resi_working_members' => $this->resi_working_members,
-            'busi_staff' => $this->busi_staff,
+            'busi_staff_declared' => $this->busi_staff_declared,
+            'busi_staff_seen' => $this->busi_staff_seen,
             'busi_years_in_business' => $this->busi_years_in_business,
             'busi_type_of_business' => $this->busi_type_of_business,
             'busi_area' => $this->busi_area,
@@ -105,7 +106,7 @@ class ApplicationsSearch extends Applications
             ->andFilterWhere(['like', 'resi_tpc_neighbor_2', $this->resi_tpc_neighbor_2])
             ->andFilterWhere(['like', 'resi_met_person', $this->resi_met_person])
             ->andFilterWhere(['like', 'resi_relation', $this->resi_relation])
-            ->andFilterWhere(['like', 'resi_owner_ship_status', $this->resi_owner_ship_status])
+            ->andFilterWhere(['like', 'resi_ownership_status', $this->resi_ownership_status])
             ->andFilterWhere(['like', 'resi_locality', $this->resi_locality])
             ->andFilterWhere(['like', 'resi_landmark_1', $this->resi_landmark_1])
             ->andFilterWhere(['like', 'resi_landmark_2', $this->resi_landmark_2])

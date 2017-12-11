@@ -17,6 +17,7 @@ use Yii;
  * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
+ * @property integer $send_for_verification
  */
 class Kyc extends \yii\db\ActiveRecord
 {
@@ -52,6 +53,7 @@ class Kyc extends \yii\db\ActiveRecord
             'doc_type' => 'Doc Type',
             'remarks' => 'Remarks',
             'file_name' => 'File Name',
+            'send_for_verification' => 'Send For Verification',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
             'updated_by' => 'Updated By',

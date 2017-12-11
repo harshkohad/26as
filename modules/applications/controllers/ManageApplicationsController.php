@@ -57,12 +57,15 @@ class ManageApplicationsController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
+        $model = $this->findModel($id);
         $itrTable = $this->getItrTableHtml($id);
         $nocTable = $this->getNocTableHtml($id);
+        $kycTable = $this->actionGetKycTable($id, $model->application_id, 1);
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+                    'model' => $model,
                     'itrTable' => $itrTable,
                     'nocTable' => $nocTable,
+                    'kycTable' => $kycTable,
         ]);
     }
 
@@ -83,8 +86,7 @@ class ManageApplicationsController extends Controller {
             $model->setAttributes($data);
         }
 
-        if (Yii::$app->request->post()) {
-
+        if ($model->load(Yii::$app->request->post())) {
             $post_data = Yii::$app->request->post();
             if (!empty($profile_id)) {
                 $model->profile_id = $profile_id;
@@ -101,7 +103,7 @@ class ManageApplicationsController extends Controller {
 
                 $model->profile_id = $new_applicant_profile->id;
             }
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->save()) {
                 #Save Application id
                 $model->application_id = self::getApplicationId($model->id);
                 $model->save();
@@ -132,11 +134,16 @@ class ManageApplicationsController extends Controller {
         $area_model = new Area();
         $itrTable = $this->getItrTable($id);
         $nocTable = $this->getNocTable($id);
-        $kycTable = $this->actionGetKycTable($id);
+        $kycTable = $this->actionGetKycTable($id, $model->application_id, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
 
         if (Yii::$app->request->post()) {
+            #Get checkbox values
+            $model->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
+            $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
+            $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
+           
             #ITR
             if (isset($_POST['itr']) && !empty($_POST['itr'])) {
                 $this->processItr($_POST['itr'], $model->id);
@@ -324,7 +331,7 @@ class ManageApplicationsController extends Controller {
         return $return_html;
     }
 
-    public function actionGetKycTable($id, $isAjaxCall = NULL) {
+    public function actionGetKycTable($id, $application_id, $getHtml, $isAjaxCall = NULL) {
 
         $nocs = Kyc::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
 
@@ -333,22 +340,42 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<table class="table table-striped table-bordered">
                         <thead>
                         <tr class="tr-header">
+                            <th>Preview</th>
                             <th>Doc type</th>
                             <th>Remarks</th>
-                            <th><button type="button" class="btn btn-primary" id="addMoreKyc"><i class="fa fa-plus"></i></button></th>';
+                            <th>Send For<br>Verification</th>';
+        if($getHtml == 0) {
+            $return_html .= '<th><button type="button" class="btn btn-primary" id="addMoreKyc"><i class="fa fa-plus"></i></button></th>';
+        }
         $return_html .= '</tr></thead>';
         if (!empty($nocs)) {
             foreach ($nocs as $noc_data) {
+                $image_link = '<a href="#" class="pop_kyc"><img src="'.Yii::$app->request->BaseUrl.'/uploads/kyc/'.$application_id.'/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';                
                 $return_html .= '<tr>';
+                $return_html .= '<td>'.$image_link.'</td>';
                 $return_html .= '<td>' . $noc_data['doc_type'] . '</td>';
-                $return_html .= '<td>' . $noc_data['remarks'] . '</td>';
-//                $return_html .= '<td>'.$noc_data['file_name'].'</td>';                
-                $return_html .= '<td align="center"><button type="button" class="btn btn-success viewKyc" value="' . $noc_data['id'] . '"><i class="fa fa-eye"></i></button> <button type="button" class="btn btn-danger deleteKyc" value="' . $noc_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
+                $return_html .= '<td>' . $noc_data['remarks'] . '</td>';      
+                 
+                if($getHtml == 0) {
+                    $checked = '';
+                    if($noc_data['send_for_verification']) {
+                        $checked = 'checked';
+                    }
+                    $return_html .= '<td><input type="checkbox" class="checkKyc" id="kyc_check_'.$noc_data['id'].'" name="kyc_check_'.$noc_data['id'].'" value="'.$noc_data['id'].'" '.$checked.'></td>';     
+                    $return_html .= '<td align="center"><button type="button" class="btn btn-danger deleteKyc" value="' . $noc_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
+                } else {
+                    $print = $noc_data['send_for_verification'] == 1 ? "TRUE" : "FALSE";
+                    $return_html .= '<td>' . $print . '</td>';     
+                }
                 $return_html .= '</tr>';
             }
         } else {
+            $colspan = 4;
+            if($getHtml == 0) {
+                $colspan = 5;
+            }
             $return_html .= '<tr>';
-            $return_html .= '<td colspan="3">No records Found!!!</td>';
+            $return_html .= '<td colspan="'.$colspan.'">No records Found!!!</td>';
             $return_html .= '</tr>';
         }
 
@@ -544,4 +571,48 @@ class ManageApplicationsController extends Controller {
         }
     }
 
+    public function actionDeleteKyc() {
+        if(!empty($_POST)) {
+            $kyc_id = $_POST['kyc_id'];
+            $application_number = $_POST['application_id'];
+
+            $kyc_model = Kyc::findOne($kyc_id);
+            $file_name = $kyc_model->file_name;
+            $dirname = 'uploads/kyc/'.$application_number;
+            
+            $file_path = $dirname.'/'.$file_name;
+            $thumb_path = $dirname.'/thumbs/'.$file_name;
+            
+            @unlink($file_path);  
+            @unlink($thumb_path);  
+            
+            $kyc_model->is_deleted = 1;
+            
+            $kyc_model->save();  
+        }
+    }
+    
+    public function actionSendKycForVerification() {
+        if(!empty($_POST)) {
+            $kyc_id = $_POST['kyc_id'];
+            $checkboxchecked = $_POST['checkboxchecked'];
+            $kyc_model = Kyc::findOne($kyc_id);
+                       
+            $kyc_model->send_for_verification = $checkboxchecked;
+            
+            $kyc_model->save();  
+        }
+    }
+    
+    public function actionGetVerifier() {
+        if(!empty($_POST)) {
+            $app_id = $_POST['app_id'];
+            
+            $application_model = Applications::findOne($app_id);
+            
+            if(!empty($application_model)) {
+                $application_id = $application_model->application_id;
+            }
+        }
+    }
 }

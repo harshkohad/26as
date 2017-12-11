@@ -82,7 +82,10 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
 
         </div>
 
-        <?php $this->endBody() ?>
+        <?php $this->endBody(); 
+                $this->registerJsFile(
+                '@web/js/bootbox.min.js'
+            );?>
     </body>
 </html>
 <?php $this->endPage() ?>
