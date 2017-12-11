@@ -207,6 +207,7 @@ class ManageApplicationsController extends Controller {
                             <th>Pan no.</th>
                             <th>Acknowledgement No.</th>
                             <th>Assesement year (YYYY-YYYY)</th>
+                            <th>Remarks</th>
                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMoreItr" title="Add More ITR"><span class="glyphicon glyphicon-plus"></span></a></th>';
         $return_html .= '</tr>';
         if (!empty($itrs)) {
@@ -217,6 +218,7 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<td><input type="text" name="itr[pan_card_no][]" value="' . $itr_data['pan_card_no'] . '" class="form-control"></td>';
                 $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" value="' . $itr_data['acknowledgement_no'] . '" class="form-control"></td>';
                 $return_html .= '<td><input type="text" pattern="[0-9]{4}-[0-9]{4}" name="itr[assessment_year][]" value="' . $itr_data['assessment_year'] . '" class="form-control"></td>';
+                $return_html .= '<td><input type="text" name="itr[remarks][]" value="' . $itr_data['remarks'] . '" class="form-control"></td>';
                 $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
                 $return_html .= '</tr>';
             }
@@ -227,6 +229,7 @@ class ManageApplicationsController extends Controller {
             $return_html .= '<td><input type="text" name="itr[pan_card_no][]" class="form-control"></td>';
             $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" class="form-control"></td>';
             $return_html .= '<td><input type="text" name="itr[assessment_year][]" class="form-control"></td>';
+            $return_html .= '<td><input type="text" name="itr[remarks][]" class="form-control"></td>';
             $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
             $return_html .= '</tr>';
         }
@@ -245,7 +248,8 @@ class ManageApplicationsController extends Controller {
                             <th>Date of Filing</th>
                             <th>Pan no.</th>
                             <th>Acknowledgement No.</th>
-                            <th>Assesement year (YYYY-YYYY)</th>';
+                            <th>Assesement year (YYYY-YYYY)</th>
+                            <th>Remarks</th>';
         $return_html .= '</tr>';
         if (!empty($itrs)) {
             foreach ($itrs as $itr_data) {
@@ -255,11 +259,12 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<td>' . $itr_data['pan_card_no'] . '</td>';
                 $return_html .= '<td>' . $itr_data['acknowledgement_no'] . '</td>';
                 $return_html .= '<td>' . $itr_data['assessment_year'] . '</td>';
+                $return_html .= '<td>' . $itr_data['remarks'] . '</td>';
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
-            $return_html .= '<td colspan=5>No records Found!!!</td>';
+            $return_html .= '<td colspan=6>No records Found!!!</td>';
             $return_html .= '</tr>';
         }
 

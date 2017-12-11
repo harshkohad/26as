@@ -14,6 +14,7 @@ use Yii;
  * @property string $pan_card_no
  * @property string $acknowledgement_no
  * @property string $assessment_year
+ * @property integer $remarks
  * @property integer $created_by
  * @property string $created_on
  * @property integer $updated_by
@@ -37,7 +38,7 @@ class Itr extends \yii\db\ActiveRecord
     {
         return [
             [['application_id', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['date_of_filing', 'assessment_year', 'created_on', 'updated_on'], 'safe'],
+            [['date_of_filing', 'assessment_year', 'created_on', 'updated_on', 'remarks'], 'safe'],
             [['total_income'], 'string', 'max' => 10],
             [['pan_card_no', 'acknowledgement_no'], 'string', 'max' => 150],
         ];
@@ -56,6 +57,7 @@ class Itr extends \yii\db\ActiveRecord
             'pan_card_no' => 'Pan Card No',
             'acknowledgement_no' => 'Acknowledgement No',
             'assessment_year' => 'Assessment Year',
+            'remarks' => 'Remarks',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
             'updated_by' => 'Updated By',

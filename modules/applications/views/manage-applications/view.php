@@ -58,25 +58,25 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
-                <div class="readonlydiv"><?= $model->institute_id ?></div>
+                <div class="readonlydiv"><?= $model->getInstituteNameType($model->institute_id) ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_type_id') ?></label>
-                <div class="readonlydiv"><?= $model->loan_type_id ?></div>
+                <div class="readonlydiv"><?= $model->getLoanType($model->loan_type_id) ?></div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('applicant_type') ?></label>
-                <div class="readonlydiv"><?= $model->applicant_type ?></div>
+                <div class="readonlydiv"><?= $model->getApplicantType($model->applicant_type) ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('profile_type') ?></label>
-                <div class="readonlydiv"><?= $model->profile_type ?></div>
+                <div class="readonlydiv"><?= $model->getProfileType($model->profile_type) ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('area_id') ?></label>
-                <div class="readonlydiv"><?= $model->area_id ?></div>
+                <div class="readonlydiv"><?= $model->getAreaName($model->area_id) ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('date_of_application') ?></label>
@@ -162,17 +162,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_relation') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_relation ?></div>
+                            </div>                                                        
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
+                                <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
                             </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status_text') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_ownership_status_text ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_home_area') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_home_area ?></div>
                             </div>
-                            <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
-                                <div class="readonlydiv"><?= $model->resi_ownership_status ?></div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_stay_years') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_stay_years ?></div>
@@ -185,12 +189,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_working_members ?></div>
                             </div>
-                            <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_locality') ?></label>
-                                <div class="readonlydiv"><?= $model->resi_locality ?></div>
-                            </div>
+                            
                         </div>
                         <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_locality') ?></label>
+                                <div class="readonlydiv"><?= $model->getResiLocality($model->resi_locality) ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_locality_text') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_locality_text ?></div>
+                            </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_landmark_1') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_landmark_1 ?></div>
@@ -198,11 +207,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_landmark_2') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_landmark_2 ?></div>
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
+                            </div> 
                         </div>
 
                         <div class="row">
@@ -252,53 +257,61 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_nature_of_business') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_nature_of_business ?></div>
+                            </div>                            
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_years_in_business') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_years_in_business ?></div>
                             </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_type_of_business') ?></label>
+                                <div class="readonlydiv"><?= $model->getBusiType($model->busi_type_of_business) ?></div>
+                            </div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
+                                <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality') ?></label>
+                                <div class="readonlydiv"><?= $model->getBusiLocality($model->busi_locality) ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_text') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
+                            </div>                            
+                        </div>
+
+                        <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_staff_declared ?></div>
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_years_in_business') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_years_in_business ?></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_type_of_business') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_type_of_business ?></div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_ownership_status ?></div>
-                            </div>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_seen') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_staff_seen ?></div>
+                            </div>                            
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_area') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_area ?></div>
                             </div>
                             <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_locality ?></div>
-                            </div>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_1') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_landmark_1 ?></div>
+                            </div>                   
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_1') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_landmark_1 ?></div>
-                            </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_2') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_landmark_2 ?></div>
                             </div>
-                            <div class="col-lg-3">
-                            </div>
-                            <div class="col-lg-3">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-9">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_remarks ?></div>
                             </div>

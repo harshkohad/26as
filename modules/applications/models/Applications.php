@@ -2,7 +2,9 @@
 
 namespace app\modules\applications\models;
 
+use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
+use app\modules\applications\models\Area;
 use Yii;
 
 /**
@@ -239,7 +241,23 @@ class Applications extends \yii\db\ActiveRecord {
 
         $loan_data = LoanTypes::findOne($loan_type_id);
 
-        return $loan_data->loan_name;
+        if(!empty($loan_data)) {
+            $return = $loan_data->loan_name;
+        }
+        
+        return $return;
+    }
+    
+    public function getInstituteNameType($institute_id) {
+        $return = '';
+        
+        $institutes = Institutes::find($institute_id)->one();
+
+        if(!empty($institutes)) {
+            $return = $institutes->name;
+        }
+
+        return $return;
     }
 
     public function getApplicantType($applicant_type) {
@@ -251,6 +269,123 @@ class Applications extends \yii\db\ActiveRecord {
                 break;
             case 2:
                 $return = 'Self-employed';
+                break;
+        }
+
+        return $return;
+    }
+    
+    public function getProfileType($profile_type) {
+        $return = '';
+
+        switch ($profile_type) {
+            case 1:
+                $return = 'Resi';
+                break;
+            case 2:
+                $return = 'Office';
+                break;
+            case 3:
+                $return = 'Resi/Office';
+                break;
+        }
+
+        return $return;
+    }
+    
+    public function getAreaName($area_id) {
+        $return = '';
+        
+        $area = Area::find($area_id)->one();
+
+        if(!empty($area)) {
+            $return = $area->name;
+        }
+
+        return $return;
+    }
+    
+    public function getOwnershipStatus($status_id) {
+        $return = '';
+        
+        switch ($status_id) {
+            case 1:
+                $return = 'Rented';
+                break;
+            case 2:
+                $return = 'Owned';
+                break;
+            case 3:
+                $return = 'Parental';
+                break;
+            case 4:
+                $return = 'Other';
+                break;
+        }
+
+        return $return;
+    }
+    
+    public function getResiLocality($locality) {
+        $return = '';
+        
+        switch ($locality) {
+            case 1:
+                $return = 'Chawl';
+                break;
+            case 2:
+                $return = 'Residential';
+                break;
+            case 3:
+                $return = 'Bunglow';
+                break;
+            case 4:
+                $return = 'Other';
+                break;
+        }
+
+        return $return;
+    }
+    
+    public function getBusiType($busi_type) {
+        $return = '';
+        
+        switch ($busi_type) {
+            case 1:
+                $return = 'DIRECTORSHIP';
+                break;
+            case 2:
+                $return = 'PROPRIETOR';
+                break;
+            case 3:
+                $return = 'PARTNERSHIP';
+                break;
+        }
+
+        return $return;
+    }
+    
+    public function getBusiLocality($locality) {
+        $return = '';
+        
+        switch ($locality) {
+            case 1:
+                $return = 'Gala';
+                break;
+            case 2:
+                $return = 'Shopline';
+                break;
+            case 3:
+                $return = 'Compound';
+                break;
+            case 4:
+                $return = 'Resi';
+                break;
+            case 3:
+                $return = 'Commercial';
+                break;
+            case 4:
+                $return = 'Other';
                 break;
         }
 
