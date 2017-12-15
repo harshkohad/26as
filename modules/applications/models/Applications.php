@@ -37,11 +37,14 @@ use Yii;
  * @property integer $resi_stay_years
  * @property integer $resi_total_family_members
  * @property integer $resi_working_members
- * @property string $resi_locality
+ * @property integer $resi_locality
  * @property string $resi_locality_text
  * @property string $resi_landmark_1
  * @property string $resi_landmark_2
+ * @property string $resi_structure
+ * @property string $resi_market_feedback
  * @property string $resi_remarks
+ * @property integer $resi_status
  * @property string $busi_tpc_neighbor_1
  * @property string $busi_tpc_neighbor_2
  * @property string $busi_company_name_board
@@ -55,19 +58,25 @@ use Yii;
  * @property string $busi_ownership_status
  * @property string $busi_ownership_status_text
  * @property integer $busi_area
- * @property string $busi_locality
+ * @property integer $busi_locality
  * @property string $busi_locality_text
  * @property string $busi_landmark_1
  * @property string $busi_landmark_2
- * @property string $busi_remarks
- * @property string $office_met_person
+ * @property string $busi_structure
+ * @property integer $busi_remarks
+ * @property string $busi_status
+ * @property string $office_company_name_board
  * @property string $office_designation
+ * @property string $office_met_person
+ * @property string $office_met_person_designation
+ * @property string $office_department
  * @property string $office_nature_of_company
  * @property integer $office_employment_years
  * @property string $office_net_salary_amount
  * @property string $office_tpc_for_applicant
  * @property string $office_tpc_for_company
  * @property string $office_landmark
+ * @property string $office_structure
  * @property string $office_remarks
  * @property string $financial_pan_card_no
  * @property string $financial_name
@@ -90,6 +99,8 @@ use Yii;
  * @property string $bank_date_of_birth
  * @property string $bank_address
  * @property string $bank_narration
+ * @property string $noc_structure
+ * @property integer $noc_status
  * @property integer $application_status
  * @property integer $mobile_user_id
  * @property string $mobile_user_assigned_date
@@ -122,10 +133,10 @@ class Applications extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'area_id', 'institute_id', 'loan_type_id'], 'required'],
-            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'resi_ownership_status', 'busi_ownership_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'mobile_user_id', 'mobile_user_status', 'resi_ownership_status', 'busi_ownership_status', 'created_by', 'update_by', 'is_deleted', 'resi_market_feedback', 'resi_status', 'busi_status', 'noc_status'], 'integer'],
             [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
-            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_met_person', 'office_designation', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
-            [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration'], 'string', 'max' => 1000],
+            [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
+            [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure'], 'string', 'max' => 1000],
         ];
     }
 
@@ -165,7 +176,10 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_locality_text' => 'Locality Other',
             'resi_landmark_1' => 'Landmark 1',
             'resi_landmark_2' => 'Landmark 2',
+            'resi_structure' => 'Structure',
+            'resi_market_feedback' => 'Market Feedback',
             'resi_remarks' => 'Remarks',
+            'resi_status' => 'Status',
             'busi_tpc_neighbor_1' => 'Tpc Neighbor 1',
             'busi_tpc_neighbor_2' => 'Tpc Neighbor 2',
             'busi_company_name_board' => 'Company Name Board',
@@ -183,15 +197,21 @@ class Applications extends \yii\db\ActiveRecord {
             'busi_locality_text' => 'Locality Other',
             'busi_landmark_1' => 'Landmark 1',
             'busi_landmark_2' => 'Landmark 2',
+            'busi_structure' => 'Structure',
             'busi_remarks' => 'Remarks',
-            'office_met_person' => 'Met Person',
+            'busi_status' => 'Status',
+            'office_company_name_board' => 'Company Name Board',
             'office_designation' => 'Designation',
+            'office_met_person' => 'Met Person',
+            'office_met_person_designation' => 'Met Person Designation',
+            'office_department' => 'Department',
             'office_nature_of_company' => 'Nature Of Company',
             'office_employment_years' => 'Employment Years',
             'office_net_salary_amount' => 'Net Salary Amount',
             'office_tpc_for_applicant' => 'Tpc For Applicant',
             'office_tpc_for_company' => 'Tpc For Company',
             'office_landmark' => 'Landmark',
+            'office_structure' => 'Structure',
             'office_remarks' => 'Remarks',
             'financial_pan_card_no' => 'Pan Card No',
             'financial_name' => 'Name',
@@ -214,6 +234,8 @@ class Applications extends \yii\db\ActiveRecord {
             'bank_date_of_birth' => 'Date Of Birth',
             'bank_address' => 'Address',
             'bank_narration' => 'Narration',
+            'noc_structure' => 'Structure',
+            'noc_status' => 'Status',
             'application_status' => 'Application Status',
             'mobile_user_id' => 'Mobile User',
             'mobile_user_assigned_date' => 'Mobile User Assigned Date',

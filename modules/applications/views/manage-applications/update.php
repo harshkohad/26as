@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $step2 = isset($_GET['step2']) ? $_GET['step2'] : 0;
 
 $page_title = ($step2 == 1) ? 'Create' : 'Update';
-$this->title = $page_title.' Application: '.$model->application_id;
+$this->title = $page_title . ' Application: ' . $model->application_id;
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->application_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -17,7 +17,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
-    <?= $this->render('_form_step2', [
+    <?=
+    $this->render('_form_step2', [
         'model' => $model,
         'step2' => $step2,
         'institutes' => $institutes,
@@ -26,6 +27,13 @@ $this->params['breadcrumbs'][] = 'Update';
         'itrTable' => $itrTable,
         'nocTable' => $nocTable,
         'kycTable' => $kycTable,
-    ]) ?>
+        'resiDocsTable' => $resiDocsTable,
+        'resiPhotosTable' => $resiPhotosTable,
+        'busiDocsTable' => $busiDocsTable,
+        'busiPhotosTable' => $busiPhotosTable,
+        'officePhotosTable' => $officePhotosTable,
+        'nocPhotosTable' => $nocPhotosTable,
+    ])
+    ?>
 
 </div>

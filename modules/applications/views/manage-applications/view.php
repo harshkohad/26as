@@ -189,7 +189,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_working_members ?></div>
                             </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-lg-3">
@@ -211,9 +211,58 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_structure') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_structure ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Market Feedback</label>
+                                <div class="readonlydiv"><?= ($model->resi_market_feedback == 1) ? 'Positive' : 'Negative' ?></div>
+                            </div>                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Docs</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="resi_docs">
+                                            <?php echo $resiDocsTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="resi_photos">
+                                            <?php echo $resiPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                      
+                        </div>
+
+                        <div class="row">
                             <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_remarks') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_remarks ?></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="readonlydiv"><?= ($model->resi_status == 1) ? 'Positive' : (($model->resi_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -312,10 +361,55 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="readonlydiv"><?= $model->busi_landmark_2 ?></div>
                             </div>
                             <div class="col-lg-9">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_structure') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_structure ?></div>
+                            </div>
+                        </div>   
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Docs</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="busi_docs">
+                                            <?php echo $busiDocsTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="busi_photos">
+                                            <?php echo $busiPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                      
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_remarks ?></div>
                             </div>
-                        </div>    
+                        </div>   
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="readonlydiv"><?= ($model->busi_status == 1) ? 'Positive' : (($model->busi_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -331,12 +425,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-3">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person') ?></label>
-                                <div class="readonlydiv"><?= $model->office_met_person ?></div>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_company_name_board') ?></label>
+                                <div class="readonlydiv"><?= $model->office_company_name_board ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
                                 <div class="readonlydiv"><?= $model->office_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->office_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->office_met_person_designation ?></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_department') ?></label>
+                                <div class="readonlydiv"><?= $model->office_department ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_nature_of_company') ?></label>
@@ -346,13 +455,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_employment_years') ?></label>
                                 <div class="readonlydiv"><?= $model->office_employment_years ?></div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_net_salary_amount') ?></label>
                                 <div class="readonlydiv"><?= $model->office_net_salary_amount ?></div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_tpc_for_applicant') ?></label>
                                 <div class="readonlydiv"><?= $model->office_tpc_for_applicant ?></div>
@@ -368,9 +476,30 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_remarks') ?></label>
                                 <div class="readonlydiv"><?= $model->office_remarks ?></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+                                            <?php echo $officePhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="readonlydiv"><?= ($model->office_status == 1) ? 'Positive' : (($model->office_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -527,6 +656,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div id="noc" class="panel-collapse collapse">
                     <div class="panel-body">
                         <?php echo $nocTable; ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="noc_photos">
+                                            <?php echo $nocPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_structure') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_structure ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="readonlydiv"><?= ($model->noc_status == 1) ? 'Positive' : (($model->noc_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

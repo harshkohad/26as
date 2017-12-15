@@ -17,6 +17,7 @@ use app\modules\applications\models\Area;
 use kartik\date\DatePicker;
 use kartik\widgets\FileInput;
 use app\modules\applications\models\ApplicantProfile;
+use app\modules\applications\models\ApplicantPhotos;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -61,11 +62,23 @@ class ManageApplicationsController extends Controller {
         $itrTable = $this->getItrTableHtml($id);
         $nocTable = $this->getNocTableHtml($id);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 1);
+        $resiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 2, 1);
+        $resiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 1, 1);
+        $busiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 2, 1);
+        $busiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 1, 1);
+        $officePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 3, 1, 1);
+        $nocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 4, 1, 1);
         return $this->render('view', [
                     'model' => $model,
                     'itrTable' => $itrTable,
                     'nocTable' => $nocTable,
                     'kycTable' => $kycTable,
+                    'resiDocsTable' => $resiDocsTable,
+                    'resiPhotosTable' => $resiPhotosTable,
+                    'busiDocsTable' => $busiDocsTable,
+                    'busiPhotosTable' => $busiPhotosTable,
+                    'officePhotosTable' => $officePhotosTable,
+                    'nocPhotosTable' => $nocPhotosTable,
         ]);
     }
 
@@ -135,6 +148,12 @@ class ManageApplicationsController extends Controller {
         $itrTable = $this->getItrTable($id);
         $nocTable = $this->getNocTable($id);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 0);
+        $resiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 2, 0);
+        $resiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 1, 0);
+        $busiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 2, 0);
+        $busiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 1, 0);
+        $officePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 3, 1, 0);
+        $nocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 4, 1, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
 
@@ -143,7 +162,7 @@ class ManageApplicationsController extends Controller {
             $model->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
             $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
-           
+
             #ITR
             if (isset($_POST['itr']) && !empty($_POST['itr'])) {
                 $this->processItr($_POST['itr'], $model->id);
@@ -165,6 +184,12 @@ class ManageApplicationsController extends Controller {
                         'itrTable' => $itrTable,
                         'nocTable' => $nocTable,
                         'kycTable' => $kycTable,
+                        'resiDocsTable' => $resiDocsTable,
+                        'resiPhotosTable' => $resiPhotosTable,
+                        'busiDocsTable' => $busiDocsTable,
+                        'busiPhotosTable' => $busiPhotosTable,
+                        'officePhotosTable' => $officePhotosTable,
+                        'nocPhotosTable' => $nocPhotosTable,
             ]);
         }
     }
@@ -349,44 +374,44 @@ class ManageApplicationsController extends Controller {
                             <th>Doc type</th>
                             <th>Remarks</th>
                             <th>Send For<br>Verification</th>';
-        if($getHtml == 0) {
+        if ($getHtml == 0) {
             $return_html .= '<th><button type="button" class="btn btn-primary" id="addMoreKyc"><i class="fa fa-plus"></i></button></th>';
         }
         $return_html .= '</tr></thead>';
         if (!empty($nocs)) {
             foreach ($nocs as $noc_data) {
-                $image_link = '<a href="#" class="pop_kyc"><img src="'.Yii::$app->request->BaseUrl.'/uploads/kyc/'.$application_id.'/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';                
+                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/uploads/kyc/' . $application_id . '/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';
                 $return_html .= '<tr>';
-                $return_html .= '<td>'.$image_link.'</td>';
+                $return_html .= '<td>' . $image_link . '</td>';
                 $return_html .= '<td>' . $noc_data['doc_type'] . '</td>';
-                $return_html .= '<td>' . $noc_data['remarks'] . '</td>';      
-                 
-                if($getHtml == 0) {
+                $return_html .= '<td>' . $noc_data['remarks'] . '</td>';
+
+                if ($getHtml == 0) {
                     $checked = '';
-                    if($noc_data['send_for_verification']) {
+                    if ($noc_data['send_for_verification']) {
                         $checked = 'checked';
                     }
-                    $return_html .= '<td><input type="checkbox" class="checkKyc" id="kyc_check_'.$noc_data['id'].'" name="kyc_check_'.$noc_data['id'].'" value="'.$noc_data['id'].'" '.$checked.'></td>';     
+                    $return_html .= '<td><input type="checkbox" class="checkKyc" id="kyc_check_' . $noc_data['id'] . '" name="kyc_check_' . $noc_data['id'] . '" value="' . $noc_data['id'] . '" ' . $checked . '></td>';
                     $return_html .= '<td align="center"><button type="button" class="btn btn-danger deleteKyc" value="' . $noc_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
                 } else {
                     $print = $noc_data['send_for_verification'] == 1 ? "TRUE" : "FALSE";
-                    $return_html .= '<td>' . $print . '</td>';     
+                    $return_html .= '<td>' . $print . '</td>';
                 }
                 $return_html .= '</tr>';
             }
         } else {
             $colspan = 4;
-            if($getHtml == 0) {
+            if ($getHtml == 0) {
                 $colspan = 5;
             }
             $return_html .= '<tr>';
-            $return_html .= '<td colspan="'.$colspan.'">No records Found!!!</td>';
+            $return_html .= '<td colspan="' . $colspan . '">No records Found!!!</td>';
             $return_html .= '</tr>';
         }
 
         $return_html .= '</table>';
 
-        if(!empty($isAjaxCall)) {
+        if (!empty($isAjaxCall)) {
             echo $return_html;
         } else {
             return $return_html;
@@ -520,24 +545,24 @@ class ManageApplicationsController extends Controller {
             $doc_type = $data['doc_type'];
             $kyc_remarks = $data['kyc_remarks'];
             $application_id = $data['application_id'];
-       
-            $dirname = 'uploads/kyc/'.$application_number;
+
+            $dirname = 'uploads/kyc/' . $application_number;
             if (!file_exists($dirname)) {
                 mkdir($dirname);
-                mkdir($dirname.'/thumbs');
+                mkdir($dirname . '/thumbs');
             }
 
             if (isset($_FILES['kyc_file'])) {
                 $errors = array();
                 $file_name = $_FILES['kyc_file']['name'];
-                $newfile_name = date('dmYHis').$_FILES['kyc_file']['name'];
+                $newfile_name = date('dmYHis') . $_FILES['kyc_file']['name'];
                 $file_size = $_FILES['kyc_file']['size'];
                 $file_tmp = $_FILES['kyc_file']['tmp_name'];
                 $file_type = $_FILES['kyc_file']['type'];
-                
+
                 $file_name_exploded = explode('.', $file_name);
                 $file_ext = strtolower(end($file_name_exploded));
-                
+
                 $expensions = array("jpeg", "jpg", "png");
 
                 if (in_array($file_ext, $expensions) === false) {
@@ -549,20 +574,20 @@ class ManageApplicationsController extends Controller {
                 }
 
                 if (empty($errors) == true) {
-                    if(move_uploaded_file($file_tmp, $dirname.'/'. $newfile_name)) { 
+                    if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
                         #Create Thumbnail
-                        $upload_img = Applications::thumbnailCreator($newfile_name,$dirname,'thumbs','200','160', $file_tmp, $file_ext);
-                        
+                        $upload_img = Applications::thumbnailCreator($newfile_name, $dirname, 'thumbs', '200', '160', $file_tmp, $file_ext);
+
                         #Add data to kyc
                         $kyc_model = new Kyc();
-                        
+
                         $kyc_model->application_id = $application_id;
                         $kyc_model->doc_type = $doc_type;
                         $kyc_model->remarks = $kyc_remarks;
                         $kyc_model->file_name = $newfile_name;
-                        
+
                         $kyc_model->save(FALSE);
-                        
+
                         echo "Upload Successful";
                     } else {
                         echo "Something went wrong!!!";
@@ -576,48 +601,188 @@ class ManageApplicationsController extends Controller {
         }
     }
 
+    public function actionPhotosKyc() {
+        if (!empty($_POST)) {
+            echo '<pre>';
+            print_r($_POST);
+        }
+    }
+
     public function actionDeleteKyc() {
-        if(!empty($_POST)) {
+        if (!empty($_POST)) {
             $kyc_id = $_POST['kyc_id'];
             $application_number = $_POST['application_id'];
 
             $kyc_model = Kyc::findOne($kyc_id);
             $file_name = $kyc_model->file_name;
-            $dirname = 'uploads/kyc/'.$application_number;
-            
-            $file_path = $dirname.'/'.$file_name;
-            $thumb_path = $dirname.'/thumbs/'.$file_name;
-            
-            @unlink($file_path);  
-            @unlink($thumb_path);  
-            
+            $dirname = 'uploads/kyc/' . $application_number;
+
+            $file_path = $dirname . '/' . $file_name;
+            $thumb_path = $dirname . '/thumbs/' . $file_name;
+
+            @unlink($file_path);
+            @unlink($thumb_path);
+
             $kyc_model->is_deleted = 1;
-            
-            $kyc_model->save();  
+
+            $kyc_model->save();
         }
     }
-    
+
     public function actionSendKycForVerification() {
-        if(!empty($_POST)) {
+        if (!empty($_POST)) {
             $kyc_id = $_POST['kyc_id'];
             $checkboxchecked = $_POST['checkboxchecked'];
             $kyc_model = Kyc::findOne($kyc_id);
-                       
+
             $kyc_model->send_for_verification = $checkboxchecked;
-            
-            $kyc_model->save();  
+
+            $kyc_model->save();
         }
     }
-    
+
     public function actionGetVerifier() {
-        if(!empty($_POST)) {
+        if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
-            
+
             $application_model = Applications::findOne($app_id);
-            
-            if(!empty($application_model)) {
+
+            if (!empty($application_model)) {
                 $application_id = $application_model->application_id;
             }
         }
     }
+
+    public function actionGetDocsPhotosTable($id, $application_id, $section, $type, $getHtml, $isAjaxCall = NULL) {
+        $photos = ApplicantPhotos::find()->where(['application_id' => $id, 'section' => $section, 'type' => $type, 'is_deleted' => '0'])->all();
+
+        $return_html = '';
+
+        $return_html .= '<table class="table table-striped table-bordered">
+                        <thead>
+                        <tr class="tr-header">
+                            <th>Preview</th>
+                            <th>Remarks</th>';
+        if ($getHtml == 0) {
+            $return_html .= '<th><button type="button" class="btn btn-primary addMorePhotos" value="' . $section . '_' . $type . '"><i class="fa fa-plus"></i></button></th>';
+        }
+        $return_html .= '</tr></thead>';
+        if (!empty($photos)) {
+            foreach ($photos as $photos_data) {
+                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/uploads/kyc/' . $application_id . '/thumbs/' . $photos_data['file_name'] . '" class="user-image" alt="Image" width="40"></a>';
+                $return_html .= '<tr>';
+                $return_html .= '<td>' . $image_link . '</td>';
+                $return_html .= '<td>' . $photos_data['remarks'] . '</td>';
+
+                if ($getHtml == 0) {
+                    $return_html .= '<td align="center"><button type="button" class="btn btn-danger deletePhotos" value="' . $photos_data['id'] . '_' . $photos_data['section'] . '_' . $photos_data['type'] . '"><i class="fa fa-trash-o"></i></button></td>';
+                }
+                $return_html .= '</tr>';
+            }
+        } else {
+            $colspan = 2;
+            if ($getHtml == 0) {
+                $colspan = 3;
+            }
+            $return_html .= '<tr>';
+            $return_html .= '<td colspan="' . $colspan . '">No records Found!!!</td>';
+            $return_html .= '</tr>';
+        }
+
+        $return_html .= '</table>';
+
+        if (!empty($isAjaxCall)) {
+            echo $return_html;
+        } else {
+            return $return_html;
+        }
+    }
+
+    public function actionUploadPhotos() {
+        if (!empty($_POST)) {
+            $data = $_POST;
+
+            $application_number = $data['application_number'];
+            $photos_remarks = $data['photos_remarks'];
+            $application_id = $data['application_id'];
+            $photos_section = $data['photos_section'];
+            $photos_type = $data['photos_type'];
+
+            $dirname = 'uploads/kyc/' . $application_number;
+            if (!file_exists($dirname)) {
+                mkdir($dirname);
+                mkdir($dirname . '/thumbs');
+            }
+
+            if (isset($_FILES['photos_file'])) {
+                $errors = array();
+                $file_name = $_FILES['photos_file']['name'];
+                $newfile_name = date('dmYHis') . $_FILES['photos_file']['name'];
+                $file_size = $_FILES['photos_file']['size'];
+                $file_tmp = $_FILES['photos_file']['tmp_name'];
+                $file_type = $_FILES['photos_file']['type'];
+
+                $file_name_exploded = explode('.', $file_name);
+                $file_ext = strtolower(end($file_name_exploded));
+
+                $expensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext, $expensions) === false) {
+                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                }
+
+                if ($file_size > 2097152) {
+                    $errors[] = 'File size must be excately 2 MB';
+                }
+
+                if (empty($errors) == true) {
+                    if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
+                        #Create Thumbnail
+                        $upload_img = Applications::thumbnailCreator($newfile_name, $dirname, 'thumbs', '200', '160', $file_tmp, $file_ext);
+
+                        #Add data to kyc
+                        $ap_model = new ApplicantPhotos();
+
+                        $ap_model->application_id = $application_id;
+                        $ap_model->remarks = $photos_remarks;
+                        $ap_model->file_name = $newfile_name;
+                        $ap_model->section = $photos_section;
+                        $ap_model->type = $photos_type;
+
+                        $ap_model->save(FALSE);
+
+                        echo "Upload Successful";
+                    } else {
+                        echo "Something went wrong!!!";
+                    }
+                } else {
+                    print_r($errors);
+                }
+            } else {
+                echo 'Something went wrong!!!';
+            }
+        }
+    }
+
+    public function actionDeletePhotos() {
+        if (!empty($_POST)) {
+            $record_id = $_POST['record_id'];
+            $application_number = $_POST['application_id'];
+
+            $ap_model = ApplicantPhotos::findOne($record_id);
+            $file_name = $ap_model->file_name;
+            $dirname = 'uploads/kyc/' . $application_number;
+
+            $file_path = $dirname . '/' . $file_name;
+            $thumb_path = $dirname . '/thumbs/' . $file_name;
+
+            @unlink($file_path);
+            @unlink($thumb_path);
+
+            $ap_model->is_deleted = 1;
+
+            $ap_model->save();
+        }
+    }
+
 }
