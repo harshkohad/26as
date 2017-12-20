@@ -18,6 +18,7 @@ use kartik\date\DatePicker;
 use kartik\widgets\FileInput;
 use app\modules\applications\models\ApplicantProfile;
 use app\modules\applications\models\ApplicantPhotos;
+use app\modules\applications\models\PincodeMaster;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -144,7 +145,8 @@ class ManageApplicationsController extends Controller {
 
         $institutes = new Institutes();
         $loantypes = new LoanTypes();
-        $area_model = new Area();
+        $pincode_master = new PincodeMaster();
+        //$area_model = new Area();
         $itrTable = $this->getItrTable($id);
         $nocTable = $this->getNocTable($id);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 0);
@@ -162,6 +164,7 @@ class ManageApplicationsController extends Controller {
             $model->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
             $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
+            $model->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
 
             #ITR
             if (isset($_POST['itr']) && !empty($_POST['itr'])) {
@@ -180,7 +183,7 @@ class ManageApplicationsController extends Controller {
                         'step2' => $step2,
                         'institutes' => $institutes,
                         'loantypes' => $loantypes,
-                        'area_model' => $area_model,
+                        'pincode_master' => $pincode_master,
                         'itrTable' => $itrTable,
                         'nocTable' => $nocTable,
                         'kycTable' => $kycTable,

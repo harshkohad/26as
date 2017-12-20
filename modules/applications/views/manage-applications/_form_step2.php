@@ -4,13 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
 /* @var $form yii\widgets\ActiveForm */
 $institutes->id = $model->institute_id;
 $loantypes->id = $model->loan_type_id;
-$area_model->id = $model->area_id;
+//$area_model->id = $model->area_id;
 ?>
 
 <div class="applications-form">
@@ -41,8 +42,7 @@ $area_model->id = $model->area_id;
 
         <div class="row">
             <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'], ['prompt' => 'Select Applicant Type']) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'], ['prompt' => 'Select Profile Type']) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area') ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'], ['prompt' => 'Select Profile Type']) ?></div>            
             <div class="col-lg-3">
                 <?=
                 $form->field($model, 'date_of_application')->widget(
@@ -58,10 +58,11 @@ $area_model->id = $model->area_id;
                 ?>
 
             </div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')  ?></div>
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -69,12 +70,35 @@ $area_model->id = $model->area_id;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <?= $form->field($model, 'resi_address')->textArea()->label(false) ?>
-                        <?= $form->field($model, 'resi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <?= $form->field($model, 'resi_address')->textArea() ?>
+                            </div>
+                            <div class="col-lg-4">
+                                <?= $form->field($model, 'resi_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'resi_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'resi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -82,12 +106,37 @@ $area_model->id = $model->area_id;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <?= $form->field($model, 'office_address')->textArea()->label(false) ?>
-                        <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
-                    </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <?= $form->field($model, 'office_address')->textArea() ?>
+                            </div>
+                            <div class="col-lg-4">
+                                <?= $form->field($model, 'office_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'office_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>                 
                 </div>
             </div>
-            <div class="col-lg-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -95,8 +144,67 @@ $area_model->id = $model->area_id;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <?= $form->field($model, 'busi_address')->textArea()->label(false) ?>
-                        <?= $form->field($model, 'busi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <?= $form->field($model, 'busi_address')->textArea() ?>
+                            </div>
+                            <div class="col-lg-4">
+                                <?= $form->field($model, 'busi_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'busi_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'busi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <?= $form->field($model, 'noc_address')->textArea() ?>
+                            </div>
+                            <div class="col-lg-4">
+                                <?= $form->field($model, 'noc_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'noc_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'noc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
@@ -154,7 +262,7 @@ $area_model->id = $model->area_id;
                                 </div>
                             </div>                           
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="panel panel-default cust-panel">
@@ -165,7 +273,7 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="resi_docs">
-                                            <?php echo $resiDocsTable; ?>
+<?php echo $resiDocsTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -179,7 +287,7 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="resi_photos">
-                                            <?php echo $resiPhotosTable; ?>
+<?php echo $resiPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +297,7 @@ $area_model->id = $model->area_id;
                         <div class="row">
                             <div class="col-lg-12"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Status</label>
@@ -251,7 +359,7 @@ $area_model->id = $model->area_id;
                             <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-9"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="panel panel-default cust-panel">
@@ -262,7 +370,7 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="busi_docs">
-                                            <?php echo $busiDocsTable; ?>
+<?php echo $busiDocsTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -276,13 +384,13 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="busi_photos">
-                                            <?php echo $busiPhotosTable; ?>
+<?php echo $busiPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>                      
                         </div>
-                        
+
                         <div class="row">                            
                             <div class="col-lg-12"><?= $form->field($model, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
                         </div>
@@ -347,7 +455,7 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="office_photos">
-                                            <?php echo $officePhotosTable; ?>
+<?php echo $officePhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -382,7 +490,7 @@ $area_model->id = $model->area_id;
                 </div>
                 <div id="itr" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <?php echo $itrTable; ?>
+<?php echo $itrTable; ?>
                     </div>
                 </div>
             </div>
@@ -512,7 +620,7 @@ $area_model->id = $model->area_id;
                 </div>
                 <div id="noc" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <?php echo $nocTable; ?>
+<?php echo $nocTable; ?>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="panel panel-default cust-panel">
@@ -523,7 +631,7 @@ $area_model->id = $model->area_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="noc_photos">
-                                            <?php echo $nocPhotosTable; ?>
+<?php echo $nocPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -560,7 +668,7 @@ $area_model->id = $model->area_id;
                 </div>
                 <div id="kyc" class="panel-collapse collapse">
                     <div class="panel-body" id="kyc_table" style="height: 350px;overflow-y: scroll;">
-                        <?php echo $kycTable; ?>
+<?php echo $kycTable; ?>
                     </div>
                     <div id="loader_kyc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
                         <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
@@ -571,11 +679,11 @@ $area_model->id = $model->area_id;
 
         <div class="row">
             <div class="col-lg-12">
-                <?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
         </div>
 
-        <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
     </div>
 </div>
@@ -692,7 +800,7 @@ $area_model->id = $model->area_id;
 <!--<div class="col-lg-3">
                 <label>Market Feedback</label>
                 <div class="btn-group" data-toggle="buttons">    
-                    <?php
+<?php
 //                    $form->field($model, 'resi_market_feedback')->radioList(
 //                            [1 => 'Positive', 2 => 'Negative'], [
 //                        'item' => function($index, $label, $name, $checked, $value) {
@@ -706,7 +814,7 @@ $area_model->id = $model->area_id;
 //                            return $return;
 //                        }
 //                    ])->label(false);
-                    ?></div>
+?></div>
             </div>-->
 
 <?php

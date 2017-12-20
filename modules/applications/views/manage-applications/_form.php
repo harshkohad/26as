@@ -71,7 +71,6 @@ use kartik\date\DatePicker;
     <div class="row">
         <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'],['prompt'=>'Select Applicant Type']) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'],['prompt'=>'Select Profile Type']) ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
         <div class="col-lg-3">
             <?php
                 $model->date_of_application = date('Y-m-d');
@@ -87,6 +86,7 @@ use kartik\date\DatePicker;
                     ]
             ]);?>
         </div>
+        <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Area'])->label('Area') ?></div>
     </div>
     <input type="hidden" name="step2" id="step2" value="1" />
 

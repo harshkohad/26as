@@ -137,13 +137,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->getApplicationStatus($model->application_status);
                 }
             ],
-            [
-                'label' => 'Verifier Status',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return $model->getVerifierStatus($model->id, $model->mobile_user_status);
-                }
-            ],        
+//            [
+//                'label' => 'Verifier Status',
+//                'format' => 'raw',
+//                'value' => function ($model) {
+//                    return $model->getVerifierStatus($model->id, $model->mobile_user_status);
+//                }
+//            ],        
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

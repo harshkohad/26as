@@ -73,11 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('profile_type') ?></label>
                 <div class="readonlydiv"><?= $model->getProfileType($model->profile_type) ?></div>
-            </div>
-            <div class="col-lg-3">
-                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('area_id') ?></label>
-                <div class="readonlydiv"><?= $model->getAreaName($model->area_id) ?></div>
-            </div>
+            </div>            
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('date_of_application') ?></label>
                 <div class="readonlydiv"><?= $model->date_of_application ?></div>
@@ -85,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -93,12 +89,31 @@ $this->params['breadcrumbs'][] = $this->title;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <textarea class="form-control" readonly=""><?= $model->resi_address ?></textarea>
-                        <div><label>Send for verification: <?= ($model->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->resi_address ?></textarea>
+                            </div>    
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->resi_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -106,12 +121,33 @@ $this->params['breadcrumbs'][] = $this->title;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <textarea class="form-control" readonly=""><?= $model->office_address ?></textarea>
-                        <div><label>Send for verification: <?= ($model->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->office_address ?></textarea>
+                            </div>    
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->office_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->office_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -119,8 +155,59 @@ $this->params['breadcrumbs'][] = $this->title;
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
-                        <div><label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label></div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
+                            </div>    
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->busi_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->noc_address ?></textarea>
+                            </div>    
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->noc_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->noc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
