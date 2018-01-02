@@ -102,44 +102,6 @@ $loantypes->id = $model->loan_type_id;
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <strong>Office Address</strong>
-                        </h4>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <?= $form->field($model, 'office_address')->textArea() ?>
-                            </div>
-                            <div class="col-lg-4">
-                                <?= $form->field($model, 'office_address_pincode')->widget(Select2::classname(), [
-                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
-                                    'language' => 'en',
-                                    'options' => ['placeholder' => 'Select pincode ...'],
-                                    'pluginOptions' => [
-                                        'allowClear' => true
-                                    ],
-                                ]) ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <?= $form->field($model, 'office_address_trigger')->textArea() ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
-                            </div>
-                        </div>    
-                    </div>                 
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="panel panel-default cust-panel">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
                             <strong>Business Address</strong>
                         </h4>
                     </div>
@@ -170,6 +132,44 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                         </div>    
                     </div>
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Office Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <?= $form->field($model, 'office_address')->textArea() ?>
+                            </div>
+                            <div class="col-lg-4">
+                                <?= $form->field($model, 'office_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'office_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>                 
                 </div>
             </div>
             <div class="col-lg-6">

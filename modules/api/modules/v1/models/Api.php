@@ -7,6 +7,9 @@ use app\modules\api\modules\v1\models\Api;
 use app\modules\api\modules\v1\models\TblApiUsage;
 use app\modules\api\modules\v1\models\TblOauthAccessTokens;
 use app\modules\api\modules\v1\models\TblApiErrors;
+use app\modules\applications\models\ApplicationsVerifiers;
+use app\modules\applications\models\Applications;
+use app\modules\applications\models\ApplicantPhotos;
 
 /**
  * 
@@ -16,6 +19,12 @@ class Api extends \yii\db\ActiveRecord {
       @purpose = Get Input Data
       @author = hwk
      */
+    
+    const RESIDENCE_FIELDS = 'application_id, resi_society_name_plate, resi_door_name_plate, resi_tpc_neighbor_1, resi_tpc_neighbor_2, resi_met_person, resi_relation, resi_home_area, resi_ownership_status, resi_ownership_status_text, resi_stay_years, resi_total_family_members, resi_working_members, resi_locality, resi_locality_text, resi_landmark_1, resi_landmark_2, resi_structure, resi_market_feedback, resi_remarks, resi_status';
+    const BUSINESS_FIELDS = 'application_id, busi_tpc_neighbor_1, busi_tpc_neighbor_2, busi_company_name_board, busi_met_person, busi_designation, busi_nature_of_business, busi_staff_declared, busi_staff_seen, busi_years_in_business, busi_type_of_business, busi_ownership_status, busi_ownership_status_text, busi_area, busi_locality, busi_locality_text, busi_landmark_1, busi_landmark_2, busi_structure, busi_remarks, busi_status';
+    const OFFICE_FIELDS = 'application_id, office_company_name_board, office_designation, office_met_person, office_met_person_designation, office_department, office_nature_of_company, office_employment_years, office_net_salary_amount, office_tpc_for_applicant, office_tpc_for_company, office_landmark, office_structure, office_remarks, office_status';
+    const NOC_FIELDS = 'application_id, noc_structure, noc_status';
+    const KYC_UPLOAD_DIR_NAME = "uploads/kyc/";
 
     public function get_input_data() {
         $inputs = '';
@@ -84,13 +93,13 @@ class Api extends \yii\db\ActiveRecord {
       @author = hwk
      */
 
-    function gen_token($client_id) {
+    function gen_token($mobile_unique_code, $user_id) {
         $access_token = new TblOauthAccessTokens();
         $token = Api::random_string(40);
         $token_expiry = date('Y-m-d H:i:s', strtotime('1 year'));
 
         #check if token already present
-        $token_details = TblOauthAccessTokens::find()->where(['client_id' => $client_id])->one();
+        $token_details = TblOauthAccessTokens::find()->where(['mobile_unique_code' => $mobile_unique_code])->one();
         if (!empty($token_details)) {
             if (strtotime($token_details->expires) > strtotime(date('Y-m-d H:i:s'))) {
                 $token = $token_details->access_token;
@@ -103,8 +112,9 @@ class Api extends \yii\db\ActiveRecord {
         } else {
 
             $access_token->access_token = $token;
-            $access_token->client_id = $client_id;
+            $access_token->mobile_unique_code = $mobile_unique_code;
             $access_token->expires = $token_expiry;
+            $access_token->user_id = $user_id;
 
             $access_token->save(false);
         }
@@ -132,9 +142,9 @@ class Api extends \yii\db\ActiveRecord {
         }
 
         $res_array = array(
-            'IsSuccess' => $issuccess,
-            'Data' => $response_data,
-            'Message' => $response_message
+            'issuccess' => $issuccess,
+            'data' => $response_data,
+            'message' => $response_message
         );
 
         if (!empty($error_code)) {
@@ -147,25 +157,249 @@ class Api extends \yii\db\ActiveRecord {
                     $error_array[$count][$error] = $error_msg;
                     $count++;
                 }
-                $res_array['Error'] = $error_array;
+                $res_array['error'] = $error_array;
             } else {
 
                 $error_data = TblApiErrors::find()->where(['code' => $error_code])->one();
                 $error_msg = $error_data->message;
-                $res_array['Error'] = array($error_code => $error_msg);
+                $res_array['error'] = array($error_code => $error_msg);
             }
         }
 
         $res_json = Api::encode_to_json($res_array);
 
         $TblApiUsage = TblApiUsage::findOne(["id" => $api_usage_id]);
-        $TblApiUsage->response_data = serialize($res_json);
-        $TblApiUsage->response_date = date("Y-m-d H:i:s");
+        if(!empty($TblApiUsage)) {
+            $TblApiUsage->response_data = serialize($res_json);
+            $TblApiUsage->response_date = date("Y-m-d H:i:s");
 
-        $TblApiUsage->save(false);
+            $TblApiUsage->save(false);
+        }
 
         //return JSON
         return $res_json;
     }
 
+    /*
+      @purpose = This function is used to verfy token
+      @author = hwk
+      @type = Internal
+     */
+
+    function verify_token($token) {
+        $response_data = array();
+        #check if token already present
+        $token_details = TblOauthAccessTokens::find()->where(['access_token' => $token])->one();
+        if (!empty($token_details)) {
+            if (strtotime($token_details->expires) > strtotime(date('Y-m-d H:i:s'))) {
+                $issuccess = true;
+                $response_message = 'The access token provided is valid';
+                $response_data['user_id'] = $token_details->user_id;
+            } else {
+                $issuccess = false;
+                $response_message = 'The access token provided has expired';
+            }
+        } else {
+            $issuccess = false;
+            $response_message = 'The access token provided is invalid';
+        }
+
+        $res_array = array(
+            'issuccess' => $issuccess,
+            'message' => $response_message,
+            'data' => $response_data
+        );
+        return $res_array;
+    }
+
+    function process_api_request($api_name, $ip_address) {
+        $received_data = Api::get_input_data();
+        $data = new \stdClass();
+        $data->api_usage_id = '';
+        $data->received_data = NULL;
+        $r_data = '';
+        if ($received_data != false) {
+            //Check if Token id correct
+            $received_access_token = self::verify_token($received_data['access_token']);
+            if ($received_access_token['issuccess'] === true) {
+                if (!empty($received_data['data'])) {
+                    $r_data = $received_data['data'];
+                }
+                #Register API usage
+                $data->api_usage_id = self::api_usage($received_data['access_token'], $api_name, $ip_address, $r_data);
+                $data->received_data = $received_data['data'];
+                $data->user_id = $received_access_token['data']['user_id'];
+            } else {
+                $data->response = Api::api_response($data->api_usage_id, 2, '', '', '1004');
+            }
+        } else {
+            $data->response = Api::api_response($data->api_usage_id, 2, '', '', '1000');
+        }
+        return $data;
+    }
+    
+    function get_all_sites($user_id) {        
+        $connection = Yii::$app->getDb();
+        $all_sites = $connection->createCommand("SELECT * FROM view_all_sites WHERE mobile_user_id = {$user_id}")->queryAll();        
+        $return_array = array();        
+        $new = 0;
+        $inprogress = 0;
+        $completed = 0;        
+        if(!empty($all_sites)) {
+            foreach($all_sites as $site) {
+                $temp_array = array();
+                $temp_array['app_id'] = $site['app_id'];
+                $temp_array['verification_id'] = $site['verification_id'];
+                $temp_array['application_id'] = $site['application_id'];
+                $temp_array['applicant_name'] = $site['applicant_name'];
+                $temp_array['verification_address'] = $site['verification_address'];
+                $temp_array['verification_triggers'] = $site['verification_triggers'];
+                $temp_array['date_of_application'] = $site['date_of_application'];
+                $temp_array['verification_type_id'] = $site['verification_type_id'];
+                $temp_array['verification_type'] = $site['verification_type'];
+                $temp_array['mobile_user_assigned_date'] = $site['mobile_user_assigned_date'];
+                $temp_array['mobile_user_status'] = $site['mobile_user_status'];
+                $temp_array['mobile_user_status_updated_on'] = $site['mobile_user_status_updated_on'];                
+                $status = ($site['mobile_user_status'] == 0) ? 'new' : (($site['mobile_user_status'] == 1) ? 'inprogress' : 'completed');
+                ($site['mobile_user_status'] == 0) ? $new++ : (($site['mobile_user_status'] == 1) ? $inprogress++ : $completed++);                
+                $return_array['sites'][$status][] = $temp_array;
+            }
+            $return_array['count']['new'] = $new;
+            $return_array['count']['inprogress'] = $inprogress;
+            $return_array['count']['completed'] = $completed;
+            $return_array['count']['total'] = $new+$inprogress+$completed;
+            return $return_array;
+        }
+        return false;
+    }
+    
+    function get_site_details($app_id, $verification_type, $user_id) {
+        $return_array = array();  
+        $docs_array = array(1,2);
+        $photos_array = array(1,2,3,4);
+        $verification_details = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type, 'mobile_user_id' => $user_id])->one();
+        if(!empty($verification_details)) {
+            #verification details
+            $select_fields = ($verification_type == 1) ? Api::RESIDENCE_FIELDS : (($verification_type == 2) ? Api::BUSINESS_FIELDS : (($verification_type == 3) ? Api::OFFICE_FIELDS : Api::NOC_FIELDS));
+            $application_details = Applications::find()
+                        ->select("{$select_fields}")
+                        ->where(['id' => $app_id])->asArray()->one();
+            $return_array['verification_details'] = $application_details;
+            #doc details
+            if(in_array($verification_type, $docs_array)) {
+                $docs_details = self::get_docs_photos($app_id, $application_details['application_id'], 2, $verification_type);
+                if(!empty($docs_details)) {
+                    $return_array['doc_details'] = $docs_details;
+                }
+            }
+            #photo details
+            if(in_array($verification_type, $photos_array)) {
+                $photos_details = self::get_docs_photos($app_id, $application_details['application_id'], 1, $verification_type);
+                if(!empty($photos_details)) {
+                    $return_array['photo_details'] = $photos_details;
+                }
+            }            
+            return $return_array;
+        }
+        return false;
+    }
+    
+    function get_docs_photos($id, $application_id, $type, $section) {
+        $return_array = array();
+        
+        $photos = ApplicantPhotos::find()->where(['application_id' => $id, 'section' => $section, 'type' => $type, 'is_deleted' => '0'])->all();
+        if (!empty($photos)) {
+            foreach ($photos as $photos_data) {
+                $temp_array = array ();
+                $temp_array['id'] = $photos_data['remarks'];
+                $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'];
+                $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/' . $photos_data['file_name'];
+                $temp_array['remarks'] = $photos_data['remarks'];
+                $temp_array['verification_type'] = $section;
+                $temp_array['type'] = $type;                
+                $return_array[] = $temp_array;
+            }
+        }
+        return $return_array;
+    }
+    
+    function update_site_status($verification_id, $verification_status, $user_id) {
+        $verification_details = ApplicationsVerifiers::find()->where(['id' => $verification_id, 'mobile_user_id' => $user_id])->one();
+        if(!empty($verification_details)) {
+            $application_id = $verification_details->application_id;
+            #update verification status
+            $verification_details->mobile_user_status = $verification_status;
+            $verification_details->mobile_user_status_updated_on = date('Y-m-d H:i:s');
+            $verification_details->save(false);
+            #update application status
+            self::update_application_status($application_id);
+            return true;
+        }
+        return false;
+    }
+    
+    function update_application_status($application_id) {
+        $total = 0;
+        $count_inprogress = 0;
+        $count_completed = 0;
+        
+        $verification_details = ApplicationsVerifiers::find()->where(['application_id' => $application_id])->all();
+        if(!empty($verification_details)) {
+            foreach ($verification_details as $verification_detail) {
+                if($verification_detail['mobile_user_status'] == 1){
+                    $count_inprogress++;
+                }
+                if($verification_detail['mobile_user_status'] == 2){
+                    $count_completed++;
+                }
+                $total++;
+            }
+            $application_details = Applications::find()->where(['id' => $application_id])->one();            
+            #For Inprogress
+            if($count_inprogress == 1 && $total > 0) {
+                $application_details->application_status = 2;
+                $application_details->save(false);
+            }
+            #For Completed
+            if($count_completed == $total && $total > 0) {
+                $application_details->application_status = 3;
+                $application_details->save(false);
+            }
+        }
+    }
+    
+    function update_site_details($received_data, $user_id) {    
+        $return_array = array();
+        $model = Applications::find()
+                ->where(['id' => $received_data['id']])
+                ->one();
+        
+        foreach ($received_data as $key => $value) {
+            $model->$key = $value;
+        }
+        if ($model->save()) {
+            $return_array['status'] = 'success';
+            $return_array['msg'] = '';
+        } else {
+            $errors = self::process_model_errors($model->getErrors());
+            $return_array['status'] = 'failure';
+            $return_array['msg'] = $errors;            
+        }
+        return $return_array;
+    }
+    
+    function process_model_errors($errors) {
+        $return_data = '';
+        foreach($errors as $key => $value) {
+            $return_data .= $key." : ";
+            foreach($value as $text) {
+                $return_data .= $text;
+            }
+            $return_data .= ",";
+        }
+        if(!empty($return_data)) {
+            $return_data = substr($return_data, 0, -1);
+        }
+        return $return_data;
+    }
 }

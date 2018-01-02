@@ -313,3 +313,15 @@ a.asc:after, a.desc:after{float: right;}
 /*.table td:first-child{width: 25px;}*/
 
 .readonlydiv {width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;border-color: #d2d6de;background-color: #eee;border: 1px solid #d2d6de; margin-bottom: 15px;}
+
+.floatingResponse{
+    position: fixed;
+    top: 5px; 
+    left:2%;
+    width: 96%;
+    z-index: 99999;
+}
+
+.alert{
+    display: none;
+}

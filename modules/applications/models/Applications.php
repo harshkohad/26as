@@ -5,6 +5,7 @@ namespace app\modules\applications\models;
 use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
 use app\modules\applications\models\Area;
+use app\modules\applications\models\ApplicationsVerifiers;
 use Yii;
 
 /**
@@ -134,7 +135,7 @@ class Applications extends \yii\db\ActiveRecord {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'resi_ownership_status', 'busi_ownership_status', 'created_by', 'update_by', 'is_deleted', 'resi_market_feedback', 'resi_status', 'busi_status', 'noc_status'], 'integer'],
-            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'created_on', 'updated_on'], 'safe'],
+            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'created_on', 'updated_on', 'application_id'], 'safe'],
             [['first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure'], 'string', 'max' => 1000],
         ];
@@ -432,32 +433,46 @@ class Applications extends \yii\db\ActiveRecord {
                 $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
                 break;
             case 2:
-                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
+                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</span>';
                 break;
             case 3:
-                $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
+                $return = '<span style="color:#00a65a;font-weight:bold">Completed</span>';
                 break;
         }
 
         return $return;
     }
 
-    public function getVerifierStatus($id, $verifier_status) {
+    public function getVerifierStatus($id, $application_status) {
         $return = '';
-
-        switch ($verifier_status) {
-            case 0:
-                $return = '<button type="button" class="btn btn-block btn-primary btn-sm assignVerifier" value="'.$id.'">Assign Verifier</button>';
-                break;
-            case 1:
-                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
-                break;
-            case 2:
-                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
-                break;
-            case 3:
-                $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
-                break;
+        
+        if($application_status == 1 || $application_status == 2) { 
+            $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
+            
+            $count = 0;
+            if(!empty($verifiers_data)) {
+                foreach($verifiers_data as $verifier_data) {
+                    $count++;
+                }
+            }
+            
+            $return = '<div><span style="color:#00a65a;font-weight:bold">Assigned Verifiers : '.$count.'</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm manageVerifier" value="'.$id.'">Manage Verifiers</button></div>';
+//        switch ($verifier_status) {
+//            case 0:
+//                $return = '<button type="button" class="btn btn-block btn-primary btn-sm assignVerifier" value="'.$id.'">Assign Verifier</button>';
+//                break;
+//            case 1:
+//                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
+//                break;
+//            case 2:
+//                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</div>';
+//                break;
+//            case 3:
+//                $return = '<span style="color:#00a65a;font-weight:bold">Completed</div>';
+//                break;
+//        }
+        } else {
+            $return = '<span style="color:#e70606;font-weight:bold">NA</span>';
         }
 
         return $return;

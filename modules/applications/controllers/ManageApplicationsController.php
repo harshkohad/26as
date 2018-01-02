@@ -3,27 +3,74 @@
 namespace app\modules\applications\controllers;
 
 use Yii;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
+use yii\filters\VerbFilter;
+use kartik\date\DatePicker;
+use kartik\widgets\FileInput;
 use app\modules\applications\models\Applications;
 use app\modules\applications\models\ApplicationsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use app\modules\applications\models\Itr;
 use app\modules\applications\models\Noc;
 use app\modules\applications\models\Kyc;
 use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
 use app\modules\applications\models\Area;
-use kartik\date\DatePicker;
-use kartik\widgets\FileInput;
 use app\modules\applications\models\ApplicantProfile;
 use app\modules\applications\models\ApplicantPhotos;
 use app\modules\applications\models\PincodeMaster;
+use app\modules\applications\models\ApplicationsVerifiers;
+use app\modules\manage_mobile_app\models\TblMobileUsers;
+use app\modules\applications\models\ApplicationsUploads;
+use app\modules\applications\models\ApplicationsUploadsSearch;
+use yii\base\ErrorException;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
  */
 class ManageApplicationsController extends Controller {
+
+    const KYC_UPLOAD_DIR_NAME = "uploads/kyc/";
+    const EXCEL_UPLOAD_DIR_NAME = "uploads/excelupload";
+    const SAMPLE_TEMPLATE_DIR_NAME = "sample_templates";
+
+    public $excel_columns_applications = array(
+        'First Name' => 'first_name',
+        'Middle Name' => 'middle_name',
+        'Last Name' => 'last_name',
+        'Aadhaar Card No' => 'aadhaar_card_no',
+        'Pan Card No' => 'pan_card_no',
+        'Mobile No' => 'mobile_no',
+        'Applicant Type' => 'applicant_type',
+        'Profile Type' => 'profile_type',
+        'Date Of Application' => 'date_of_application',
+        'Residence Address' => 'resi_address',
+        'Residence Pincode' => 'resi_address_pincode',
+        'Residence Triggers' => 'resi_address_trigger',
+        'Residence Send for verification' => 'resi_address_verification',
+        'Office Address' => 'office_address',
+        'Office Pincode' => 'office_address_pincode',
+        'Office Triggers' => 'office_address_trigger',
+        'Office Send for verification' => 'office_address_verification',
+        'Business Address' => 'busi_address',
+        'Business Pincode' => 'busi_address_pincode',
+        'Business Triggers' => 'busi_address_trigger',
+        'Business Send for verification' => 'busi_address_verification',
+        'NOC Address' => 'noc_address',
+        'NOC Pincode' => 'noc_address_pincode',
+        'NOC Triggers' => 'noc_address_trigger',
+        'NOC Send for verification' => 'noc_address_verification',
+    );
+    public $excel_columns_applicant_profile = array(
+        'First Name' => 'first_name',
+        'Middle Name' => 'middle_name',
+        'Last Name' => 'last_name',
+        'Aadhaar Card No' => 'aadhaar_card_no',
+        'Pan Card No' => 'pan_card_no',
+        'Mobile No' => 'mobile_no',
+    );
 
     /**
      * @inheritdoc
@@ -383,7 +430,7 @@ class ManageApplicationsController extends Controller {
         $return_html .= '</tr></thead>';
         if (!empty($nocs)) {
             foreach ($nocs as $noc_data) {
-                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/uploads/kyc/' . $application_id . '/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';
+                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';
                 $return_html .= '<tr>';
                 $return_html .= '<td>' . $image_link . '</td>';
                 $return_html .= '<td>' . $noc_data['doc_type'] . '</td>';
@@ -549,7 +596,7 @@ class ManageApplicationsController extends Controller {
             $kyc_remarks = $data['kyc_remarks'];
             $application_id = $data['application_id'];
 
-            $dirname = 'uploads/kyc/' . $application_number;
+            $dirname = self::KYC_UPLOAD_DIR_NAME . $application_number;
             if (!file_exists($dirname)) {
                 mkdir($dirname);
                 mkdir($dirname . '/thumbs');
@@ -618,7 +665,7 @@ class ManageApplicationsController extends Controller {
 
             $kyc_model = Kyc::findOne($kyc_id);
             $file_name = $kyc_model->file_name;
-            $dirname = 'uploads/kyc/' . $application_number;
+            $dirname = self::KYC_UPLOAD_DIR_NAME . $application_number;
 
             $file_path = $dirname . '/' . $file_name;
             $thumb_path = $dirname . '/thumbs/' . $file_name;
@@ -644,18 +691,6 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function actionGetVerifier() {
-        if (!empty($_POST)) {
-            $app_id = $_POST['app_id'];
-
-            $application_model = Applications::findOne($app_id);
-
-            if (!empty($application_model)) {
-                $application_id = $application_model->application_id;
-            }
-        }
-    }
-
     public function actionGetDocsPhotosTable($id, $application_id, $section, $type, $getHtml, $isAjaxCall = NULL) {
         $photos = ApplicantPhotos::find()->where(['application_id' => $id, 'section' => $section, 'type' => $type, 'is_deleted' => '0'])->all();
 
@@ -672,7 +707,7 @@ class ManageApplicationsController extends Controller {
         $return_html .= '</tr></thead>';
         if (!empty($photos)) {
             foreach ($photos as $photos_data) {
-                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/uploads/kyc/' . $application_id . '/thumbs/' . $photos_data['file_name'] . '" class="user-image" alt="Image" width="40"></a>';
+                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'] . '" class="user-image" alt="Image" width="40"></a>';
                 $return_html .= '<tr>';
                 $return_html .= '<td>' . $image_link . '</td>';
                 $return_html .= '<td>' . $photos_data['remarks'] . '</td>';
@@ -711,7 +746,7 @@ class ManageApplicationsController extends Controller {
             $photos_section = $data['photos_section'];
             $photos_type = $data['photos_type'];
 
-            $dirname = 'uploads/kyc/' . $application_number;
+            $dirname = self::KYC_UPLOAD_DIR_NAME . $application_number;
             if (!file_exists($dirname)) {
                 mkdir($dirname);
                 mkdir($dirname . '/thumbs');
@@ -774,7 +809,7 @@ class ManageApplicationsController extends Controller {
 
             $ap_model = ApplicantPhotos::findOne($record_id);
             $file_name = $ap_model->file_name;
-            $dirname = 'uploads/kyc/' . $application_number;
+            $dirname = self::KYC_UPLOAD_DIR_NAME . $application_number;
 
             $file_path = $dirname . '/' . $file_name;
             $thumb_path = $dirname . '/thumbs/' . $file_name;
@@ -786,6 +821,389 @@ class ManageApplicationsController extends Controller {
 
             $ap_model->save();
         }
+    }
+
+    public function getVerifierDropdown($app_id, $verification_type) {
+        $selected_id = self::checkVerifierForApplicationExist($app_id, $verification_type);
+        $allVerifiers_data = TblMobileUsers::find()->asArray()->all();
+        $return_html = '';
+        $return_html .= '<label class="control-label">Select Verifier</label>';
+        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '">';
+        $return_html .= '<option value="">Select Verifier</option>';
+        if (!empty($allVerifiers_data)) {
+            foreach ($allVerifiers_data as $allVerifiers) {
+                $selected = isset($selected_id['mobile_user_id']) ? (($selected_id['mobile_user_id'] == $allVerifiers['id']) ? 'selected' : '') : '';
+                $return_html .= '<option value ="' . $allVerifiers['id'] . '" ' . $selected . '>';
+                $return_html .= $allVerifiers['field_agent_name'];
+                $return_html .= '</option>';
+            }
+        }
+        $return_html .= '</select>';
+        return $return_html;
+    }
+
+    public function checkVerifierForApplicationExist($app_id, $verification_type) {
+        $return_data = array();
+        $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type, 'is_deleted' => '0'])->one();
+
+        if (!empty($verifiers_data)) {
+            $return_data['mobile_user_id'] = $verifiers_data->mobile_user_id;
+            $return_data['id'] = $verifiers_data->id;
+        }
+        return $return_data;
+    }
+
+    public function actionGetVerifier() {
+        $return_html = '';
+
+        if (!empty($_POST)) {
+            $app_id = $_POST['app_id'];
+
+            $applications_model = Applications::findOne($app_id);
+            if ($applications_model->resi_address_verification == 1 || $applications_model->busi_address_verification == 1 || $applications_model->office_address_verification == 1 || $applications_model->noc_address_verification == 1) {
+                if ($applications_model->resi_address_verification == 1) {
+                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $return_html);
+                }
+                if ($applications_model->busi_address_verification == 1) {
+                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $return_html);
+                }
+                if ($applications_model->office_address_verification == 1) {
+                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $return_html);
+                }
+                if ($applications_model->noc_address_verification == 1) {
+                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $return_html);
+                }
+            } else {
+                $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
+            }
+            return $return_html;
+        }
+    }
+
+    public function verifierModalRow($app_id, $verification_type, $applications_model, $pincode, &$return_html) {
+        switch ($verification_type) {
+            case 2 :
+                $address_name = 'Business';
+                break;
+            case 3 :
+                $address_name = 'Office';
+                break;            
+            case 4 :
+                $address_name = 'NOC';
+                break;
+            default :
+                $address_name = 'Residence';
+                break;
+        }
+        $return_html .= '<div><h4><strong>' . $address_name . ' Address</strong></h4></div>';
+        $return_html .= '<div class="row">';
+        $return_html .= '<div class="col-lg-4"><label class="control-label" for="name" style=" margin-top: 0px;">' . $applications_model->getAttributeLabel($pincode) . '</label>
+    <div class="readonlydiv">' . $applications_model->$pincode . '</div></div>';
+        $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type) . '</div>';
+        $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
+        $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
+        if (!empty($ifverexist)) {
+            $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
+            $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+        } else {
+            $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $app_id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+        }
+        $return_html .= '</div>';
+        $return_html .= '</div>';
+    }
+
+    public function actionUpdateVerifier() {
+        $response_data = array();
+        $response_data['msg'] = 'Something went wrong!!!';
+        $response_data['status'] = 'failure';
+        if (!empty($_POST)) {
+            $veriid = $_POST['veriid'];
+            $m_user_id = $_POST['m_user_id'];
+            $verification_type = $_POST['verification_type'];
+
+            $verifiers_data = ApplicationsVerifiers::findOne($veriid);
+            $verifiers_data->mobile_user_id = $m_user_id;
+            $verifiers_data->save();
+
+            $response_data['msg'] = 'Verifier Assignment updated sucessfully!!!';
+            $response_data['status'] = 'success';
+            $response_data['html'] = self::getButtons($verification_type, $veriid, 'update', $verifiers_data->application_id);
+        }
+        echo json_encode($response_data);
+    }
+
+    public function actionDeleteVerifier() {
+        $response_data = array();
+        $response_data['msg'] = 'Something went wrong!!!';
+        $response_data['status'] = 'failure';
+        if (!empty($_POST)) {
+            $veriid = $_POST['veriid'];
+            $verification_type = $_POST['verification_type'];
+            $app_id = $_POST['app_id'];
+
+            $verifiers_data = ApplicationsVerifiers::findOne($veriid)->delete();
+            $response_data['msg'] = 'Verifier Assignment deleted sucessfully!!!';
+            $response_data['status'] = 'success';
+            $response_data['html'] = self::getButtons($verification_type, $app_id, 'delete');
+        }
+        echo json_encode($response_data);
+    }
+
+    public function actionAddVerifier() {
+        $response_data = array();
+        $response_data['msg'] = 'Something went wrong!!!';
+        $response_data['status'] = 'failure';
+        if (!empty($_POST)) {
+            $m_user_id = $_POST['m_user_id'];
+            $app_id = $_POST['app_id'];
+            $verification_type = $_POST['verification_type'];
+
+            $verifiers_data = new ApplicationsVerifiers();
+            $verifiers_data->application_id = $app_id;
+            $verifiers_data->verification_type = $verification_type;
+            $verifiers_data->mobile_user_id = $m_user_id;
+            $verifiers_data->mobile_user_assigned_date = date('Y-m-d H:i:s');
+            $verifiers_data->save();
+
+            $response_data['msg'] = 'Verifier Assignment done sucessfully!!!';
+            $response_data['status'] = 'success';
+            $response_data['html'] = self::getButtons($verification_type, $verifiers_data->id, 'add', $app_id);
+        }
+        echo json_encode($response_data);
+    }
+
+    public function getButtons($verification_type, $id, $actiontype, $app_id = '') {
+        $return_html = '';
+        $return_html .= '<label class="control-label">Actions</label><br>';
+        if ($actiontype == 'update' || $actiontype == 'add') {
+            $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $id . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
+            $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $id . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+        } else {
+            $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+        }
+        return $return_html;
+    }
+
+    public function actionUploadApplications() {
+        $institutes = ArrayHelper::map(Institutes::find()->orderBy('name')->all(), 'id', 'name');
+        $loantypes = ArrayHelper::map(LoanTypes::find()->orderBy('loan_name')->all(), 'id', 'loan_name');
+        $model = new ApplicationsUploads();
+        return $this->render('upload_applications', [
+                    'model' => $model,
+                    'institutes' => $institutes,
+                    'loantypes' => $loantypes,
+        ]);
+    }
+
+    public function actionUploadApplicationsExcel() {
+        $response_data = array();
+        try {
+            if (!empty($_POST)) {
+                $data = $_POST;
+                $institute_id = $data['institute_id'];
+                $loan_type_id = $data['loan_type_id'];
+
+                $dirname = self::EXCEL_UPLOAD_DIR_NAME;
+
+                if (isset($_FILES['upe_file'])) {
+                    $errors = '';
+                    $file_name = $_FILES['upe_file']['name'];
+                    $newfile_name = date('dmYHis') . $_FILES['upe_file']['name'];
+                    $file_size = $_FILES['upe_file']['size'];
+                    $file_tmp = $_FILES['upe_file']['tmp_name'];
+                    $file_type = $_FILES['upe_file']['type'];
+
+                    $file_name_exploded = explode('.', $file_name);
+                    $file_ext = strtolower(end($file_name_exploded));
+
+                    $expensions = array("xlsx");
+
+                    if (in_array($file_ext, $expensions) === false) {
+                        $errors .= "Extension not allowed, please choose a XLSX file.";
+                    }
+
+                    if ($file_size > 2097152) {
+                        $errors .= 'File size must not exceed 2 MB';
+                    }
+
+                    if (empty($errors) == true) {
+                        if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
+                            #Add data to uploads
+                            $uap_model = new ApplicationsUploads();
+                            $uap_model->institute_id = $institute_id;
+                            $uap_model->loan_type_id = $loan_type_id;
+                            $uap_model->file_name = $newfile_name;
+
+                            $uap_model->save(FALSE);
+                            $process = self::processAppsExcel($uap_model->id);
+                            if ($process) {
+                                #Send response
+                                $response_data['msg'] = 'Upload Successful!!!';
+                                $response_data['status'] = 'success';
+                                $response_data['html'] = $process;
+                                $response_data['id'] = $uap_model->id;
+                                echo json_encode($response_data);
+                            } else {
+                                throw new \Exception("Something went wrong!!!");
+                            }
+                        } else {
+                            throw new \Exception("Something went wrong!!!");
+                        }
+                    } else {
+                        throw new \Exception($errors);
+                    }
+                } else {
+                    throw new \Exception("Invalid Data!!");
+                }
+            } else {
+                throw new \Exception("Something went wrong!!!");
+            }
+        } catch (\Exception $e) {
+            $response_data['msg'] = $e->getMessage();
+            $response_data['status'] = 'failure';
+            echo json_encode($response_data);
+        }
+    }
+
+    public function processAppsExcel($id) {
+        try {
+            #fetch filename
+            $apps_data = ApplicationsUploads::find()->where(['id' => $id, 'is_deleted' => '0'])->one();
+
+            if (!empty($apps_data)) {
+
+                $data = \moonland\phpexcel\Excel::import(self::EXCEL_UPLOAD_DIR_NAME . '/' . $apps_data->file_name, [
+                            'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
+                            'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+                            'getOnlySheet' => 'sheet1', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
+                ]);
+
+                $provider = new \yii\data\ArrayDataProvider([
+                    'allModels' => $data,
+                    'sort' => [
+                        'attributes' => ['Sr', 'First Name', 'Middle Name'],
+                    ],
+                    'pagination' => [
+                        'pageSize' => 10,
+                    ],
+                ]);
+
+                return $this->renderPartial('upload_partial', [
+                            'dataProvider' => $provider,
+                ]);
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function actionSubmitUExcel() {
+        $response_data = array();
+        try {
+            if (!empty($_POST)) {
+                $data = $_POST;
+                $id = $data['id'];
+                #fetch filename
+                $apps_data = ApplicationsUploads::find()->where(['id' => $id, 'is_deleted' => '0'])->one();
+
+                if (!empty($apps_data)) {
+
+                    $data = \moonland\phpexcel\Excel::import(self::EXCEL_UPLOAD_DIR_NAME . '/' . $apps_data->file_name, [
+                                'setFirstRecordAsKeys' => true, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
+                                'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+                                'getOnlySheet' => 'sheet1', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
+                    ]);
+                    if (!empty($data)) {
+                        self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id);
+                        $response_data['msg'] = 'Successfully Saved !!!';
+                        $response_data['status'] = 'success';
+                        echo json_encode($response_data);
+                    } else {
+                        throw new \Exception("File Not Found!!!");
+                    }
+                } else {
+                    throw new \Exception("File Not Found!!!");
+                }
+            } else {
+                throw new \Exception("Something went wrong!!!");
+            }
+        } catch (\Exception $e) {
+            $response_data['msg'] = $e->getMessage();
+            $response_data['status'] = 'failure';
+            echo json_encode($response_data);
+        }
+    }
+
+    function saveExeclData($id, $data, $institute_id, $loan_type_id) {
+        try {
+            foreach ($data as $exceldata) {
+                $model = new Applications();
+                $new_applicant_profile = new ApplicantProfile();
+                foreach ($exceldata as $key => $value) {
+                    if (array_key_exists($key, $this->excel_columns_applicant_profile)) {
+                        $fkey = $this->excel_columns_applicant_profile[$key];
+                        $new_applicant_profile->$fkey = $value;
+                    }
+                    if (array_key_exists($key, $this->excel_columns_applications)) {
+                        if ($key == 'Applicant Type') {
+                            $value = ($value == 'Salaried') ? 1 : 2;
+                        }
+                        if ($key == 'Profile Type') {
+                            $value = ($value == 'Resi') ? 1 : (($value == 'Office') ? 2 : 3);
+                        }
+                        if ($key == 'Date Of Application') {
+                            $value = date("Y-m-d", strtotime($value));
+                        }
+                        $fkey = $this->excel_columns_applications[$key];
+                        $model->$fkey = $value;
+                    }
+                }
+                $new_applicant_profile->save(FALSE);
+                $model->profile_id = $new_applicant_profile->id;
+                $model->institute_id = $institute_id;
+                $model->loan_type_id = $loan_type_id;
+                if ($model->save()) {
+                    #Save Application id
+                    $model->application_id = self::getApplicationId($model->id);
+                    $model->save();
+                    #Update status
+                    $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
+                    $apps_data->status = 1;
+                    $apps_data->save();
+                } else {
+                    throw new \Exception("Data Error!!!");
+                }
+            }
+        } catch (\Exception $e) {
+            $response_data['msg'] = $e->getMessage();
+            $response_data['status'] = 'failure';
+            echo json_encode($response_data);
+        }
+    }
+
+    public function actionSampleTemplate() {
+        $name = 'upload_applicationss.xlsx';
+
+        $fileName = self::SAMPLE_TEMPLATE_DIR_NAME . "/" . $name;
+
+        if (file_exists($fileName))
+            return Yii::$app->response->sendFile($fileName);
+        else
+            throw new CHttpException(404, 'The requested page does not exist.');
+    }
+    
+    /**
+     * Lists all Applications models.
+     * @return mixed
+     */
+    public function actionUploadHistory() {
+        $searchModel = new ApplicationsUploadsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('uploads_index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 
 }

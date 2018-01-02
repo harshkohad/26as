@@ -21,6 +21,10 @@ return [
             'label' => 'Create Application',
             'url' => ['/applications/manage-applications/create']
         ],
+        [
+            'label' => 'Upload Applications',
+            'url' => ['/applications/manage-applications/upload-applications']
+        ],
     ]    
 ];
 

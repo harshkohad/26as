@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $access_token
- * @property string $client_id
+ * @property string $mobile_unique_code
  * @property string $expires
  */
 class TblOauthAccessTokens extends \yii\db\ActiveRecord
@@ -29,8 +29,8 @@ class TblOauthAccessTokens extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['id'], 'integer'],
-            [['access_token', 'client_id'], 'string', 'max' => 250],
+            [['id', 'user_id'], 'integer'],
+            [['access_token', 'mobile_unique_code'], 'string', 'max' => 250],
             [['expires'], 'string', 'max' => 45],
         ];
     }
@@ -43,8 +43,9 @@ class TblOauthAccessTokens extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'access_token' => 'Access Token',
-            'client_id' => 'Client ID',
+            'mobile_unique_code' => 'Mobile Unique Code',
             'expires' => 'Expires',
+            'user_id' => 'User ID',
         ];
     }
 }

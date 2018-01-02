@@ -29,6 +29,10 @@ class ApiController extends Controller {
                     'index' => ['get'],
                     'app-login' => ['post'],
                     'get-access-token' => ['post'],
+                    'get-all-sites' => ['post'],
+                    'get-site-details' => ['post'],
+                    'update-site-status' => ['post'],
+                    'update-site-details' => ['post'],
                 ],
             ],
         ];
@@ -108,10 +112,10 @@ class ApiController extends Controller {
 
                     if (!empty($mobile_details)) {
                         if (Yii::$app->getSecurity()->validatePassword($password, $user_details->password_hash)) {
-                            $oauth_details = TblOauthIdentity::find()->where(['user_id' => $user_details->id])->one();
+                            $mobile_user_details = TblMobileUsers::find()->where(['user_id' => $user_details->id])->one();
 
                             #Generate token and save it into db
-                            $return_array = Api::gen_token($oauth_details->client_id);
+                            $return_array = Api::gen_token($mobile_user_details->mobile_unique_code, $user_details->id);
 
                             $response = Api::api_response($api_usage_id, 1, 'Login Successful.', $return_array);
                         } else {
@@ -146,18 +150,17 @@ class ApiController extends Controller {
 
             if (isset($received_data['data'][0])) {
                 $received_data_data = isset($received_data['data'][0]) ? $received_data['data'][0] : "";
-                #Check if client_id and client secret is valid or not
-                $client_id = $received_data_data['client_id'];
-                $client_secret = $received_data_data['client_secret'];
+                #Check if mobile unique code is valid or not
+                $mobile_unique_code = $received_data_data['mobile_unique_code'];
 
-                $oauth_details = TblOauthIdentity::find()->where(['client_id' => $client_id, 'client_secret' => $client_secret])->one();
+                $mobile_details = TblMobileUsers::find()->where(['mobile_unique_code' => $mobile_unique_code])->one();
 
-                if (!empty($oauth_details)) {
+                if (!empty($mobile_details)) {
                     #Register API usage
                     $api_usage_id = Api::api_usage($received_data['access_token'], $api_name, $ip_address, $received_data['data']);
 
                     #Generate token and save it into db
-                    $return_array = Api::gen_token($client_id);
+                    $return_array = Api::gen_token($mobile_unique_code, $mobile_details->user_id);
 
                     $response = Api::api_response($api_usage_id, 1, 'API Access Token.', $return_array);
                 }
@@ -167,6 +170,82 @@ class ApiController extends Controller {
         }
 
         return $response;
+    }
+
+    public function actionGetAllSites() {
+        $response = Api::process_api_request('GetAllSites', Yii::$app->getRequest()->getUserIP());
+
+        if (!empty($response->api_usage_id)) {
+            #process data
+            $return_array = Api::get_all_sites($response->user_id);
+            if (!empty($return_array)) {
+                return Api::api_response($response->api_usage_id, 1, 'All Sites', $return_array);
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1005');
+            }
+        } else {
+            return $response->response;
+        }
+    }
+
+    public function actionGetSiteDetails() {
+        $response = Api::process_api_request('GetSiteDetails', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            $app_id = (isset($received_data['app_id'])) ? $received_data['app_id'] : '';
+            $verification_type = (isset($received_data['verification_type'])) ? $received_data['verification_type'] : '';
+            if ($app_id != '' || $verification_type != '') {
+                #process data
+                $return_array = Api::get_site_details($app_id, $verification_type, $response->user_id);
+                if (!empty($return_array)) {
+                    return Api::api_response($response->api_usage_id, 1, 'Site Details', $return_array);
+                } else {
+                    return Api::api_response($response->api_usage_id, 2, '', '', '1005');
+                }
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1006');
+            }
+        } else {
+            return $response->response;
+        }
+    }
+
+    public function actionUpdateSiteStatus() {
+        $response = Api::process_api_request('UpdateSiteStatus', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            $verification_id = (isset($received_data['verification_id'])) ? $received_data['verification_id'] : '';
+            $verification_status = (isset($received_data['verification_status'])) ? $received_data['verification_status'] : '';
+            if ($verification_id != '' || $verification_status != '') {
+                #process data
+                $return_status = Api::update_site_status($verification_id, $verification_status, $response->user_id);
+                if (!empty($return_status)) {
+                    return Api::api_response($response->api_usage_id, 1, 'Status Updated', $return_status);
+                } else {
+                    return Api::api_response($response->api_usage_id, 2, '', '', '1005');
+                }
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1006');
+            }
+        } else {
+            return $response->response;
+        }
+    }
+    
+    public function actionUpdateSiteDetails() {
+        $response = Api::process_api_request('UpdateSiteDetails', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            #process data
+            $return_status = Api::update_site_details($received_data, $response->user_id);
+            if ($return_status['status'] == 'success') {
+                return Api::api_response($response->api_usage_id, 1, 'Details Updated', $return_status);
+            } else {
+                return Api::api_response($response->api_usage_id, 2, $return_status['msg'], '', '1006');
+            }
+        } else {
+            return $response->response;
+        }
     }
 
 }
