@@ -4,10 +4,12 @@ return [
     'label' => 'Settings',
     'icon' => 'fa fa-gears',
     'url' => ['#'],
+    'visible' => Yii::$app->user->can('sysadmin'),
     'items' => [
         [
             'label' => 'User Management',
-            'url' => ['/admin/user/index']
+            'url' => ['/admin/user/index'],
+//            'visible' => Yii::$app->user->can('sysadmin'),
         ],
         [
             'label' => 'Role Assignment',

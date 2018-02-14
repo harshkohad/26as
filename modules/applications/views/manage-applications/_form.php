@@ -10,7 +10,8 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="applications-form">
+<section class="panel">
+    <div class="panel-body">
 
     <div class="div_search">
         <div class="row">
@@ -34,11 +35,11 @@ use kartik\date\DatePicker;
                     </div>
                     <div class="form-group col-sm-2">
                         <label for="inputPanCard">PAN Card</label>
-                        <input type="text" class="form-control" id="inputPanCard" name="inputPanCard">
+                        <input type="text" class="form-control" id="inputPanCard" name="inputPanCard" pattern="[A-Z]{5}\d{4}[A-Z]{1}">
                     </div>
                     <div class="form-group col-sm-2">
                         <label for="inputAadhaarCard">Aadhaar Card</label>
-                        <input type="text" class="form-control" id="inputAadhaarCard" name="inputAadhaarCard">
+                        <input type="text" class="form-control" id="inputAadhaarCard" name="inputAadhaarCard" pattern="[0-9]{12}">
                     </div>
                 </form>
             </div>
@@ -98,6 +99,7 @@ use kartik\date\DatePicker;
     <?php ActiveForm::end(); ?>
 
 </div>
+</section>
 
 <?php
 yii\bootstrap\Modal::begin([

@@ -22,9 +22,6 @@ $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate
 ?>
 <div class="">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-11">

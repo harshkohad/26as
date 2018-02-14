@@ -11,25 +11,27 @@ $this->title = 'Upload History';
 $this->params['breadcrumbs'][] = ['label' => 'Upload Applications', 'url' => ['upload-applications']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="applications-uploads-index">
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'institute_id',
-            'loan_type_id',
-            'file_name',
-            'status',
-            // 'created_by',
-            'created_on',
-            // 'updated_by',
-            // 'updated_on',
-            // 'is_deleted',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-</div>
+<section class="panel">
+    <div class="panel-body">
+        <?=
+        GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                //'id',
+                'institute_id',
+                'loan_type_id',
+                'file_name',
+                'status',
+                // 'created_by',
+                'created_on',
+                // 'updated_by',
+                // 'updated_on',
+                // 'is_deleted',
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]);
+        ?>
+    </div>
+</section>

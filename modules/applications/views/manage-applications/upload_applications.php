@@ -11,22 +11,22 @@ $this->title = 'Upload Applications';
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="applications-view">
+<section class="panel">
+    <div class="panel-body">
 
-    <p>
-        <?= Html::a('Download Sample excel', ['sample-template'], ['class' => 'btn btn-success'], ['target'=>'_blank']) ?>
-        <?= Html::a('History', ['upload-history'], ['class' => 'btn btn-warning']) ?>
-    </p>
-    <div class="body-wrapper">
+        <p>
+            <?= Html::a('Download Sample excel', ['sample-template'], ['class' => 'btn btn-success'], ['target' => '_blank']) ?>
+            <?= Html::a('History', ['upload-history'], ['class' => 'btn btn-warning']) ?>
+        </p>
         <form id="upe_form" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-lg-3">
                     <label>Select Institute</label>
-                    <?= Html::dropDownList('institute_id', null, $institutes, array('label' => 'Select Institute', 'class' => 'form-control'))?>
+                    <?= Html::dropDownList('institute_id', null, $institutes, array('label' => 'Select Institute', 'class' => 'form-control')) ?>
                 </div>
                 <div class="col-lg-3">
                     <label>Select Loan Type</label>
-                    <?= Html::dropDownList('loan_type_id', null, $loantypes, array('label' => 'Select Loan Type', 'class' => 'form-control'))?>
+                    <?= Html::dropDownList('loan_type_id', null, $loantypes, array('label' => 'Select Loan Type', 'class' => 'form-control')) ?>
                 </div>
                 <div class="col-lg-6">                
                     <div class="form-group">
@@ -46,19 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </form>    
-        <div class="row">
-            <div class="col-lg-12" >
-                <p id="final_submit" style="display: none; float: right;">
-                    <button type="button" class="btn btn-success" id="upe_final_submit">Submit</button>
-                </p>
-                <div id="response_div" style="display: none; clear: both;">
-                </div>
-                <input type="hidden" id="uploaded_id" name="uploaded_id" />
-            </div>
-        </div>    
     </div>
-</div>
-
+</section>
+<section class="panel">
+    <div class="panel-body">
+        <div class="col-lg-12" >
+            <p id="final_submit" style="display: none; float: right;">
+                <button type="button" class="btn btn-success" id="upe_final_submit">Submit</button>
+            </p>
+            <div id="response_div" style="display: none; clear: both;">
+            </div>
+            <input type="hidden" id="uploaded_id" name="uploaded_id" />
+        </div>
+    </div>
+</section>
 <div class="floatingResponse alert ">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <div id="responsemsg"> </div>
@@ -67,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 $this->registerJs("
         $(function(){
-            var loader_link = '".Yii::$app->request->BaseUrl."/images/acs_loader.gif';
+            var loader_link = '" . Yii::$app->request->BaseUrl . "/images/acs_loader.gif';
             $('#upe_form').on('submit',(function(e) {
                 $('#button_div').hide();
                 $('#loader_div').show();

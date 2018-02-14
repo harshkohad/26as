@@ -300,4 +300,13 @@ return array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
     ),
   ),
+  'bucket-md/widgets' => 
+  array (
+    'name' => 'bucket-md/widgets',
+    'version' => '2.4.0.0',
+    'alias' => 
+    array (
+      '@bucketmd' => $vendorDir . '/bucket-md/widgets',
+    ),
+  ),
 );

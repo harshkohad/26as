@@ -5,55 +5,84 @@ use yii\helpers\Html;
 /* @var $content string */
 ?>
 
-<header class="main-header">
+<!--header start-->
+<header class="header fixed-top clearfix">
+<!--logo start-->
+<div class="brand">
 
-    <?= Html::a('<span class="logo-mini">ACS</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <a href="index.html" class="logo">       
+        <!--<img src=" <?PHP echo Yii::$app->request->baseUrl;?>/images/logo.png" alt="" height="40" style="margin-left: auto; margin-right: auto;">-->
+    </a>
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars"></div>
+    </div>
+</div>
+<!--logo end-->
 
-    <nav class="navbar navbar-static-top" role="navigation">
+<div class="nav notify-row" id="top_menu">
+    <!--  notification start -->
+    <ul class="nav top-menu">
+        <!-- notification dropdown start-->
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
-
-        <div class="navbar-custom-menu">
-
-            <ul class="nav navbar-nav">
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?= Yii::$app->user->identity->userDetails->first_name.' '.Yii::$app->user->identity->userDetails->last_name; ?></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="col-xs-12 text-center">
-                                <?= Html::a(
-                                    'Change Password',
-                                    ['/admin/user/change-password'],
-                                    ['data-method' => 'post']
-                                ); ?>
-                            </div>
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <div class="pull-left">
-                                <?= Html::a(
-                                    'Profile',
-                                    ['/admin/user/view'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ); ?>
-                            </div>
-                            <div class="pull-right">
-                                <?= Html::a(
-                                    'Sign out',
-                                    ['/admin/user/logout'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ); ?>
-                            </div>
-                        </li>
-                    </ul>
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-warning">1</span>
+            </a>
+            <ul class="dropdown-menu extended notification">
+                <li>
+                    <p>Notifications</p>
                 </li>
+                <li>
+                    <div class="alert alert-info clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Test</a>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
-        </div>
-    </nav>
+        </li>
+        <!-- notification dropdown end -->
+    </ul>
+    <!--  notification end -->
+</div>
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+        </li>
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img alt="" src="dist/img/avatar1_small.jpg">
+                <span class="username"><?= Yii::$app->user->identity->userDetails->first_name.' '.Yii::$app->user->identity->userDetails->last_name; ?></span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                <li><?= Html::a(
+                        '<i class=" fa fa-suitcase"></i>Profile</a>',
+                        ['/admin/user/view'],
+                        ['data-method' => 'post']
+                        ); ?></li>
+                <!--<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>-->
+                <li><?= Html::a(
+                        '<i class="fa fa-key"></i> Log Out</a>',
+                        ['/admin/user/logout'],
+                        ['data-method' => 'post']
+                        ); ?></li>
+            </ul>
+        </li>
+        <!-- user login dropdown end -->
+<!--        <li>
+            <div class="toggle-right-box">
+                <div class="fa fa-bars"></div>
+            </div>
+        </li>-->
+    </ul>
+    <!--search & user info end-->
+</div>
 </header>
+<!--header end-->

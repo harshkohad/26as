@@ -107,8 +107,8 @@ class ManageApplicationsController extends Controller {
      */
     public function actionView($id) {
         $model = $this->findModel($id);
-        $itrTable = $this->getItrTableHtml($id);
-        $nocTable = $this->getNocTableHtml($id);
+        $itrTable = $this->actionGetItrTable($id, 1);
+        $nocTable = $this->actionGetNocTable($id, 1);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 1);
         $resiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 2, 1);
         $resiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 1, 1);
@@ -194,8 +194,8 @@ class ManageApplicationsController extends Controller {
         $loantypes = new LoanTypes();
         $pincode_master = new PincodeMaster();
         //$area_model = new Area();
-        $itrTable = $this->getItrTable($id);
-        $nocTable = $this->getNocTable($id);
+        $itrTable = $this->actionGetItrTable($id);
+        $nocTable = $this->actionGetNocTable($id);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 0);
         $resiDocsTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 2, 0);
         $resiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 1, 1, 0);
@@ -212,15 +212,45 @@ class ManageApplicationsController extends Controller {
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
             $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
             $model->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
+            
+            //Lat long
+            if($model->resi_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['resi_address_pincode'], $_POST['Applications']['resi_address']);
+                
+                if(!empty($latlong)) {
+                    $model->resi_address_lat = $latlong['latitude'];
+                    $model->resi_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->office_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['office_address_pincode'], $_POST['Applications']['office_address']);
+                
+                if(!empty($latlong)) {
+                    $model->office_address_lat = $latlong['latitude'];
+                    $model->office_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->busi_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['busi_address_pincode'], $_POST['Applications']['busi_address']);
+                
+                if(!empty($latlong)) {
+                    $model->busi_address_lat = $latlong['latitude'];
+                    $model->busi_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->noc_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['noc_address_pincode'], $_POST['Applications']['noc_address']);
+                
+                if(!empty($latlong)) {
+                    $model->noc_address_lat = $latlong['latitude'];
+                    $model->noc_address_long = $latlong['longitude'];
+                }
+            }
 
-            #ITR
-            if (isset($_POST['itr']) && !empty($_POST['itr'])) {
-                $this->processItr($_POST['itr'], $model->id);
-            }
-            #NOC
-            if (isset($_POST['noc']) && !empty($_POST['noc'])) {
-                $this->processNoc($_POST['noc'], $model->id);
-            }
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -271,7 +301,7 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function getItrTable($id) {
+    public function actionGetItrTable($id, $getHtml = 0) {
 
         $itrs = Itr::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
 
@@ -282,36 +312,77 @@ class ManageApplicationsController extends Controller {
                             <th>Pan no.</th>
                             <th>Acknowledgement No.</th>
                             <th>Assesement year (YYYY-YYYY)</th>
-                            <th>Remarks</th>
-                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMoreItr" title="Add More ITR"><span class="glyphicon glyphicon-plus"></span></a></th>';
+                            <th>Remarks</th>';
+        $colspan = 6;
+        if($getHtml == 0) {
+            $return_html .= '<th><button type="button" class="btn btn-primary addMoreItr"><i class="fa fa-plus"></i></button></th>';
+            $colspan = 7;
+        }
         $return_html .= '</tr>';
         if (!empty($itrs)) {
             foreach ($itrs as $itr_data) {
                 $return_html .= '<tr>';
-                $return_html .= '<td><input type="text" name="itr[total_income][]" value="' . $itr_data['total_income'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="date" max="' . date('Y-m-d') . '" name="itr[date_of_filing][]" value="' . $itr_data['date_of_filing'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="itr[pan_card_no][]" value="' . $itr_data['pan_card_no'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" value="' . $itr_data['acknowledgement_no'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" pattern="[0-9]{4}-[0-9]{4}" name="itr[assessment_year][]" value="' . $itr_data['assessment_year'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="itr[remarks][]" value="' . $itr_data['remarks'] . '" class="form-control"></td>';
-                $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
+                $return_html .= '<td>' . $itr_data['total_income'] . '</td>';
+                $return_html .= '<td>' . $itr_data['date_of_filing'] . '</td>';
+                $return_html .= '<td>' . $itr_data['pan_card_no'] . '</td>';
+                $return_html .= '<td>' . $itr_data['acknowledgement_no'] . '</td>';
+                $return_html .= '<td>' . $itr_data['assessment_year'] . '</td>';
+                $return_html .= '<td>' . $itr_data['remarks'] . '</td>';
+                if($getHtml == 0) {
+                    $return_html .= '<td><button type="button" class="btn btn-danger deleteItr" value="' . $itr_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
+                }
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
-            $return_html .= '<td><input type="text" name="itr[total_income][]" class="form-control"></td>';
-            $return_html .= '<td><input type="date" max="' . date('Y-m-d') . '" name="itr[date_of_filing][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="itr[pan_card_no][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="itr[acknowledgement_no][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="itr[assessment_year][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="itr[remarks][]" class="form-control"></td>';
-            $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
+            $return_html .= '<td colspan='.$colspan.'>No records Found!!!</td>';
             $return_html .= '</tr>';
         }
-
+        
         $return_html .= '</table>';
 
         return $return_html;
+    }
+    
+    public function actionAddItr() {
+        if (!empty($_POST)) {
+            $data = $_POST;
+            
+            $application_id = $data['application_id'];
+            $total_income = $data['total_income'];
+            $date_of_filing = $data['date_of_filing'];
+            $pan_card_no = $data['pan_card_no'];
+            $acknowledgement_no = $data['acknowledgement_no'];
+            $assessment_year = $data['assessment_year'];
+            $created_by = Yii::$app->user->id;
+            
+            #Add data to noc
+            $itr_model = new Itr();
+            
+            $itr_model->application_id = $application_id;
+            $itr_model->total_income = $total_income;
+            $itr_model->date_of_filing = $date_of_filing;
+            $itr_model->pan_card_no = $pan_card_no;
+            $itr_model->acknowledgement_no = $acknowledgement_no;
+            $itr_model->assessment_year = $assessment_year;
+            $itr_model->created_by = $created_by;
+            $itr_model->save(FALSE);
+            
+            return 'Successfully Added!!!';
+        }
+        return 'Something went wrong!!!';
+    }
+    
+    public function actionDeleteItr() {
+        if (!empty($_POST)) {
+            $id = $_POST['record_id'];
+
+            $itr_model = Itr::findOne($id);
+
+            $itr_model->is_deleted = 1;
+
+            $itr_model->save();
+        }
     }
 
     public function getItrTableHtml($id) {
@@ -348,41 +419,7 @@ class ManageApplicationsController extends Controller {
         return $return_html;
     }
 
-    public function getNocTable($id) {
-
-        $nocs = Noc::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
-
-        $return_html = '<table  class="table table-hover small-text" id="noc_table">
-                        <tr class="tr-header">
-                            <th>Met Person</th>
-                            <th>Designation</th>
-                            <th>Remarks</th>
-                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMoreNoc" title="Add More NOC"><span class="glyphicon glyphicon-plus"></span></a></th>';
-        $return_html .= '</tr>';
-        if (!empty($nocs)) {
-            foreach ($nocs as $noc_data) {
-                $return_html .= '<tr>';
-                $return_html .= '<td><input type="text" name="noc[met_person][]" value="' . $noc_data['met_person'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="noc[designation][]" value="' . $noc_data['designation'] . '" class="form-control"></td>';
-                $return_html .= '<td><input type="text" name="noc[remarks][]" value="' . $noc_data['remarks'] . '" class="form-control"></td>';
-                $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
-                $return_html .= '</tr>';
-            }
-        } else {
-            $return_html .= '<tr>';
-            $return_html .= '<td><input type="text" name="noc[met_person][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="noc[designation][]" class="form-control"></td>';
-            $return_html .= '<td><input type="text" name="noc[remarks][]" class="form-control"></td>';
-            $return_html .= '<td><a href="javascript:void(0);"  class="remove"><span class="glyphicon glyphicon-trash"></span></a></td>';
-            $return_html .= '</tr>';
-        }
-
-        $return_html .= '</table>';
-
-        return $return_html;
-    }
-
-    public function getNocTableHtml($id) {
+    public function actionGetNocTable($id, $getHtml = 0) {
 
         $nocs = Noc::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
 
@@ -391,6 +428,11 @@ class ManageApplicationsController extends Controller {
                             <th>Met Person</th>
                             <th>Designation</th>
                             <th>Remarks</th>';
+        $colspan = 3;
+        if($getHtml == 0) {
+            $return_html .= '<th><button type="button" class="btn btn-primary addMoreNoc"><i class="fa fa-plus"></i></button></th>';
+            $colspan = 4;
+        }
         $return_html .= '</tr>';
         if (!empty($nocs)) {
             foreach ($nocs as $noc_data) {
@@ -398,17 +440,57 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<td>' . $noc_data['met_person'] . '</td>';
                 $return_html .= '<td>' . $noc_data['designation'] . '</td>';
                 $return_html .= '<td>' . $noc_data['remarks'] . '</td>';
+                if($getHtml == 0) {
+                    $return_html .= '<td><button type="button" class="btn btn-danger deleteNoc" value="' . $noc_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
+                }
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
-            $return_html .= '<td colspan=3>No records Found!!!</td>';
+            $return_html .= '<td colspan='.$colspan.'>No records Found!!!</td>';
             $return_html .= '</tr>';
         }
 
         $return_html .= '</table>';
 
         return $return_html;
+    }
+    
+    public function actionAddNoc() {
+        if (!empty($_POST)) {
+            $data = $_POST;
+            
+            $application_id = $data['application_id'];
+            $met_person = $data['noc_met_person'];
+            $designation = $data['noc_designation'];
+            $remarks = $data['noc_remarks'];
+            $created_by = Yii::$app->user->id;
+            
+            #Add data to noc
+            $noc_model = new Noc();
+
+            $noc_model->application_id = $application_id;
+            $noc_model->met_person = $met_person;
+            $noc_model->designation = $designation;
+            $noc_model->remarks = $remarks;
+            $noc_model->created_by = $created_by;
+            $noc_model->save(FALSE);
+            
+            return 'Successfully Added!!!';
+        }
+        return 'Something went wrong!!!';
+    }
+    
+    public function actionDeleteNoc() {
+        if (!empty($_POST)) {
+            $id = $_POST['record_id'];
+
+            $noc_model = Noc::findOne($id);
+
+            $noc_model->is_deleted = 1;
+
+            $noc_model->save();
+        }
     }
 
     public function actionGetKycTable($id, $application_id, $getHtml, $isAjaxCall = NULL) {
@@ -430,7 +512,7 @@ class ManageApplicationsController extends Controller {
         $return_html .= '</tr></thead>';
         if (!empty($nocs)) {
             foreach ($nocs as $noc_data) {
-                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';
+                $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $noc_data['file_name'] . '" class="user-image" alt="KYC Image" width="40"></a>';
                 $return_html .= '<tr>';
                 $return_html .= '<td>' . $image_link . '</td>';
                 $return_html .= '<td>' . $noc_data['doc_type'] . '</td>';
@@ -465,50 +547,6 @@ class ManageApplicationsController extends Controller {
             echo $return_html;
         } else {
             return $return_html;
-        }
-    }
-
-    public function processItr($itr_data, $id) {
-        Itr::deleteAll('application_id = :application_id', [':application_id' => $id]);
-        $for_count = count($itr_data['total_income']);
-
-        if ($for_count == 1) {
-            if (empty($itr_data['total_income'][0]) && empty($itr_data['date_of_filing'][0]) && empty($itr_data['pan_card_no'][0]) && empty($itr_data['acknowledgement_no'][0]) && empty($itr_data['assessment_year'][0])) {
-                return true;
-            }
-        }
-
-        for ($i = 0; $i < $for_count; $i++) {
-            $model = new Itr();
-
-            $model->application_id = $id;
-            $model->total_income = isset($itr_data['total_income'][$i]) ? $itr_data['total_income'][$i] : 0;
-            $model->date_of_filing = isset($itr_data['date_of_filing'][$i]) ? $itr_data['date_of_filing'][$i] : '0000-00-00';
-            $model->pan_card_no = isset($itr_data['pan_card_no'][$i]) ? $itr_data['pan_card_no'][$i] : '';
-            $model->acknowledgement_no = isset($itr_data['acknowledgement_no'][$i]) ? $itr_data['acknowledgement_no'][$i] : '';
-            $model->assessment_year = isset($itr_data['assessment_year'][$i]) ? $itr_data['assessment_year'][$i] : '0000-00-00';
-            $model->save();
-        }
-    }
-
-    public function processNoc($noc_data, $id) {
-        Noc::deleteAll('application_id = :application_id', [':application_id' => $id]);
-        $for_count = count($noc_data['met_person']);
-
-        if ($for_count == 1) {
-            if (empty($noc_data['met_person'][0]) && empty($noc_data['designation'][0]) && empty($noc_data['remarks'][0])) {
-                return true;
-            }
-        }
-
-        for ($i = 0; $i < $for_count; $i++) {
-            $model = new Noc();
-
-            $model->application_id = $id;
-            $model->met_person = isset($noc_data['met_person'][$i]) ? $noc_data['met_person'][$i] : '';
-            $model->designation = isset($noc_data['designation'][$i]) ? $noc_data['designation'][$i] : '';
-            $model->remarks = isset($noc_data['remarks'][$i]) ? $noc_data['remarks'][$i] : '';
-            $model->save();
         }
     }
 
@@ -887,7 +925,7 @@ class ManageApplicationsController extends Controller {
                 break;
             case 3 :
                 $address_name = 'Office';
-                break;            
+                break;
             case 4 :
                 $address_name = 'NOC';
                 break;
@@ -1182,16 +1220,28 @@ class ManageApplicationsController extends Controller {
     }
 
     public function actionSampleTemplate() {
-        $name = 'upload_applicationss.xlsx';
+        $name = 'upload_applications.xlsx';
+        $file_path = Yii::$app->basePath . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . self::SAMPLE_TEMPLATE_DIR_NAME . DIRECTORY_SEPARATOR . $name;
 
-        $fileName = self::SAMPLE_TEMPLATE_DIR_NAME . "/" . $name;
-
-        if (file_exists($fileName))
-            return Yii::$app->response->sendFile($fileName);
-        else
-            throw new CHttpException(404, 'The requested page does not exist.');
+        if (file_exists($file_path)) {
+            $len = filesize($file_path); // Calculate File Size
+            header("Pragma: public");
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Cache-Control: public");
+            header("Content-Description: File Transfer");
+            header("Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); // Send type of file
+            $header = "Content-Disposition: attachment; filename=$name;"; // Send File Name
+            header($header);
+            header("Content-Transfer-Encoding: binary");
+            header("Content-Length: " . $len); // Send File Size
+            @readfile($file_path);
+            exit;
+        } else {
+            return $this->redirect(['index']);
+        }
     }
-    
+
     /**
      * Lists all Applications models.
      * @return mixed
@@ -1205,5 +1255,4 @@ class ManageApplicationsController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-
 }

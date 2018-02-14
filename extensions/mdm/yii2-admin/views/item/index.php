@@ -21,9 +21,6 @@ unset($rules[RouteRule::RULE_NAME]);
 ?>
 <div class="role-index">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-        </div>
         <div class="panel-body">
           <p>
             <?= Html::a(Yii::t('rbac-admin', 'Create ' . $labels['Item']), ['create'], ['class' => 'btn btn-success btn-flat']) ?>

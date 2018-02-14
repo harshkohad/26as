@@ -14,8 +14,8 @@ $loantypes->id = $model->loan_type_id;
 //$area_model->id = $model->area_id;
 ?>
 
-<div class="applications-form">
-    <div class="body-wrapper">
+<section class="panel">
+    <div class="panel-body">
         <!--    <div class="div_search">
                 <div class="row">
                     <div class="col-lg-12">sdfs</div>
@@ -60,7 +60,8 @@ $loantypes->id = $model->loan_type_id;
             </div>
             <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')  ?></div>
         </div>
-
+</div>
+</section>
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
@@ -253,11 +254,11 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3">
                                 <label>Market Feedback</label>
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-primary <?= ($model->resi_market_feedback == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Positive
+                                    <label class="btn btn-primary <?= ($model->resi_market_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
                                     </label>
-                                    <label class="btn btn-primary <?= ($model->resi_market_feedback == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 2) ? 'checked' : '' ?> value="2"> Negative
+                                    <label class="btn btn-primary <?= ($model->resi_market_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                 </div>
                             </div>                           
@@ -302,14 +303,14 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3">
                                 <label>Status</label>
                                 <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->resi_status == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
                                     <label class="btn btn-primary <?= ($model->resi_status == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 1) ? 'checked' : '' ?> value="1"> Positive
+                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                     <label class="btn btn-primary <?= ($model->resi_status == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 2) ? 'checked' : '' ?> value="2"> Negative
-                                    </label>
-                                    <label class="btn btn-primary <?= ($model->resi_status == 3) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 3) ? 'checked' : '' ?> value="2"> Credit Refer
+                                        <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                                     </label>
                                 </div>
                             </div>
@@ -399,14 +400,14 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3">
                                 <label>Status</label>
                                 <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->busi_status == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
                                     <label class="btn btn-primary <?= ($model->busi_status == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 1) ? 'checked' : '' ?> value="1"> Positive
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                     <label class="btn btn-primary <?= ($model->busi_status == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 2) ? 'checked' : '' ?> value="2"> Negative
-                                    </label>
-                                    <label class="btn btn-primary <?= ($model->busi_status == 3) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 3) ? 'checked' : '' ?> value="2"> Credit Refer
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                                     </label>
                                 </div>
                             </div>
@@ -465,14 +466,14 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3">
                                 <label>Status</label>
                                 <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->office_status == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
                                     <label class="btn btn-primary <?= ($model->office_status == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 1) ? 'checked' : '' ?> value="1"> Positive
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                     <label class="btn btn-primary <?= ($model->office_status == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 2) ? 'checked' : '' ?> value="2"> Negative
-                                    </label>
-                                    <label class="btn btn-primary <?= ($model->office_status == 3) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 3) ? 'checked' : '' ?> value="2"> Credit Refer
+                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                                     </label>
                                 </div>
                             </div>
@@ -490,9 +491,16 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="itr" class="panel-collapse collapse">
                     <div class="panel-body">
-<?php echo $itrTable; ?>
+                        <div class="row">
+                            <div class="col-lg-12" id="noc_table">
+                                <?php echo $itrTable; ?>
+                            </div>
+                        </div>
+                        <div id="loader_itr" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
+                            <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                        </div>
                     </div>
-                </div>
+                </div>                
             </div>
 
             <!--Financial-->
@@ -620,7 +628,14 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="noc" class="panel-collapse collapse">
                     <div class="panel-body">
-<?php echo $nocTable; ?>
+                        <div class="row">
+                            <div class="col-lg-12" id="noc_table">
+                                <?php echo $nocTable; ?>
+                            </div>
+                        </div>    
+                        <div id="loader_noc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
+                            <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                        </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="panel panel-default cust-panel">
@@ -631,7 +646,7 @@ $loantypes->id = $model->loan_type_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="noc_photos">
-<?php echo $nocPhotosTable; ?>
+                                            <?php echo $nocPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -643,14 +658,14 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3">
                                 <label>Status</label>
                                 <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->noc_status == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
                                     <label class="btn btn-primary <?= ($model->noc_status == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 1) ? 'checked' : '' ?> value="1"> Positive
+                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                     <label class="btn btn-primary <?= ($model->noc_status == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 2) ? 'checked' : '' ?> value="2"> Negative
-                                    </label>
-                                    <label class="btn btn-primary <?= ($model->noc_status == 3) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 3) ? 'checked' : '' ?> value="2"> Credit Refer
+                                        <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                                     </label>
                                 </div>
                             </div>
@@ -668,7 +683,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="kyc" class="panel-collapse collapse">
                     <div class="panel-body" id="kyc_table" style="height: 350px;overflow-y: scroll;">
-<?php echo $kycTable; ?>
+                        <?php echo $kycTable; ?>
                     </div>
                     <div id="loader_kyc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
                         <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
@@ -684,9 +699,6 @@ $loantypes->id = $model->loan_type_id;
         </div>
 
 <?php ActiveForm::end(); ?>
-
-    </div>
-</div>
 
 <!--Upload KYC modal-->    
 <div class="modal fade" id="modal-kyc-upload">
@@ -797,6 +809,114 @@ $loantypes->id = $model->loan_type_id;
     </div>
 </div>   
 
+<!--Upload NOC modal-->    
+<div class="modal fade" id="modal-add-noc">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header label-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <i class="text-white fa fa-pencil-square-o"></i><span class="text-white bold">Add NOC</span>
+                </h4>
+            </div>
+            <form id="noc_form" method="post">
+                <div class="modal-body" id="noc_modal_body">
+                    <div class="form-group">
+                        <label for="noc_met_person" class="col-form-label">Met Person:</label>
+                        <input type="text" class="form-control" name="noc_met_person" id="noc_met_person">
+                    </div>
+                    <div class="form-group">
+                        <label for="noc_designation" class="col-form-label">Designation:</label>
+                        <input type="text" class="form-control" name="noc_designation" id="noc_designaion">
+                    </div>
+                    <div class="form-group">
+                        <label for="noc_remarks" class="col-form-label">Remarks:</label>
+                        <input type="text" class="form-control" name="noc_remarks" id="noc_remarks">
+                    </div> 
+                    <input type="hidden" name="application_id" id="application_id" value="<?= $model->id; ?>" />
+                </div>               
+
+                <div class="modal-footer" id="noc_modal_footer">
+                    <div id="noc_button_div">
+                        <button type="submit" class="btn btn-primary" id="noc_submit">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
+                    </div>
+                    <div id="noc_loader_div" style="display: none;">
+                        Uploading.... <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                    </div>
+                    <div id="noc_response_div" style="display: none;">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!--Upload ITR modal-->    
+<div class="modal fade" id="modal-add-itr">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header label-success">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <i class="text-white fa fa-pencil-square-o"></i><span class="text-white bold">Add ITR</span>
+                </h4>
+            </div>
+            <form id="itr_form" method="post">
+                <div class="modal-body" id="itr_modal_body">
+                    <div class="form-group">
+                        <label for="total_income" class="col-form-label">Total income:</label>
+                        <input type="text" name="total_income" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="date_of_filing" class="col-form-label">Date of Filing:</label>
+                        <input type="date" max="<?PHP echo date('Y-m-d');?>" name="date_of_filing" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pan_card_no" class="col-form-label">Pan no.:</label>
+                        <input type="text" name="pan_card_no" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="acknowledgement_no" class="col-form-label">Acknowledgement No.:</label>
+                        <input type="text" name="acknowledgement_no" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="assessment_year" class="col-form-label">Assesement year (YYYY-YYYY):</label>
+                        <input type="text" pattern="[0-9]{4}-[0-9]{4}" name="assessment_year" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="remarks" class="col-form-label">Remarks:</label>
+                        <input type="text" name="remarks" class="form-control">
+                    </div>
+                    <input type="hidden" name="application_id" id="application_id" value="<?= $model->id; ?>" />
+                </div>               
+
+                <div class="modal-footer" id="itr_modal_footer">
+                    <div id="itr_button_div">
+                        <button type="submit" class="btn btn-primary" id="itr_submit">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                            Close
+                        </button>
+                    </div>
+                    <div id="itr_loader_div" style="display: none;">
+                        Uploading.... <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                    </div>
+                    <div id="itr_response_div" style="display: none;">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <!--<div class="col-lg-3">
                 <label>Market Feedback</label>
                 <div class="btn-group" data-toggle="buttons">    
@@ -836,13 +956,11 @@ $this->registerJs("
             $('#applications-busi_locality').on('change', function() {
                 busiLocality();
             });
-            $('#addMoreItr').on('click', function() {
-                var data = $('#itr_table tr:eq(1)').clone(true).appendTo('#itr_table');
-                data.find('input').val('');
+            $('.addMoreItr').on('click', function() {
+                $('#modal-add-itr').modal('show'); 
             });
-            $('#addMoreNoc').on('click', function() {
-                var data = $('#noc_table tr:eq(1)').clone(true).appendTo('#noc_table');
-                data.find('input').val('');
+            $('.addMoreNoc').on('click', function() {
+                $('#modal-add-noc').modal('show'); 
             });
             $('#addMoreKyc').on('click', function() {
                 // Call Modal
@@ -903,11 +1021,6 @@ $this->registerJs("
                     reloadKycTable();
                 });                
             });
-            
-            $(document).on('click', '.assignVerifier', function() {
-                //var app_id = this.value;
-                alert('sdfsd');
-            });
 
             $('#kyc_form').on('submit',(function(e) {
                 $('#button_div').hide();
@@ -961,6 +1074,58 @@ $this->registerJs("
                 });
             }));
             
+            $('#noc_form').on('submit',(function(e) {
+                $('#noc_button_div').hide();
+                $('#noc_loader_div').show();
+                e.preventDefault();
+                $.ajax({
+                    url: 'add-noc', // Url to which the request is send
+                    type: 'POST',             // Type of request to be send, called as method
+                    data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        $('#noc_loader_div').hide();
+                        $('#noc_response_div').show();
+                        $('#noc_response_div').html(data);
+                        
+                        //hide & reset modal 
+                        setTimeout(function() { 
+                            resetNocModal();                            
+                        }, 3000);
+                        
+                    }
+                });
+            }));
+            
+            $('#itr_form').on('submit',(function(e) {
+                $('#itr_button_div').hide();
+                $('#itr_loader_div').show();
+                e.preventDefault();
+                $.ajax({
+                    url: 'add-itr', // Url to which the request is send
+                    type: 'POST',             // Type of request to be send, called as method
+                    data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                    contentType: false,       // The content type used when sending data to the server.
+                    cache: false,             // To unable request pages to be cached
+                    processData:false,        // To send DOMDocument or non processed data file it is set to false
+                    success: function(data)   // A function to be called if request succeeds
+                    {
+                        $('#itr_loader_div').hide();
+                        $('#itr_response_div').show();
+                        $('#itr_response_div').html(data);
+                        
+                        //hide & reset modal 
+                        setTimeout(function() { 
+                            resetItrModal();                            
+                        }, 3000);
+                        
+                    }
+                });
+            }));
+            
             function resiOwnership() {
                 var resi_ownership_status = $('#applications-resi_ownership_status').val();
                 if(resi_ownership_status == 4) {
@@ -1008,12 +1173,30 @@ $this->registerJs("
             
             function resetPhotosModal() {
                 $('#modal-photos-upload').modal('hide'); 
-                $('#button_photos_div').show(); 
+                $('#noc_button_div').show(); 
                 $('#response_photos_div').hide();
                 $('#photos_form').reset;
                 
                 //reloadPhotosTable();
                 location.reload();
+            }
+            
+            function resetNocModal() {
+                $('#modal-add-noc').modal('hide'); 
+                $('#button_div').show(); 
+                $('#noc_response_div').hide();
+                $('#noc_form').reset;
+                
+                reloadNocTable();
+            }
+            
+            function resetItrModal() {
+                $('#modal-add-itr').modal('hide'); 
+                $('#button_div').show(); 
+                $('#itr_response_div').hide();
+                $('#itr_form').reset;
+                
+                reloadItrTable();
             }
             
             $(document).on('click', '.pop_kyc', function() {
@@ -1042,6 +1225,28 @@ $this->registerJs("
                     $('#kyc_table').html(response);
                     $('#kyc_table').show();
                     $('#loader_kyc').hide();
+                });
+            }
+            
+            function reloadNocTable() {
+                $('#loader_noc').show();
+                $('#noc_table').hide();
+                //reload NOC table
+                $.post('get-noc-table?id=$model->id', {'data': ''}, function (response) {
+                    $('#noc_table').html(response);
+                    $('#noc_table').show();
+                    $('#loader_noc').hide();
+                });
+            }
+            
+            function reloadItrTable() {
+                $('#loader_itr').show();
+                $('#itr_table').hide();
+                //reload ITR table
+                $.post('get-itr-table?id=$model->id', {'data': ''}, function (response) {
+                    $('#itr_table').html(response);
+                    $('#itr_table').show();
+                    $('#loader_itr').hide();
                 });
             }
             
@@ -1097,7 +1302,34 @@ $this->registerJs("
 
                 });
             });
-
+            
+            $(document).on('click', '.deleteNoc', function() {
+                var record_id = this.value;
+                bootbox.confirm('Are you sure you want to delete?', function(result){ 
+                    if(result) {
+                    var data = {record_id: record_id};
+                        //ajax call
+                        $.post('delete-noc', data, function (response) {
+                            bootbox.alert('Sucessfully Deleted!!!');
+                            reloadNocTable();
+                        });
+                    }
+                });
+            });
+            
+            $(document).on('click', '.deleteItr', function() {
+                var record_id = this.value;
+                bootbox.confirm('Are you sure you want to delete?', function(result){ 
+                    if(result) {
+                    var data = {record_id: record_id};
+                        //ajax call
+                        $.post('delete-itr', data, function (response) {
+                            bootbox.alert('Sucessfully Deleted!!!');
+                            reloadItrTable();
+                        });
+                    }
+                });
+            });
         });    
     ");
 

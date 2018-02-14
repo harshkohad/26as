@@ -10,10 +10,8 @@ $this->title = $model->application_id;
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="applications-view">
-
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
-
+<section class="panel">
+    <div class="panel-body">
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?=
@@ -27,8 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
     </p>
 
-
-    <div class="body-wrapper">
         <div class="row">
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('first_name') ?></label>
@@ -79,7 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="readonlydiv"><?= $model->date_of_application ?></div>
             </div>
         </div>
-
+    </div>
+</section>
         <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default cust-panel">
@@ -304,7 +301,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-lg-3">
                                 <label>Market Feedback</label>
-                                <div class="readonlydiv"><?= ($model->resi_market_feedback == 1) ? 'Positive' : 'Negative' ?></div>
+                                <div class="readonlydiv"><?= ($model->resi_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                             </div>                           
                         </div>
 
@@ -349,7 +346,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Status</label>
-                                <div class="readonlydiv"><?= ($model->resi_status == 1) ? 'Positive' : (($model->resi_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                                <div class="readonlydiv"><?= ($model->resi_status == 0) ? 'Positive' : (($model->resi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -358,7 +355,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             <!--Business Verification-->
-            <div class="panel panel-default cust-panel" style="margin-bottom: 5px !important;">
+            <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#busi_verification"><strong>Business Verification</strong></a>
@@ -494,7 +491,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Status</label>
-                                <div class="readonlydiv"><?= ($model->busi_status == 1) ? 'Positive' : (($model->busi_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                                <div class="readonlydiv"><?= ($model->busi_status == 0) ? 'Positive' : (($model->busi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -502,7 +499,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div> 
 
             <!--Office Verification-->
-            <div class="panel panel-default cust-panel" style="margin-bottom: 5px !important;">
+            <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#office_verification"><strong>Office Verification</strong></a>
@@ -586,7 +583,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Status</label>
-                                <div class="readonlydiv"><?= ($model->office_status == 1) ? 'Positive' : (($model->office_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                                <div class="readonlydiv"><?= ($model->office_status == 0) ? 'Positive' : (($model->office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -768,7 +765,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-lg-3">
                                 <label>Status</label>
-                                <div class="readonlydiv"><?= ($model->noc_status == 1) ? 'Positive' : (($model->noc_status == 2) ? 'Negative' : 'Credit Refer') ?></div>
+                                <div class="readonlydiv"><?= ($model->noc_status == 0) ? 'Positive' : (($model->noc_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                             </div>
                         </div>
                     </div>
@@ -789,8 +786,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

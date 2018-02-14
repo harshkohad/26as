@@ -10,6 +10,8 @@ use app\modules\api\modules\v1\models\TblApiErrors;
 use app\modules\applications\models\ApplicationsVerifiers;
 use app\modules\applications\models\Applications;
 use app\modules\applications\models\ApplicantPhotos;
+use app\modules\applications\models\Noc;
+use mdm\admin\models\UserDetails;
 
 /**
  * 
@@ -25,6 +27,7 @@ class Api extends \yii\db\ActiveRecord {
     const OFFICE_FIELDS = 'application_id, office_company_name_board, office_designation, office_met_person, office_met_person_designation, office_department, office_nature_of_company, office_employment_years, office_net_salary_amount, office_tpc_for_applicant, office_tpc_for_company, office_landmark, office_structure, office_remarks, office_status';
     const NOC_FIELDS = 'application_id, noc_structure, noc_status';
     const KYC_UPLOAD_DIR_NAME = "uploads/kyc/";
+    const INSTITUTES_DIR_NAME = "images/instiutes/";
 
     public function get_input_data() {
         $inputs = '';
@@ -97,6 +100,14 @@ class Api extends \yii\db\ActiveRecord {
         $access_token = new TblOauthAccessTokens();
         $token = Api::random_string(40);
         $token_expiry = date('Y-m-d H:i:s', strtotime('1 year'));
+        $fullname = '';
+        
+        #user Data
+        $user_details = UserDetails::find()->where(['user_id' => $user_id])->one();
+        
+        if(!empty($user_details)) {
+            $fullname = $user_details->first_name.' '.$user_details->middle_name.' '.$user_details->last_name;
+        }
 
         #check if token already present
         $token_details = TblOauthAccessTokens::find()->where(['mobile_unique_code' => $mobile_unique_code])->one();
@@ -121,7 +132,8 @@ class Api extends \yii\db\ActiveRecord {
 
         $return_array = array(
             "access_token" => $token,
-            "expires_in" => floor((strtotime($token_expiry) - strtotime(date('Y-m-d H:i:s'))) / (60 * 60 * 24))
+            "expires_in" => floor((strtotime($token_expiry) - strtotime(date('Y-m-d H:i:s'))) / (60 * 60 * 24)),
+            "fullname" => $fullname
         );
 
         return $return_array;
@@ -260,6 +272,11 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['mobile_user_assigned_date'] = $site['mobile_user_assigned_date'];
                 $temp_array['mobile_user_status'] = $site['mobile_user_status'];
                 $temp_array['mobile_user_status_updated_on'] = $site['mobile_user_status_updated_on'];                
+                $temp_array['institute_name'] = $site['institute_name'];                
+                $temp_array['latitude'] = $site['latitude'];                
+                $temp_array['longitude'] = $site['longitude'];   
+                $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::INSTITUTES_DIR_NAME . 'thumbs/' . $site['file_name'];
+                $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::INSTITUTES_DIR_NAME . $site['file_name'];
                 $status = ($site['mobile_user_status'] == 0) ? 'new' : (($site['mobile_user_status'] == 1) ? 'inprogress' : 'completed');
                 ($site['mobile_user_status'] == 0) ? $new++ : (($site['mobile_user_status'] == 1) ? $inprogress++ : $completed++);                
                 $return_array['sites'][$status][] = $temp_array;
@@ -277,6 +294,7 @@ class Api extends \yii\db\ActiveRecord {
         $return_array = array();  
         $docs_array = array(1,2);
         $photos_array = array(1,2,3,4);
+        $noc_array = array(4);
         $verification_details = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type, 'mobile_user_id' => $user_id])->one();
         if(!empty($verification_details)) {
             #verification details
@@ -298,7 +316,14 @@ class Api extends \yii\db\ActiveRecord {
                 if(!empty($photos_details)) {
                     $return_array['photo_details'] = $photos_details;
                 }
-            }            
+            }   
+            #noc details
+            if(in_array($verification_type, $noc_array)) {
+                $noc_details = self::get_noc_details($app_id);
+                if(!empty($noc_details)) {
+                    $return_array['noc_details'] = $noc_details;
+                }
+            }
             return $return_array;
         }
         return false;
@@ -311,12 +336,29 @@ class Api extends \yii\db\ActiveRecord {
         if (!empty($photos)) {
             foreach ($photos as $photos_data) {
                 $temp_array = array ();
-                $temp_array['id'] = $photos_data['remarks'];
+                $temp_array['id'] = $photos_data['id'];
                 $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'];
                 $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/' . $photos_data['file_name'];
                 $temp_array['remarks'] = $photos_data['remarks'];
                 $temp_array['verification_type'] = $section;
                 $temp_array['type'] = $type;                
+                $return_array[] = $temp_array;
+            }
+        }
+        return $return_array;
+    }
+    
+    function get_noc_details($id) {
+        $return_array = array();
+        
+        $noc_details = Noc::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
+        if (!empty($noc_details)) {
+            foreach ($noc_details as $noc_details_data) {
+                $temp_array = array ();
+                $temp_array['id'] = $noc_details_data['id'];
+                $temp_array['met_person'] = $noc_details_data['met_person'];
+                $temp_array['designation'] = $noc_details_data['designation'];
+                $temp_array['remarks'] = $noc_details_data['remarks'];
                 $return_array[] = $temp_array;
             }
         }
@@ -401,5 +443,86 @@ class Api extends \yii\db\ActiveRecord {
             $return_data = substr($return_data, 0, -1);
         }
         return $return_data;
+    }
+    
+    function upload_photos ($received_data, $user_id) {   
+        $return_array = array();
+        $model = Applications::find()
+                ->where(['id' => $received_data['app_id']])
+                ->one();
+        
+        $file_name = $received_data['photos_file_name'];
+                
+        $file_name_exploded = explode('.', $file_name);
+        $file_ext = strtolower(end($file_name_exploded));
+
+        $expensions = array("jpeg", "jpg", "png");
+        
+        $newfile_name = date('dmYHis') . $file_name;
+        
+        $dirname = self::KYC_UPLOAD_DIR_NAME . $model->application_id;
+        if (!file_exists($dirname)) {
+            mkdir($dirname);
+            mkdir($dirname . '/thumbs');
+        }
+
+        if (in_array($file_ext, $expensions) === false) {
+            $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+        }
+        
+        if (empty($errors) == true) {
+            $img = $received_data['photos_file'];
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            $file = $dirname . '/' . $newfile_name;
+            $success = file_put_contents($file, $data);
+            
+            $upload_img = Applications::thumbnailCreator($newfile_name, $dirname, 'thumbs', '200', '160', '', $file_ext);
+            
+            #Add data to kyc
+            $ap_model = new ApplicantPhotos();
+
+            $ap_model->application_id = $received_data['app_id'];
+            $ap_model->remarks = $received_data['photos_remark'];
+            $ap_model->file_name = $newfile_name;
+            $ap_model->section = $received_data['photos_section'];
+            $ap_model->type = $received_data['photos_type'];
+            $ap_model->latitude = $received_data['photos_latitude'];
+            $ap_model->longitude = $received_data['photos_longitude'];
+            $ap_model->created_by = $user_id;
+
+            $ap_model->save(FALSE);
+            
+            $return_array['status'] = 'success';
+            $return_array['msg'] = '';  
+        } else {
+            $return_array['status'] = 'failure';
+            $return_array['msg'] = $errors;  
+        }
+        return $return_array;
+    }
+    
+    function add_noc_met_person($noc_data, $user_id) {    
+        $return_array = array();
+        
+        $model = new Noc();
+
+        $model->application_id = $noc_data['app_id'];
+        $model->met_person = isset($noc_data['met_person']) ? $noc_data['met_person'] : '';
+        $model->designation = isset($noc_data['designation']) ? $noc_data['designation'] : '';
+        $model->remarks = isset($noc_data['remarks']) ? $noc_data['remarks'] : '';
+        $model->created_by = $user_id;
+        $model->save();
+        
+        if ($model->save()) {
+            $return_array['status'] = 'success';
+            $return_array['msg'] = '';
+        } else {
+            $errors = self::process_model_errors($model->getErrors());
+            $return_array['status'] = 'failure';
+            $return_array['msg'] = $errors;            
+        }
+        return $return_array;
     }
 }

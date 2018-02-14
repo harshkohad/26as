@@ -7,32 +7,38 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\manage_mobile_app\models\TblMobileUsers */
 
 $this->title = $model->field_agent_name;
-$this->params['breadcrumbs'][] = ['label' => 'Tbl Mobile Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Mobile Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tbl-mobile-users-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            //'id',
-            //'user_id',
-            'mobile_unique_code',
-            'field_agent_name',
-        ],
-    ]) ?>
-
-</div>
+<section class="panel">
+    <div class="panel-body">
+        <p>
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?=
+            Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ])
+            ?>
+        </p>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('field_agent_name') ?></label>
+                <div class="readonlydiv"><?= $model->field_agent_name ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('mobile_unique_code') ?></label>
+                <div class="readonlydiv"><?= $model->mobile_unique_code ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('mobile_imei_number') ?></label>
+                <div class="readonlydiv"><?= $model->mobile_imei_number ?></div>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+    </div>
+</section>

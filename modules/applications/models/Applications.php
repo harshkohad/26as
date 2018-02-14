@@ -284,7 +284,7 @@ class Applications extends \yii\db\ActiveRecord {
     public function getInstituteNameType($institute_id) {
         $return = '';
         
-        $institutes = Institutes::find($institute_id)->one();
+        $institutes = Institutes::findOne($institute_id);
 
         if(!empty($institutes)) {
             $return = $institutes->name;
@@ -519,5 +519,34 @@ class Applications extends \yii\db\ActiveRecord {
                 imagejpeg($thumb_create, $thumbnail, 100);
         }
     }
-
+    
+    public function getLatLong($pincode, $address) {
+        $pincode_data = PincodeMaster::find()->where(['pincode' => $pincode])->one();
+        
+        if(!empty($pincode_data)) {
+            $po_name = $pincode_data->po_name;
+            $city_name = $pincode_data->city_name;
+            $state_name = $pincode_data->state_name;
+            
+            $full_address = $address.','.$city_name.','.$state_name.','.$pincode;
+            
+            if(!empty($full_address)){
+                //Formatted address
+                $formattedAddr = str_replace(' ','+',$full_address);
+                
+                //Send request and receive json data by address
+                $geocodeFromAddr = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.$formattedAddr.'&sensor=false&region=India'); 
+                $output = json_decode($geocodeFromAddr);
+                //Get latitude and longitute from json data
+                if(!empty($output->results)) {                
+                    $data['latitude']  = $output->results[0]->geometry->location->lat; 
+                    $data['longitude'] = $output->results[0]->geometry->location->lng;
+                    //Return latitude and longitude of the given address
+                    if(!empty($data)){
+                        return $data;
+                    }
+                }
+            }
+        }
+    }
 }

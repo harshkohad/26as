@@ -13,6 +13,8 @@ use Yii;
  * @property integer $type
  * @property string $remarks
  * @property string $file_name
+ * @property string $latitude
+ * @property string $longitude
  * @property integer $created_by
  * @property string $created_on
  * @property integer $updated_by
@@ -38,6 +40,7 @@ class ApplicantPhotos extends \yii\db\ActiveRecord
             [['application_id', 'section', 'type', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['remarks', 'file_name'], 'string', 'max' => 1000],
+            [['latitude', 'longitude'], 'string', 'max' => 45],
         ];
     }
 
@@ -53,6 +56,8 @@ class ApplicantPhotos extends \yii\db\ActiveRecord
             'type' => 'Type',
             'remarks' => 'Remarks',
             'file_name' => 'File Name',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
             'updated_by' => 'Updated By',

@@ -13,6 +13,7 @@ use Yii;
  * @property integer $download_excel
  * @property integer $char_count
  * @property integer $is_alphanumeric
+ * @property string $file_name
  * @property integer $is_active
  * @property integer $created_by
  * @property string $created_on
@@ -38,6 +39,7 @@ class Institutes extends \yii\db\ActiveRecord
         return [
             [['download_pdf', 'download_excel', 'char_count', 'is_alphanumeric', 'is_active', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
+            [['file_name'], 'string', 'max' => 1000],
             [['name'], 'string', 'max' => 150],
         ];
     }
@@ -54,6 +56,7 @@ class Institutes extends \yii\db\ActiveRecord
             'download_excel' => 'Download Excel',
             'char_count' => 'Char Count',
             'is_alphanumeric' => 'Is Alphanumeric',
+            'file_name' => 'File Name',
             'is_active' => 'Is Active',
             'created_by' => 'Created By',
             'created_on' => 'Created On',

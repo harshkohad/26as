@@ -7,7 +7,8 @@ use app\assets\AdminLteLogin;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AdminLteLogin::register($this);
+//AdminLteLogin::register($this);
+app\assets\BucketmdAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ AdminLteLogin::register($this);
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-        <link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">  
+        <!--<link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">-->  
     </head>
     <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/54323760_l_blurred.jpg'); overflow-y:hidden;">
 

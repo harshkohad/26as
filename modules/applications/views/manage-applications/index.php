@@ -11,16 +11,13 @@ use kartik\grid\GridView;
 $this->title = 'Applications';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="applications-index">
-
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
+<section class="panel">
+    <div class="panel-body">
+         <p>
         <?= Html::a('Create Applications', ['create'], ['class' => 'btn btn-success']) ?> 
         <?= Html::a('Upload Applications', ['upload-applications'], ['class' => 'btn btn-warning']) ?>
-    </p>
-    <div class="body-wrapper">
+    </p> 
+    <div>
         <?=
         GridView::widget([
             'dataProvider' => $dataProvider,
@@ -156,7 +153,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
         ?>
     </div>
-</div>
+    </div>
+</section>
 
 <!--Manage Verifier modal-->    
 <div class="modal fade" id="modal-manage-verifier">

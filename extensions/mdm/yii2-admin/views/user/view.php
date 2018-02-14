@@ -13,169 +13,127 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $controllerId = $this->context->uniqueId . '/';
 ?>
-<div class="user-view">
 
-    <div class="lab-single-header">
-        <a href="#" class="lab-back-to" onclick="goBack()">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-        </a>
-        <span><?= Html::encode($this->title) ?></span>
-        <?php
-        $currentUserRoutes = array_keys(Helper::getRoutesByUser(Yii::$app->user->id));
-        $update = (in_array("/*", $currentUserRoutes) || in_array("/admin/user/index", $currentUserRoutes)) ? ['update', 'id' => $model->id] : ['update'];
-        echo Html::a(Html::decode('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'), $update, ['class' => 'lab-edit', 'data' => ['method' => 'post',], 'title' => 'Edit',])
-        ?>
-        <span class="lab-separator">|</span>
-        <?php
-        if ($model->status == 0 && Helper::checkRoute($controllerId . 'activate')) {
-            echo Html::a(Html::decode('<i class="fa fa-unlock-alt" aria-hidden="true"></i>'), ['activate', 'id' => $model->id], [
-                'class' => 'lab-delete',
-                'title' => 'Activate',
-                'data' => [
-                    'confirm' => Yii::t('rbac-admin', 'Are you sure you want to activate this user?'),
-                    'method' => 'post',
-                ],
-            ]);
-        }
-        ?>
-        <span class="lab-separator">|</span>
-        <?php
-        if ($model->id != Yii::$app->user->id) {
-            echo Html::a(Html::decode('<i class="fa fa-trash-o" aria-hidden="true"></i>'), ['delete', 'id' => $model->id], [
-                'class' => 'lab-delete',
-                'title' => 'Delete',
+<section class="panel">
+    <div class="panel-body">
+        <p>
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?=
+            Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Are you sure you want to delete this item?',
                     'method' => 'post',
                 ],
-            ]);
-        }
+            ])
+            ?>
+            <?php
+            if ($model->status == 0 && Helper::checkRoute($controllerId . 'activate')) {
+                echo Html::a('Activate', ['activate', 'id' => $model->id], [
+                    'class' => 'btn btn-success',
+                    'data' => [
+                        'confirm' => Yii::t('rbac-admin', 'Are you sure you want to activate this user?'),
+                        'method' => 'post',
+                    ],
+                ]);                
+            }
         ?>
-    </div><br>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <!--<i class="fa fa-user"></i>-->
-            <h3 class="panel-title">My Profile</h3>
+        </p>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Personal Details</h3><hr />
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">FIRST NAME</div>
-                        <div class="lab-desc"><?= $model->userDetails->first_name ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">MIDDLE NAME</div>
-                        <div class="lab-desc"><?= ($model->userDetails->middle_name) ? $model->userDetails->middle_name : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">LAST NAME</div>
-                        <div class="lab-desc"><?= $model->userDetails->last_name ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">USERNAME</div>
-                        <div class="lab-desc"><?= $model->username ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">EMAIL</div>
-                        <div class="lab-desc"><?= $model->email ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">ADDRESS</div>
-                        <div class="lab-desc"><?= ($model->userDetails->address) ? $model->userDetails->address : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">CITY</div>
-                        <div class="lab-desc"><?= ($model->userDetails->city) ? $model->userDetails->city : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">STATE</div>
-                        <div class="lab-desc"><?= ($model->userDetails->state) ? $model->userDetails->state : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">COUNTRY</div>
-                        <div class="lab-desc"><?= ($model->userDetails->country) ? $model->userDetails->country : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">PIN CODE</div>
-                        <div class="lab-desc"><?= ($model->userDetails->pin) ? $model->userDetails->pin : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">ZIP CODE</div>
-                        <div class="lab-desc"><?= ($model->userDetails->zip) ? $model->userDetails->zip : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">PHONE</div>
-                        <div class="lab-desc"><?= ($model->userDetails->phone) ? $model->userDetails->phone : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">MOBILE</div>
-                        <div class="lab-desc"><?= ($model->userDetails->mobile) ? $model->userDetails->mobile : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">DESIGNATION</div>
-                        <div class="lab-desc"><?= ($model->userDetails->designation) ? $model->userDetails->designation : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">LAST LOGIN IP</div>
-                        <div class="lab-desc"><?= ($model->userDetails->last_login_ip) ? $model->userDetails->last_login_ip : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">LAST LOGIN TIME</div>
-                        <div class="lab-desc"><?= ($model->userDetails->last_login_time) ? $model->userDetails->last_login_time : "&nbsp;" ?></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">CREATED AT</div>
-                        <div class="lab-desc"><?= ($model->created_at) ? date("M d, Y", $model->created_at) : "&nbsp;" ?></div>
-                    </div> </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">MODIFIED AT</div>
-                        <div class="lab-desc"><?= ($model->userDetails->modified_at) ? date("M d, Y", strtotime($model->userDetails->modified_at)) : "&nbsp;" ?></div>
-                    </div> </div>
-                <div class="col-md-4">
-                    <div class="lab-field">
-                        <div class="lab-lebel">STATUS</div>
-                        <div class="lab-desc"><?= ($model->status == 10) ? "<span style=\"color:GREEN;\">Active</span>" : "<span style=\"color:RED;\">Inactive</span>" ?></div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('first_name') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->first_name ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('middle_name') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->middle_name ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('last_name') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->last_name ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('designation') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->designation ?></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('mobile') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->mobile ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('phone') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->phone ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('city') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->city ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('state') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->state ?></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('country') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->country ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pin') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->pin ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('address') ?></label>
+                <textarea class="form-control" readonly=""><?= $model->userDetails->address ?></textarea>
+            </div>
+            <div class="col-lg-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Account Details</h3><hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('username') ?></label>
+                <div class="readonlydiv"><?= $model->username ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('email') ?></label>
+                <div class="readonlydiv"><?= $model->email ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('last_login_ip') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->last_login_ip ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('last_login_time') ?></label>
+                <div class="readonlydiv"><?= $model->userDetails->last_login_time ?></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('created_at') ?></label>
+                <div class="readonlydiv"><?= date("M d, Y", $model->created_at) ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('modified_at') ?></label>
+                <div class="readonlydiv"><?= date("M d, Y", strtotime($model->userDetails->modified_at)) ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('status') ?></label>
+                <div class="readonlydiv"><?= ($model->status == 10) ? "<span style=\"color:GREEN; font-weight: bold;\" >Active</span>" : "<span style=\"color:RED; font-weight: bold;\">Inactive</span>" ?></div>
+            </div>
+            <div class="col-lg-3">
             </div>
         </div>
     </div>
-
-
-
-</div>
+</section>

@@ -21,6 +21,8 @@ use app\modules\api\modules\v1\models\TblOauthIdentity;
  */
 class ApiController extends Controller {
 
+    const KYC_UPLOAD_DIR_NAME = "uploads/kyc/";
+    
     public function behaviors() {
         return [
             'verbs' => [
@@ -33,6 +35,9 @@ class ApiController extends Controller {
                     'get-site-details' => ['post'],
                     'update-site-status' => ['post'],
                     'update-site-details' => ['post'],
+                    'upload-photos' => ['post'],
+                    'add-noc-met-person' => ['post'],
+                    'upload-photos-new' => ['post'],
                 ],
             ],
         ];
@@ -248,4 +253,51 @@ class ApiController extends Controller {
         }
     }
 
+    public function actionUploadPhotos() {
+        $response = Api::process_api_request('UpdateSiteDetails', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            $app_id = (isset($received_data['app_id'])) ? $received_data['app_id'] : '';
+            $photos_type = (isset($received_data['photos_type'])) ? $received_data['photos_type'] : '';
+            $photos_section = (isset($received_data['photos_section'])) ? $received_data['photos_section'] : '';
+            $photos_file_name = (isset($received_data['photos_file_name'])) ? $received_data['photos_file_name'] : '';
+            if ($app_id != '' || $photos_type != '' || $photos_section != '' || $photos_file_name != '') {
+                #process data
+                $return_status = Api::upload_photos($received_data, $response->user_id);
+                if ($return_status['status'] == 'success') {
+                    return Api::api_response($response->api_usage_id, 1, 'Photo Uploaded', $return_status);
+                } else {
+                    return Api::api_response($response->api_usage_id, 2, $return_status['msg'], '', '1005');
+                }
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1006');
+            }
+        } else {
+            return $response->response;
+        }
+    }
+    
+    public function actionAddNocMetPerson() {
+        $response = Api::process_api_request('AddNocMetPerson', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            $app_id = (isset($received_data['app_id'])) ? $received_data['app_id'] : '';
+            $met_person = (isset($received_data['met_person'])) ? $received_data['met_person'] : '';
+            $designation = (isset($received_data['designation'])) ? $received_data['designation'] : '';
+            $remarks = (isset($received_data['remarks'])) ? $received_data['remarks'] : '';
+            if ($app_id != '' || $met_person != '' || $designation != '' || $remarks != '') {
+                #process data
+                $return_status = Api::add_noc_met_person($received_data, $response->user_id);
+                if ($return_status['status'] == 'success') {
+                    return Api::api_response($response->api_usage_id, 1, 'Noc Met Person Added', $return_status);
+                } else {
+                    return Api::api_response($response->api_usage_id, 2, $return_status['msg'], '', '1006');
+                }
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1006');
+            }   
+        } else {
+            return $response->response;
+        }
+    }
 }

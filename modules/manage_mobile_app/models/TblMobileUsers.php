@@ -29,7 +29,7 @@ class TblMobileUsers extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['mobile_unique_code'], 'string', 'max' => 250],
+            [['mobile_unique_code', 'mobile_imei_number'], 'string', 'max' => 250],
             [['field_agent_name'], 'string', 'max' => 255],
         ];
     }
@@ -44,6 +44,7 @@ class TblMobileUsers extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'mobile_unique_code' => 'Mobile Unique Code',
             'field_agent_name' => 'Field Agent Name',
+            'mobile_imei_number' => 'Mobile IMEI Number',
         ];
     }
 }
