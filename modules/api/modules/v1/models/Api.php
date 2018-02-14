@@ -525,4 +525,38 @@ class Api extends \yii\db\ActiveRecord {
         }
         return $return_array;
     }
+    
+    function delete_photos_noc($received_data, $user_id) {
+        $return_array = array();
+        $id = $received_data['id'];
+        $type = $received_data['type'];
+        
+        if($type == 1 || $type == 2) {
+            if($type == 1) {
+                $model = ApplicantPhotos::find()
+                ->where(['id' => $id])
+                ->one();
+            } else if($type == 2) {
+                $model = Noc::find()
+                ->where(['id' => $id])
+                ->one();
+            }
+            $model->is_deleted = 1;
+            $model->updated_by = $user_id;
+            
+            if ($model->save()) {
+            $return_array['status'] = 'success';
+            $return_array['msg'] = '';
+            } else {
+                $errors = self::process_model_errors($model->getErrors());
+                $return_array['status'] = 'failure';
+                $return_array['msg'] = $errors;            
+            }
+            
+        } else {
+            $return_array['status'] = 'failure';
+            $return_array['msg'] = 'Invalid Input';            
+        }
+        return $return_array;
+    }
 }

@@ -38,6 +38,7 @@ class ApiController extends Controller {
                     'upload-photos' => ['post'],
                     'add-noc-met-person' => ['post'],
                     'upload-photos-new' => ['post'],
+                    'delete-photos-noc' => ['post'],
                 ],
             ],
         ];
@@ -296,6 +297,28 @@ class ApiController extends Controller {
             } else {
                 return Api::api_response($response->api_usage_id, 2, '', '', '1006');
             }   
+        } else {
+            return $response->response;
+        }
+    }
+    
+    public function actionDeletePhotosNoc() {
+        $response = Api::process_api_request('DeletePhotosNoc', Yii::$app->getRequest()->getUserIP());
+        if (!empty($response->api_usage_id)) {
+            $received_data = $response->received_data;
+            $id = (isset($received_data['id'])) ? $received_data['id'] : '';
+            $type = (isset($received_data['type'])) ? $received_data['type'] : '';
+            if ($id != '' || $type != '') {
+                #process data
+                $return_status = Api::delete_photos_noc($received_data, $response->user_id);
+                if ($return_status['status'] == 'success') {
+                    return Api::api_response($response->api_usage_id, 1, 'Data Deleted', $return_status);
+                } else {
+                    return Api::api_response($response->api_usage_id, 2, $return_status['msg'], '', '1006');
+                }
+            } else {
+                return Api::api_response($response->api_usage_id, 2, '', '', '1006');
+            }  
         } else {
             return $response->response;
         }
