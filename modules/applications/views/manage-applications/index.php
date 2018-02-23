@@ -165,7 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h4 class="modal-title"><i class="text-white fa fa-pencil-square-o"></i> <span
                         class="text-white bold">Manage Verifier</span></h4>
             </div>
-            <div class="modal-body" id="verifier_modal_body">
+            <div class="modal-body" id="verifier_modal_body" style="height:450px; overflow:auto;">
 
 
             </div>

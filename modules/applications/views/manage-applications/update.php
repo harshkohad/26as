@@ -33,6 +33,11 @@ $this->params['breadcrumbs'][] = 'Update';
         'busiPhotosTable' => $busiPhotosTable,
         'officePhotosTable' => $officePhotosTable,
         'nocPhotosTable' => $nocPhotosTable,
+        'resiOfficePhotosTable' => $resiOfficePhotosTable,
+        'builderProfilePhotosTable' => $builderProfilePhotosTable,
+        'propertyApfPhotosTable' => $propertyApfPhotosTable,
+        'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
+        'nocSocPhotosTable' => $nocSocPhotosTable,
     ])
     ?>
 

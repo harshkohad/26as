@@ -63,7 +63,7 @@ $loantypes->id = $model->loan_type_id;
 </div>
 </section>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -72,10 +72,12 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'resi_address')->textArea() ?>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'resi_address_pincode')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                                     'language' => 'en',
@@ -99,7 +101,7 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -108,10 +110,12 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'busi_address')->textArea() ?>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'busi_address_pincode')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                                     'language' => 'en',
@@ -134,10 +138,8 @@ $loantypes->id = $model->loan_type_id;
                         </div>    
                     </div>
                 </div>
-            </div>            
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
+            </div> 
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -146,10 +148,12 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'office_address')->textArea() ?>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'office_address_pincode')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                                     'language' => 'en',
@@ -173,19 +177,216 @@ $loantypes->id = $model->loan_type_id;
                     </div>                 
                 </div>
             </div>
-            <div class="col-lg-6">
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <strong>NOC Address</strong>
+                            <strong>Residence/Office Address</strong>
                         </h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'resi_office_address')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'resi_office_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'resi_office_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'resi_office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Builder Profile Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'builder_profile_address')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'builder_profile_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'builder_profile_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'builder_profile_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Property(APF) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'property_apf_address')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'property_apf_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'property_apf_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'property_apf_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Individual Property Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'indiv_property_address')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'indiv_property_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'indiv_property_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'indiv_property_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>  
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC (Society) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'noc_soc_address')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'noc_soc_address_pincode')->widget(Select2::classname(), [
+                                    'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
+                                    'language' => 'en',
+                                    'options' => ['placeholder' => 'Select pincode ...'],
+                                    'pluginOptions' => [
+                                        'allowClear' => true
+                                    ],
+                                ]) ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <?= $form->field($model, 'noc_soc_address_trigger')->textArea() ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <?= $form->field($model, 'noc_soc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC (Business/Conditional) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'noc_address')->textArea() ?>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <?= $form->field($model, 'noc_address_pincode')->widget(Select2::classname(), [
                                     'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                                     'language' => 'en',
@@ -252,7 +453,7 @@ $loantypes->id = $model->loan_type_id;
                         <div class="row">
                             <div class="col-lg-9"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
                             <div class="col-lg-3">
-                                <label>Market Feedback</label>
+                                <label>Market Feedback</label><br>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary <?= ($model->resi_market_feedback == 0) ? 'active' : '' ?>">
                                         <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
@@ -301,7 +502,7 @@ $loantypes->id = $model->loan_type_id;
 
                         <div class="row">
                             <div class="col-lg-3">
-                                <label>Status</label>
+                                <label>Status</label><br>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary <?= ($model->resi_status == 0) ? 'active' : '' ?>">
                                         <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
@@ -464,22 +665,275 @@ $loantypes->id = $model->loan_type_id;
                         </div>
                         <div class="row">
                             <div class="col-lg-3">
-                                <label>Status</label>
+                                <label>Status</label><br>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-primary <?= ($model->office_status == 0) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                        <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 0) ? 'checked' : '' ?> value="0"> Positive
                                     </label>
                                     <label class="btn btn-primary <?= ($model->office_status == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                                        <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 1) ? 'checked' : '' ?> value="1"> Negative
                                     </label>
                                     <label class="btn btn-primary <?= ($model->office_status == 2) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                                        <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!--Residence/Office Verification-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
+                    </h4>
+                </div>
+                <div id="resi_office_verification" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_total_family_members')->textInput() ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
+                        </div>
+                        
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_met_person')->textInput(['maxlength' => true]) ?></div>     
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_department')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_employment_years')->textInput() ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_company')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Residential', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_2')->textInput(['maxlength' => true]) ?></div> 
+                            <div class="col-lg-3"><?= $form->field($model, 'resi_office_structure')->textInput(['maxlength' => true]) ?></div>                            
+                            <div class="col-lg-3">
+                                <label>Market Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->resi_office_market_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($model->resi_office_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->resi_office_market_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($model->resi_office_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <div class="row">                           
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $resiOfficePhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9"><?= $form->field($model, 'resi_office_remarks')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->resi_office_status == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->resi_office_status == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->resi_office_status == 2) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Builder Profile-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
+                    </h4>
+                </div>
+                <div id="builder_profile" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Type of Office']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $builderProfilePhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            
+            <!--Property(APF)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
+                    </h4>
+                </div>
+                <div id="property_apf" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_mode_of_payment')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_construction_stock')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_flats')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_how_many_sold')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_shops')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_area')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_work_completed')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_possession')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_apf')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_delay_in_work')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_landmark')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $propertyApfPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            
+            <!--Individual Property-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
+                    </h4>
+                </div>
+                <div id="individual_property" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_confirmed')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_landmark')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $indivPropertyPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
             </div>
 
             <!--ITR-->
@@ -618,12 +1072,51 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                 </div>
             </div>
-
-            <!--NOC-->
+            
+            <!--NOC (Society)-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC</strong></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
+                    </h4>
+                </div>
+                <div id="noc_soc" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_signature_done_by')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $nocSocPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <!--NOC (Business/Conditional)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
                     </h4>
                 </div>
                 <div id="noc" class="panel-collapse collapse">
