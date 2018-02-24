@@ -203,15 +203,27 @@ class ManageApplicationsController extends Controller {
         $busiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 1, 0);
         $officePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 3, 1, 0);
         $nocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 4, 1, 0);
+        $resiOfficePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 5, 1, 0);
+        $builderProfilePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 6, 1, 0);
+        $propertyApfPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 7, 1, 0);
+        $indivPropertyPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 8, 1, 0);
+        $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
 
         if (Yii::$app->request->post()) {
+            ini_set('display_errors', 1);
+            error_reporting(E_ALL);
             #Get checkbox values
             $model->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
             $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
             $model->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
+            $model->resi_office_address_verification = isset($_POST['Applications']['resi_office_address_verification'][0]) ? $_POST['Applications']['resi_office_address_verification'][0] : 0;
+            $model->builder_profile_address_verification = isset($_POST['Applications']['builder_profile_address_verification'][0]) ? $_POST['Applications']['builder_profile_address_verification'][0] : 0;
+            $model->property_apf_address_verification = isset($_POST['Applications']['property_apf_address_verification'][0]) ? $_POST['Applications']['property_apf_address_verification'][0] : 0;
+            $model->indiv_property_address_verification = isset($_POST['Applications']['indiv_property_address_verification'][0]) ? $_POST['Applications']['indiv_property_address_verification'][0] : 0;
+            $model->noc_soc_address_verification = isset($_POST['Applications']['noc_soc_address_verification'][0]) ? $_POST['Applications']['noc_soc_address_verification'][0] : 0;
             
             //Lat long
             if($model->resi_address_verification == 1) {
@@ -250,9 +262,56 @@ class ManageApplicationsController extends Controller {
                     $model->noc_address_long = $latlong['longitude'];
                 }
             }
+            if($model->resi_office_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['resi_office_address_pincode'], $_POST['Applications']['resi_office_address']);
+                
+                if(!empty($latlong)) {
+                    $model->resi_office_address_lat = $latlong['latitude'];
+                    $model->resi_office_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->builder_profile_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['builder_profile_address_pincode'], $_POST['Applications']['builder_profile_address']);
+                
+                if(!empty($latlong)) {
+                    $model->builder_profile_address_lat = $latlong['latitude'];
+                    $model->builder_profile_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->property_apf_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['property_apf_address_pincode'], $_POST['Applications']['property_apf_address']);
+                
+                if(!empty($latlong)) {
+                    $model->property_apf_address_lat = $latlong['latitude'];
+                    $model->property_apf_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->indiv_property_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['indiv_property_address_pincode'], $_POST['Applications']['indiv_property_address']);
+                
+                if(!empty($latlong)) {
+                    $model->indiv_property_address_lat = $latlong['latitude'];
+                    $model->indiv_property_address_long = $latlong['longitude'];
+                }
+            }
+            if($model->noc_soc_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['Applications']['noc_soc_address_pincode'], $_POST['Applications']['noc_soc_address']);
+                
+                if(!empty($latlong)) {
+                    $model->noc_soc_address_lat = $latlong['latitude'];
+                    $model->noc_soc_address_long = $latlong['longitude'];
+                }
+            }
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                var_dump($model->errors);
             }
         } else {
             return $this->render('update', [
@@ -270,6 +329,11 @@ class ManageApplicationsController extends Controller {
                         'busiPhotosTable' => $busiPhotosTable,
                         'officePhotosTable' => $officePhotosTable,
                         'nocPhotosTable' => $nocPhotosTable,
+                        'resiOfficePhotosTable' => $resiOfficePhotosTable,
+                        'builderProfilePhotosTable' => $builderProfilePhotosTable,
+                        'propertyApfPhotosTable' => $propertyApfPhotosTable,
+                        'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
+                        'nocSocPhotosTable' => $nocSocPhotosTable,
             ]);
         }
     }
@@ -897,7 +961,16 @@ class ManageApplicationsController extends Controller {
         if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
             $applications_model = Applications::findOne($app_id);
-            if ($applications_model->resi_address_verification == 1 || $applications_model->busi_address_verification == 1 || $applications_model->office_address_verification == 1 || $applications_model->noc_address_verification == 1) {
+            if ($applications_model->resi_address_verification == 1 || 
+                    $applications_model->busi_address_verification == 1 || 
+                    $applications_model->office_address_verification == 1 || 
+                    $applications_model->noc_address_verification == 1 || 
+                    $applications_model->resi_office_address_verification == 1 || 
+                    $applications_model->builder_profile_address_verification == 1 || 
+                    $applications_model->property_apf_address_verification == 1 || 
+                    $applications_model->indiv_property_address_verification == 1 || 
+                    $applications_model->noc_soc_address_verification == 1
+                    ) {
                 if ($applications_model->resi_address_verification == 1) {
                     self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $return_html);
                 }
@@ -909,6 +982,21 @@ class ManageApplicationsController extends Controller {
                 }
                 if ($applications_model->noc_address_verification == 1) {
                     self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $return_html);
+                }
+                if ($applications_model->resi_office_address_verification == 1) {
+                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $return_html);
+                }
+                if ($applications_model->builder_profile_address_verification == 1) {
+                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $return_html);
+                }
+                if ($applications_model->property_apf_address_verification == 1) {
+                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $return_html);
+                }
+                if ($applications_model->indiv_property_address_verification == 1) {
+                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $return_html);
+                }
+                if ($applications_model->noc_soc_address_verification == 1) {
+                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $return_html);
                 }
             } else {
                 $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
@@ -926,7 +1014,22 @@ class ManageApplicationsController extends Controller {
                 $address_name = 'Office';
                 break;
             case 4 :
-                $address_name = 'NOC';
+                $address_name = 'NOC (Business/Conditional)';
+                break;
+            case 5 :
+                $address_name = 'Residence/Office';
+                break;
+            case 6 :
+                $address_name = 'Builder Profile';
+                break;
+            case 7 :
+                $address_name = 'Property(APF)';
+                break;
+            case 8 :
+                $address_name = 'Individual Property';
+                break;
+            case 9 :
+                $address_name = 'NOC (Society)';
                 break;
             default :
                 $address_name = 'Residence';
