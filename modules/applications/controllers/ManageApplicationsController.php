@@ -896,7 +896,6 @@ class ManageApplicationsController extends Controller {
 
         if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
-
             $applications_model = Applications::findOne($app_id);
             if ($applications_model->resi_address_verification == 1 || $applications_model->busi_address_verification == 1 || $applications_model->office_address_verification == 1 || $applications_model->noc_address_verification == 1) {
                 if ($applications_model->resi_address_verification == 1) {

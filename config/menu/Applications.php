@@ -25,6 +25,10 @@ return [
             'label' => 'Upload Applications',
             'url' => ['/applications/manage-applications/upload-applications']
         ],
-    ]    
+        [
+            'label' => 'Manage Templates',
+            'url' => ['/applications/institute-header-template/create-template']
+        ],
+    ]
 ];
 

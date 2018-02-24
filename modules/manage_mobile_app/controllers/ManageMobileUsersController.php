@@ -13,13 +13,12 @@ use mdm\admin\models\UserDetails;
 /**
  * ManageMobileUsersController implements the CRUD actions for TblMobileUsers model.
  */
-class ManageMobileUsersController extends Controller
-{
+class ManageMobileUsersController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -34,14 +33,13 @@ class ManageMobileUsersController extends Controller
      * Lists all TblMobileUsers models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new TblMobileUsersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +48,9 @@ class ManageMobileUsersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -62,40 +59,39 @@ class ManageMobileUsersController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new TblMobileUsers();
-        
+
         $sql = "SELECT u.id, CONCAT(ud.first_name, ' ', ud.last_name) as username FROM user u INNER JOIN tbl_user_details ud ON ud.user_id = u.id ORDER BY username";
         $userData = \Yii::$app->db->createCommand($sql)->queryAll();
 
-        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } */
+        /* if ($model->load(Yii::$app->request->post()) && $model->save()) {
+          return $this->redirect(['view', 'id' => $model->id]);
+          } */
         if ($model->load(Yii::$app->request->post())) {
             $data = Yii::$app->request->post();
-            
+
             $id = $data['TblMobileUsers']['user_id'];
             $mobile_unique_code = $data['TblMobileUsers']['mobile_unique_code'];
-            
+
             $mobile_details = TblMobileUsers::find()->where(['user_id' => $id])->one();
-            
-            if(empty($mobile_details)) {
+
+            if (empty($mobile_details)) {
                 $user_details = UserDetails::find()->where(['user_id' => $id])->one();
-                
-                $agent_name = $user_details['first_name'].' '.$user_details['last_name'];
+
+                $agent_name = $user_details['first_name'] . ' ' . $user_details['last_name'];
                 $model->field_agent_name = $agent_name;
                 $model->save();
             } else {
-                Yii::$app->getSession()->setFlash('error', 'User already added.'); 
+                Yii::$app->getSession()->setFlash('error', 'User already added.');
             }
-            
+
             //die('sdfdsu');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
-                "userData" => $userData,
+                        'model' => $model,
+                        "userData" => $userData,
             ]);
         }
     }
@@ -106,15 +102,14 @@ class ManageMobileUsersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -125,8 +120,7 @@ class ManageMobileUsersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -139,12 +133,12 @@ class ManageMobileUsersController extends Controller
      * @return TblMobileUsers the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = TblMobileUsers::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

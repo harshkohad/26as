@@ -1,9 +1,0 @@
-<?php
-//Here You Defined RJIL Database For Readonly Action
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=rjil_proud',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
-];
