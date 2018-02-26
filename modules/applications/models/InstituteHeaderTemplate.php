@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\applications\models;
+
 use yii\data\ActiveDataProvider;
 use Yii;
 
@@ -75,6 +76,18 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         ]);
 
         return $dataProvider;
+    }
+
+    public function getJsonInput() {
+        $sql = "show columns from tbl_applications";
+        $results = Yii::$app->db->createCommand($sql)->queryAll();
+        $data = array();
+        $ignoreArray = array('id', 'application_id', 'profile_id', 'created_by', 'created_on', 'updated_by', 'updated_on', 'is_deleted');
+        foreach ($results as $key => $value) {
+            if (!in_array($value['Field'], $ignoreArray))
+                $data[] = array('id' => $value['Field'], 'name' => $value['Field']);
+        }
+        return json_encode($data);
     }
 
 }

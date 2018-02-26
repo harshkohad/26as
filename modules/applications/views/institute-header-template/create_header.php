@@ -4,12 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+use app\modules\applications\models\InstituteHeaderTemplate;
 
+$templateModel = new InstituteHeaderTemplate();
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
 /* @var $form yii\widgets\ActiveForm */
 $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header']);
 ?>
+
 
 <div class="container text-center">
     <table class="table table-bordered pagin-table">
@@ -28,7 +31,7 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
                     </div></td>
                 <td><?= $form->field($model, 'fields')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
                 <td><div class="col-lg-12" style="text-align: right;">
-                        <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'save_button']) ?>
+                        <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'add_header']) ?>
                     </div></td>
             </tr>
         </tbody>
@@ -38,36 +41,30 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
 <?php ActiveForm::end(); ?>
 <?php
 $this->registerJs("$(function(){   
-            $('#save_button').on('click', function() {
+            $('#add_header').on('click', function() {
                var form_data = $('#create_command').serialize();
-                var url = '" . yii\helpers\Url::to(["institute-header-template/save-header"]) . "';
+               var url = '" . yii\helpers\Url::to(["institute-header-template/save-header"]) . "';
                 $.post(url, form_data,function(response) {
                     window.location.reload();
                 });
             });
             });");
+
+$json_input = $templateModel->getJsonInput();
 ?>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('tbody').sortable();
-        $("#tokeninput").tokenInput([
-            {id: "Ruby", name: "Ruby"},
-            {id: "Python", name: "Python"},
-            {id: "JavaScript", name: "JavaScript"},
-            {id: "ActionScript", name: "ActionScript"},
-            {id: "Scheme", name: "Scheme"},
-        ], {
+        $("#tokeninput").tokenInput(<?php echo $json_input; ?>, {
             theme: "facebook",
-            hintText: "I can has tv shows?",
-            noResultsText: "O noes",
-            searchingText: "Meowing..."
         });
-
     });
 
 </script>
 
 <style>
+    div.token-input-dropdown-facebook {           
+        z-index: 11001 !important;
+    }
     .table {
         width: 69%;
         max-width: 100%;

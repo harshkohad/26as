@@ -36,6 +36,9 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
             $model = new InstituteHeaderTemplate();
             $model->institute_id = $id;
             echo $this->renderAjax("create_header", ['model' => $model, 'institute_id' => $id]);
+        } else {
+            echo "<font color='red'>Institute id not found</font>";
+            die;
         }
     }
 
@@ -92,7 +95,33 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
             $teplateData->save();
             echo "Done";
             exit;
+        } else {
+            echo "not saved";
         }
+    }
+
+    public function actionSaveFinalHeader() {
+        if (!empty($_POST)) {
+            $model = new InstituteHeaderTemplate();
+            $institute_header = $_POST['institute_header'];
+            $institute_id = $_POST['Institutes']['id'];
+            $teplateData = $model->findOne(['institute_id' => $institute_id]);
+            $institute_value = $_POST['institute_value'];
+            $fields = array();
+            if (!empty($institute_header)) {
+                foreach ($institute_header as $key => $value) {
+                    $fields[$value] = $institute_value[$key];
+                }
+            }
+            $teplateData->created_at = date("Y-m-d H:i:s");
+            $teplateData->final_fields = json_encode($fields);
+            $teplateData->fields = json_encode($fields);
+            $teplateData->save();
+            echo "Done";
+            exit;
+        }
+        echo "Done";
+        exit;
     }
 
 }
