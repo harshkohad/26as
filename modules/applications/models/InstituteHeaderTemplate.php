@@ -31,7 +31,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         return [
             [['fields', 'final_fields'], 'string'],
             [['created_at'], 'safe'],
-            [['created_by', 'institute_id'], 'required'],
+            [['institute_id'], 'required'],
             [['created_by', 'institute_id'], 'integer'],
             [['header'], 'string', 'max' => 100],
         ];

@@ -23,11 +23,12 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
         <tbody>
             <tr>
                 <td><div class="form-group">
-                        <?= $form->field($model, 'header[]')->textInput(['maxlength' => 255, 'class' => 'form-control']); ?>
+                        <?= $form->field($model, 'header')->textInput(['maxlength' => 255, 'class' => 'form-control']); ?>
+                        <?= $form->field($model, 'institute_id')->hiddenInput(['maxlength' => 255, 'class' => 'form-control'])->label(FALSE); ?>
                     </div></td>
-                <td><?= $form->field($model, 'fields[]')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
+                <td><?= $form->field($model, 'fields')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
                 <td><div class="col-lg-12" style="text-align: right;">
-                        <?= Html::submitButton('Add', ['class' => 'btn btn-success', 'id' => 'next_button']) ?>
+                        <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'save_button']) ?>
                     </div></td>
             </tr>
         </tbody>
@@ -35,22 +36,26 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
 
 </div>
 <?php ActiveForm::end(); ?>
+<?php
+$this->registerJs("$(function(){   
+            $('#save_button').on('click', function() {
+               var form_data = $('#create_command').serialize();
+                var url = '" . yii\helpers\Url::to(["institute-header-template/save-header"]) . "';
+                $.post(url, form_data,function(response) {
+                    window.location.reload();
+                });
+            });
+            });");
+?>
 <script type="text/javascript">
     $(document).ready(function () {
         $('tbody').sortable();
         $("#tokeninput").tokenInput([
-            {id: 7, name: "Ruby"},
-            {id: 11, name: "Python"},
-            {id: 13, name: "JavaScript"},
-            {id: 17, name: "ActionScript"},
-            {id: 19, name: "Scheme"},
-            {id: 23, name: "Lisp"},
-            {id: 29, name: "C#"},
-            {id: 31, name: "Fortran"},
-            {id: 37, name: "Visual Basic"},
-            {id: 41, name: "C"},
-            {id: 43, name: "C++"},
-            {id: 47, name: "Java"}
+            {id: "Ruby", name: "Ruby"},
+            {id: "Python", name: "Python"},
+            {id: "JavaScript", name: "JavaScript"},
+            {id: "ActionScript", name: "ActionScript"},
+            {id: "Scheme", name: "Scheme"},
         ], {
             theme: "facebook",
             hintText: "I can has tv shows?",

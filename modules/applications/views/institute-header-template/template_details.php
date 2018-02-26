@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\manage_mobile_app\models\TblMobileUsersSearch */
@@ -14,13 +15,14 @@ $this->registerJsFile(
         Yii::$app->request->BaseUrl . '/js/jquery.tokeninput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.css");
+''
 ?>
+<?php $form = ActiveForm::begin(['id' => 'add_header', 'action' => 'next-template-form']); ?>
+<?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
 <section class="panel">
     <div class="panel-body">
 
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+        <h1><?= Html::encode("Institute Name :-" . $institute_name) ?></h1>
         <p>
             <?= Html::Button('Add Header', ['class' => 'btn btn-success', 'id' => 'create_header']) ?>
         <div class="container text-center">
@@ -38,7 +40,7 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
                             <td><div class="form-group">
                                     <input type="text" name="institute_header[]" class="form-control" value='<?php echo $detail['header']; ?>'>
                                 </div></td>
-                            <td><input type="text" class="form-control" name ="institute_value[]" value='<?php echo $detail['header']; ?>'/></td>
+                            <td><input type="text" class="form-control" name ="institute_value[]" value='<?php echo $detail['field']; ?>'/></td>
                         </tr>
                     </tbody>
                 <?php } ?>
@@ -48,13 +50,14 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
         </p>
     </div>
 </section>
-
+<?php ActiveForm::end(); ?>
 <?php
 $this->registerJs("$(function(){   
             $('#create_header').on('click', function() {
                 var form_data = '';
                 var url = '" . yii\helpers\Url::to(["institute-header-template/create-header"]) . "';
                 $('#profile_modal').modal('show');
+                var form_data = $('#add_header').serialize();
                 $.post(url, form_data,function(response) {
                     $('#modalContent').html(response);
                 });
