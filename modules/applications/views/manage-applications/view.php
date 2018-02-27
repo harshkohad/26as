@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </section>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -87,11 +87,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address') ?></label>
                                 <textarea class="form-control" readonly=""><?= $model->resi_address ?></textarea>
-                            </div>    
-                            <div class="col-lg-4">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address_pincode') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_address_pincode ?></div>
                             </div>
@@ -110,7 +112,41 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Business Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
+                            </div>    
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->busi_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->busi_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -119,11 +155,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address') ?></label>
                                 <textarea class="form-control" readonly=""><?= $model->office_address ?></textarea>
                             </div>    
-                            <div class="col-lg-4">
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address_pincode') ?></label>
                                 <div class="readonlydiv"><?= $model->office_address_pincode ?></div>
                             </div>
@@ -143,53 +181,197 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="row">        
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <strong>Business Address</strong>
+                            <strong>Residence/Office Address</strong>
                         </h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address') ?></label>
-                                <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->resi_office_address ?></textarea>
                             </div>    
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_pincode') ?></label>
-                                <div class="readonlydiv"><?= $model->busi_address_pincode ?></div>
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_address_pincode ?></div>
                             </div>
                         </div>  
                         <div class="row">
                             <div class="col-lg-12">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_trigger') ?></label>
-                                <textarea class="form-control" readonly=""><?= $model->busi_address_trigger ?></textarea>
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->resi_office_address_trigger ?></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                                <label>Send for verification: <?= ($model->resi_office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                             </div>
                         </div>    
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            
+            <div class="col-lg-4">
                 <div class="panel panel-default cust-panel">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <strong>NOC Address</strong>
+                            <strong>Builder Profile Address</strong>
                         </h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->builder_profile_address ?></textarea>
+                            </div>    
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->builder_profile_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->builder_profile_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Property(APF) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->property_apf_address ?></textarea>
+                            </div>    
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->property_apf_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->property_apf_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">  
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>Individual Property Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->indiv_property_address ?></textarea>
+                            </div>    
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->indiv_property_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->indiv_property_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC (Society) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->noc_soc_address ?></textarea>
+                            </div>    
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address_pincode') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_address_pincode ?></div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address_trigger') ?></label>
+                                <textarea class="form-control" readonly=""><?= $model->noc_soc_address_trigger ?></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Send for verification: <?= ($model->noc_soc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default cust-panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <strong>NOC (Business/Conditional) Address</strong>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address') ?></label>
                                 <textarea class="form-control" readonly=""><?= $model->noc_address ?></textarea>
                             </div>    
-                            <div class="col-lg-4">
+                        </div>  
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address_pincode') ?></label>
                                 <div class="readonlydiv"><?= $model->noc_address_pincode ?></div>
                             </div>
@@ -337,13 +519,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-9">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_remarks') ?></label>
                                 <div class="readonlydiv"><?= $model->resi_remarks ?></div>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-lg-3">
                                 <label>Status</label>
                                 <div class="readonlydiv"><?= ($model->resi_status == 0) ? 'Positive' : (($model->resi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
@@ -589,6 +768,438 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
+            
+            <!--Residence/Office Verification-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
+                    </h4>
+                </div>
+                <div id="resi_office_verification" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_society_name_plate') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_society_name_plate ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_door_name_plate') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_door_name_plate ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_1') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_1 ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_2') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_2 ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_relation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_ownership_status ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status_text') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_ownership_status_text ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_home_area') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_home_area ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_stay_years') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_stay_years ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_total_family_members') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_total_family_members ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_working_members') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_working_members ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_company_name_board') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_company_name_board ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_met_person_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_department') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_department ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_nature_of_company') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_nature_of_company ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_employment_years') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_employment_years ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_net_salary_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_net_salary_amount ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_for_applicant') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_tpc_for_applicant ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_for_company') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_tpc_for_company ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_locality ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality_text') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_locality_text ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_landmark_1') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_landmark_1 ?></div>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_landmark_2') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_landmark_2 ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_structure') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_structure ?></div>
+                            </div>
+                            <div class="col-lg-3"> 
+                                <label>Market Feedback</label>
+                                <div class="readonlydiv"><?= ($model->resi_office_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <div class="row">                           
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $resiOfficePhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_remarks') ?></label>
+                                <div class="readonlydiv"><?= $model->resi_office_remarks ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Status</label>
+                                <div class="readonlydiv"><?= ($model->resi_office_status == 0) ? 'Positive' : (($model->resi_office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Builder Profile-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
+                    </h4>
+                </div>
+                <div id="builder_profile" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_company_name_board') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_company_name_board ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_met_person_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_exsistence') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_exsistence ?></div>
+                            </div>
+                        </div>                    
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_current_projects') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_current_projects ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_previous_projects') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_previous_projects ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_staff') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_staff ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_area') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_area ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_type_of_office') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_type_of_office ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_tpc_neighbor_1') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_tpc_neighbor_1 ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_tpc_neighbor_2') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_tpc_neighbor_2 ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_landmark_1') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_landmark_1 ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_landmark_2') ?></label>
+                                <div class="readonlydiv"><?= $model->builder_profile_landmark_2 ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+    <?php echo $builderProfilePhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Property(APF)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
+                    </h4>
+                </div>
+                <div id="property_apf" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_met_person_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_property_status') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_property_status ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_no_of_workers') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_no_of_workers ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_mode_of_payment') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_mode_of_payment ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_construction_stock') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_construction_stock ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_total_flats') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_total_flats ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_how_many_sold') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_how_many_sold ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_total_shops') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_total_shops ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_area') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_area ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_work_completed') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_work_completed ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_possession') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_possession ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_apf') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_apf ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_delay_in_work') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_delay_in_work ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_tpc') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_tpc ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_landmark') ?></label>
+                                <div class="readonlydiv"><?= $model->property_apf_landmark ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $propertyApfPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Individual Property-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
+                    </h4>
+                </div>
+                <div id="individual_property" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_met_person_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_property_confirmed') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_property_confirmed ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_previous_owner') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_previous_owner ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_property_type') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_property_type ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_area') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_area ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_approx_market_value') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_approx_market_value ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_society_name_plate') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_society_name_plate ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_door_name_plate') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_door_name_plate ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_tpc') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_tpc ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_landmark') ?></label>
+                                <div class="readonlydiv"><?= $model->indiv_property_landmark ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $indivPropertyPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--ITR-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -729,12 +1340,73 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             </div>
-
-            <!--NOC-->
+            
+            <!--NOC (Society)-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC</strong></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
+                    </h4>
+                </div>
+                <div id="noc_soc" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_met_person ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_met_person_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_met_person_designation ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_signature_done_by') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_signature_done_by ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_bldg_reg_number') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_bldg_reg_number ?></div>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_society_type') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_society_type ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_previous_owner') ?></label>
+                                <div class="readonlydiv"><?= $model->noc_soc_previous_owner ?></div>
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-lg-3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $nocSocPhotosTable; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--NOC (Business/Conditional)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
                     </h4>
                 </div>
                 <div id="noc" class="panel-collapse collapse">
