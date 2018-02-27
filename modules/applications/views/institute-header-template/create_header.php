@@ -4,12 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+use app\modules\applications\models\InstituteHeaderTemplate;
 
+$templateModel = new InstituteHeaderTemplate();
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
 /* @var $form yii\widgets\ActiveForm */
 $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header']);
 ?>
+
 
 <div class="container text-center">
     <table class="table table-bordered pagin-table">
@@ -23,11 +26,12 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
         <tbody>
             <tr>
                 <td><div class="form-group">
-                        <?= $form->field($model, 'header[]')->textInput(['maxlength' => 255, 'class' => 'form-control']); ?>
+                        <?= $form->field($model, 'header')->textInput(['maxlength' => 255, 'class' => 'form-control']); ?>
+                        <?= $form->field($model, 'institute_id')->hiddenInput(['maxlength' => 255, 'class' => 'form-control'])->label(FALSE); ?>
                     </div></td>
-                <td><?= $form->field($model, 'fields[]')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
+                <td><?= $form->field($model, 'fields')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
                 <td><div class="col-lg-12" style="text-align: right;">
-                        <?= Html::submitButton('Add', ['class' => 'btn btn-success', 'id' => 'next_button']) ?>
+                        <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'add_header']) ?>
                     </div></td>
             </tr>
         </tbody>
@@ -35,34 +39,32 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
 
 </div>
 <?php ActiveForm::end(); ?>
+<?php
+$this->registerJs("$(function(){   
+            $('#add_header').on('click', function() {
+               var form_data = $('#create_command').serialize();
+               var url = '" . yii\helpers\Url::to(["institute-header-template/save-header"]) . "';
+                $.post(url, form_data,function(response) {
+                    window.location.reload();
+                });
+            });
+            });");
+
+$json_input = $templateModel->getJsonInput();
+?>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('tbody').sortable();
-        $("#tokeninput").tokenInput([
-            {id: 7, name: "Ruby"},
-            {id: 11, name: "Python"},
-            {id: 13, name: "JavaScript"},
-            {id: 17, name: "ActionScript"},
-            {id: 19, name: "Scheme"},
-            {id: 23, name: "Lisp"},
-            {id: 29, name: "C#"},
-            {id: 31, name: "Fortran"},
-            {id: 37, name: "Visual Basic"},
-            {id: 41, name: "C"},
-            {id: 43, name: "C++"},
-            {id: 47, name: "Java"}
-        ], {
+        $("#tokeninput").tokenInput(<?php echo $json_input; ?>, {
             theme: "facebook",
-            hintText: "I can has tv shows?",
-            noResultsText: "O noes",
-            searchingText: "Meowing..."
         });
-
     });
 
 </script>
 
 <style>
+    div.token-input-dropdown-facebook {           
+        z-index: 11001 !important;
+    }
     .table {
         width: 69%;
         max-width: 100%;
