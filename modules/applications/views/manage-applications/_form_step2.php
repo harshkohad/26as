@@ -497,10 +497,7 @@ $loantypes->id = $model->loan_type_id;
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-
-                        <div class="row">
+                            <div class="col-lg-9"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3">
                                 <label>Status</label><br>
                                 <div class="btn-group" data-toggle="buttons">

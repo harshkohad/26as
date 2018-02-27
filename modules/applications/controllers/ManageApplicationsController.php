@@ -116,6 +116,11 @@ class ManageApplicationsController extends Controller {
         $busiPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 2, 1, 1);
         $officePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 3, 1, 1);
         $nocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 4, 1, 1);
+        $resiOfficePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 5, 1, 1);
+        $builderProfilePhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 6, 1, 1);
+        $propertyApfPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 7, 1, 1);
+        $indivPropertyPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 8, 1, 1);
+        $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 1);
         return $this->render('view', [
                     'model' => $model,
                     'itrTable' => $itrTable,
@@ -127,6 +132,11 @@ class ManageApplicationsController extends Controller {
                     'busiPhotosTable' => $busiPhotosTable,
                     'officePhotosTable' => $officePhotosTable,
                     'nocPhotosTable' => $nocPhotosTable,
+                    'resiOfficePhotosTable' => $resiOfficePhotosTable,
+                    'builderProfilePhotosTable' => $builderProfilePhotosTable,
+                    'propertyApfPhotosTable' => $propertyApfPhotosTable,
+                    'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
+                    'nocSocPhotosTable' => $nocSocPhotosTable,
         ]);
     }
 
