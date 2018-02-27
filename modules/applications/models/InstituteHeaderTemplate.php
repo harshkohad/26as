@@ -4,6 +4,8 @@ namespace app\modules\applications\models;
 
 use yii\data\ActiveDataProvider;
 use Yii;
+use yii\bootstrap\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "tbl_institute_header_template".
@@ -17,6 +19,9 @@ use Yii;
  * @property integer $institute_id
  */
 class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
+
+    public $name = '';
+    public $view = '';
 
     /**
      * @inheritdoc
@@ -63,6 +68,8 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
     public function search() {
         $query = InstituteHeaderTemplate::find();
 
+        $query->join('INNER JOIN', 'tbl_institutes', 'tbl_institutes.id=tbl_institute_header_template.institute_id');
+        $query->select(['tbl_institutes.name', 'institute_id']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -74,7 +81,6 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         $query->andFilterWhere([
             'institute_id' => $this->institute_id
         ]);
-
         return $dataProvider;
     }
 
@@ -88,6 +94,10 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $data[] = array('id' => $value['Field'], 'name' => $value['Field']);
         }
         return json_encode($data);
+    }
+
+    public function getViewButton($model) {
+        return Html::a('<i class="far fa-eye-slash"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
     }
 
 }

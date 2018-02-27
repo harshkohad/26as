@@ -14,7 +14,7 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
     }
 
     public function actionCreateTemplate() {
-        $searchModel = new TblMobileUsersSearch();
+        $searchModel = new InstituteHeaderTemplate();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('create_template', [
@@ -43,9 +43,14 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
     }
 
     public function actionNextTemplateForm() {
-        if (!empty($_POST)) {
-            $data = $_POST['Institutes'];
-            $institute_id = $data['id'];
+        if (!empty($_REQUEST)) {
+            if (!isset($_REQUEST['id'])) {
+                $data = $_POST['Institutes'];
+                $institute_id = $data['id'];
+            } else {
+                $institute_id = $_REQUEST['id'];
+            }
+
 
             $model = new Institutes();
             $model->id = $institute_id;

@@ -8,7 +8,7 @@ use yii\bootstrap\Modal;
 /* @var $searchModel app\modules\manage_mobile_app\models\TblMobileUsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mobile Users';
+$this->title = 'Templates';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJsFile(
         Yii::$app->request->BaseUrl . '/js/jquery.tokeninput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
@@ -30,17 +30,20 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                'field_agent_name',
-                'mobile_unique_code',
-                'mobile_imei_number',
-                ['class' => 'yii\grid\ActionColumn'],
+                'name',
+                [
+                    'attribute' => 'view',
+                    'filter' => false,
+                    'format' => 'raw',
+                    'value' => [$searchModel, "getViewButton"],
+                ]
             ],
         ]);
         ?>
     </div>
 </section>
 <div class="nextForm">
-    
+
 </div>
 <?php
 $this->registerJs("$(function(){   
@@ -65,3 +68,9 @@ yii\bootstrap\Modal::begin([
 echo "<div id='modalContent'><div style='text-align:center'><img src='" . Yii::$app->request->BaseUrl . "/images/acs_loader.gif'></div></div>";
 yii\bootstrap\Modal::end();
 ?>
+
+<script type="text/javascript">
+    function getForm(id) {
+        
+    }
+</script>
