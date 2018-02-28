@@ -22,6 +22,8 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
 
     public $name = '';
     public $view = '';
+    public $start_date = '';
+    public $end_date = '';
 
     /**
      * @inheritdoc
@@ -97,7 +99,26 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
     }
 
     public function getViewButton($model) {
-        return Html::a('<i class="far fa-eye-slash"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
+        return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
+    }
+
+    public function downloadFile($header, $data) {
+        if (!empty($data)) {
+            ob_get_clean();
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=applications.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $header);
+//fputcsv($file, array(1, 2, 4));
+            foreach ($data as $row) {
+                fputcsv($file, $row);
+            }
+            $file = fopen('php://output', 'w');
+            exit();
+        }
+        return false;
     }
 
 }

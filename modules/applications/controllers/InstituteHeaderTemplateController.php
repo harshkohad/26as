@@ -129,4 +129,46 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
         exit;
     }
 
+    public function actionDownloadApplication() {
+        ini_set("display_errors", 1);
+        error_reporting(E_ALL);
+        $model = new InstituteHeaderTemplate();
+        $institutes = new Institutes();
+        if (!empty($_REQUEST)) {
+            $data = $_REQUEST['InstituteHeaderTemplate'];
+            $institute_id = $data['institute_id'];
+            $modelTemplate = new InstituteHeaderTemplate();
+            $teplateData = $modelTemplate->findOne(['institute_id' => $institute_id]);
+            
+            $header = array();
+            if (!empty($teplateData)) {
+                $fields = $teplateData['final_fields'];
+                $fields = json_decode($fields);
+                $select = "";
+                foreach ($fields as $key => $value) {
+                    $header[] = $key;
+                    if (preg_match("/(,)/", $value)) {
+                        $value = str_replace(",", ",' ',", $value);
+                    }
+                    $name = str_replace(" ", "_", $key);
+                    if (empty($select))
+                        $select .= "concat($value) as $name";
+                    else
+                        $select .= ",concat($value) as $name";
+                }
+
+                $where = "";
+                if (!empty($data['start_date']))
+                    $where .= " AND date(created_on)>='{$data['start_date']}'";
+                if (!empty($data['end_date']))
+                    $where .= " AND date(created_on)<='{$data['end_date']}'";
+                $sql = "select $select from tbl_applications where institute_id=$institute_id $where";
+                $finalData = array();
+                $results = Yii::$app->db->createCommand($sql)->queryAll();
+                $isDownload = $model->downloadFile($header, $results);
+            }
+        }
+        echo $this->render("download_template", ['model' => $model, 'institutes' => $institutes]);
+    }
+
 }
