@@ -4,6 +4,8 @@ namespace app\modules\applications\models;
 
 use yii\data\ActiveDataProvider;
 use Yii;
+use yii\bootstrap\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "tbl_institute_header_template".
@@ -17,6 +19,11 @@ use Yii;
  * @property integer $institute_id
  */
 class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
+
+    public $name = '';
+    public $view = '';
+    public $start_date = '';
+    public $end_date = '';
 
     /**
      * @inheritdoc
@@ -63,6 +70,8 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
     public function search() {
         $query = InstituteHeaderTemplate::find();
 
+        $query->join('INNER JOIN', 'tbl_institutes', 'tbl_institutes.id=tbl_institute_header_template.institute_id');
+        $query->select(['tbl_institutes.name', 'institute_id']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -74,7 +83,6 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         $query->andFilterWhere([
             'institute_id' => $this->institute_id
         ]);
-
         return $dataProvider;
     }
 
@@ -88,6 +96,29 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $data[] = array('id' => $value['Field'], 'name' => $value['Field']);
         }
         return json_encode($data);
+    }
+
+    public function getViewButton($model) {
+        return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
+    }
+
+    public function downloadFile($header, $data) {
+        if (!empty($data)) {
+            ob_get_clean();
+            header("Content-type: text/csv");
+            header("Content-Disposition: attachment; filename=applications.csv");
+            header("Pragma: no-cache");
+            header("Expires: 0");
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $header);
+//fputcsv($file, array(1, 2, 4));
+            foreach ($data as $row) {
+                fputcsv($file, $row);
+            }
+            $file = fopen('php://output', 'w');
+            exit();
+        }
+        return false;
     }
 
 }

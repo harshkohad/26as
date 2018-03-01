@@ -27,5 +27,9 @@ return [
             'label' => 'Manage Routes',
             'url' => ['/admin/route/index']
         ],
+        [
+            'label' => 'Manage Templates',
+            'url' => ['/applications/institute-header-template/create-template']
+        ],
     ]
 ];

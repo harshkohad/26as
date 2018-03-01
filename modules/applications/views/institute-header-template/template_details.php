@@ -23,7 +23,14 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
 
         <h1><?= Html::encode("Institute Name :-" . $institute_name) ?></h1>
         <p>
-            <?= Html::Button('Add Header', ['class' => 'btn btn-success', 'id' => 'create_header']) ?>
+            <?= Html::Button('Add Header', ['class' => 'btn btn-success', 'id' => 'create_header']) ?></p>
+        <div class="col-lg-12" style="text-align: center;">
+
+        </div>
+        <div class="col-lg-12" style="text-align: center;">
+            <?= Html::Button('Add', ['class' => 'btn-primary btn', 'id' => 'save_button']) ?>
+            <?= Html::a('download', ['institute-header-template/download-application'], ['class' => 'btn-primary btn']) ?>
+        </div>
         <div class="container text-center">
             <table class="table table-bordered pagin-table">
                 <thead>
@@ -48,9 +55,7 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
             </table>
         </div>
 
-        <div class="col-lg-12" style="text-align: right;">
-            <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'save_button']) ?>
-        </div>
+
 
         </p>
     </div>
@@ -100,5 +105,13 @@ yii\bootstrap\Modal::end();
 
 
 <style type="text/css">
-   input {font-weight:bold;}
+    input {font-weight:bold;}
+    .btn-primary {
+        background-color: #95b75d;
+        border-color: #1fb5ad;
+        color: #FFFFFF;
+        text-align: center;
+        padding: 9px;
+        float: right;
+    }
 </style>
