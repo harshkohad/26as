@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -40,7 +41,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-3"><?= $form->field($userDetails, 'country')->dropDownList(Yii::$app->commonUtility->getCountryDropdown(), ['prompt' => '(Select Country)']) ?></div>
             <div class="col-lg-3"><?= $form->field($userDetails, 'pin')->input('text', ['maxlength' => 6]) ?></div>
             <div class="col-lg-3"><?= $form->field($userDetails, 'address')->textArea() ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'role_id')->dropDownList(ArrayHelper::map($LoanTypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Role'])->label('Role') ?></div>
             <div class="col-lg-3"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->dropDownList(ArrayHelper::map($LoanTypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12">

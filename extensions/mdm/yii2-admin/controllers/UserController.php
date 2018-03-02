@@ -20,6 +20,8 @@ use yii\web\NotFoundHttpException;
 use yii\base\UserException;
 use yii\mail\BaseMailer;
 use mdm\admin\components\Helper;
+use app\modules\applications\models\Institutes;
+use app\modules\applications\models\LoanTypes;
 
 /**
  * User controller
@@ -28,6 +30,7 @@ class UserController extends BaseController {
 
     private $_oldMailPath;
     public $leftMenuGroup = 'settings';
+
     //public $layout = '//adminlte-default';
 
     /**
@@ -338,6 +341,8 @@ class UserController extends BaseController {
     public function actionCreate() {
         $model = new Signup();
         $userDetailsmodel = new UserDetails;
+        $institutes = new Institutes();
+        $LoanTypes = new LoanTypes();
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 $userDetailsmodel->load(Yii::$app->getRequest()->post());
@@ -354,6 +359,8 @@ class UserController extends BaseController {
         return $this->render('signup', [
                     'model' => $model,
                     'userDetails' => $userDetailsmodel,
+                    'institutes' => $institutes,
+                    'LoanTypes' => $LoanTypes,
         ]);
     }
 
