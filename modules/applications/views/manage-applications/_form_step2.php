@@ -556,7 +556,18 @@ $loantypes->id = $model->loan_type_id;
 
                         <div class="row">                            
                             <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-9"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <label>Activity Seen</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                         </div>
 
                         <div class="row">
@@ -806,7 +817,7 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Type of Office']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'Shopline', '2' => 'Commercial', '3' => 'Independent', '4' => 'Residential'], ['prompt' => 'Select Type of Office']) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
@@ -845,7 +856,7 @@ $loantypes->id = $model->loan_type_id;
                         <div class="row">
                             <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'Freshland', '2' => 'Redevelopment'], ['prompt' => 'Select Property Status']) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">
@@ -902,7 +913,7 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3"><?= $form->field($model, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'Fresh Property', '2' => 'Old Sold Out'], ['prompt' => 'Select Property Status']) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
@@ -1086,7 +1097,7 @@ $loantypes->id = $model->loan_type_id;
                             <div class="col-lg-3"><?= $form->field($model, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">

@@ -222,6 +222,9 @@ class ManageApplicationsController extends Controller {
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
 
         if (Yii::$app->request->post()) {
+//            echo '<pre>';
+//            print_r(Yii::$app->request->post());
+//            die;
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
             #Get checkbox values
