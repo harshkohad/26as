@@ -22,6 +22,8 @@ use yii\mail\BaseMailer;
 use mdm\admin\components\Helper;
 use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
+use mdm\admin\models\AuthItem;
+use mdm\admin\models\searchs\AuthItem as AuthItemSearch;
 
 /**
  * User controller
@@ -343,6 +345,16 @@ class UserController extends BaseController {
         $userDetailsmodel = new UserDetails;
         $institutes = new Institutes();
         $LoanTypes = new LoanTypes();
+        $AuthItem = new AuthItem();
+        $AuthItem->find(['type' => 1]);
+        $searchModel = new AuthItemSearch(['type' => 1]);
+        $dataProvider = $searchModel->search([]);
+        $roles = array();
+        if (!empty($dataProvider)) {
+            foreach ($dataProvider->allModels as $data) {
+                $roles[$data->name] = $data->name;
+            }
+        }
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 $userDetailsmodel->load(Yii::$app->getRequest()->post());
@@ -361,6 +373,8 @@ class UserController extends BaseController {
                     'userDetails' => $userDetailsmodel,
                     'institutes' => $institutes,
                     'LoanTypes' => $LoanTypes,
+                    'AuthItem' => $AuthItem,
+                    'roles' => $roles,
         ]);
     }
 
