@@ -42,7 +42,7 @@ class UserDetails extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['user_id', 'first_name', 'last_name', 'last_name', 'created_at'], 'required'],
+            [['user_id', 'first_name', 'last_name', 'last_name', 'created_at','role_id','institute_id','loan_id'], 'required'],
             [['user_id', 'pin'], 'integer'],
             ['pin', 'string', 'min' => 6, 'max' => 6],
             ['acronym', 'string', 'min' => 2, 'max' => 3],

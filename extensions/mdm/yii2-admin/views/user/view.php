@@ -35,9 +35,9 @@ $controllerId = $this->context->uniqueId . '/';
                         'confirm' => Yii::t('rbac-admin', 'Are you sure you want to activate this user?'),
                         'method' => 'post',
                     ],
-                ]);                
+                ]);
             }
-        ?>
+            ?>
         </p>
         <div class="row">
             <div class="col-lg-12">
@@ -94,6 +94,16 @@ $controllerId = $this->context->uniqueId . '/';
                 <textarea class="form-control" readonly=""><?= $model->userDetails->address ?></textarea>
             </div>
             <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('role_id') ?></label>
+                <div class="form-control" readonly=""><?= $model->userDetails->role_id ?></div>
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
+                <div class="form-control" readonly=""><?= $institute->name ?></div>
+            </div>
+            <div class="col-lg-4">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_id') ?></label>
+                <div class="form-control" readonly=""><?= $LoanTypes->loan_name ?></div>
             </div>
         </div>
         <div class="row">
