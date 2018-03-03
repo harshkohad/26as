@@ -59,10 +59,10 @@ class ApplicationsSearch extends Applications {
         $userData = UserDetails::findOne(['user_id' => $user_id]);
 
         if (!empty($userData)) {
-            if (!empty($userData->institute_id)) {
+            if (!empty($userData->institute_id) && $userData->institute_id != 0) {
                 $query->andFilterWhere(['institute_id' => $userData->institute_id]);
             }
-            if (!empty($userData->loan_id)) {
+            if (!empty($userData->loan_id) && $userData->loan_id != 0) {
                 $query->andFilterWhere(['loan_type_id' => $userData->loan_id]);
             }
         }

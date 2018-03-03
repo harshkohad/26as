@@ -112,9 +112,29 @@ class UserController extends BaseController {
                 $userDetails->save(FALSE);
             }
             $model = User::find()->where(['id' => $id])->with('userDetails')->one();
+            $instituteName = "";
+            $loanName = "";
+            $institute = new Institutes();
+            if ($model->userDetails->institute_id == 0) {
+                $institute->name = "All";
+            }
+            $institute_Data= Institutes::find()->where(['id' => $model->userDetails->institute_id])->one();
+            if (!empty($institute_Data)) {
+                $institute->name = $institute_Data->name;
+            }
+            $LoanTypes = new LoanTypes();
+            if ($model->userDetails->loan_id == 0) {
+                $LoanTypes->loan_name = "All";
+            }
+            $LoanTypes_Data= LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
+            if (!empty($LoanTypes_Data)) {
+                $LoanTypes->loan_name = $LoanTypes_Data->loan_name;
+            }
         }
         return $this->render('view', [
                     'model' => $model,
+                    'institute' => $institute,
+                    'LoanTypes' => $LoanTypes,
         ]);
     }
 
@@ -322,6 +342,35 @@ class UserController extends BaseController {
             $model = $this->findModel($id);
         }
 
+        $institutes = new Institutes();
+        $LoanTypes = new LoanTypes();
+        $AuthItem = new AuthItem();
+        $AuthItem->find(['type' => 1]);
+        $searchModel = new AuthItemSearch(['type' => 1]);
+        $dataProvider = $searchModel->search([]);
+        $roles = array();
+        if (!empty($dataProvider)) {
+            foreach ($dataProvider->allModels as $data) {
+                $roles[$data->name] = $data->name;
+            }
+        }
+        $instituteData[0] = 'All';
+        if (!empty($institutes->find()->asArray()->all()))
+            $institutesDtl = $institutes->find()->asArray()->all();
+        if (!empty($institutesDtl)) {
+            foreach ($institutesDtl as $institute) {
+                $instituteData[$institute['id']] = $institute['name'];
+            }
+        }
+
+        $loanData[0] = 'All';
+        if (!empty($LoanTypes->find()->asArray()->all()))
+            $loans = $LoanTypes->find()->asArray()->all();
+        if (!empty($loans)) {
+            foreach ($loans as $loan) {
+                $loanData[$loan['id']] = $loan['loan_name'];
+            }
+        }
         if ($userDetails->load(Yii::$app->request->post())) {
             if ($userDetails->update(FALSE)) {
                 return $this->render('view', [
@@ -333,6 +382,9 @@ class UserController extends BaseController {
         return $this->render('update', [
                     'model' => $model,
                     'userDetails' => $userDetails,
+                    'instituteData' => $instituteData,
+                    'loanData' => $loanData,
+                    'roles' => $roles,
         ]);
     }
 
@@ -355,6 +407,24 @@ class UserController extends BaseController {
                 $roles[$data->name] = $data->name;
             }
         }
+        $instituteData[0] = 'All';
+        if (!empty($institutes->find()->asArray()->all()))
+            $institutesDtl = $institutes->find()->asArray()->all();
+        if (!empty($institutesDtl)) {
+            foreach ($institutesDtl as $institute) {
+                $instituteData[$institute['id']] = $institute['name'];
+            }
+        }
+
+        $loanData[0] = 'All';
+        if (!empty($LoanTypes->find()->asArray()->all()))
+            $loans = $LoanTypes->find()->asArray()->all();
+        if (!empty($loans)) {
+            foreach ($loans as $loan) {
+                $loanData[$loan['id']] = $loan['loan_name'];
+            }
+        }
+
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 $userDetailsmodel->load(Yii::$app->getRequest()->post());
@@ -371,8 +441,8 @@ class UserController extends BaseController {
         return $this->render('signup', [
                     'model' => $model,
                     'userDetails' => $userDetailsmodel,
-                    'institutes' => $institutes,
-                    'LoanTypes' => $LoanTypes,
+                    'instituteData' => $instituteData,
+                    'loanData' => $loanData,
                     'AuthItem' => $AuthItem,
                     'roles' => $roles,
         ]);

@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="row">
-            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->dropDownList(ArrayHelper::map($LoanTypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->dropDownList($instituteData, ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12">

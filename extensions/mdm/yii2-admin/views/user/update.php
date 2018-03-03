@@ -86,7 +86,7 @@ $this->title = 'Update User:' . " " . "$model->username";
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                
+
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($userDetails, 'pin')->input('text', ['maxlength' => 6]) ?>
@@ -95,6 +95,21 @@ $this->title = 'Update User:' . " " . "$model->username";
                 <div class="col-lg-8">
                     <div>
                         <?= $form->field($userDetails, 'address')->textArea() ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <?= $form->field($userDetails, 'institute_id')->dropDownList($instituteData, ['prompt' => 'Select Institute'])->label('Institute Name') ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <?= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?>
                     </div>
                 </div>
                 <div class="clearfix"></div>
