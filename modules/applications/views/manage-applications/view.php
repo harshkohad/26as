@@ -623,7 +623,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_2') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_landmark_2 ?></div>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-3">
+                                <label>Activity Seen</label>
+                                <div class="readonlydiv"><?= ($model->busi_activity_seen == 0) ? 'Yes' : 'No' ?></div>
+                            </div>
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_structure') ?></label>
                                 <div class="readonlydiv"><?= $model->busi_structure ?></div>
                             </div>
@@ -803,7 +807,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
-                                <div class="readonlydiv"><?= $model->resi_office_ownership_status ?></div>
+                                <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status_text') ?></label>
@@ -875,7 +879,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality') ?></label>
-                                <div class="readonlydiv"><?= $model->resi_office_locality ?></div>
+                                <div class="readonlydiv"><?= $model->getResiLocality($model->resi_office_locality) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality_text') ?></label>
@@ -980,7 +984,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_type_of_office') ?></label>
-                                <div class="readonlydiv"><?= $model->builder_profile_type_of_office ?></div>
+                                <div class="readonlydiv"><?= $model->getOfficeType($model->builder_profile_type_of_office) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_tpc_neighbor_1') ?></label>
@@ -1040,7 +1044,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_property_status') ?></label>
-                                <div class="readonlydiv"><?= $model->property_apf_property_status ?></div>
+                                <div class="readonlydiv"><?= $model->getPropertyStatus($model->property_apf_property_status) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_no_of_workers') ?></label>
@@ -1150,7 +1154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_property_type') ?></label>
-                                <div class="readonlydiv"><?= $model->indiv_property_property_type ?></div>
+                                <div class="readonlydiv"><?= $model->getPropertyType($model->indiv_property_property_type) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_area') ?></label>
@@ -1371,7 +1375,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_society_type') ?></label>
-                                <div class="readonlydiv"><?= $model->noc_soc_society_type ?></div>
+                                <div class="readonlydiv"><?= $model->getSocietyType($model->noc_soc_society_type) ?></div>
                             </div>
                             <div class="col-lg-3">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_previous_owner') ?></label>

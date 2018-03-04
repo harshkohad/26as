@@ -588,10 +588,21 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>                            
                 </div>
 
-                <div class="row">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-9"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
-                </div>
+                        <div class="row">                            
+                            <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <label>Activity Seen</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                        </div>
 
                 <div class="row">
                     <div class="col-lg-6">
@@ -797,20 +808,34 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="col-lg-3"></div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-9"><?= $form->field($model, 'resi_office_remarks')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3">
-                        <label>Status</label>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 0) ? 'checked' : '' ?> value="0"> Positive
-                            </label>
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 1) ? 'checked' : '' ?> value="1"> Negative
-                            </label>
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
-                            </label>
+            </div>
+            
+            <!--Builder Profile-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
+                    </h4>
+                </div>
+                <div id="builder_profile" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'Shopline', '2' => 'Commercial', '3' => 'Independent', '4' => 'Residential'], ['prompt' => 'Select Type of Office']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -864,100 +889,100 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                 </div>
             </div>
-        </div>                
-    </div>
-
-    <!--Property(APF)-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
-            </h4>
-        </div>
-        <div id="property_apf" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
+            
+            <!--Property(APF)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
+                    </h4>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_mode_of_payment')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_construction_stock')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_flats')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_how_many_sold')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_shops')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_area')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_work_completed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_possession')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_apf')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_delay_in_work')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_tpc')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_landmark')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="panel panel-default cust-panel">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <strong>Photos</strong>
-                                </h4>
-                            </div>
-                            <div class="panel-body" style="height: 200px;overflow-y: auto;">
-                                <div id="office_photos">
-                                    <?php echo $propertyApfPhotosTable; ?>
+                <div id="property_apf" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'Freshland', '2' => 'Redevelopment'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_mode_of_payment')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_construction_stock')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_flats')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_how_many_sold')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_shops')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_area')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_work_completed')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_possession')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_apf')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_delay_in_work')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'property_apf_landmark')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $propertyApfPhotosTable; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>                
-    </div>
-
-    <!--Individual Property-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
-            </h4>
-        </div>
-        <div id="individual_property" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_confirmed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
+            
+            <!--Individual Property-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
+                    </h4>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_tpc')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_landmark')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="panel panel-default cust-panel">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <strong>Photos</strong>
-                                </h4>
-                            </div>
-                            <div class="panel-body" style="height: 200px;overflow-y: auto;">
-                                <div id="office_photos">
-                                    <?php echo $indivPropertyPhotosTable; ?>
+                <div id="individual_property" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_confirmed')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'Fresh Property', '2' => 'Old Sold Out'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'indiv_property_landmark')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $indivPropertyPhotosTable; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1101,39 +1126,39 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-6"><?= $form->field($model, 'bank_narration')->textInput(['maxlength' => true]) ?></div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!--NOC (Society)-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
-            </h4>
-        </div>
-        <div id="noc_soc" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_signature_done_by')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
+            
+            <!--NOC (Society)-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
+                    </h4>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="panel panel-default cust-panel">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <strong>Photos</strong>
-                                </h4>
-                            </div>
-                            <div class="panel-body" style="height: 200px;overflow-y: auto;">
-                                <div id="office_photos">
-                                    <?php echo $nocSocPhotosTable; ?>
+                <div id="noc_soc" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_signature_done_by')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="panel panel-default cust-panel">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <strong>Photos</strong>
+                                        </h4>
+                                    </div>
+                                    <div class="panel-body" style="height: 200px;overflow-y: auto;">
+                                        <div id="office_photos">
+<?php echo $nocSocPhotosTable; ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
