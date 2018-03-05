@@ -20,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="panel-body">
 
         <div class="row">
-            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            
+            <div class="col-lg-3"><?php echo '<b>Select Institute</b>';?><?= Html::dropDownList("institute_id", null, ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute', 'class' => 'form-control']) ?></div>
             <div class="col-lg-3"><?php
                 echo '<b>Start Date</b>';
                 echo DatePicker::widget([
