@@ -1,49 +1,69 @@
 <?php
 
 use yii\helpers\Html;
-//use yii\grid\GridView;
-use kartik\grid\GridView;
+use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 
-$this->title = 'Generate MIS';
+/* @var $this yii\web\View */
+/* @var $searchModel app\modules\manage_mobile_app\models\TblMobileUsersSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = "Download Template";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php $form = ActiveForm::begin(['id' => 'download_template']); ?>
 <section class="panel">
     <div class="panel-body">
-        <p>
-            <?php //Html::a('Create Applications', ['create'], ['class' => 'btn btn-success']) ?> 
-            <?php //Html::a('Upload Applications', ['upload-applications'], ['class' => 'btn btn-warning']) ?>
-        </p> 
-        <div>
-<!--            <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
-                <thead>
-                    <tr>
-                        <th  width="220px">Institute</th>
-                        <th width="220px">Action</th width="220px">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($institutes as $institute) { ?>
-
-                        <tr>
-                            <td><img src="<?php echo Yii::$app->request->BaseUrl . '/' . 'images/instiutes/thumbs/' . $institute['file_name']; ?>" /></td>
-                            <td><a href="/acs/web/applications/institute-header-template/download-application?institute_id=<?php echo $institute['id']; ?>" data-method="post"><i class="glyphicon glyphicon-eye-open"></i></a></td>
-                        </tr>
-
-                    <?php } ?>
-                </tbody>
-            </table>-->
-            
-            <?php $form = ActiveForm::begin(['id' => 'download_template']); ?>
-            <div class="row">
-                <div class="col-lg-3"><?php //$form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-            </div>    
-            <?php ActiveForm::end(); ?>
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            <div class="col-lg-3"><?php
+                echo '<b>Start Date</b>';
+                echo DatePicker::widget([
+                    'name' => 'start_date',
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+//                                'template' => '{addon}{input}',
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                        'endDate' => '0d',
+                        'todayHighlight' => true
+                    ]
+                ]);
+                ?></div>
+            <div class="col-lg-3"><?php
+                echo '<b>End Date</b>';
+                echo DatePicker::widget([
+                    'name' => 'end_date',
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+//                                'template' => '{addon}{input}',
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                        'endDate' => '0d',
+                        'todayHighlight' => true
+                    ]
+                ]);
+                ?></div>
+            <div class="col-lg-3"> <?= Html::submitButton('Download', ['class' => 'btn-primary btn', 'id' => 'save_button']) ?></div>
         </div>
+
     </div>
 </section>
+<?php ActiveForm::end(); ?>
+<style type="text/css">
+    input {font-weight:bold;}
+    .btn-primary {
+        background-color: #95b75d;
+        border-color: #1fb5ad;
+        color: #FFFFFF;
+        margin-top: "10px";
+        /*text-align: center;*/
+        /*padding: 9px;*/
+        /*float: right;*/
+    }
+</style>
