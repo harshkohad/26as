@@ -58,7 +58,7 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                              ?></div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                        ?></div>
         </div>
     </div>
 </section>
@@ -445,10 +445,10 @@ $loantypes->id = $model->loan_type_id;
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn  resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Reachable
+                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Yes
                             </label>
                             <label class="btn resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Not Reachable
+                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
@@ -563,34 +563,47 @@ $loantypes->id = $model->loan_type_id;
         <div id="busi_verification" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
+                    <div class="col-lg-3">
+                        <label>Is Reachable</label><br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn  busi_verification_is_reachable btn-primary <?= ($model->busi_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> Yes
+                            </label>
+                            <label class="btn busi_verification_is_reachable btn-primary <?= ($model->busi_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> No
+                            </label>
+                        </div>
+                    </div>                           
+                </div>
+                <div class="row busi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_company_name_board')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
-                <div class="row">
+                <div class="row busi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_years_in_business')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
                 </div>
 
-                <div class="row">                            
+                <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
                 </div>
 
-                <div class="row">
+                <div class="row busi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_area')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>                            
                 </div>
 
-                <div class="row">                            
+                <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3">
                         <label>Activity Seen</label><br>
@@ -605,9 +618,11 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                 </div>
-
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-9 busi_verification_enable"><?= $form->field($model, 'busi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 busi_verification_disable">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -637,11 +652,11 @@ $loantypes->id = $model->loan_type_id;
                     </div>                      
                 </div>
 
-                <div class="row">                            
+                <div class="row busi_verification_disable">                            
                     <div class="col-lg-12"><?= $form->field($model, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
-                <div class="row">
+                <div class="row  busi_verification_disable">
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="btn-group" data-toggle="buttons">
@@ -1892,17 +1907,34 @@ $this->registerJs("
 <script type="text/javascript">
     jQuery(document).ready(function () {
         var resiChecked = $('input[name="Applications[resi_is_reachable]"]').filter(":checked").val();
-        if (resiChecked == 1) {
-            $(".resi_verification_enable").show();
-            $(".resi_verification_disable").hide();
-        } else {
-            $(".resi_verification_disable").show();
-            $(".resi_verification_enable").hide();
+        autoShowHide(resiChecked);
+        var resiChecked = $('input[name="Applications[busi_is_reachable]"]').filter(":checked").val();
+        autoShowHide(resiChecked);
+        function autoShowHide(resiChecked) {
+            if (resiChecked == 1) {
+                $(".resi_verification_enable").show();
+                $(".resi_verification_disable").hide();
+            } else {
+                $(".resi_verification_disable").show();
+                $(".resi_verification_enable").hide();
+            }
         }
         $('input[name="Applications[resi_is_reachable]"]').change(function () {
+
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
+            showHide(value, hideValue, enableValue);
+        });
+        $('input[name="Applications[busi_is_reachable]"]').change(function () {
+            var value = $(this).filter(":checked").val();
+            var hideValue = $(this).attr('rel');
+            var enableValue = $(this).attr('active');
+            showHide(value, hideValue, enableValue);
+        });
+
+
+        function showHide(value, hideValue, enableValue) {
             if (value == 1) {
                 $("." + hideValue).hide();
                 $("." + enableValue).show();
@@ -1910,8 +1942,6 @@ $this->registerJs("
                 $("." + hideValue).show();
                 $("." + enableValue).hide();
             }
-
-
-        });
+        }
     });
 </script>
