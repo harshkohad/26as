@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\modules\manage_mobile_app\models\TblMobileUsersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = "Template Headers";
+$this->title = "Institute Template Headers : ". $institute_name;
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJsFile(
         Yii::$app->request->BaseUrl . '/js/jquery.tokeninput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
@@ -20,44 +20,34 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
 <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
 <section class="panel">
     <div class="panel-body">
-
-        <h1><?= Html::encode("Institute Name :-" . $institute_name) ?></h1>
         <p>
-            <?= Html::Button('Add Header', ['class' => 'btn btn-success', 'id' => 'create_header']) ?></p>
-        <div class="col-lg-12" style="text-align: center;">
-
-        </div>
-        <div class="col-lg-12" style="text-align: center;">
-            <?= Html::Button('Add', ['class' => 'btn-primary btn', 'id' => 'save_button']) ?>
+            <?= Html::Button('Add Header', ['class' => 'btn btn-success', 'id' => 'create_header']) ?>
+            <?= Html::Button('Submit', ['class' => 'btn btn-info', 'id' => 'save_button']) ?>
             <?= Html::a('download', ['institute-header-template/download-application'], ['class' => 'btn-primary btn']) ?>
+        </p>       
+        <div>
+            <table class="kv-grid-table table table-bordered table-striped kv-table-wrap">
+               <thead>
+                   <tr>
+                       <th  width="220px">Header</th>
+                       <th width="220px">Fields</th width="220px">
+
+                   </tr>
+               </thead>
+               <tbody>
+                   <?php foreach ($details as $key => $detail) { ?>
+
+                       <tr>
+                           <td><div class="form-group">
+                                   <input type="text" name="institute_header[]" class="form-control" readonly value='<?php echo $detail['header']; ?>'>
+                               </div></td>
+                           <td><input type="text" class="form-control" name ="institute_value[]" readonly value='<?php echo $detail['field']; ?>'/></td>
+                       </tr>
+
+                   <?php } ?>
+               </tbody>
+           </table>
         </div>
-        <div class="container text-center">
-            <table class="table table-bordered pagin-table">
-                <thead>
-                    <tr>
-                        <th  width="220px">Header</th>
-                        <th width="220px">Fields</th width="220px">
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($details as $key => $detail) { ?>
-
-                        <tr>
-                            <td><div class="form-group">
-                                    <input type="text" name="institute_header[]" class="form-control" readonly value='<?php echo $detail['header']; ?>'>
-                                </div></td>
-                            <td><input type="text" class="form-control" name ="institute_value[]" readonly value='<?php echo $detail['field']; ?>'/></td>
-                        </tr>
-
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-
-
-
-        </p>
     </div>
 </section>
 <?php ActiveForm::end(); ?>
