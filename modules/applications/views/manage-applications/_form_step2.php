@@ -58,7 +58,7 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                            ?></div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                              ?></div>
         </div>
     </div>
 </section>
@@ -445,10 +445,10 @@ $loantypes->id = $model->loan_type_id;
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn  resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable"> Reachable
+                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Reachable
                             </label>
                             <label class="btn resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable"> Not Reachable
+                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Not Reachable
                             </label>
                         </div>
                     </div>                           
@@ -498,7 +498,9 @@ $loantypes->id = $model->loan_type_id;
                         </div>
                     </div>                           
                 </div>
-
+                <div class="row">
+                    <div class="col-lg-9 resi_verification_enable"><?= $form->field($model, 'resi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                </div>    
                 <div class="row">
                     <div class="col-lg-6 resi_verification_disable">
                         <div class="panel panel-default cust-panel">
@@ -531,7 +533,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-9"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 resi_verification_disable"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 resi_verification_disable">
                         <label>Status</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -588,21 +590,21 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>                            
                 </div>
 
-                        <div class="row">                            
-                            <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3">
-                                <label>Activity Seen</label><br>
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 0) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
-                                    </label>
-                                    <label class="btn btn-primary <?= ($model->busi_activity_seen == 1) ? 'active' : '' ?>">
-                                        <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                <div class="row">                            
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3">
+                        <label>Activity Seen</label><br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary <?= ($model->busi_activity_seen == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
+                            </label>
+                            <label class="btn btn-primary <?= ($model->busi_activity_seen == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
+                            </label>
                         </div>
+                    </div>
+                    <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                </div>
 
                 <div class="row">
                     <div class="col-lg-6">
@@ -809,7 +811,7 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"></div>
                 </div>
             </div>
-            
+
             <!--Builder Profile-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -889,7 +891,7 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                 </div>
             </div>
-            
+
             <!--Property(APF)-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -933,7 +935,7 @@ $loantypes->id = $model->loan_type_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="office_photos">
-<?php echo $propertyApfPhotosTable; ?>
+                                            <?php echo $propertyApfPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -942,7 +944,7 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                 </div>
             </div>
-            
+
             <!--Individual Property-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -980,7 +982,7 @@ $loantypes->id = $model->loan_type_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="office_photos">
-<?php echo $indivPropertyPhotosTable; ?>
+                                            <?php echo $indivPropertyPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -1126,7 +1128,7 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-6"><?= $form->field($model, 'bank_narration')->textInput(['maxlength' => true]) ?></div>
                 </div>
             </div>
-            
+
             <!--NOC (Society)-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -1156,7 +1158,7 @@ $loantypes->id = $model->loan_type_id;
                                     </div>
                                     <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                         <div id="office_photos">
-<?php echo $nocSocPhotosTable; ?>
+                                            <?php echo $nocSocPhotosTable; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -1889,14 +1891,24 @@ $this->registerJs("
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-
+        var resiChecked = $('input[name="Applications[resi_is_reachable]"]').filter(":checked").val();
+        if (resiChecked == 1) {
+            $(".resi_verification_enable").show();
+            $(".resi_verification_disable").hide();
+        } else {
+            $(".resi_verification_disable").show();
+            $(".resi_verification_enable").hide();
+        }
         $('input[name="Applications[resi_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
+            var enableValue = $(this).attr('active');
             if (value == 1) {
                 $("." + hideValue).hide();
+                $("." + enableValue).show();
             } else {
                 $("." + hideValue).show();
+                $("." + enableValue).hide();
             }
 
 
