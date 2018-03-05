@@ -121,4 +121,39 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         return false;
     }
 
+    public function downloadCsvFile($institute_id, $start_date = '', $end_date = '') {
+        if (!empty($institute_id)) {
+            $modelTemplate = new InstituteHeaderTemplate();
+            $teplateData = $modelTemplate->findOne(['institute_id' => $institute_id]);
+            if (!empty($teplateData)) {
+                $fields = $teplateData['final_fields'];
+                $fields = json_decode($fields);
+                $select = "";
+                foreach ($fields as $key => $value) {
+                    $header[] = $key;
+                    if (preg_match("/(,)/", $value)) {
+                        $value = str_replace(",", ",' ',", $value);
+                    }
+                    $name = str_replace(" ", "_", $key);
+                    if (empty($select))
+                        $select .= "concat($value) as $name";
+                    else
+                        $select .= ",concat($value) as $name";
+                }
+
+                $where = "";
+                if (!empty($start_date))
+                    $where .= " AND date(created_on)>='{$start_date}'";
+                if (!empty($end_date))
+                    $where .= " AND date(created_on)<='{$end_date}'";
+                $sql = "select $select from tbl_applications where institute_id=$institute_id $where";
+                $finalData = array();
+                $results = Yii::$app->db->createCommand($sql)->queryAll();
+                $isDownload = $this->downloadFile($header, $results);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
