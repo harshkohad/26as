@@ -58,7 +58,7 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                             ?></div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                               ?></div>
         </div>
     </div>
 </section>
@@ -858,37 +858,6 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"></div>
                 </div>
             </div>
-
-            <!--Builder Profile-->
-            <div class="panel panel-default cust-panel">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
-                    </h4>
-                </div>
-                <div id="builder_profile" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'Shopline', '2' => 'Commercial', '3' => 'Independent', '4' => 'Residential'], ['prompt' => 'Select Type of Office']) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -902,26 +871,42 @@ $loantypes->id = $model->loan_type_id;
         <div id="builder_profile" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
+                    <div class="col-lg-3">
+                        <label>Is Reachable</label><br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn  builder_profile_verification_is_reachable btn-primary <?= ($model->builder_profile_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[builder_profile_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> Yes
+                            </label>
+                            <label class="btn builder_profile_verification_is_reachable btn-primary <?= ($model->builder_profile_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[builder_profile_is_reachable]" autocomplete="off" <?= ($model->builder_profile_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> No
+                            </label>
+                        </div>
+                    </div>                           
+                </div>
+                <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
                 </div>
-                <div class="row">
+                <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
                 </div>
-                <div class="row">
+                <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Type of Office']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_2')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9 builder_profile_verification_enable"><?= $form->field($model, 'builder_profile_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 builder_profile_verification_disable"><?= $form->field($model, 'builder_profile_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 builder_profile_verification_disable"></div>
                     <div class="col-lg-6">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
@@ -2010,8 +1995,8 @@ $this->registerJs("
         autoShowHide(resiChecked, "office");
         var resiChecked = $('input[name="Applications[resi_office_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "resi_office");
-//        var resiChecked = $('input[name="Applications[builder_profile_is_reachable]"]').filter(":checked").val();
-//        autoShowHide(resiChecked, "builder_profile");
+        var resiChecked = $('input[name="Applications[builder_profile_is_reachable]"]').filter(":checked").val();
+        autoShowHide(resiChecked, "builder_profile");
         var resiChecked = $('input[name="Applications[property_apf_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "property_apf");
         var resiChecked = $('input[name="Applications[indiv_property_is_reachable]"]').filter(":checked").val();
@@ -2078,12 +2063,12 @@ $this->registerJs("
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-//        $('input[name="Applications[builder_profile_is_reachable]"]').change(function () {
-//            var value = $(this).filter(":checked").val();
-//            var hideValue = $(this).attr('rel');
-//            var enableValue = $(this).attr('active');
-//            showHide(value, hideValue, enableValue);
-//        });
+        $('input[name="Applications[builder_profile_is_reachable]"]').change(function () {
+            var value = $(this).filter(":checked").val();
+            var hideValue = $(this).attr('rel');
+            var enableValue = $(this).attr('active');
+            showHide(value, hideValue, enableValue);
+        });
 
 
         function showHide(value, hideValue, enableValue) {
