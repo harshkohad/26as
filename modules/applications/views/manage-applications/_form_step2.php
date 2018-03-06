@@ -811,37 +811,6 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"></div>
                 </div>
             </div>
-
-            <!--Builder Profile-->
-            <div class="panel panel-default cust-panel">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
-                    </h4>
-                </div>
-                <div id="builder_profile" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'Shopline', '2' => 'Commercial', '3' => 'Independent', '4' => 'Residential'], ['prompt' => 'Select Type of Office']) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
