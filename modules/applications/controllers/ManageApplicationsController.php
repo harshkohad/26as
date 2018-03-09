@@ -220,7 +220,6 @@ class ManageApplicationsController extends Controller {
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
-
         if (Yii::$app->request->post()) {
 //            echo '<pre>';
 //            print_r(Yii::$app->request->post());
@@ -237,91 +236,109 @@ class ManageApplicationsController extends Controller {
             $model->property_apf_address_verification = isset($_POST['Applications']['property_apf_address_verification'][0]) ? $_POST['Applications']['property_apf_address_verification'][0] : 0;
             $model->indiv_property_address_verification = isset($_POST['Applications']['indiv_property_address_verification'][0]) ? $_POST['Applications']['indiv_property_address_verification'][0] : 0;
             $model->noc_soc_address_verification = isset($_POST['Applications']['noc_soc_address_verification'][0]) ? $_POST['Applications']['noc_soc_address_verification'][0] : 0;
-            
+
             //Lat long
-            if($model->resi_address_verification == 1) {
+            if ($model->resi_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['resi_address_pincode'], $_POST['Applications']['resi_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->resi_address_lat = $latlong['latitude'];
                     $model->resi_address_long = $latlong['longitude'];
                 }
             }
-            if($model->office_address_verification == 1) {
+            if ($model->office_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['office_address_pincode'], $_POST['Applications']['office_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->office_address_lat = $latlong['latitude'];
                     $model->office_address_long = $latlong['longitude'];
                 }
             }
-            if($model->busi_address_verification == 1) {
+            if ($model->busi_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['busi_address_pincode'], $_POST['Applications']['busi_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->busi_address_lat = $latlong['latitude'];
                     $model->busi_address_long = $latlong['longitude'];
                 }
             }
-            if($model->noc_address_verification == 1) {
+            if ($model->noc_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['noc_address_pincode'], $_POST['Applications']['noc_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->noc_address_lat = $latlong['latitude'];
                     $model->noc_address_long = $latlong['longitude'];
                 }
             }
-            if($model->resi_office_address_verification == 1) {
+            if ($model->resi_office_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['resi_office_address_pincode'], $_POST['Applications']['resi_office_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->resi_office_address_lat = $latlong['latitude'];
                     $model->resi_office_address_long = $latlong['longitude'];
                 }
             }
-            if($model->builder_profile_address_verification == 1) {
+            if ($model->builder_profile_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['builder_profile_address_pincode'], $_POST['Applications']['builder_profile_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->builder_profile_address_lat = $latlong['latitude'];
                     $model->builder_profile_address_long = $latlong['longitude'];
                 }
             }
-            if($model->property_apf_address_verification == 1) {
+            if ($model->property_apf_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['property_apf_address_pincode'], $_POST['Applications']['property_apf_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->property_apf_address_lat = $latlong['latitude'];
                     $model->property_apf_address_long = $latlong['longitude'];
                 }
             }
-            if($model->indiv_property_address_verification == 1) {
+            if ($model->indiv_property_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['indiv_property_address_pincode'], $_POST['Applications']['indiv_property_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->indiv_property_address_lat = $latlong['latitude'];
                     $model->indiv_property_address_long = $latlong['longitude'];
                 }
             }
-            if($model->noc_soc_address_verification == 1) {
+            if ($model->noc_soc_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['noc_soc_address_pincode'], $_POST['Applications']['noc_soc_address']);
-                
-                if(!empty($latlong)) {
+
+                if (!empty($latlong)) {
                     $model->noc_soc_address_lat = $latlong['latitude'];
                     $model->noc_soc_address_long = $latlong['longitude'];
                 }
             }
+            $model->load(Yii::$app->request->post());
+            if (!empty($_POST['Applications']['resi_not_reachable_remarks']))
+                $model->resi_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['resi_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
+                $model->busi_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['office_not_reachable_remarks']))
+                $model->office_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['resi_office_not_reachable_remarks']))
+                $model->resi_office_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['builder_profile_not_reachable_remarks']))
+                $model->builder_profile_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['builder_profile_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['property_apf_not_reachable_remarks']))
+                $model->property_apf_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['property_apf_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['indiv_property_not_reachable_remarks']))
+                $model->indiv_property_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['indiv_property_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
+                $model->noc_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
+            
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 var_dump($model->errors);
@@ -391,7 +408,7 @@ class ManageApplicationsController extends Controller {
                             <th>Assesement year (YYYY-YYYY)</th>
                             <th>Remarks</th>';
         $colspan = 6;
-        if($getHtml == 0) {
+        if ($getHtml == 0) {
             $return_html .= '<th><button type="button" class="btn btn-primary addMoreItr"><i class="fa fa-plus"></i></button></th>';
             $colspan = 7;
         }
@@ -405,26 +422,26 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<td>' . $itr_data['acknowledgement_no'] . '</td>';
                 $return_html .= '<td>' . $itr_data['assessment_year'] . '</td>';
                 $return_html .= '<td>' . $itr_data['remarks'] . '</td>';
-                if($getHtml == 0) {
+                if ($getHtml == 0) {
                     $return_html .= '<td><button type="button" class="btn btn-danger deleteItr" value="' . $itr_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
                 }
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
-            $return_html .= '<td colspan='.$colspan.'>No records Found!!!</td>';
+            $return_html .= '<td colspan=' . $colspan . '>No records Found!!!</td>';
             $return_html .= '</tr>';
         }
-        
+
         $return_html .= '</table>';
 
         return $return_html;
     }
-    
+
     public function actionAddItr() {
         if (!empty($_POST)) {
             $data = $_POST;
-            
+
             $application_id = $data['application_id'];
             $total_income = $data['total_income'];
             $date_of_filing = $data['date_of_filing'];
@@ -432,10 +449,10 @@ class ManageApplicationsController extends Controller {
             $acknowledgement_no = $data['acknowledgement_no'];
             $assessment_year = $data['assessment_year'];
             $created_by = Yii::$app->user->id;
-            
+
             #Add data to noc
             $itr_model = new Itr();
-            
+
             $itr_model->application_id = $application_id;
             $itr_model->total_income = $total_income;
             $itr_model->date_of_filing = $date_of_filing;
@@ -444,12 +461,12 @@ class ManageApplicationsController extends Controller {
             $itr_model->assessment_year = $assessment_year;
             $itr_model->created_by = $created_by;
             $itr_model->save(FALSE);
-            
+
             return 'Successfully Added!!!';
         }
         return 'Something went wrong!!!';
     }
-    
+
     public function actionDeleteItr() {
         if (!empty($_POST)) {
             $id = $_POST['record_id'];
@@ -506,7 +523,7 @@ class ManageApplicationsController extends Controller {
                             <th>Designation</th>
                             <th>Remarks</th>';
         $colspan = 3;
-        if($getHtml == 0) {
+        if ($getHtml == 0) {
             $return_html .= '<th><button type="button" class="btn btn-primary addMoreNoc"><i class="fa fa-plus"></i></button></th>';
             $colspan = 4;
         }
@@ -517,14 +534,14 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<td>' . $noc_data['met_person'] . '</td>';
                 $return_html .= '<td>' . $noc_data['designation'] . '</td>';
                 $return_html .= '<td>' . $noc_data['remarks'] . '</td>';
-                if($getHtml == 0) {
+                if ($getHtml == 0) {
                     $return_html .= '<td><button type="button" class="btn btn-danger deleteNoc" value="' . $noc_data['id'] . '"><i class="fa fa-trash-o"></i></button></td>';
                 }
                 $return_html .= '</tr>';
             }
         } else {
             $return_html .= '<tr>';
-            $return_html .= '<td colspan='.$colspan.'>No records Found!!!</td>';
+            $return_html .= '<td colspan=' . $colspan . '>No records Found!!!</td>';
             $return_html .= '</tr>';
         }
 
@@ -532,17 +549,17 @@ class ManageApplicationsController extends Controller {
 
         return $return_html;
     }
-    
+
     public function actionAddNoc() {
         if (!empty($_POST)) {
             $data = $_POST;
-            
+
             $application_id = $data['application_id'];
             $met_person = $data['noc_met_person'];
             $designation = $data['noc_designation'];
             $remarks = $data['noc_remarks'];
             $created_by = Yii::$app->user->id;
-            
+
             #Add data to noc
             $noc_model = new Noc();
 
@@ -552,12 +569,12 @@ class ManageApplicationsController extends Controller {
             $noc_model->remarks = $remarks;
             $noc_model->created_by = $created_by;
             $noc_model->save(FALSE);
-            
+
             return 'Successfully Added!!!';
         }
         return 'Something went wrong!!!';
     }
-    
+
     public function actionDeleteNoc() {
         if (!empty($_POST)) {
             $id = $_POST['record_id'];
@@ -974,16 +991,16 @@ class ManageApplicationsController extends Controller {
         if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
             $applications_model = Applications::findOne($app_id);
-            if ($applications_model->resi_address_verification == 1 || 
-                    $applications_model->busi_address_verification == 1 || 
-                    $applications_model->office_address_verification == 1 || 
-                    $applications_model->noc_address_verification == 1 || 
-                    $applications_model->resi_office_address_verification == 1 || 
-                    $applications_model->builder_profile_address_verification == 1 || 
-                    $applications_model->property_apf_address_verification == 1 || 
-                    $applications_model->indiv_property_address_verification == 1 || 
+            if ($applications_model->resi_address_verification == 1 ||
+                    $applications_model->busi_address_verification == 1 ||
+                    $applications_model->office_address_verification == 1 ||
+                    $applications_model->noc_address_verification == 1 ||
+                    $applications_model->resi_office_address_verification == 1 ||
+                    $applications_model->builder_profile_address_verification == 1 ||
+                    $applications_model->property_apf_address_verification == 1 ||
+                    $applications_model->indiv_property_address_verification == 1 ||
                     $applications_model->noc_soc_address_verification == 1
-                    ) {
+            ) {
                 if ($applications_model->resi_address_verification == 1) {
                     self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $return_html);
                 }
@@ -1370,4 +1387,5 @@ class ManageApplicationsController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+
 }
