@@ -772,7 +772,7 @@ $loantypes->id = $model->loan_type_id;
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn  resi_office_verification_is_reachable btn-primary <?= ($model->resi_office_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> Yes
+                                <input type="radio" name="Applications[resi_office_is_reachable]" autocomplete="off" <?= ($model->resi_office_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> Yes
                             </label>
                             <label class="btn resi_office_verification_is_reachable btn-primary <?= ($model->resi_office_is_reachable == 1) ? 'active' : '' ?>">
                                 <input type="radio" name="Applications[resi_office_is_reachable]" autocomplete="off" <?= ($model->resi_office_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> No
@@ -940,7 +940,7 @@ $loantypes->id = $model->loan_type_id;
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn  property_apf_verification_is_reachable btn-primary <?= ($model->property_apf_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[property_apf_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> Yes
+                                <input type="radio" name="Applications[property_apf_is_reachable]" autocomplete="off" <?= ($model->property_apf_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> Yes
                             </label>
                             <label class="btn property_apf_verification_is_reachable btn-primary <?= ($model->property_apf_is_reachable == 1) ? 'active' : '' ?>">
                                 <input type="radio" name="Applications[property_apf_is_reachable]" autocomplete="off" <?= ($model->property_apf_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> No
@@ -1209,7 +1209,7 @@ $loantypes->id = $model->loan_type_id;
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn  noc_soc_verification_is_reachable btn-primary <?= ($model->noc_soc_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_soc_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> Yes
+                                <input type="radio" name="Applications[noc_soc_is_reachable]" autocomplete="off" <?= ($model->noc_soc_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> Yes
                             </label>
                             <label class="btn noc_soc_verification_is_reachable btn-primary <?= ($model->noc_soc_is_reachable == 1) ? 'active' : '' ?>">
                                 <input type="radio" name="Applications[noc_soc_is_reachable]" autocomplete="off" <?= ($model->noc_soc_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> No
