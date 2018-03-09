@@ -497,7 +497,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row resi_verification_enable">
                     <div class="col-lg-3">
                         <label>Reachable Remark</label>
-                        <div class="readonlydiv"><?= $model->resi_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_not_reachable_remarks', $model->resi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -531,7 +531,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>                      
                 </div>
 
-                <div class="row">
+                <div class="row resi_verification_disable">
                     <div class="col-lg-9">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_remarks') ?></label>
                         <div class="readonlydiv"><?= $model->resi_remarks ?></div>
@@ -655,7 +655,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row busi_verification_enable">                            
                     <div class="col-lg-6">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('busi_not_reachable_remarks', $model->busi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>   
                 <div class="row">
@@ -689,14 +689,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>                      
                 </div>
 
-                <div class="row">                            
+                <div class="row busi_verification_disable">                            
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
                         <div class="readonlydiv"><?= $model->busi_remarks ?></div>
                     </div>
                 </div>   
 
-                <div class="row">
+                <div class="row busi_verification_disable">
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="readonlydiv"><?= ($model->busi_status == 0) ? 'Positive' : (($model->busi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
@@ -775,7 +775,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-lg-6 office_verification_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->office_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('office_not_reachable_remarks', $model->office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -951,7 +951,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row resi_office_verification_enable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_office_not_reachable_remarks', $model->resi_office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">                           
@@ -1056,7 +1056,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row ">
                     <div class="col-lg-3 builder_profile_verification_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('builder_profile_not_reachable_remarks', $model->builder_profile_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row ">
@@ -1174,7 +1174,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row property_apf_verification_enable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('property_apf_not_reachable_remarks', $model->property_apf_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -1266,7 +1266,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row indiv_property_verification_enable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('indiv_property_not_reachable_remarks', $model->indiv_property_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -1479,7 +1479,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row noc_soc_verification_enable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_not_reachable_remarks ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('noc_soc_not_reachable_remarks', $model->noc_soc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -1517,7 +1517,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row noc_verification_enable">
                     <div class="col-lg-9">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_not_reachable_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_not_reachable_remarks ?></div>
+                        <div class="col-lg-9 noc_verification_enable"><?= \yii\bootstrap\Html::textArea('noc_not_reachable_remarks', $model->noc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -1589,3 +1589,37 @@ $this->registerJs("
             });
         });    
 ");
+?>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        var resiChecked = '<?php echo $model->resi_is_reachable; ?>'
+        autoShowHide(resiChecked, "resi");
+        var busiChecked = '<?php echo $model->busi_is_reachable; ?>'
+        autoShowHide(busiChecked, "busi");
+        var resiChecked = '<?php echo $model->office_is_reachable; ?>'
+        autoShowHide(resiChecked, "office");
+        var resiChecked = '<?php echo $model->resi_office_is_reachable; ?>'
+        autoShowHide(resiChecked, "resi_office");
+        var resiChecked = '<?php echo $model->builder_profile_is_reachable; ?>'
+        autoShowHide(resiChecked, "builder_profile");
+        var resiChecked = '<?php echo $model->property_apf_is_reachable; ?>'
+        autoShowHide(resiChecked, "property_apf");
+        var resiChecked = '<?php echo $model->indiv_property_is_reachable; ?>'
+        autoShowHide(resiChecked, "indiv_property");
+        var resiChecked = '<?php echo $model->noc_soc_is_reachable; ?>'
+        autoShowHide(resiChecked, "noc_soc");
+        var resiChecked = '<?php echo $model->noc_is_reachable; ?>'
+        autoShowHide(resiChecked, "noc");
+
+        function autoShowHide(resiChecked, source) {
+            if (resiChecked == 1) {
+                $("." + source + "_verification_enable").show();
+                $("." + source + "_verification_disable").hide();
+            } else {
+                $("." + source + "_verification_disable").show();
+                $("." + source + "_verification_enable").hide();
+            }
+        }
+    });
+</script>
