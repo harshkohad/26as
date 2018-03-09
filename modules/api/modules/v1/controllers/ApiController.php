@@ -255,7 +255,7 @@ class ApiController extends Controller {
     }
 
     public function actionUploadPhotos() {
-        $response = Api::process_api_request('UpdateSiteDetails', Yii::$app->getRequest()->getUserIP());
+        $response = Api::process_api_request('UploadPhotos', Yii::$app->getRequest()->getUserIP());
         if (!empty($response->api_usage_id)) {
             $received_data = $response->received_data;
             $app_id = (isset($received_data['app_id'])) ? $received_data['app_id'] : '';
