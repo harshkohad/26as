@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container">
 
     <?php $form = ActiveForm::begin(['id' => 'login-form', 'options' => ['class' => 'form-signin']]); ?>
-    <h2 class="form-signin-heading">sign in now</h2>
+    <h2 class="form-signin-heading"><img src="../../images/dvs_new_logo_hori_200_800.png" height="50"/></h2>
     <div class="login-wrap">
         <div class="user-login-info">
             <?= $form->field($model, 'username', ['inputOptions' => ['autofocus' => 'autofocus'], 'template' => "{input}{error}"])->textInput()->input('text', ['placeholder' => "Username"])->label(false); ?>

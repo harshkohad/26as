@@ -10,8 +10,8 @@ use yii\helpers\Html;
 <!--logo start-->
 <div class="brand">
 
-    <a href="index.html" class="logo">       
-        <!--<img src=" <?PHP echo Yii::$app->request->baseUrl;?>/images/logo.png" alt="" height="40" style="margin-left: auto; margin-right: auto;">-->
+    <a href="index.html" class="logo" style="margin: 20px 0 0 25px !important;">       
+        <img src="<?PHP echo Yii::$app->request->baseUrl;?>/images/dvs_new_logo_hori_200_800.png" alt="" height="40" style="margin-left: auto; margin-right: auto; display: block;">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
