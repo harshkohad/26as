@@ -269,7 +269,7 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['verification_id'] = $site['verification_id'];
                 $temp_array['application_id'] = $site['application_id'];
                 $temp_array['applicant_name'] = $site['applicant_name'];
-                $temp_array['verification_address'] = $site['verification_address'].', \nContact No : '. $site['mobile_no']. '/' .$site['alternate_contact_no'];
+                $temp_array['verification_address'] = $site['verification_address'].self::getContactNo($site['mobile_no'], $site['alternate_contact_no']);
                 $temp_array['verification_triggers'] = $site['verification_triggers'];
                 $temp_array['date_of_application'] = $site['date_of_application'];
                 $temp_array['verification_type_id'] = $site['verification_type_id'];
@@ -332,6 +332,21 @@ class Api extends \yii\db\ActiveRecord {
             return $return_array;
         }
         return false;
+    }
+    
+    function getContactNo($mobile_no, $alternate_contact_no) {
+        $return = '';
+        if(!empty($site['mobile_no'])) {
+            $return .= ', \nContact No : '. $site['mobile_no'];
+        }
+        if(!empty($site['alternate_contact_no'])) {
+            if(empty($return)) {
+                $return .= ', \nContact No : '.$site['alternate_contact_no'];
+            } else {
+                $return .= '/'.$site['alternate_contact_no'];
+            }
+        }        
+        return $return;
     }
     
     function getSelectionFields($verification_type) {

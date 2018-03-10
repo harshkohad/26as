@@ -1498,5 +1498,4 @@ class ManageApplicationsController extends Controller {
         
         $model->save();
     }
-
 }
