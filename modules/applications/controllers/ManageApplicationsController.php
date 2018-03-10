@@ -1355,12 +1355,13 @@ class ManageApplicationsController extends Controller {
                 if ($model->save()) {
                     #Save Application id
                     $model->application_id = self::getApplicationId($model->id);
+                    self::updateLatLong($model->id);
                     $model->save();
                     #Update status
                     $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
                     $apps_data->status = 1;
                     $apps_data->save();
-                } else {
+                } else {                 
                     throw new \Exception("Data Error!!!");
                 }
             }
@@ -1406,6 +1407,94 @@ class ManageApplicationsController extends Controller {
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
         ]);
+    }
+    
+    public function updateLatLong($id) {
+        $model = $this->findModel($id);
+        //Lat long
+        if ($model->resi_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->resi_address_pincode, $model->resi_address);
+
+            if (!empty($latlong)) {
+                $model->resi_address_lat = $latlong['latitude'];
+                $model->resi_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->office_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->office_address_pincode, $model->office_address);
+
+            if (!empty($latlong)) {
+                $model->office_address_lat = $latlong['latitude'];
+                $model->office_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->busi_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->busi_address_pincode, $model->busi_address);
+
+            if (!empty($latlong)) {
+                $model->busi_address_lat = $latlong['latitude'];
+                $model->busi_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->noc_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->noc_address_pincode, $model->noc_address);
+
+            if (!empty($latlong)) {
+                $model->noc_address_lat = $latlong['latitude'];
+                $model->noc_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->resi_office_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->resi_office_address_pincode, $model->resi_office_address);
+
+            if (!empty($latlong)) {
+                $model->resi_office_address_lat = $latlong['latitude'];
+                $model->resi_office_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->builder_profile_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->builder_profile_address_pincode, $model->builder_profile_address);
+
+            if (!empty($latlong)) {
+                $model->builder_profile_address_lat = $latlong['latitude'];
+                $model->builder_profile_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->property_apf_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->property_apf_address_pincode, $model->property_apf_address);
+
+            if (!empty($latlong)) {
+                $model->property_apf_address_lat = $latlong['latitude'];
+                $model->property_apf_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->indiv_property_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->indiv_property_address_pincode, $model->indiv_property_address);
+
+            if (!empty($latlong)) {
+                $model->indiv_property_address_lat = $latlong['latitude'];
+                $model->indiv_property_address_long = $latlong['longitude'];
+            }
+        }
+        if ($model->noc_soc_address_verification == 1) {
+            $latlong = array();
+            $latlong = Applications::getLatLong($model->noc_soc_address_pincode, $model->noc_soc_address);
+
+            if (!empty($latlong)) {
+                $model->noc_soc_address_lat = $latlong['latitude'];
+                $model->noc_soc_address_long = $latlong['longitude'];
+            }
+        }
+        
+        $model->save();
     }
 
 }
