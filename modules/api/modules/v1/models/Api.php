@@ -269,7 +269,7 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['verification_id'] = $site['verification_id'];
                 $temp_array['application_id'] = $site['application_id'];
                 $temp_array['applicant_name'] = $site['applicant_name'];
-                $temp_array['verification_address'] = $site['verification_address'];
+                $temp_array['verification_address'] = $site['verification_address'].', \nContact No : '. $site['mobile_no']. '/' .$site['alternate_contact_no'];
                 $temp_array['verification_triggers'] = $site['verification_triggers'];
                 $temp_array['date_of_application'] = $site['date_of_application'];
                 $temp_array['verification_type_id'] = $site['verification_type_id'];
