@@ -158,7 +158,7 @@ class ManageApplicationsController extends Controller {
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $post_data = Yii::$app->request->post();
+           $post_data = Yii::$app->request->post();
             if (!empty($profile_id)) {
                 $model->profile_id = $profile_id;
             } else {
@@ -170,6 +170,7 @@ class ManageApplicationsController extends Controller {
                 $new_applicant_profile->aadhaar_card_no = $post_data['Applications']['aadhaar_card_no'];
                 $new_applicant_profile->pan_card_no = $post_data['Applications']['pan_card_no'];
                 $new_applicant_profile->mobile_no = $post_data['Applications']['mobile_no'];
+                $new_applicant_profile->alternate_contact_no = $post_data['Applications']['alternate_contact_no'];
                 $new_applicant_profile->save(FALSE);
 
                 $model->profile_id = $new_applicant_profile->id;
