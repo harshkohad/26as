@@ -53,15 +53,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="readonlydiv"><?= $model->mobile_no ?></div>
             </div>
             <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('alternate_contact_no') ?></label>
+                <div class="readonlydiv"><?= $model->alternate_contact_no ?></div>
+            </div>
+            <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
                 <div class="readonlydiv"><?= $model->getInstituteNameType($model->institute_id) ?></div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_type_id') ?></label>
                 <div class="readonlydiv"><?= $model->getLoanType($model->loan_type_id) ?></div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('applicant_type') ?></label>
                 <div class="readonlydiv"><?= $model->getApplicantType($model->applicant_type) ?></div>

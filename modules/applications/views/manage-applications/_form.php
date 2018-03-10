@@ -65,11 +65,13 @@ use kartik\date\DatePicker;
     <div class="row">
         <div class="col-lg-3"><?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-lg-3"><?= $form->field($model, 'alternate_contact_no')->textInput(['maxlength' => true]) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'),['prompt'=>'Select Institute'])->label('Institute Name') ?></div>
-        <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'),['prompt'=>'Select Loan Type'])->label('Loan Type') ?></div>
+        
     </div>
 
     <div class="row">
+        <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'),['prompt'=>'Select Loan Type'])->label('Loan Type') ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'],['prompt'=>'Select Applicant Type']) ?></div>
         <div class="col-lg-3"><?= $form->field($model, 'profile_type')->dropDownList(['1' => 'Resi', '2' => 'Office', '3' => 'Resi/Office'],['prompt'=>'Select Profile Type']) ?></div>
         <div class="col-lg-3">

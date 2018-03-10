@@ -46,7 +46,7 @@ class ApplicantProfile extends ActiveRecord {
             [['itr_ack_number'], 'string', 'max' => 45],
             [['bank_account_number'], 'string', 'max' => 20],
             [['address'], 'string', 'max' => 1500],
-            [['first_name', 'middle_name', 'last_name', 'pan_card_no'], 'validateName'],
+            [['first_name', 'middle_name', 'last_name', 'pan_card_no','alternate_contact_no'], 'validateName'],
             [['mobile_no', 'aadhaar_card_no'], 'validateNumber'],
         ];
     }
