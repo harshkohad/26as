@@ -38,7 +38,7 @@ $loantypes->id = $model->loan_type_id;
             <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'alternate_contact_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-            
+
         </div>
 
         <div class="row">
@@ -60,7 +60,7 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                               ?></div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                                  ?></div>
         </div>
     </div>
 </section>
@@ -467,7 +467,7 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_relation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
@@ -790,7 +790,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
