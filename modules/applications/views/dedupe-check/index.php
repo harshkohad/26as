@@ -45,6 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <label for="inputAadhaarCard">Aadhaar Card</label>
                     <input type="text" class="form-control" id="inputAadhaarCard" name="inputAadhaarCard">
                 </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputCompanyName">Company Name</label>
+                    <input type="text" class="form-control" id="inputCompanyName" name="inputCompanyName">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" name="inputAddress">
+                </div>
             </div>    
             <div class="col-sm-12">
                 <div class="form-group text-center">
@@ -69,6 +77,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'pan_card_no',
                     'aadhaar_card_no',
                     'passport_number',
+                    'company_name',
+                    'address',
                 ],
                 'responsive' => true,
                 'hover' => true
