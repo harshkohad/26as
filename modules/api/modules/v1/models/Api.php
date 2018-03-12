@@ -336,14 +336,14 @@ class Api extends \yii\db\ActiveRecord {
     
     function getContactNo($mobile_no, $alternate_contact_no) {
         $return = '';
-        if(!empty($site['mobile_no'])) {
-            $return .= ', \nContact No : '. $site['mobile_no'];
+        if(!empty($mobile_no)) {
+            $return .= ', '.PHP_EOL.'Contact No : '. $mobile_no;
         }
-        if(!empty($site['alternate_contact_no'])) {
+        if(!empty($alternate_contact_no)) {
             if(empty($return)) {
-                $return .= ', \nContact No : '.$site['alternate_contact_no'];
+                $return .= ', '.PHP_EOL.'Contact No : '.$alternate_contact_no;
             } else {
-                $return .= '/'.$site['alternate_contact_no'];
+                $return .= ' / '.$alternate_contact_no;
             }
         }        
         return $return;
