@@ -259,20 +259,36 @@ class Applications extends \yii\db\ActiveRecord {
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure', 'resi_office_structure', 'resi_office_remarks', 'builder_profile_current_projects', 'builder_profile_previous_projects', 'busi_address_trigger', 'resi_address', 'resi_address_trigger', 'office_address', 'office_address_trigger', 'busi_address', 'noc_address', 'noc_address_trigger', 'resi_office_address', 'resi_office_address_trigger', 'builder_profile_address', 'builder_profile_address_trigger', 'property_apf_address', 'property_apf_address_trigger', 'indiv_property_address', 'indiv_property_address_trigger', 'noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
             ['aadhaar_card_no', 'string', 'max' => 12],
             ['aadhaar_card_no', 'match', 'pattern' => '/^[0-9-]+$/', 'skipOnError' => true],
-//            ['pan_card_no','validateAAdharCard'],
+            ['aadhaar_card_no', 'validateAAdharCard'],
+            ['pan_card_no', 'validatePanCard'],
                 //[['resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode'], 'string', 'max' => 10],
         ];
     }
 
     public function validateAAdharCard($attribute, $params) {
-        $regex = "/^[0-9]+$/";
-        $this->addError($attribute, 'Wrong Data.');
-        return true;
-        if (!preg_match($regex, $this->aadhaar_card_no)) {
-            $this->addError($attribute, 'Invalid data, only numbers are allowed.');
-            return true;
-        } else {
+        if (strlen($this->aadhaar_card_no) != 12) {
+            $this->addError($attribute, 'Invalid Aadhar Card.');
             return false;
+        }
+    }
+
+    public function validatePanCard($attribute, $params) {
+
+        $pattern = '/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/';
+        if (!empty($this->pan_card_no)) {
+            $result = preg_match($pattern, $this->pan_card_no);
+            if ($result) {
+                $findme = ucfirst(substr($this->pan_card_no, 3, 1));
+                $mystring = 'CPHFATBLJG';
+                $pos = strpos($mystring, $findme);
+                if ($pos === false) {
+                    $this->addError($attribute, 'Invalid Pan Card.');
+                    return FALSE;
+                }
+            } else {
+                $this->addError($attribute, 'Invalid Pan Card.');
+                return FALSE;
+            }
         }
     }
 
