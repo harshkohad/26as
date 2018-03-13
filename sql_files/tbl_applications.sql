@@ -27,3 +27,5 @@ CHANGE COLUMN `busi_area` `busi_area` INT(11) NULL DEFAULT 0 ;
 
 ALTER TABLE `acs`.`tbl_applications` 
 CHANGE COLUMN `noc_status` `noc_status` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative, 2 : Credit Refer' ;
+
+ALTER TABLE `tbl_applications` ADD `company_name` VARCHAR(100) NULL DEFAULT NULL,ADD `address` VARCHAR(500) NULL DEFAULT NULL; 

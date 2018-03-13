@@ -438,8 +438,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_relation') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_relation ?></div>
-                    </div>                                                        
+                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_relation) ?></div>
+                    </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
                         <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
@@ -849,7 +849,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_relation ?></div>
+                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_relation) ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>

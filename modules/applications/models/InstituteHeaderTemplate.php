@@ -149,6 +149,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $sql = "select $select from tbl_applications where institute_id=$institute_id $where";
                 $finalData = array();
                 $results = Yii::$app->db->createCommand($sql)->queryAll();
+                return ['data' => $results, 'columns' => $header];
                 $isDownload = $this->downloadFile($header, $results);
                 return true;
             }
