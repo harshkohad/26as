@@ -43,6 +43,7 @@ class ManageApplicationsController extends Controller {
         'Aadhaar Card No' => 'aadhaar_card_no',
         'Pan Card No' => 'pan_card_no',
         'Mobile No' => 'mobile_no',
+        'Alternate Contact No' => 'alternate_contact_no',
         'Applicant Type' => 'applicant_type',
         'Profile Type' => 'profile_type',
         'Date Of Application' => 'date_of_application',
@@ -1505,5 +1506,4 @@ class ManageApplicationsController extends Controller {
 
         $model->save();
     }
-
 }

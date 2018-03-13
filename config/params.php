@@ -10,5 +10,6 @@ return [
     'canSetGlobalCredentials' => ['sysadmin', 'admin'], // Roles which are allowdded to set global credentials
     'consumers' => require(__DIR__ . '/consumers.php'),
     'canDeleteJob' => ['sysadmin'],
-    'canPurgeQueue' => ['sysadmin']
+    'canPurgeQueue' => ['sysadmin'],
+    'GOOGLE_MAPS_API_KEY' => 'AIzaSyB9BDyVL7sIWO8H-1a7xhYhCvW5l8tCW7g'
 ];
