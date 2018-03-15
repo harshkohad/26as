@@ -475,12 +475,12 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_total_family_members')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_working_members')->textInput() ?></div>                            
                 </div>
 
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality')->dropDownList(['1' => 'Chawl', '2' => 'Residential', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div>                            
@@ -798,7 +798,7 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_total_family_members')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
                 </div>
@@ -819,7 +819,7 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_company')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Residential', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
                 </div>

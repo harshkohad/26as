@@ -26,6 +26,7 @@ use app\modules\manage_mobile_app\models\TblMobileUsers;
 use app\modules\applications\models\ApplicationsUploads;
 use app\modules\applications\models\ApplicationsUploadsSearch;
 use yii\base\ErrorException;
+use PHPExcel_Style_Fill;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -1506,4 +1507,46 @@ class ManageApplicationsController extends Controller {
 
         $model->save();
     }
+
+    public function actionDownloadExcel() {
+        $objPHPExcel = new \PHPExcel();
+        $sheet = 0;
+        $arraydata = [];
+        $objPHPExcel->setActiveSheetIndex($sheet);
+        $header = ["First Name", "Last Name"];
+        $arraydata[] = ['Prashant', 'Swami'];
+        $arraydata[] = ['XXXXXXXX', 'ABC'];
+
+        $objPHPExcel->setActiveSheetIndex(0);
+        $row = 2;
+
+
+        if (!empty($header)) {
+            $cell_name = 'A';
+            foreach ($header as $headerName) {
+                $prev_cell_name = $cell_name;
+                $objPHPExcel->getActiveSheet()->SetCellValue($cell_name . '1', $headerName);
+                $cell_name++;
+            }
+            $objPHPExcel->getActiveSheet()->getStyle('A1:' . $prev_cell_name . '1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('CCCCCCCC');
+            $objPHPExcel->getActiveSheet()->getStyle('A1:' . $prev_cell_name . '1')->getFont()->setBold(true);
+        }
+        $rowNo = 1;
+        foreach ($arraydata as $data) {
+            $cell_name = 'A';
+            $rowNo++;
+            foreach ($data as $key => $value) {
+                $objPHPExcel->getActiveSheet()->SetCellValue($cell_name . $rowNo, $value);
+                $cell_name++;
+            }
+        }
+        
+        header('Content-Type: application/vnd.ms-excel');
+        $filename = "MyExcelReport_" . date("d-m-Y-His") . ".xls";
+        header('Content-Disposition: attachment;filename=' . $filename . ' ');
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
+
 }

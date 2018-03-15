@@ -319,8 +319,8 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_met_person' => 'Met Person',
             'resi_relation' => 'Relation',
             'resi_home_area' => 'Home Area',
-            'resi_ownership_status' => 'Ownership Status',
-            'resi_ownership_status_text' => 'Ownership Status Other',
+            'resi_ownership_status' => 'Locality Type',
+            'resi_ownership_status_text' => 'Locality Type Other',
             'resi_stay_years' => 'Stay Years',
             'resi_total_family_members' => 'Total Family Members',
             'resi_working_members' => 'Working Members',
@@ -342,8 +342,8 @@ class Applications extends \yii\db\ActiveRecord {
             'busi_staff_seen' => 'Staff Seen',
             'busi_years_in_business' => 'Years In Business',
             'busi_type_of_business' => 'Type Of Business',
-            'busi_ownership_status' => 'Ownership Status',
-            'busi_ownership_status_text' => 'Ownership Status Other',
+            'busi_ownership_status' => 'Locality Type',
+            'busi_ownership_status_text' => 'Locality Type Other',
             'busi_area' => 'Area',
             'busi_locality' => 'Locality',
             'busi_locality_text' => 'Locality Other',
@@ -614,7 +614,7 @@ class Applications extends \yii\db\ActiveRecord {
                 $return = 'Chawl';
                 break;
             case 2:
-                $return = 'Residential';
+                $return = 'Building';
                 break;
             case 3:
                 $return = 'Bunglow';

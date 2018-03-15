@@ -460,7 +460,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_total_family_members') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_total_family_members ?></div>
+                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_total_family_members) ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
@@ -871,7 +871,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_total_family_members') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_total_family_members ?></div>
+                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_total_family_members) ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_working_members') ?></label>
