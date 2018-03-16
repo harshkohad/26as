@@ -29,3 +29,4 @@ ALTER TABLE `acs`.`tbl_applications`
 CHANGE COLUMN `noc_status` `noc_status` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative, 2 : Credit Refer' ;
 
 ALTER TABLE `tbl_applications` ADD `company_name` VARCHAR(100) NULL DEFAULT NULL,ADD `address` VARCHAR(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `busi_designation_others` VARCHAR(100) NULL DEFAULT NULL AFTER `busi_designation`; 

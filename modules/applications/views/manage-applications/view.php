@@ -587,8 +587,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row busi_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_designation ?></div>
+                        <div class="readonlydiv"><?= $model->getDesignation($model->busi_designation) ?></div>
                     </div>
+                    <?php if ($model->busi_designation == "6") {
+                        ?>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation_others') ?></label>
+                            <div class="readonlydiv"><?= $model->busi_designation_others; ?></div>
+                        </div>
+                    <?php }
+                    ?>
+
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_nature_of_business') ?></label>
                         <div class="readonlydiv"><?= $model->busi_nature_of_business ?></div>

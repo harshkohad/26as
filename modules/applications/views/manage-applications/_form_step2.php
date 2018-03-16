@@ -60,7 +60,7 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                                  ?></div>
+            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                                            ?></div>
         </div>
     </div>
 </section>
@@ -585,27 +585,31 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row busi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '6' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation_others')->textInput(['maxlength' => true, 'readonly' => "readonly"]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_years_in_business')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
+
                 </div>
 
                 <div class="row busi_verification_disable">                            
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
+
                 </div>
 
                 <div class="row busi_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_area')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>                            
+
                 </div>
 
                 <div class="row busi_verification_disable">                            
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>  
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3">
                         <label>Activity Seen</label><br>
@@ -2082,5 +2086,20 @@ $this->registerJs("
                 $("." + enableValue).hide();
             }
         }
+
+        var default_designation = $("#applications-busi_designation").val();
+        if (default_designation == 6) {
+            $("#applications-busi_designation_others").removeAttr("readonly");
+        } else {
+            $("#applications-busi_designation_others").attr("readonly", "readonly");
+        }
+        $("#applications-busi_designation").change(function () {
+            var designation = $(this).val();
+            if (designation == 6) {
+                $("#applications-busi_designation_others").removeAttr("readonly");
+            } else {
+                $("#applications-busi_designation_others").attr("readonly", "readonly");
+            }
+        });
     });
 </script>
