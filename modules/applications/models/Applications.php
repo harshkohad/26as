@@ -258,6 +258,7 @@ class Applications extends \yii\db\ActiveRecord {
             [['first_name', 'middle_name', 'last_name', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text', 'mobile_no', 'aadhaar_card_no'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure', 'resi_office_structure', 'resi_office_remarks', 'builder_profile_current_projects', 'builder_profile_previous_projects', 'busi_address_trigger', 'resi_address', 'resi_address_trigger', 'office_address', 'office_address_trigger', 'busi_address', 'noc_address', 'noc_address_trigger', 'resi_office_address', 'resi_office_address_trigger', 'builder_profile_address', 'builder_profile_address_trigger', 'property_apf_address', 'property_apf_address_trigger', 'indiv_property_address', 'indiv_property_address_trigger', 'noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
             ['aadhaar_card_no', 'string', 'max' => 12],
+            ['busi_designation_others', 'string', 'max' => 100],
             ['aadhaar_card_no', 'match', 'pattern' => '/^[0-9-]+$/', 'skipOnError' => true],
             ['aadhaar_card_no', 'validateAAdharCard'],
             ['pan_card_no', 'validatePanCard'],
@@ -319,8 +320,8 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_met_person' => 'Met Person',
             'resi_relation' => 'Relation',
             'resi_home_area' => 'Home Area',
-            'resi_ownership_status' => 'Ownership Status',
-            'resi_ownership_status_text' => 'Ownership Status Other',
+            'resi_ownership_status' => 'Address type',
+            'resi_ownership_status_text' => 'Address type Other',
             'resi_stay_years' => 'Stay Years',
             'resi_total_family_members' => 'Total Family Members',
             'resi_working_members' => 'Working Members',
@@ -342,8 +343,8 @@ class Applications extends \yii\db\ActiveRecord {
             'busi_staff_seen' => 'Staff Seen',
             'busi_years_in_business' => 'Years In Business',
             'busi_type_of_business' => 'Type Of Business',
-            'busi_ownership_status' => 'Ownership Status',
-            'busi_ownership_status_text' => 'Ownership Status Other',
+            'busi_ownership_status' => 'Address type',
+            'busi_ownership_status_text' => 'Address type Other',
             'busi_area' => 'Area',
             'busi_locality' => 'Locality',
             'busi_locality_text' => 'Locality Other',
@@ -614,7 +615,7 @@ class Applications extends \yii\db\ActiveRecord {
                 $return = 'Chawl';
                 break;
             case 2:
-                $return = 'Residential';
+                $return = 'Building';
                 break;
             case 3:
                 $return = 'Bunglow';
@@ -877,6 +878,16 @@ class Applications extends \yii\db\ActiveRecord {
         if (!empty($relation_id)) {
             if (isset($relations[$relation_id])) {
                 return $relations[$relation_id];
+            }
+            return "";
+        }
+    }
+
+    public function getDesignation($designation_id) {
+        $designations = ['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '6' => 'Others'];
+        if (!empty($designation_id)) {
+            if (isset($designations[$designation_id])) {
+                return $designations[$designation_id];
             }
             return "";
         }

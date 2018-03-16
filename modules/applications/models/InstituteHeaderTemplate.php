@@ -6,6 +6,7 @@ use yii\data\ActiveDataProvider;
 use Yii;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
+use PHPExcel_Style_Fill;
 
 /**
  * This is the model class for table "tbl_institute_header_template".
@@ -102,21 +103,40 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
     }
 
-    public function downloadFile($header, $data) {
-        if (!empty($data)) {
-            ob_get_clean();
-            header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=applications.csv");
-            header("Pragma: no-cache");
-            header("Expires: 0");
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $header);
-//fputcsv($file, array(1, 2, 4));
-            foreach ($data as $row) {
-                fputcsv($file, $row);
+    public function downloadFile($header, $arraydata) {
+        if (!empty($arraydata)) {
+            $objPHPExcel = new \PHPExcel();
+            $sheet = 0;
+            $objPHPExcel->setActiveSheetIndex($sheet);
+            $row = 2;
+
+
+            if (!empty($header)) {
+                $cell_name = 'A';
+                foreach ($header as $headerName) {
+                    $prev_cell_name = $cell_name;
+                    $objPHPExcel->getActiveSheet()->SetCellValue($cell_name . '1', $headerName);
+                    $cell_name++;
+                }
+                $objPHPExcel->getActiveSheet()->getStyle('A1:' . $prev_cell_name . '1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('CCCCCCCC');
+                $objPHPExcel->getActiveSheet()->getStyle('A1:' . $prev_cell_name . '1')->getFont()->setBold(true);
             }
-            $file = fopen('php://output', 'w');
-            exit();
+            $rowNo = 1;
+            foreach ($arraydata as $data) {
+                $cell_name = 'A';
+                $rowNo++;
+                foreach ($data as $key => $value) {
+                    $objPHPExcel->getActiveSheet()->SetCellValue($cell_name . $rowNo, $value);
+                    $cell_name++;
+                }
+            }
+
+            header('Content-Type: application/vnd.ms-excel');
+            $filename = "Institutes_Data_" . date("d-m-Y-His") . ".xls";
+            header('Content-Disposition: attachment;filename=' . $filename . ' ');
+            header('Cache-Control: max-age=0');
+            $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            $objWriter->save('php://output');
         }
         return false;
     }
