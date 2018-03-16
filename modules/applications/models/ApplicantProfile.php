@@ -45,8 +45,9 @@ class ApplicantProfile extends ActiveRecord {
             [['mobile_no'], 'string', 'max' => 15],
             [['itr_ack_number'], 'string', 'max' => 45],
             [['bank_account_number'], 'string', 'max' => 20],
+            [['company_name'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 1500],
-            [['first_name', 'middle_name', 'last_name', 'pan_card_no','alternate_contact_no'], 'validateName'],
+            [['first_name', 'middle_name', 'last_name', 'pan_card_no', 'alternate_contact_no'], 'validateName'],
             [['mobile_no', 'aadhaar_card_no'], 'validateNumber'],
         ];
     }
@@ -115,15 +116,19 @@ class ApplicantProfile extends ActiveRecord {
         if (!empty($data['inputAadhaarCard'])) {
             $query_condition["aadhaar_card_no"] = $data['inputAadhaarCard'];
         }
-        if (!empty($query_condition)) {
+        if (!empty($query_condition) OR ! empty($data['inputCompanyName'])) {
             $query = ApplicantProfile::find()->where($query_condition);
+            if (!empty($data['inputCompanyName'])) {
+                $query->andFilterWhere(['LIKE', 'company_name', $data['inputCompanyName']]);
+            }
         } else {
             $query = ApplicantProfile::find();
             $query->where('0=1');
-        }            
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
         return $dataProvider;
     }
+
 }

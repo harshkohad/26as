@@ -167,21 +167,26 @@ class ManageApplicationsController extends Controller {
      * @return mixed
      */
     public function actionCreate($profile_id = NULL) {
+        error_reporting(E_ALL);
+        ini_set("display_errors", 1);
         $model = new Applications();
         $institutes = new Institutes();
         $loantypes = new LoanTypes();
         $area_model = new Area();
-
         if (!empty($profile_id)) {
             $applicant_profile = ApplicantProfile::find($profile_id)->one();
             $data = $applicant_profile->attributes;
             $model->setAttributes($data);
         }
 
-        if ($model->load(Yii::$app->request->post())) {
-           $post_data = Yii::$app->request->post();
+        $errors = [];
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $post_data = Yii::$app->request->post();
             if (!empty($profile_id)) {
+                $new_applicant_profile = new ApplicantProfile();
+                $new_applicant_profile->attributes = $post_data['Applications'];
                 $model->profile_id = $profile_id;
+                $new_applicant_profile->save(FALSE);
             } else {
                 #create profile
                 $new_applicant_profile = new ApplicantProfile();
@@ -204,11 +209,13 @@ class ManageApplicationsController extends Controller {
                 return $this->redirect(['update', 'id' => $model->id, 'step2' => $step2]);
             }
         } else {
+            $errors[] = $model->getErrors();
             return $this->render('create', [
                         'model' => $model,
                         'institutes' => $institutes,
                         'loantypes' => $loantypes,
                         'area_model' => $area_model,
+                        'errors' => $errors,
             ]);
         }
     }
@@ -342,23 +349,24 @@ class ManageApplicationsController extends Controller {
                 }
             }
             $model->load(Yii::$app->request->post());
+
             if (!empty($_POST['Applications']['resi_not_reachable_remarks']))
-                $model->resi_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['resi_not_reachable_remarks']);
+                $model->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
-                $model->busi_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
+                $model->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['office_not_reachable_remarks']))
-                $model->office_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
+                $model->office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
             if (!empty($_POST['Applications']['resi_office_not_reachable_remarks']))
-                $model->resi_office_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
+                $model->resi_office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
             if (!empty($_POST['Applications']['builder_profile_not_reachable_remarks']))
-                $model->builder_profile_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['builder_profile_not_reachable_remarks']);
+                $model->builder_profile_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['builder_profile_not_reachable_remarks']);
             if (!empty($_POST['Applications']['property_apf_not_reachable_remarks']))
-                $model->property_apf_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['property_apf_not_reachable_remarks']);
+                $model->property_apf_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['property_apf_not_reachable_remarks']);
             if (!empty($_POST['Applications']['indiv_property_not_reachable_remarks']))
-                $model->indiv_property_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['indiv_property_not_reachable_remarks']);
+                $model->indiv_property_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['indiv_property_not_reachable_remarks']);
             if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
-                $model->noc_not_reachable_remarks = str_replace ("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
-            
+                $model->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
+
 
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -1363,7 +1371,7 @@ class ManageApplicationsController extends Controller {
                     $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
                     $apps_data->status = 1;
                     $apps_data->save();
-                } else {                 
+                } else {
                     throw new \Exception("Data Error!!!");
                 }
             }
@@ -1410,7 +1418,7 @@ class ManageApplicationsController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     public function updateLatLong($id) {
         $model = $this->findModel($id);
         //Lat long
@@ -1495,7 +1503,7 @@ class ManageApplicationsController extends Controller {
                 $model->noc_soc_address_long = $latlong['longitude'];
             }
         }
-        
+
         $model->save();
     }
 }
