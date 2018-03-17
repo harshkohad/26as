@@ -6,6 +6,7 @@ use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
 use app\modules\applications\models\Area;
 use app\modules\applications\models\ApplicationsVerifiers;
+use app\modules\manage_mobile_app\models\TblMobileUsers;
 use Yii;
 
 /**
@@ -891,6 +892,34 @@ class Applications extends \yii\db\ActiveRecord {
             }
             return "";
         }
+    }
+    
+    public function verificationStatus($id, $type) {
+        $return_data = '';
+        #get data
+        $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        $tag = '';        
+        if(!empty($table_data)) {
+            $verifier_data = TblMobileUsers::find($table_data['mobile_user_id'])->one();
+            switch ($table_data['mobile_user_status']) {
+                case 1:
+                    $tag = '<div style="float:right;"><span class="badge bg-purple">IN PROGRESS</span> : '.$verifier_data->field_agent_name.'</div>';
+                    break;
+                case 2:
+                    $tag = '<div style="float:right;"><span class="badge" style="background: #a9d86e !important;">COMPLETED</span> : '.$verifier_data->field_agent_name.'</div>';
+                    break;
+                default :
+                    $tag = '<div style="float:right;"><span class="badge" style="background: #FCB322 !important;">ASSIGNED</span> : '.$verifier_data->field_agent_name.'</div>';
+                    break;
+            }
+            $return_data = $tag;
+        }
+        if(empty($tag)) {
+            $return_data = '<div style="float:right;"><span class="badge" style="background: #ff6c60 !important;">NOT-ASSIGNED</span></div>';
+        }
+        
+        return $return_data;
     }
 
 }

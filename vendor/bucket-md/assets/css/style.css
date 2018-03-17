@@ -5716,3 +5716,11 @@ right: -1px;
 }
 
 .readonlydiv {width: 100%;height: 34px;padding: 6px 12px;font-size: 14px;border-color: #d2d6de;background-color: #eee;border: 1px solid #d2d6de; margin-bottom: 15px;}
+
+.panel-default > .panel-heading .badge .bg-purple {
+    background: #62527f !important;
+}
+
+.map_marker {
+    cursor: pointer !important; 
+}

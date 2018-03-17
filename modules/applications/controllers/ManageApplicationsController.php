@@ -1548,5 +1548,18 @@ class ManageApplicationsController extends Controller {
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
     }
-
+    
+    public function actionMapDetails() {
+        $return_data = '';
+        $data = $_POST;
+        $id = $data['record_id'];
+        $type = $data['section_id'];
+        #get data
+        $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        if(!empty($table_data)) {
+            $return_data = '{"latitude":"'.$table_data['latitude'].'", "longitude":"'.$table_data['longitude'].'"}';
+        }
+        return $return_data;
+    }
 }
