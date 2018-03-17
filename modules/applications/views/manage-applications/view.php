@@ -1768,6 +1768,7 @@ $this->params['breadcrumbs'][] = 'View';
     </div>
 </div>
 
+<!-- Image pop-->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">              
@@ -1779,6 +1780,20 @@ $this->params['breadcrumbs'][] = 'View';
     </div>
 </div> 
 
+<!-- Map-->
+<div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px !important;">
+        <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="mapholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.google.com/maps/api/js?key=<?=Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP']?>"></script>
+
 <?php
 $this->registerJs("
         $(function(){            
@@ -1788,6 +1803,46 @@ $this->registerJs("
                 $('.imagepreview').attr('src', new_path);
                 $('#imagemodal').modal('show');   
             });
+            
+            $('.map_marker').click(function() {
+                var values = $(this).attr('value');
+                
+                var all_ids = values.split('_');
+                var record_id = all_ids[0];
+                var section_id = all_ids[1];
+                var data = {record_id: record_id, section_id: section_id};
+                //ajax call
+                $.post('map-details', data, function (response) {
+                    if(!jQuery.isEmptyObject(response)) {
+                        var obj = jQuery.parseJSON(response);
+                        if(obj.latitude != '' && obj.longitude != '') {
+                            showPosition(obj.latitude, obj.longitude);
+                        } else {
+                            alert('Something went wrong!!!');
+                        }
+                    } else {
+                        alert('Something went wrong!!!');
+                    }
+                });
+            });
+            
+            function showPosition(lat, lon) {
+                var latlon = new google.maps.LatLng(lat, lon)
+                var mapholder = document.getElementById('mapholder')
+                mapholder.style.height = '500px';
+                mapholder.style.width = '950px';
+
+                var myOptions = {
+                center:latlon,zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                mapTypeControl:false,
+                navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+                }
+
+                var map = new google.maps.Map(document.getElementById('mapholder'), myOptions);
+                var marker = new google.maps.Marker({position:latlon,map:map,title:'You are here!'});
+                $('#mapmodal').modal('show'); 
+            }
         });    
 ");
 ?>

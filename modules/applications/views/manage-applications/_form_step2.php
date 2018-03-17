@@ -1587,7 +1587,6 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
-
 <!--Upload Photos modal-->    
 <div class="modal fade" id="modal-photos-upload">
     <div class="modal-dialog">
@@ -1635,6 +1634,7 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
+<!-- Image pop-->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">              
@@ -1754,6 +1754,7 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
+<!-- Map-->
 <div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 1000px !important;">
         <div class="modal-content">              
