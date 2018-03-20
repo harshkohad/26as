@@ -48,7 +48,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </form>    
     </div>
 </section>
-<section class="panel">
+<div class="floatingResponse alert " style="display: none;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="responsemsg"> </div>
+</div>
+
+<section class="panel" id="section_final" style="display: none;">
     <div class="panel-body">
         <div class="col-lg-12" >
             <p id="final_submit" style="display: none; float: right;">
@@ -60,10 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
-<div class="floatingResponse alert ">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <div id="responsemsg"> </div>
-</div>
 
 <?php
 $this->registerJs("
@@ -73,8 +74,10 @@ $this->registerJs("
                 $('#button_div').hide();
                 $('#loader_div').show();
                 $('#response_div').html('');
+                $('#section_final').hide();
                 $('#final_submit').hide();
                 $('#uploaded_id').val('');
+                $('.floatingResponse').hide();
                 e.preventDefault();
                 $.ajax({
                     url: 'upload-applications-excel', // Url to which the request is send
@@ -87,11 +90,13 @@ $this->registerJs("
                     {
                         $('#loader_div').hide();
                         $('#button_div').show();
+                        $('.floatingResponse').show();
                         floatingResponse(data);
                         var obj = JSON.parse(data);
                         $('#loader_div').hide();
                         $('#final_submit').show();
                         $('#response_div').show();
+                        $('#section_final').show();                        
                         $('#response_div').html(obj.html);
                         $('#uploaded_id').val(obj.id);
                     }
@@ -108,6 +113,7 @@ $this->registerJs("
                 $.post('submit-u-excel', data, function (response) {
                     $('#response_div').html('');
                     $('#response_div').hide();
+                    $('#section_final').hide();
                     floatingResponse(response);
                 });
             }));
@@ -116,17 +122,20 @@ $this->registerJs("
                 var obj = JSON.parse(response);
                 $('#responsemsg').html(obj.msg);
                 $('.floatingResponse').removeClass('alert-success');
-                $('.floatingResponse').removeClass('alert-error');
+                $('.floatingResponse').removeClass('alert-danger');
+                var timeout = 15000;
                 if(obj.status == 'success') {
                     $('.floatingResponse').addClass('alert-success');
+                    timeout = 3000;
                 } else {
                     $('#final_submit').hide();
-                    $('.floatingResponse').addClass('alert-error');
+                    $('.floatingResponse').addClass('alert-danger');
                 }
                 $('.floatingResponse').show();
                 setTimeout(function(){
+                    
                     $('.floatingResponse').hide(); 
-                }, 3000);
+                }, timeout);
             }
         }); 
         ");

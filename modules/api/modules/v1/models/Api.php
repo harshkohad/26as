@@ -11,6 +11,7 @@ use app\modules\applications\models\ApplicationsVerifiers;
 use app\modules\applications\models\Applications;
 use app\modules\applications\models\ApplicantPhotos;
 use app\modules\applications\models\Noc;
+use app\modules\applications\models\Kyc;
 use mdm\admin\models\UserDetails;
 
 /**
@@ -329,6 +330,12 @@ class Api extends \yii\db\ActiveRecord {
                     $return_array['noc_details'] = $noc_details;
                 }
             }
+            #site info
+            $site_info = self::get_site_info($app_id, $application_details['application_id']);
+            if(!empty($site_info)) {
+                $return_array['site_info'] = $site_info;
+            }
+            
             return $return_array;
         }
         return false;
@@ -614,6 +621,23 @@ class Api extends \yii\db\ActiveRecord {
         } else {
             $return_array['status'] = 'failure';
             $return_array['msg'] = 'Invalid Input';            
+        }
+        return $return_array;
+    }
+    
+    public function get_site_info($id, $application_id) {
+        $return_array = array();
+        $photos = Kyc::find()->where(['application_id' => $id, 'is_deleted' => '0', 'send_for_verification' => '1'])->all();
+        if (!empty($photos)) {
+            foreach ($photos as $photos_data) {
+                $temp_array = array ();
+                $temp_array['id'] = $photos_data['id'];
+                $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'];
+                $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/' . $photos_data['file_name'];
+                $temp_array['doc_type'] = $photos_data['doc_type'];
+                $temp_array['remarks'] = $photos_data['remarks'];
+                $return_array[] = $temp_array;
+            }
         }
         return $return_array;
     }

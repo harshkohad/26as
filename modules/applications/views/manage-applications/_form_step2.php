@@ -30,17 +30,38 @@ $loantypes->id = $model->loan_type_id;
             <div class="col-lg-3"><?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'middle_name')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'aadhaar_card_no')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-lg-3">
+                <?php
+                $model->date_of_birth = date('Y-m-d');
+                ?>
+                <?=
+                $form->field($model, 'date_of_birth')->widget(
+                        DatePicker::className(), [
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                        'endDate' => '0d',
+                        'todayHighlight' => true
+                    ]
+                ]);
+                ?>
+            </div>         
         </div>
 
         <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'aadhaar_card_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'alternate_contact_no')->textInput(['maxlength' => true]) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-
         </div>
 
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'case_id')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?></div>            
+            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?></div>
+        </div>
         <div class="row">
             <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'], ['prompt' => 'Select Applicant Type']) ?></div>
@@ -60,7 +81,9 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                                               ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'address')->textarea(['address' => true]) ?></div>
         </div>
     </div>
 </section>

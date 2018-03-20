@@ -139,7 +139,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         return $model->getApplicationStatus($model->application_status);
-                    }
+                    },
+                    'filter' => ['1' => 'New', '2' => 'Inprogress', '3' => 'Completed'],
                 ],
                 [
                     'label' => 'Verifier Status',

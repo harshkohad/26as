@@ -20,6 +20,7 @@ use yii\db\ActiveRecord;
  * @property string $itr_ack_number
  * @property string $bank_account_number
  * @property string $bank_statement_type
+ * @property string $company_name
  * @property string $address
  * @property string $created_on
  * @property string $update_on
