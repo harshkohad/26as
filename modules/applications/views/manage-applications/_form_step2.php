@@ -30,17 +30,38 @@ $loantypes->id = $model->loan_type_id;
             <div class="col-lg-3"><?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'middle_name')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'aadhaar_card_no')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-lg-3">
+                <?php
+                $model->date_of_birth = date('Y-m-d');
+                ?>
+                <?=
+                $form->field($model, 'date_of_birth')->widget(
+                        DatePicker::className(), [
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd',
+                        'endDate' => '0d',
+                        'todayHighlight' => true
+                    ]
+                ]);
+                ?>
+            </div>         
         </div>
 
         <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'aadhaar_card_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'pan_card_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'mobile_no')->textInput(['maxlength' => true]) ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'alternate_contact_no')->textInput(['maxlength' => true]) ?></div>
-            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-
         </div>
 
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'case_id')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'branch')->textInput(['maxlength' => true]) ?></div>            
+            <div class="col-lg-3"><?= $form->field($model, 'institute_id')->dropDownList(ArrayHelper::map($institutes->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?></div>
+        </div>
         <div class="row">
             <div class="col-lg-3"><?= $form->field($model, 'loan_type_id')->dropDownList(ArrayHelper::map($loantypes->find()->asArray()->all(), 'id', 'loan_name'), ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'applicant_type')->dropDownList(['1' => 'Salaried', '2' => 'Self-employed'], ['prompt' => 'Select Applicant Type']) ?></div>
@@ -60,19 +81,45 @@ $loantypes->id = $model->loan_type_id;
                 ?>
 
             </div>
-            <div class="col-lg-3"><?php //$form->field($model, 'area_id')->dropDownList(ArrayHelper::map($area_model->find()->asArray()->all(), 'id', 'name'), ['prompt' => 'Select Area'])->label('Area')                                                                                            ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"><?= $form->field($model, 'address')->textarea(['address' => true]) ?></div>
         </div>
     </div>
 </section>
+
+<section class="panel">
+    <header class="panel-heading">
+        Verification Addresses
+    </header>
+</section>
+
 <div class="row">
     <div class="col-lg-4">
         <div class="panel panel-default cust-panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <strong>Residence Address</strong>
+                    <strong>Residence Address</strong>                    
+                    <span class="tools pull-right">                        
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->resi_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_1' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'resi_address')->textArea() ?>
@@ -110,9 +157,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Business Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->busi_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_2' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'busi_address')->textArea() ?>
@@ -150,9 +214,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Office Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->office_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_3' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'office_address')->textArea() ?>
@@ -186,15 +267,33 @@ $loantypes->id = $model->loan_type_id;
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-lg-4">
         <div class="panel panel-default cust-panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Residence/Office Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->resi_office_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_5' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'resi_office_address')->textArea() ?>
@@ -232,9 +331,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Builder Profile Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->builder_profile_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_6' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'builder_profile_address')->textArea() ?>
@@ -272,9 +388,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Property(APF) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->property_apf_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_7' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'property_apf_address')->textArea() ?>
@@ -315,9 +448,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Individual Property Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->indiv_property_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_8' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'indiv_property_address')->textArea() ?>
@@ -355,9 +505,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>NOC (Society) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->noc_soc_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_9' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'noc_soc_address')->textArea() ?>
@@ -395,9 +562,26 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>NOC (Business/Conditional) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->noc_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_4' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <?= $form->field($model, 'noc_address')->textArea() ?>
@@ -432,15 +616,184 @@ $loantypes->id = $model->loan_type_id;
     </div>
 </div>
 
+<section class="panel">
+    <header class="panel-heading">
+        Back Office
+    </header>
+</section>
+
+<div class="panel-group" id="backoffice" style="margin-bottom: 20px;">
+    <!--KYC-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#kyc"><strong>KYC</strong></a>
+            </h4>
+        </div>
+        <div id="kyc" class="panel-collapse collapse in">
+            <div class="panel-body" id="kyc_table" style="height: 350px;overflow-y: scroll;">
+                <?php echo $kycTable; ?>
+            </div>
+            <div id="loader_kyc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
+                <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+            </div>    
+        </div>
+    </div>
+
+    <!--ITR-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#itr"><strong>ITR</strong></a>
+            </h4>
+        </div>
+        <div id="itr" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12" id="noc_table">
+                        <?php echo $itrTable; ?>
+                    </div>
+                </div>
+                <div id="loader_itr" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
+                    <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
+                </div>
+            </div>
+        </div>                
+    </div>
+
+    <!--Financial-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#financial"><strong>Financial</strong></a>
+            </h4>
+        </div>
+        <div id="financial" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_pan_card_no')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3">
+                        <?php
+                        echo '<label class="control-label">Assessment Year</label>';
+                        echo DatePicker::widget([
+                            'name' => 'Applications[financial_assessment_year]',
+                            'type' => DatePicker::TYPE_INPUT,
+                            'value' => $model->date_of_application,
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                    <div class="col-lg-3">
+                        <?php
+                        echo '<label class="control-label">Date Of Filing</label>';
+                        echo DatePicker::widget([
+                            'name' => 'Applications[financial_date_of_filing]',
+                            'type' => DatePicker::TYPE_INPUT,
+                            'value' => $model->date_of_application,
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_sales')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_share_capital')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_net_profit')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_debtors')->textInput(['maxlength' => true]) ?></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_creditors')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_total_loans')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'financial_depriciation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Bank Statement-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#bank_statement"><strong>Bank Statement</strong></a>
+            </h4>
+        </div>
+        <div id="bank_statement" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_bank_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_account_holder')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_account_number')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_dated_transaction')->textInput() ?></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_pan_card_no')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'bank_current_balance')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3">
+                        <?php
+                        echo '<label class="control-label">Account Opening Date</label>';
+                        echo DatePicker::widget([
+                            'name' => 'Applications[bank_account_opening_date]',
+                            'type' => DatePicker::TYPE_INPUT,
+                            'value' => $model->date_of_application,
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                    <div class="col-lg-3">
+                        <?php
+                        echo '<label class="control-label">Date Of Birth</label>';
+                        echo DatePicker::widget([
+                            'name' => 'Applications[bank_date_of_birth]',
+                            'type' => DatePicker::TYPE_INPUT,
+                            'value' => $model->date_of_application,
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6"><?= $form->field($model, 'bank_address')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-6"><?= $form->field($model, 'bank_narration')->textInput(['maxlength' => true]) ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="panel">
+    <header class="panel-heading">
+        Verifier's Data
+    </header>
+</section>
+
 <div class="panel-group" id="accordion" style="margin-bottom: 20px;">
     <!--Residence Verification-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_verification"><strong>Residence Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 1); ?>
             </h4>
         </div>
-        <div id="resi_verification" class="panel-collapse collapse in">
+        <div id="resi_verification" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
@@ -560,6 +913,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#busi_verification"><strong>Business Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 2); ?>
             </h4>
         </div>
         <div id="busi_verification" class="panel-collapse collapse">
@@ -687,6 +1041,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#office_verification"><strong>Office Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 3); ?>
             </h4>
         </div>
         <div id="office_verification" class="panel-collapse collapse">
@@ -769,6 +1124,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 5); ?>
             </h4>
         </div>
         <div id="resi_office_verification" class="panel-collapse collapse">
@@ -872,6 +1228,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
+                <?= $model->verificationStatus($model->id, 6); ?>
             </h4>
         </div>
         <div id="builder_profile" class="panel-collapse collapse">
@@ -937,6 +1294,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
+                <?= $model->verificationStatus($model->id, 7); ?>
             </h4>
         </div>
         <div id="property_apf" class="panel-collapse collapse">
@@ -1006,6 +1364,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
+                <?= $model->verificationStatus($model->id, 8); ?>
             </h4>
         </div>
         <div id="individual_property" class="panel-collapse collapse">
@@ -1064,148 +1423,12 @@ $loantypes->id = $model->loan_type_id;
         </div>
     </div>
 
-    <!--ITR-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#itr"><strong>ITR</strong></a>
-            </h4>
-        </div>
-        <div id="itr" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12" id="noc_table">
-                        <?php echo $itrTable; ?>
-                    </div>
-                </div>
-                <div id="loader_itr" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
-                    <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
-                </div>
-            </div>
-        </div>                
-    </div>
-
-    <!--Financial-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#financial"><strong>Financial</strong></a>
-            </h4>
-        </div>
-        <div id="financial" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_pan_card_no')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_name')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3">
-                        <?php
-                        echo '<label class="control-label">Assessment Year</label>';
-                        echo DatePicker::widget([
-                            'name' => 'Applications[financial_assessment_year]',
-                            'type' => DatePicker::TYPE_INPUT,
-                            'value' => $model->date_of_application,
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-mm-dd'
-                            ]
-                        ]);
-                        ?>
-                    </div>
-                    <div class="col-lg-3">
-                        <?php
-                        echo '<label class="control-label">Date Of Filing</label>';
-                        echo DatePicker::widget([
-                            'name' => 'Applications[financial_date_of_filing]',
-                            'type' => DatePicker::TYPE_INPUT,
-                            'value' => $model->date_of_application,
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-mm-dd'
-                            ]
-                        ]);
-                        ?>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_sales')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_share_capital')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_net_profit')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_debtors')->textInput(['maxlength' => true]) ?></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_creditors')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_total_loans')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'financial_depriciation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Bank Statement-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#bank_statement"><strong>Bank Statement</strong></a>
-            </h4>
-        </div>
-        <div id="bank_statement" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_bank_name')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_account_holder')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_account_number')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_dated_transaction')->textInput() ?></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_pan_card_no')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'bank_current_balance')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3">
-                        <?php
-                        echo '<label class="control-label">Account Opening Date</label>';
-                        echo DatePicker::widget([
-                            'name' => 'Applications[bank_account_opening_date]',
-                            'type' => DatePicker::TYPE_INPUT,
-                            'value' => $model->date_of_application,
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-mm-dd'
-                            ]
-                        ]);
-                        ?>
-                    </div>
-                    <div class="col-lg-3">
-                        <?php
-                        echo '<label class="control-label">Date Of Birth</label>';
-                        echo DatePicker::widget([
-                            'name' => 'Applications[bank_date_of_birth]',
-                            'type' => DatePicker::TYPE_INPUT,
-                            'value' => $model->date_of_application,
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'format' => 'yyyy-mm-dd'
-                            ]
-                        ]);
-                        ?>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6"><?= $form->field($model, 'bank_address')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-6"><?= $form->field($model, 'bank_narration')->textInput(['maxlength' => true]) ?></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--NOC (Society)-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
+                <?= $model->verificationStatus($model->id, 9); ?>
             </h4>
         </div>
         <div id="noc_soc" class="panel-collapse collapse">
@@ -1261,6 +1484,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
+                <?= $model->verificationStatus($model->id, 4); ?>
             </h4>
         </div>
         <div id="noc" class="panel-collapse collapse">
@@ -1326,23 +1550,6 @@ $loantypes->id = $model->loan_type_id;
             </div>
         </div>
     </div>
-
-    <!--KYC-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#kyc"><strong>KYC</strong></a>
-            </h4>
-        </div>
-        <div id="kyc" class="panel-collapse collapse">
-            <div class="panel-body" id="kyc_table" style="height: 350px;overflow-y: scroll;">
-                <?php echo $kycTable; ?>
-            </div>
-            <div id="loader_kyc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
-                <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
-            </div>    
-        </div>
-    </div>
 </div>
 
 <div class="row">
@@ -1403,7 +1610,6 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
-
 <!--Upload Photos modal-->    
 <div class="modal fade" id="modal-photos-upload">
     <div class="modal-dialog">
@@ -1451,6 +1657,7 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
+<!-- Image pop-->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">              
@@ -1570,6 +1777,18 @@ $loantypes->id = $model->loan_type_id;
     <!-- /.modal-dialog -->
 </div>
 
+<!-- Map-->
+<div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px !important;">
+        <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="mapholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--<div class="col-lg-3">
                 <label>Market Feedback</label>
                 <div class="btn-group" data-toggle="buttons">    
@@ -1589,6 +1808,8 @@ $loantypes->id = $model->loan_type_id;
 //                    ])->label(false);
 ?></div>
             </div>-->
+
+<script src="https://maps.google.com/maps/api/js?key=<?=Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP']?>"></script>
 
 <?php
 $this->registerJs("
@@ -1984,9 +2205,45 @@ $this->registerJs("
                 });
             });
             
+            $('.map_marker').click(function() {
+                var values = $(this).attr('value');
+                
+                var all_ids = values.split('_');
+                var record_id = all_ids[0];
+                var section_id = all_ids[1];
+                var data = {record_id: record_id, section_id: section_id};
+                //ajax call
+                $.post('map-details', data, function (response) {
+                    if(!jQuery.isEmptyObject(response)) {
+                        var obj = jQuery.parseJSON(response);
+                        if(obj.latitude != '' && obj.longitude != '') {
+                            showPosition(obj.latitude, obj.longitude);
+                        } else {
+                            alert('Something went wrong!!!');
+                        }
+                    } else {
+                        alert('Something went wrong!!!');
+                    }
+                });
+            });
             
+            function showPosition(lat, lon) {
+                var latlon = new google.maps.LatLng(lat, lon)
+                var mapholder = document.getElementById('mapholder')
+                mapholder.style.height = '500px';
+                mapholder.style.width = '950px';
 
+                var myOptions = {
+                center:latlon,zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                mapTypeControl:false,
+                navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+                }
 
+                var map = new google.maps.Map(document.getElementById('mapholder'), myOptions);
+                var marker = new google.maps.Marker({position:latlon,map:map,title:'You are here!'});
+                $('#mapmodal').modal('show'); 
+            }
 });
 ");
 ?>

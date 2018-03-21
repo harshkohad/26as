@@ -6,9 +6,10 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
 
-$this->title = $model->application_id;
+$this->title = 'View Application: ' . $model->application_id;
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $model->application_id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'View';
 ?>
 <section class="panel">
     <div class="panel-body">
@@ -81,15 +82,39 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
+
+<section class="panel">
+    <header class="panel-heading">
+        Verification Addresses
+    </header>
+</section>
+
 <div class="row">
     <div class="col-lg-4">
         <div class="panel panel-default cust-panel">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Residence Address</strong>
+                    <span class="tools pull-right">                        
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->resi_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_1' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address') ?></label>
@@ -121,9 +146,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Business Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->busi_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_2' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address') ?></label>
@@ -155,9 +197,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Office Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->office_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_3' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address') ?></label>
@@ -191,9 +250,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Residence/Office Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->resi_office_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_5' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address') ?></label>
@@ -226,9 +302,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Builder Profile Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->builder_profile_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_6' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address') ?></label>
@@ -261,9 +354,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Property(APF) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->property_apf_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_7' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address') ?></label>
@@ -297,9 +407,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>Individual Property Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->indiv_property_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_8' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address') ?></label>
@@ -331,9 +458,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>NOC (Society) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->noc_soc_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_9' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address') ?></label>
@@ -365,9 +509,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <strong>NOC (Business/Conditional) Address</strong>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-up"></a>
+                    </span>
+                    <span class="pull-right"> 
+                        <?PHP
+                        $icon = 'fa fa-check-circle';
+                        $icon_color = 'color:#5cb85c';
+                        $display = '';
+                        if ($model->noc_address_verification != 1) {
+                            $icon = 'fa fa-times-circle';
+                            $icon_color = 'color:#d9534f';
+                            $display = 'style="display:none;"';
+                        }
+                        ?>
+                        <i class="fa fa-map-marker map_marker" value="<?= $model->id . '_4' ?>" <?= $display ?>></i> &nbsp;
+                        <i class="<?= $icon ?>" style="<?= $icon_color ?>"></i>
+                    </span>
                 </h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address') ?></label>
@@ -396,15 +557,186 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
+<section class="panel">
+    <header class="panel-heading">
+        Back Office
+    </header>
+</section>
+
+<div class="panel-group" id="backoffice" style="margin-bottom: 20px;">
+    <!--KYC-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#kyc"><strong>KYC</strong></a>
+            </h4>
+        </div>
+        <div id="kyc" class="panel-collapse collapse in">
+            <div class="panel-body" id="kyc_table">
+                <?php echo $kycTable; ?>
+            </div>
+        </div>
+    </div>
+    
+    <!--ITR-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#itr"><strong>ITR</strong></a>
+            </h4>
+        </div>
+        <div id="itr" class="panel-collapse collapse">
+            <div class="panel-body">
+                <?php echo $itrTable; ?>
+            </div>
+        </div>
+    </div>
+    
+    <!--Financial-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#financial"><strong>Financial</strong></a>
+            </h4>
+        </div>
+        <div id="financial" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_pan_card_no') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_pan_card_no ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_name') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_name ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_assessment_year') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_assessment_year ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_date_of_filing') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_date_of_filing ?></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_sales') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_sales ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_share_capital') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_share_capital ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_net_profit') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_net_profit ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_debtors') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_debtors ?></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_creditors') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_creditors ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_total_loans') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_total_loans ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_depriciation') ?></label>
+                        <div class="readonlydiv"><?= $model->financial_depriciation ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Bank Statement-->
+    <div class="panel panel-default cust-panel">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#backoffice" href="#bank_statement"><strong>Bank Statement</strong></a>
+            </h4>
+        </div>
+        <div id="bank_statement" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_bank_name') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_bank_name ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_holder') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_account_holder ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_number') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_account_number ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_dated_transaction') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_dated_transaction ?></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_pan_card_no') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_pan_card_no ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_current_balance') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_current_balance ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_opening_date') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_account_opening_date ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_date_of_birth') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_date_of_birth ?></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_address') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_address ?></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_narration') ?></label>
+                        <div class="readonlydiv"><?= $model->bank_narration ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="panel">
+    <header class="panel-heading">
+        Verifier's Data
+    </header>
+</section>
+
 <div class="panel-group" id="accordion" style="margin-bottom: 5px;">
     <!--Residence Verification-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_verification"><strong>Residence Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 1); ?>
             </h4>
         </div>
-        <div id="resi_verification" class="panel-collapse collapse in">
+        <div id="resi_verification" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
@@ -549,12 +881,12 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-
     <!--Business Verification-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#busi_verification"><strong>Business Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 2); ?>
             </h4>
         </div>
         <div id="busi_verification" class="panel-collapse collapse">
@@ -724,6 +1056,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#office_verification"><strong>Office Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 3); ?>
             </h4>
         </div>
         <div id="office_verification" class="panel-collapse collapse">
@@ -827,6 +1160,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
+                <?= $model->verificationStatus($model->id, 5); ?>
             </h4>
         </div>
         <div id="resi_office_verification" class="panel-collapse collapse">
@@ -997,11 +1331,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    
     <!--Builder Profile-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
+                <?= $model->verificationStatus($model->id, 6); ?>
             </h4>
         </div>
         <div id="builder_profile" class="panel-collapse collapse">
@@ -1097,11 +1433,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    
     <!--Property(APF)-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
+                <?= $model->verificationStatus($model->id, 7); ?>
             </h4>
         </div>
         <div id="property_apf" class="panel-collapse collapse">
@@ -1209,11 +1547,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    
     <!--Individual Property-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
+                <?= $model->verificationStatus($model->id, 8); ?>
             </h4>
         </div>
         <div id="individual_property" class="panel-collapse collapse">
@@ -1301,152 +1641,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <!--ITR-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#itr"><strong>ITR</strong></a>
-            </h4>
-        </div>
-        <div id="itr" class="panel-collapse collapse">
-            <div class="panel-body">
-                <?php echo $itrTable; ?>
-            </div>
-        </div>
-    </div>
-    <!--Financial-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#financial"><strong>Financial</strong></a>
-            </h4>
-        </div>
-        <div id="financial" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_pan_card_no') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_pan_card_no ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_name') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_name ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_assessment_year') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_assessment_year ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_date_of_filing') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_date_of_filing ?></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_sales') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_sales ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_share_capital') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_share_capital ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_net_profit') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_net_profit ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_debtors') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_debtors ?></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_creditors') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_creditors ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_total_loans') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_total_loans ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('financial_depriciation') ?></label>
-                        <div class="readonlydiv"><?= $model->financial_depriciation ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Bank Statement-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#bank_statement"><strong>Bank Statement</strong></a>
-            </h4>
-        </div>
-        <div id="bank_statement" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_bank_name') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_bank_name ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_holder') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_account_holder ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_number') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_account_number ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_dated_transaction') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_dated_transaction ?></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_pan_card_no') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_pan_card_no ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_current_balance') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_current_balance ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_account_opening_date') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_account_opening_date ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_date_of_birth') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_date_of_birth ?></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_address') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_address ?></div>
-                    </div>
-                    <div class="col-lg-6">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('bank_narration') ?></label>
-                        <div class="readonlydiv"><?= $model->bank_narration ?></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!--NOC (Society)-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
+                <?= $model->verificationStatus($model->id, 9); ?>
             </h4>
         </div>
         <div id="noc_soc" class="panel-collapse collapse">
@@ -1520,6 +1721,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
+                <?= $model->verificationStatus($model->id, 4); ?>
             </h4>
         </div>
         <div id="noc" class="panel-collapse collapse">
@@ -1564,22 +1766,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-
-    <!--KYC-->
-    <div class="panel panel-default cust-panel">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#kyc"><strong>KYC</strong></a>
-            </h4>
-        </div>
-        <div id="kyc" class="panel-collapse collapse">
-            <div class="panel-body" id="kyc_table">
-                <?php echo $kycTable; ?>
-            </div>
-        </div>
-    </div>
 </div>
 
+<!-- Image pop-->
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">              
@@ -1591,6 +1780,20 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div> 
 
+<!-- Map-->
+<div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px !important;">
+        <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="mapholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.google.com/maps/api/js?key=<?=Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP']?>"></script>
+
 <?php
 $this->registerJs("
         $(function(){            
@@ -1600,6 +1803,46 @@ $this->registerJs("
                 $('.imagepreview').attr('src', new_path);
                 $('#imagemodal').modal('show');   
             });
+            
+            $('.map_marker').click(function() {
+                var values = $(this).attr('value');
+                
+                var all_ids = values.split('_');
+                var record_id = all_ids[0];
+                var section_id = all_ids[1];
+                var data = {record_id: record_id, section_id: section_id};
+                //ajax call
+                $.post('map-details', data, function (response) {
+                    if(!jQuery.isEmptyObject(response)) {
+                        var obj = jQuery.parseJSON(response);
+                        if(obj.latitude != '' && obj.longitude != '') {
+                            showPosition(obj.latitude, obj.longitude);
+                        } else {
+                            alert('Something went wrong!!!');
+                        }
+                    } else {
+                        alert('Something went wrong!!!');
+                    }
+                });
+            });
+            
+            function showPosition(lat, lon) {
+                var latlon = new google.maps.LatLng(lat, lon)
+                var mapholder = document.getElementById('mapholder')
+                mapholder.style.height = '500px';
+                mapholder.style.width = '950px';
+
+                var myOptions = {
+                center:latlon,zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                mapTypeControl:false,
+                navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+                }
+
+                var map = new google.maps.Map(document.getElementById('mapholder'), myOptions);
+                var marker = new google.maps.Marker({position:latlon,map:map,title:'You are here!'});
+                $('#mapmodal').modal('show'); 
+            }
         });    
 ");
 ?>

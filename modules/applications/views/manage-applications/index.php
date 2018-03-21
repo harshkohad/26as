@@ -26,22 +26,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
 //            'id',
                 'application_id',
-//            'first_name',
-//            'middle_name',
-//            'last_name',
-                [
-                    'attribute' => 'first_name',
-                    //'label' => 'Applicant Name',
-                    'format' => 'raw',
-                    'value' => function ($model) {
-                        return $model->getApplicantName($model->first_name, $model->middle_name, $model->last_name);
-                    }
-                ],
+            'first_name',
+            'middle_name',
+            'last_name',
+            'case_id',    
+//                [
+//                    'attribute' => 'first_name',
+//                    //'label' => 'Applicant Name',
+//                    'format' => 'raw',
+//                    'value' => function ($model) {
+//                        return $model->getApplicantName($model->first_name, $model->middle_name, $model->last_name);
+//                    }
+//                ],
                 // 'aadhaar_card_no',
                 // 'pan_card_no',
                 // 'mobile_no',
-                // 'institute_id',
-                // 'loan_type_id',
+//                 'institute_id',
+//                 'loan_type_id',
+                [
+                    'attribute' => 'institute_id',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return $model->getInstituteNameType($model->institute_id);
+                    }
+                ],
                 [
                     'attribute' => 'loan_type_id',
                     //'label' => 'Loan Type',
@@ -139,7 +147,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function ($model) {
                         return $model->getApplicationStatus($model->application_status);
-                    }
+                    },
+                    'filter' => ['1' => 'New', '2' => 'Inprogress', '3' => 'Completed'],
                 ],
                 [
                     'label' => 'Verifier Status',

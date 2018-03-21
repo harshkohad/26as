@@ -25,6 +25,7 @@ use app\modules\applications\models\ApplicationsVerifiers;
 use app\modules\manage_mobile_app\models\TblMobileUsers;
 use app\modules\applications\models\ApplicationsUploads;
 use app\modules\applications\models\ApplicationsUploadsSearch;
+use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use yii\base\ErrorException;
 use PHPExcel_Style_Fill;
 
@@ -41,10 +42,15 @@ class ManageApplicationsController extends Controller {
         'First Name' => 'first_name',
         'Middle Name' => 'middle_name',
         'Last Name' => 'last_name',
+        'Date Of Birth' => 'date_of_birth',
         'Aadhaar Card No' => 'aadhaar_card_no',
         'Pan Card No' => 'pan_card_no',
         'Mobile No' => 'mobile_no',
         'Alternate Contact No' => 'alternate_contact_no',
+        'Company Name' => 'company_name',
+        'Address' => 'address',
+        'Case Id' => 'case_id',
+        'Branch Name' => 'branch',
         'Applicant Type' => 'applicant_type',
         'Profile Type' => 'profile_type',
         'Date Of Application' => 'date_of_application',
@@ -92,6 +98,8 @@ class ManageApplicationsController extends Controller {
         'Aadhaar Card No' => 'aadhaar_card_no',
         'Pan Card No' => 'pan_card_no',
         'Mobile No' => 'mobile_no',
+        'Company Name' => 'company_name',
+        'Address' => 'address',
     );
 
     /**
@@ -115,6 +123,7 @@ class ManageApplicationsController extends Controller {
     public function actionIndex() {
         $searchModel = new ApplicationsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 10];
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -372,7 +381,28 @@ class ManageApplicationsController extends Controller {
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                var_dump($model->errors);
+                $errors[] = $model->getErrors();
+                return $this->render('update', [
+                            'model' => $model,
+                            'step2' => $step2,
+                            'institutes' => $institutes,
+                            'loantypes' => $loantypes,
+                            'pincode_master' => $pincode_master,
+                            'itrTable' => $itrTable,
+                            'nocTable' => $nocTable,
+                            'kycTable' => $kycTable,
+                            'resiDocsTable' => $resiDocsTable,
+                            'resiPhotosTable' => $resiPhotosTable,
+                            'busiDocsTable' => $busiDocsTable,
+                            'busiPhotosTable' => $busiPhotosTable,
+                            'officePhotosTable' => $officePhotosTable,
+                            'nocPhotosTable' => $nocPhotosTable,
+                            'resiOfficePhotosTable' => $resiOfficePhotosTable,
+                            'builderProfilePhotosTable' => $builderProfilePhotosTable,
+                            'propertyApfPhotosTable' => $propertyApfPhotosTable,
+                            'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
+                            'nocSocPhotosTable' => $nocSocPhotosTable,
+                ]);
             }
         } else {
             return $this->render('update', [
@@ -702,6 +732,12 @@ class ManageApplicationsController extends Controller {
             if (!empty($data['inputAadhaarCard'])) {
                 $query_condition["aadhaar_card_no"] = $data['inputAadhaarCard'];
             }
+            if (!empty($data['inputCompanyName'])) {
+                $query_condition["company_name"] = $data['inputCompanyName'];
+            }
+            if (!empty($data['inputAddress'])) {
+                $query_condition["address"] = $data['inputAddress'];
+            }
             if (!empty($query_condition)) {
                 $query = ApplicantProfile::find()->where($query_condition)->all();
             }
@@ -715,6 +751,8 @@ class ManageApplicationsController extends Controller {
                            <th>Mobile No</th>
                            <th>Pan Card</th>
                            <th>Aadhaar</th>
+                           <th>Company Name</th>
+                           <th>Address</th>
                            <th>Action</th>
                         </tr>
                     </thead>
@@ -728,6 +766,8 @@ class ManageApplicationsController extends Controller {
                     $return_data .= "<td>{$app_profile['mobile_no']}</td>";
                     $return_data .= "<td>{$app_profile['pan_card_no']}</td>";
                     $return_data .= "<td>{$app_profile['aadhaar_card_no']}</td>";
+                    $return_data .= "<td>{$app_profile['company_name']}</td>";
+                    $return_data .= "<td>{$app_profile['address']}</td>";
                     $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="' . $app_profile['id'] . '">
                                      <i class="fa fa-external-link"></i> Select</button></td>';
                     $return_data .= '</tr>';
@@ -1111,6 +1151,24 @@ class ManageApplicationsController extends Controller {
         }
         $return_html .= '</div>';
         $return_html .= '</div>';
+        $return_html .= '<div class="row">';
+        $return_html .= '<div class="col-lg-4"></div>';
+        $return_html .= '<div class="col-lg-4"></div>';
+        $return_html .= '<div class="col-lg-4">';
+        $return_html .= self::getRevokedStatus($app_id, $verification_type);
+        $return_html .= '</div>';    
+        $return_html .= '</div>';
+    }
+    
+    public function getRevokedStatus($app_id, $verification_type) {
+        $return_data = '';
+        $verifiers_data = ApplicationsVerifiersRevoked::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type])->one();
+
+        if (!empty($verifiers_data)) {
+            $return_data = '<span style="color:#ff6c60;font-weight:bold">Site Revoked</span>';
+        }
+        
+        return $return_data;
     }
 
     public function actionUpdateVerifier() {
@@ -1315,9 +1373,15 @@ class ManageApplicationsController extends Controller {
                                 'getOnlySheet' => 'sheet1', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
                     ]);
                     if (!empty($data)) {
-                        self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id);
-                        $response_data['msg'] = 'Successfully Saved !!!';
-                        $response_data['status'] = 'success';
+                        $r_data = self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id);
+                        $status = 'failure';
+                        $msg = 'Something went wrong!!!';
+                        if(!empty($r_data)) {
+                            $status = $r_data['status'];
+                            $msg = $r_data['msg'];
+                        }
+                        $response_data['msg'] = $msg;
+                        $response_data['status'] = $status;
                         echo json_encode($response_data);
                     } else {
                         throw new \Exception("File Not Found!!!");
@@ -1355,6 +1419,9 @@ class ManageApplicationsController extends Controller {
                         if ($key == 'Date Of Application') {
                             $value = date("Y-m-d", strtotime($value));
                         }
+                        if ($key == 'Date Of Birth') {
+                            $value = date("Y-m-d", strtotime($value));
+                        }
                         $fkey = $this->excel_columns_applications[$key];
                         $model->$fkey = $value;
                     }
@@ -1372,15 +1439,31 @@ class ManageApplicationsController extends Controller {
                     $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
                     $apps_data->status = 1;
                     $apps_data->save();
+                    $response_data['msg'] = 'Successfully Added!!!';
+                    $response_data['status'] = 'success';
+                    return $response_data;
                 } else {
-                    throw new \Exception("Data Error!!!");
+                    $errors = self::processDbErrors($model->getErrors());
+                    throw new \Exception($errors);
                 }
             }
         } catch (\Exception $e) {
             $response_data['msg'] = $e->getMessage();
             $response_data['status'] = 'failure';
-            echo json_encode($response_data);
+            return $response_data;
         }
+    }
+    
+    public function processDbErrors($data) {
+        $return_data = '';
+        if(!empty($data)) {
+            foreach($data as $error) {
+                foreach($error as $key => $value) {
+                    $return_data .= 'Row '.($key+1).' : '.$value.'<br>';
+                }
+            }
+        }
+        return $return_data;
     }
 
     public function actionSampleTemplate() {
@@ -1540,13 +1623,27 @@ class ManageApplicationsController extends Controller {
                 $cell_name++;
             }
         }
-        
+
         header('Content-Type: application/vnd.ms-excel');
         $filename = "MyExcelReport_" . date("d-m-Y-His") . ".xls";
         header('Content-Disposition: attachment;filename=' . $filename . ' ');
         header('Cache-Control: max-age=0');
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
         $objWriter->save('php://output');
+    }
+
+    public function actionMapDetails() {
+        $return_data = '';
+        $data = $_POST;
+        $id = $data['record_id'];
+        $type = $data['section_id'];
+        #get data
+        $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        if (!empty($table_data)) {
+            $return_data = '{"latitude":"' . $table_data['latitude'] . '", "longitude":"' . $table_data['longitude'] . '"}';
+        }
+        return $return_data;
     }
 
 }

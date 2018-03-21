@@ -11,6 +11,8 @@ use app\modules\applications\models\ApplicationsVerifiers;
 use app\modules\applications\models\Applications;
 use app\modules\applications\models\ApplicantPhotos;
 use app\modules\applications\models\Noc;
+use app\modules\applications\models\Kyc;
+use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use mdm\admin\models\UserDetails;
 
 /**
@@ -329,6 +331,12 @@ class Api extends \yii\db\ActiveRecord {
                     $return_array['noc_details'] = $noc_details;
                 }
             }
+            #site info
+            $site_info = self::get_site_info($app_id, $application_details['application_id']);
+            if(!empty($site_info)) {
+                $return_array['site_info'] = $site_info;
+            }
+            
             return $return_array;
         }
         return false;
@@ -426,13 +434,32 @@ class Api extends \yii\db\ActiveRecord {
     function update_site_status($verification_id, $verification_status, $user_id) {
         $verification_details = ApplicationsVerifiers::find()->where(['id' => $verification_id, 'mobile_user_id' => $user_id])->one();
         if(!empty($verification_details)) {
-            $application_id = $verification_details->application_id;
-            #update verification status
-            $verification_details->mobile_user_status = $verification_status;
-            $verification_details->mobile_user_status_updated_on = date('Y-m-d H:i:s');
-            $verification_details->save(false);
-            #update application status
-            self::update_application_status($application_id);
+            if($verification_status == 3) {
+                #site revoked by verifier
+                #remove record from primary table & insert record in revoked table
+                $revoke_model = new ApplicationsVerifiersRevoked();
+                
+                $revoke_model->application_id = $verification_details->application_id;
+                $revoke_model->verification_type = $verification_details->verification_type;
+                $revoke_model->mobile_user_id = $verification_details->mobile_user_id;
+                $revoke_model->mobile_user_assigned_date = $verification_details->mobile_user_assigned_date;
+                $revoke_model->mobile_user_status = $verification_details->mobile_user_status;
+                $revoke_model->mobile_user_status_updated_on = $verification_details->mobile_user_status_updated_on;
+                $revoke_model->old_created_on = $verification_details->created_on;
+                
+                if ($revoke_model->save()) {
+                    #remove record from primary table
+                    $verifiers_data = ApplicationsVerifiers::findOne($verification_details->id)->delete();
+                }
+            } else {
+                $application_id = $verification_details->application_id;
+                #update verification status
+                $verification_details->mobile_user_status = $verification_status;
+                $verification_details->mobile_user_status_updated_on = date('Y-m-d H:i:s');
+                $verification_details->save(false);
+                #update application status
+                self::update_application_status($application_id);
+            }
             return true;
         }
         return false;
@@ -614,6 +641,23 @@ class Api extends \yii\db\ActiveRecord {
         } else {
             $return_array['status'] = 'failure';
             $return_array['msg'] = 'Invalid Input';            
+        }
+        return $return_array;
+    }
+    
+    public function get_site_info($id, $application_id) {
+        $return_array = array();
+        $photos = Kyc::find()->where(['application_id' => $id, 'is_deleted' => '0', 'send_for_verification' => '1'])->all();
+        if (!empty($photos)) {
+            foreach ($photos as $photos_data) {
+                $temp_array = array ();
+                $temp_array['id'] = $photos_data['id'];
+                $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'];
+                $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/' . $photos_data['file_name'];
+                $temp_array['doc_type'] = $photos_data['doc_type'];
+                $temp_array['remarks'] = $photos_data['remarks'];
+                $return_array[] = $temp_array;
+            }
         }
         return $return_array;
     }

@@ -30,3 +30,18 @@ CHANGE COLUMN `noc_status` `noc_status` TINYINT(1) NULL DEFAULT '0' COMMENT '0 :
 
 ALTER TABLE `tbl_applications` ADD `company_name` VARCHAR(100) NULL DEFAULT NULL,ADD `address` VARCHAR(500) NULL DEFAULT NULL; 
 ALTER TABLE `tbl_applications` ADD `busi_designation_others` VARCHAR(100) NULL DEFAULT NULL AFTER `busi_designation`; 
+
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `date_of_birth` DATE NULL AFTER `last_name`;
+
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `case_id` VARCHAR(100) NULL DEFAULT NULL AFTER `alternate_contact_no`,
+ADD COLUMN `branch` VARCHAR(100) NULL DEFAULT NULL AFTER `case_id`;
+
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `company_name` VARCHAR(100) NULL DEFAULT NULL AFTER `date_of_application`,
+ADD COLUMN `address` VARCHAR(500) NULL DEFAULT NULL AFTER `company_name`;
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `company_name` `company_name` VARCHAR(100) NULL DEFAULT NULL AFTER `date_of_application`,
+CHANGE COLUMN `address` `address` VARCHAR(500) NULL DEFAULT NULL AFTER `company_name`;

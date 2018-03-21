@@ -6,6 +6,7 @@ use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
 use app\modules\applications\models\Area;
 use app\modules\applications\models\ApplicationsVerifiers;
+use app\modules\manage_mobile_app\models\TblMobileUsers;
 use Yii;
 
 /**
@@ -17,15 +18,21 @@ use Yii;
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
+ * @property string $date_of_birth
  * @property string $aadhaar_card_no
  * @property string $pan_card_no
  * @property string $mobile_no
+ * @property string $alternate_contact_no
+ * @property string $case_id
+ * @property string $branch
  * @property integer $institute_id
  * @property integer $loan_type_id
  * @property integer $applicant_type
  * @property integer $profile_type
  * @property integer $area_id
  * @property string $date_of_application
+ * @property string $company_name
+ * @property string $address
  * @property string $resi_society_name_plate
  * @property string $resi_door_name_plate
  * @property string $resi_tpc_neighbor_1
@@ -252,12 +259,12 @@ class Applications extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id'], 'required'],
+            [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id', 'date_of_birth', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'alternate_contact_no', 'case_id', 'branch', 'company_name', 'address'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'resi_ownership_status', 'busi_ownership_status', 'builder_profile_type_of_office', 'resi_office_ownership_status', 'resi_office_locality', 'property_apf_property_status', 'indiv_property_property_type', 'noc_soc_society_type', 'created_by', 'update_by', 'is_deleted', 'resi_market_feedback', 'resi_status', 'busi_status', 'office_status', 'noc_status', 'busi_is_reachable', 'resi_is_reachable', 'office_is_reachable', 'resi_office_is_reachable', 'builder_profile_is_reachable', 'property_apf_is_reachable', 'indiv_property_is_reachable', 'noc_soc_is_reachable', 'noc_is_reachable'], 'integer'],
-            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode', 'created_on', 'updated_on', 'application_id', 'aadhaar_card_no', 'pan_card_no', 'mobile_no'], 'safe'],
-            [['first_name', 'middle_name', 'last_name', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text', 'mobile_no', 'aadhaar_card_no'], 'string', 'max' => 150],
+            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode', 'created_on', 'updated_on', 'application_id'], 'safe'],
+            [['first_name', 'middle_name', 'last_name', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure', 'resi_office_structure', 'resi_office_remarks', 'builder_profile_current_projects', 'builder_profile_previous_projects', 'busi_address_trigger', 'resi_address', 'resi_address_trigger', 'office_address', 'office_address_trigger', 'busi_address', 'noc_address', 'noc_address_trigger', 'resi_office_address', 'resi_office_address_trigger', 'builder_profile_address', 'builder_profile_address_trigger', 'property_apf_address', 'property_apf_address_trigger', 'indiv_property_address', 'indiv_property_address_trigger', 'noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
-            ['aadhaar_card_no', 'string', 'max' => 12],
+            //['aadhaar_card_no', 'integer', 'max' => 12],
             ['busi_designation_others', 'string', 'max' => 100],
             ['aadhaar_card_no', 'match', 'pattern' => '/^[0-9-]+$/', 'skipOnError' => true],
             ['aadhaar_card_no', 'validateAAdharCard'],
@@ -304,15 +311,21 @@ class Applications extends \yii\db\ActiveRecord {
             'first_name' => 'First Name',
             'middle_name' => 'Middle Name',
             'last_name' => 'Last Name',
+            'date_of_birth' => 'Date of birth',
             'aadhaar_card_no' => 'Aadhaar Card No',
             'pan_card_no' => 'Pan Card No',
             'mobile_no' => 'Mobile No',
+            'alternate_contact_no' => 'Alternate Contact No',
+            'case_id' => 'Case Id',
+            'branch' => 'Branch Name',
             'institute_id' => 'Institute Name',
             'loan_type_id' => 'Loan Type',
             'applicant_type' => 'Applicant Type',
             'profile_type' => 'Profile Type',
             'area_id' => 'Area',
             'date_of_application' => 'Date Of Application',
+            'company_name' => 'Company Name',
+            'address' => 'Address',
             'resi_society_name_plate' => 'Society Name Plate',
             'resi_door_name_plate' => 'Door Name Plate',
             'resi_tpc_neighbor_1' => 'Tpc Neighbor 1',
@@ -764,6 +777,46 @@ class Applications extends \yii\db\ActiveRecord {
         $return = '';
 
         if ($application_status == 1 || $application_status == 2) {
+            $assignable_count = 0;
+            $applications_model = Applications::findOne($id);
+            if ($applications_model->resi_address_verification == 1 ||
+                    $applications_model->busi_address_verification == 1 ||
+                    $applications_model->office_address_verification == 1 ||
+                    $applications_model->noc_address_verification == 1 ||
+                    $applications_model->resi_office_address_verification == 1 ||
+                    $applications_model->builder_profile_address_verification == 1 ||
+                    $applications_model->property_apf_address_verification == 1 ||
+                    $applications_model->indiv_property_address_verification == 1 ||
+                    $applications_model->noc_soc_address_verification == 1
+            ) {
+                if ($applications_model->resi_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->busi_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->office_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->noc_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->resi_office_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->builder_profile_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->property_apf_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->indiv_property_address_verification == 1) {
+                    $assignable_count++;
+                }
+                if ($applications_model->noc_soc_address_verification == 1) {
+                    $assignable_count++;
+                }
+            }
             $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
 
             $count = 0;
@@ -773,7 +826,7 @@ class Applications extends \yii\db\ActiveRecord {
                 }
             }
 
-            $return = '<div><span style="color:#00a65a;font-weight:bold">Assigned Verifiers : ' . $count . '</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm manageVerifier" value="' . $id . '">Manage Verifiers</button></div>';
+            $return = '<div><span style="color:#3c8dbc;font-weight:bold">Assignable : ' . $assignable_count . '</span><br><span style="color:#00a65a;font-weight:bold">Assigned : ' . $count . '</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm manageVerifier" value="' . $id . '">Manage Verifiers</button></div>';
 //        switch ($verifier_status) {
 //            case 0:
 //                $return = '<button type="button" class="btn btn-block btn-primary btn-sm assignVerifier" value="'.$id.'">Assign Verifier</button>';
@@ -891,6 +944,34 @@ class Applications extends \yii\db\ActiveRecord {
             }
             return "";
         }
+    }
+
+    public function verificationStatus($id, $type) {
+        $return_data = '';
+        #get data
+        $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        $tag = '';
+        if (!empty($table_data)) {
+            $verifier_data = TblMobileUsers::find($table_data['mobile_user_id'])->one();
+            switch ($table_data['mobile_user_status']) {
+                case 1:
+                    $tag = '<div style="float:right;"><span class="badge bg-purple">IN PROGRESS</span> : ' . $verifier_data->field_agent_name . '</div>';
+                    break;
+                case 2:
+                    $tag = '<div style="float:right;"><span class="badge" style="background: #a9d86e !important;">COMPLETED</span> : ' . $verifier_data->field_agent_name . '</div>';
+                    break;
+                default :
+                    $tag = '<div style="float:right;"><span class="badge" style="background: #FCB322 !important;">ASSIGNED</span> : ' . $verifier_data->field_agent_name . '</div>';
+                    break;
+            }
+            $return_data = $tag;
+        }
+        if (empty($tag)) {
+            $return_data = '<div style="float:right;"><span class="badge" style="background: #ff6c60 !important;">NOT-ASSIGNED</span></div>';
+        }
+
+        return $return_data;
     }
 
 }
