@@ -25,6 +25,7 @@ use app\modules\applications\models\ApplicationsVerifiers;
 use app\modules\manage_mobile_app\models\TblMobileUsers;
 use app\modules\applications\models\ApplicationsUploads;
 use app\modules\applications\models\ApplicationsUploadsSearch;
+use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use yii\base\ErrorException;
 use PHPExcel_Style_Fill;
 
@@ -122,6 +123,7 @@ class ManageApplicationsController extends Controller {
     public function actionIndex() {
         $searchModel = new ApplicationsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 10];
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
@@ -1149,6 +1151,24 @@ class ManageApplicationsController extends Controller {
         }
         $return_html .= '</div>';
         $return_html .= '</div>';
+        $return_html .= '<div class="row">';
+        $return_html .= '<div class="col-lg-4"></div>';
+        $return_html .= '<div class="col-lg-4"></div>';
+        $return_html .= '<div class="col-lg-4">';
+        $return_html .= self::getRevokedStatus($app_id, $verification_type);
+        $return_html .= '</div>';    
+        $return_html .= '</div>';
+    }
+    
+    public function getRevokedStatus($app_id, $verification_type) {
+        $return_data = '';
+        $verifiers_data = ApplicationsVerifiersRevoked::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type])->one();
+
+        if (!empty($verifiers_data)) {
+            $return_data = '<span style="color:#ff6c60;font-weight:bold">Site Revoked</span>';
+        }
+        
+        return $return_data;
     }
 
     public function actionUpdateVerifier() {

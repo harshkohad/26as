@@ -99,6 +99,7 @@ class ApplicantProfile extends ActiveRecord {
     public function applicationsSearch($data) {
         $query_condition = array();
         $dataProvider = '';
+        $where_cond = \app\components\CommonUtility::checkAuditMode();
         if (!empty($data['inputFirstName'])) {
             $query_condition["first_name"] = $data['inputFirstName'];
         }
@@ -117,14 +118,14 @@ class ApplicantProfile extends ActiveRecord {
         if (!empty($data['inputAadhaarCard'])) {
             $query_condition["aadhaar_card_no"] = $data['inputAadhaarCard'];
         }
-        if (!empty($query_condition) OR ! empty($data['inputCompanyName'])) {
-            $query = ApplicantProfile::find()->where($query_condition);
+        if (!empty($query_condition) OR ! empty($data['inputCompanyName'])) {            
+            $query = ApplicantProfile::find()->andwhere($where_cond)->andwhere($query_condition);
             if (!empty($data['inputCompanyName'])) {
                 $query->andFilterWhere(['LIKE', 'company_name', $data['inputCompanyName']]);
             }
         } else {
-            $query = ApplicantProfile::find();
-            $query->where('0=1');
+            $query = ApplicantProfile::find()->where($where_cond);
+//            /$query->andWhere('0=1');
         }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

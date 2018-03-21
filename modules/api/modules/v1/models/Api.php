@@ -12,6 +12,7 @@ use app\modules\applications\models\Applications;
 use app\modules\applications\models\ApplicantPhotos;
 use app\modules\applications\models\Noc;
 use app\modules\applications\models\Kyc;
+use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use mdm\admin\models\UserDetails;
 
 /**
@@ -433,13 +434,32 @@ class Api extends \yii\db\ActiveRecord {
     function update_site_status($verification_id, $verification_status, $user_id) {
         $verification_details = ApplicationsVerifiers::find()->where(['id' => $verification_id, 'mobile_user_id' => $user_id])->one();
         if(!empty($verification_details)) {
-            $application_id = $verification_details->application_id;
-            #update verification status
-            $verification_details->mobile_user_status = $verification_status;
-            $verification_details->mobile_user_status_updated_on = date('Y-m-d H:i:s');
-            $verification_details->save(false);
-            #update application status
-            self::update_application_status($application_id);
+            if($verification_status == 3) {
+                #site revoked by verifier
+                #remove record from primary table & insert record in revoked table
+                $revoke_model = new ApplicationsVerifiersRevoked();
+                
+                $revoke_model->application_id = $verification_details->application_id;
+                $revoke_model->verification_type = $verification_details->verification_type;
+                $revoke_model->mobile_user_id = $verification_details->mobile_user_id;
+                $revoke_model->mobile_user_assigned_date = $verification_details->mobile_user_assigned_date;
+                $revoke_model->mobile_user_status = $verification_details->mobile_user_status;
+                $revoke_model->mobile_user_status_updated_on = $verification_details->mobile_user_status_updated_on;
+                $revoke_model->old_created_on = $verification_details->created_on;
+                
+                if ($revoke_model->save()) {
+                    #remove record from primary table
+                    $verifiers_data = ApplicationsVerifiers::findOne($verification_details->id)->delete();
+                }
+            } else {
+                $application_id = $verification_details->application_id;
+                #update verification status
+                $verification_details->mobile_user_status = $verification_status;
+                $verification_details->mobile_user_status_updated_on = date('Y-m-d H:i:s');
+                $verification_details->save(false);
+                #update application status
+                self::update_application_status($application_id);
+            }
             return true;
         }
         return false;
