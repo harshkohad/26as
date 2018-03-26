@@ -755,20 +755,33 @@ class Applications extends \yii\db\ActiveRecord {
         return $return;
     }
 
-    public function getApplicationStatus($application_status) {
+    public function getApplicationStatus($id, $application_status) {
         $return = '';
 
-        switch ($application_status) {
-            case 1:
-                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
-                break;
-            case 2:
-                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</span>';
-                break;
-            case 3:
-                $return = '<span style="color:#00a65a;font-weight:bold">Completed</span>';
-                break;
+        $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
+        if ($application_status == 3) {
+            $return = '<span style="color:#00a65a;font-weight:bold">Completed</span>';
+        } elseif (!empty($verifiers_data) OR $application_status == 2) {
+            $return = '<span style="color:#d58512;font-weight:bold">Inprogress</span>';
+        } else {
+            $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
         }
+        if ($application_status != 3) {
+            $return .= '<div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm change_application_status" value="' . $id . '" rel="' . $application_status . '">Change Status</button></div>';
+        } else {
+            $return .= '<div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm revisit_application" value="' . $id . '">Revisit</button></div>';
+        }
+//        switch ($application_status) {
+//            case 1:
+//                $return = '<span style="color:#3c8dbc;font-weight:bold">New</span>';
+//                break;
+//            case 2:
+//                $return = '<span style="color:#d58512;font-weight:bold">Inprogress</span>';
+//                break;
+//            case 3:
+//                $return = '<span style="color:#00a65a;font-weight:bold">Completed</span>';
+//                break;
+//        }
 
         return $return;
     }

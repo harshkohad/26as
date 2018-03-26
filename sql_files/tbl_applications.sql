@@ -45,3 +45,7 @@ ADD COLUMN `address` VARCHAR(500) NULL DEFAULT NULL AFTER `company_name`;
 ALTER TABLE `tbl_applications` 
 CHANGE COLUMN `company_name` `company_name` VARCHAR(100) NULL DEFAULT NULL AFTER `date_of_application`,
 CHANGE COLUMN `address` `address` VARCHAR(500) NULL DEFAULT NULL AFTER `company_name`;
+
+
+ALTER TABLE `tbl_applications_history` 
+ADD COLUMN `previous_id` INT(10) NOT NULL AFTER `id`;

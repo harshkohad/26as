@@ -28,6 +28,7 @@ use app\modules\applications\models\ApplicationsUploadsSearch;
 use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use yii\base\ErrorException;
 use PHPExcel_Style_Fill;
+use app\modules\applications\models\ApplicationsHistory;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -1156,10 +1157,10 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<div class="col-lg-4"></div>';
         $return_html .= '<div class="col-lg-4">';
         $return_html .= self::getRevokedStatus($app_id, $verification_type);
-        $return_html .= '</div>';    
+        $return_html .= '</div>';
         $return_html .= '</div>';
     }
-    
+
     public function getRevokedStatus($app_id, $verification_type) {
         $return_data = '';
         $verifiers_data = ApplicationsVerifiersRevoked::find()->where(['application_id' => $app_id, 'verification_type' => $verification_type])->one();
@@ -1167,7 +1168,7 @@ class ManageApplicationsController extends Controller {
         if (!empty($verifiers_data)) {
             $return_data = '<span style="color:#ff6c60;font-weight:bold">Site Revoked</span>';
         }
-        
+
         return $return_data;
     }
 
@@ -1376,7 +1377,7 @@ class ManageApplicationsController extends Controller {
                         $r_data = self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id);
                         $status = 'failure';
                         $msg = 'Something went wrong!!!';
-                        if(!empty($r_data)) {
+                        if (!empty($r_data)) {
                             $status = $r_data['status'];
                             $msg = $r_data['msg'];
                         }
@@ -1453,13 +1454,13 @@ class ManageApplicationsController extends Controller {
             return $response_data;
         }
     }
-    
+
     public function processDbErrors($data) {
         $return_data = '';
-        if(!empty($data)) {
-            foreach($data as $error) {
-                foreach($error as $key => $value) {
-                    $return_data .= 'Row '.($key+1).' : '.$value.'<br>';
+        if (!empty($data)) {
+            foreach ($data as $error) {
+                foreach ($error as $key => $value) {
+                    $return_data .= 'Row ' . ($key + 1) . ' : ' . $value . '<br>';
                 }
             }
         }
@@ -1644,6 +1645,61 @@ class ManageApplicationsController extends Controller {
             $return_data = '{"latitude":"' . $table_data['latitude'] . '", "longitude":"' . $table_data['longitude'] . '"}';
         }
         return $return_data;
+    }
+
+    public function actionChangeApplicationStatus() {
+        if (!empty($_POST)) {
+            $app_id = $_POST['app_id'];
+            $application_status = $_POST['application_status'];
+            $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'is_deleted' => '0'])->all();
+            $string = '<form id="select_status"><div class="col-lg-12"><label class="control-label">Change Application Status</label>
+                 <div class="panel-body"><div class="row"><select class="form-control" id="application_status" name="status">
+                    <option value="">Select Verifier</option>
+                ';
+            if ($application_status == 1 AND empty($verifiers_data)) {
+                $string .= '<option value="2">Inprogress</option>';
+            }
+            $string .= '<option value="3">Complete</option> </select>
+                        <br/>';
+            $string .= "<input type='hidden' value=$app_id name='app_id'>";
+            $string .= '<button type="button" class="btn btn-danger select_application_status">Submit</button>
+                         </div></div></div>
+                         </form>';
+            echo $string;
+        }
+    }
+
+    public function actionSaveApplicationStatus() {
+        if (!empty(Yii::$app->request->post())) {
+            $data = Yii::$app->request->post();
+            $app_id = $_POST['app_id'];
+            $status = $_POST['status'];
+            $sql = "UPDATE tbl_applications set application_status=$status WHERE id=$app_id";
+            Yii::$app->db->createCommand($sql)->execute();
+            echo "Done";
+        }
+    }
+
+    public function actionRevisitApplication() {
+        if (!empty(Yii::$app->request->post())) {
+            $app_id = $_POST['app_id'];
+            $model = new Applications();
+            $modelHistory = new ApplicationsHistory();
+            $applicationData = $model->findOne(['id' => $app_id]);
+            if (!empty($applicationData)) {
+                foreach ($applicationData as $key => $value) {
+                    if ($key == 'id') {
+                        $modelHistory->previous_id = $value;
+                    } else {
+                        $modelHistory->$key = $value;
+                    }
+                }
+            }
+            $applicationData->application_status = 2;
+            $applicationData->save(false);
+            $modelHistory->save(false);
+        }
+        echo "Done";
     }
 
 }
