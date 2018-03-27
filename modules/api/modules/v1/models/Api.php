@@ -405,8 +405,6 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['id'] = $photos_data['id'];
                 $temp_array['thumb_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'];
                 $temp_array['img_link'] = Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/' . $photos_data['file_name'];
-                $temp_array['encode_image'] = base64_encode(file_get_contents($temp_array['img_link']));
-                $temp_array['encode_image_thumbnail'] = base64_encode(file_get_contents($temp_array['thumb_link']));
                 $temp_array['remarks'] = $photos_data['remarks'];
                 $temp_array['verification_type'] = $section;
                 $temp_array['type'] = $type;                
