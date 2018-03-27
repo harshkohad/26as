@@ -828,7 +828,7 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_working_members')->textInput() ?></div>                            
                 </div>
 
