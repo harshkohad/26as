@@ -49,3 +49,36 @@ CHANGE COLUMN `address` `address` VARCHAR(500) NULL DEFAULT NULL AFTER `company_
 
 ALTER TABLE `tbl_applications_history` 
 ADD COLUMN `previous_id` INT(10) NOT NULL AFTER `id`;
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `resi_total_family_members` `resi_total_family_members` INT(3) NULL DEFAULT 0 ;
+
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `institute_id` `institute_id` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `loan_type_id` `loan_type_id` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `area_id` `area_id` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_home_area` `resi_home_area` INT(6) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_stay_years` `resi_stay_years` INT(4) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_working_members` `resi_working_members` INT(3) NULL DEFAULT 0 ,
+CHANGE COLUMN `busi_staff_declared` `busi_staff_declared` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `busi_staff_seen` `busi_staff_seen` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `busi_years_in_business` `busi_years_in_business` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `busi_locality` `busi_locality` TINYINT(1) NULL DEFAULT 0 COMMENT '1 : Gala, 2 : Shopline, 3 : Compound, 4 : Resi, 5 : Commercial, 6 : Other' ,
+CHANGE COLUMN `office_employment_years` `office_employment_years` INT(4) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_office_home_area` `resi_office_home_area` INT(6) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_office_stay_years` `resi_office_stay_years` INT(4) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_office_total_family_members` `resi_office_total_family_members` INT(3) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_office_working_members` `resi_office_working_members` INT(3) NULL DEFAULT 0 ,
+CHANGE COLUMN `resi_office_employment_years` `resi_office_employment_years` INT(4) NULL DEFAULT 0 ,
+CHANGE COLUMN `builder_profile_exsistence` `builder_profile_exsistence` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `builder_profile_staff` `builder_profile_staff` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `builder_profile_area` `builder_profile_area` INT(6) NULL DEFAULT 0 ,
+CHANGE COLUMN `property_apf_no_of_workers` `property_apf_no_of_workers` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `property_apf_total_flats` `property_apf_total_flats` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `property_apf_how_many_sold` `property_apf_how_many_sold` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `property_apf_total_shops` `property_apf_total_shops` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `property_apf_area` `property_apf_area` INT(6) NULL DEFAULT 0 ,
+CHANGE COLUMN `indiv_property_area` `indiv_property_area` INT(6) NULL DEFAULT 0 ,
+CHANGE COLUMN `created_by` `created_by` INT(11) NULL DEFAULT 0 ,
+CHANGE COLUMN `update_by` `update_by` INT(11) NULL DEFAULT 0 ;

@@ -256,3 +256,7 @@ CREATE TABLE `tbl_applications_history` (
   `company_name` varchar(100) DEFAULT NULL,
   `address` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `tbl_applications_history` 
+CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ADD PRIMARY KEY (`id`);
