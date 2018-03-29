@@ -11,6 +11,7 @@ $config = [
     'id' => 'hwk-networks',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'menu'],
+    'timeZone' => 'Asia/Kolkata',
     'layout' => 'main_layout',
     'components' => [
         'urlManager' => [

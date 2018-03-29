@@ -8,6 +8,7 @@ use PHPExcel_Style_Fill;
 use yii\base\Component;
 use mdm\admin\models\UserDetails;
 use app\models\AppSettings;
+use app\models\Notifications;
 use yii;
 use mdm\admin\components\Helper;
 
@@ -164,6 +165,110 @@ class CommonUtility extends Component {
         return null;
     }
 
+    public static function getCreatedByNameById($user_id) {
+        $outout = UserDetails::find()->where(['user_id' => $user_id])->one();
+        if (!empty($outout)) {
+            return $outout->first_name . " " . $outout->last_name;
+        }
+        return NULL;
+    }
+
+    // Top menu and left menu hide
+    public static function validateUserRoutes($route = NULL) {
+        if (!empty($route) && Helper::checkRoute($route)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public static function validateUserRole($route = NULL) {
+        if (!empty($route) && Helper::checkRoute($route)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public static function checkAuditMode() {
+        $where_cond = ['is_deleted' => 0];
+
+        $AppSettings = AppSettings::findOne(1);
+
+        $is_audit_mode = $AppSettings->audit_mode;
+
+        if ($is_audit_mode) {
+            $where_cond = "'is_deleted' = 0 AND 'created_on' >= now()-interval $AppSettings->show_period month";
+        }
+
+        return $where_cond;
+    }
+
+    function time_elapsed_string($datetime, $full = false) {
+        $now = new \DateTime;
+        $ago = new \DateTime($datetime);
+        $diff = $now->diff($ago);
+
+        $diff->w = floor($diff->d / 7);
+        $diff->d -= $diff->w * 7;
+
+        $string = array(
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        );
+        foreach ($string as $k => &$v) {
+            if ($diff->$k) {
+                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+            } else {
+                unset($string[$k]);
+            }
+        }
+
+        if (!$full)
+            $string = array_slice($string, 0, 1);
+        return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+
+    public static function getNotifications() {
+        $user_id = Yii::$app->user->getId();
+        $notifications = Notifications::find()->where(['user_id' => $user_id])->all();
+
+        $return_data = '';
+
+        $count = count($notifications);
+        $return_data .= '<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-warning">' . $count . '</span>
+            </a>';
+        $return_data .= '<ul class="dropdown-menu extended inbox">
+                <li>
+                    <p>Notifications</p>
+                </li>';
+
+        if (!empty($notifications)) {
+            foreach ($notifications as $notification_data) {
+                $return_data .= '<li>
+                    <a href="#">                        
+                        <span class="subject">
+                            <span class="from">' . self::getCreatedByNameById($notification_data['created_by']) . '</span>
+                            <span class="time">' . self::time_elapsed_string($notification_data['notification_created_at']) . '</span>
+                        </span>
+                        <span class="message">
+                            ' . $notification_data['message'] . '
+                        </span>
+                    </a>
+                </li>';
+            }
+        }
+
+        $return_data .= '</ul>';
+
+        return $return_data;
+    }
+    
     public function getCountryDropdown() {
         $countryArray = [
             ['name' => 'Afghanistan', 'value' => 'Afghanistan'],
@@ -426,32 +531,4 @@ class CommonUtility extends Component {
         return \yii\helpers\ArrayHelper::map($countryArray, 'name', 'value');
     }
 
-    // Top menu and left menu hide
-    public static function validateUserRoutes($route = NULL) {
-        if (!empty($route) && Helper::checkRoute($route)) {
-            return TRUE;
-        }
-        return FALSE;
-    }
-
-    public static function validateUserRole($route = NULL) {
-        if (!empty($route) && Helper::checkRoute($route)) {
-            return TRUE;
-        }
-        return FALSE;
-    }
-    
-    public static function checkAuditMode() {
-        $where_cond = ['is_deleted' => 0];
-        
-        $AppSettings = AppSettings::findOne(1);
-        
-        $is_audit_mode = $AppSettings->audit_mode;
-        
-        if($is_audit_mode) {
-            $where_cond = "'is_deleted' = 0 AND 'created_on' >= now()-interval $AppSettings->show_period month";
-        }
-        
-        return $where_cond;
-    }
 }

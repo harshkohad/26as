@@ -40,11 +40,15 @@ $this->params['breadcrumbs'][] = 'View';
                 <div class="readonlydiv"><?= $model->last_name ?></div>
             </div>
             <div class="col-lg-3">
-                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('aadhaar_card_no') ?></label>
-                <div class="readonlydiv"><?= $model->aadhaar_card_no ?></div>
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('date_of_birth') ?></label>
+                <div class="readonlydiv"><?= $model->date_of_birth ?></div>
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('aadhaar_card_no') ?></label>
+                <div class="readonlydiv"><?= $model->aadhaar_card_no ?></div>
+            </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_card_no') ?></label>
                 <div class="readonlydiv"><?= $model->pan_card_no ?></div>
@@ -57,9 +61,23 @@ $this->params['breadcrumbs'][] = 'View';
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('alternate_contact_no') ?></label>
                 <div class="readonlydiv"><?= $model->alternate_contact_no ?></div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('case_id') ?></label>
+                <div class="readonlydiv"><?= $model->getInstituteNameType($model->case_id) ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('branch') ?></label>
+                <div class="readonlydiv"><?= $model->getInstituteNameType($model->branch) ?></div>
+            </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
                 <div class="readonlydiv"><?= $model->getInstituteNameType($model->institute_id) ?></div>
+            </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_name') ?></label>
+                <div class="readonlydiv"><?= $model->getLoanType($model->company_name) ?></div>
             </div>
         </div>
         <div class="row">
@@ -78,6 +96,14 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('date_of_application') ?></label>
                 <div class="readonlydiv"><?= $model->date_of_application ?></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="col-lg-12">
+                    <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('address') ?></label>
+                    <textarea class="form-control" readonly=""><?= $model->address ?></textarea>
+                </div>
             </div>
         </div>
     </div>
