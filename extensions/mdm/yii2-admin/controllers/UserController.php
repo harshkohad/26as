@@ -373,9 +373,27 @@ class UserController extends BaseController {
         }
         if ($userDetails->load(Yii::$app->request->post())) {
             if ($userDetails->update(FALSE)) {
+                $institute = new Institutes();
+                if ($model->userDetails->institute_id == 0) {
+                    $institute->name = "All";
+                }
+                $institute_Data= Institutes::find()->where(['id' => $model->userDetails->institute_id])->one();
+                if (!empty($institute_Data)) {
+                    $institute->name = $institute_Data->name;
+                }
+                $LoanTypes = new LoanTypes();
+                if ($model->userDetails->loan_id == 0) {
+                    $LoanTypes->loan_name = "All";
+                }
+                $LoanTypes_Data= LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
+                if (!empty($LoanTypes_Data)) {
+                    $LoanTypes->loan_name = $LoanTypes_Data->loan_name;
+                }
                 return $this->render('view', [
                             'model' => $model,
                             'userDetails' => $userDetails,
+                            'institute' => $institute,
+                            'LoanTypes' => $LoanTypes,
                 ]);
             }
         }

@@ -97,11 +97,13 @@ $controllerId = $this->context->uniqueId . '/';
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('role_id') ?></label>
                 <div class="form-control" readonly=""><?= $model->userDetails->role_id ?></div>
             </div>
-            <div class="col-lg-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
                 <div class="form-control" readonly=""><?= $institute->name ?></div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_id') ?></label>
                 <div class="form-control" readonly=""><?= $LoanTypes->loan_name ?></div>
             </div>
