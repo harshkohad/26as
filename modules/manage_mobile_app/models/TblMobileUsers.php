@@ -28,6 +28,7 @@ class TblMobileUsers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['user_id', 'mobile_unique_code', 'mobile_imei_number'], 'required'],
             [['user_id'], 'integer'],
             [['mobile_unique_code', 'mobile_imei_number'], 'string', 'max' => 250],
             [['field_agent_name'], 'string', 'max' => 255],
