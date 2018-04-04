@@ -2,6 +2,7 @@
 
 namespace app\components;
 
+use yii;
 use PHPExcel;
 use PHPExcel_IOFactory;
 use PHPExcel_Style_Fill;
@@ -9,7 +10,6 @@ use yii\base\Component;
 use mdm\admin\models\UserDetails;
 use app\models\AppSettings;
 use app\models\Notifications;
-use yii;
 use mdm\admin\components\Helper;
 
 /*
@@ -230,43 +230,6 @@ class CommonUtility extends Component {
         if (!$full)
             $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
-    }
-
-    public static function getNotifications() {
-        $user_id = Yii::$app->user->getId();
-        $notifications = Notifications::find()->where(['user_id' => $user_id])->all();
-
-        $return_data = '';
-
-        $count = count($notifications);
-        $return_data .= '<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <i class="fa fa-bell-o"></i>
-                <span class="badge bg-warning">' . $count . '</span>
-            </a>';
-        $return_data .= '<ul class="dropdown-menu extended inbox">
-                <li>
-                    <p>Notifications</p>
-                </li>';
-
-        if (!empty($notifications)) {
-            foreach ($notifications as $notification_data) {
-                $return_data .= '<li>
-                    <a href="#">                        
-                        <span class="subject">
-                            <span class="from">' . self::getCreatedByNameById($notification_data['created_by']) . '</span>
-                            <span class="time">' . self::time_elapsed_string($notification_data['notification_created_at']) . '</span>
-                        </span>
-                        <span class="message">
-                            ' . $notification_data['message'] . '
-                        </span>
-                    </a>
-                </li>';
-            }
-        }
-
-        $return_data .= '</ul>';
-
-        return $return_data;
     }
     
     public function getCountryDropdown() {
@@ -531,4 +494,40 @@ class CommonUtility extends Component {
         return \yii\helpers\ArrayHelper::map($countryArray, 'name', 'value');
     }
 
+    public static function getNotifications() {
+        $user_id = Yii::$app->user->getId();
+        $notifications = Notifications::find()->where(['user_id' => $user_id])->all();
+
+        $return_data = '';
+
+        $count = count($notifications);
+        $return_data .= '<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-warning">' . $count . '</span>
+            </a>';
+        $return_data .= '<ul class="dropdown-menu extended inbox">
+                <li>
+                    <p>Notifications</p>
+                </li>';
+
+        if (!empty($notifications)) {
+            foreach ($notifications as $notification_data) {
+                $return_data .= '<li>
+                    <a href="#">                        
+                        <span class="subject">
+                            <span class="from">' . self::getCreatedByNameById($notification_data['created_by']) . '</span>
+                            <span class="time">' . self::time_elapsed_string($notification_data['notification_created_at']) . '</span>
+                        </span>
+                        <span class="message">
+                            ' . $notification_data['message'] . '
+                        </span>
+                    </a>
+                </li>';
+            }
+        }
+
+        $return_data .= '</ul>';
+
+        return $return_data;
+    }
 }

@@ -27,8 +27,8 @@ $controllerId = $this->context->uniqueId . '/';
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-                        [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    [
                         'attribute' => 'username',
                         'format' => 'raw',
                         'value' => function ($data) {
@@ -49,7 +49,7 @@ $controllerId = $this->context->uniqueId . '/';
                     ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => Helper::filterActionColumn(['view', 'activate', 'delete']),
+                'template' => Helper::filterActionColumn(['view', 'update', 'activate', 'delete']),
                 'buttons' => [
                     'activate' => function($url, $model) {
                         if ($model->status == 10) {
