@@ -532,7 +532,8 @@ class Applications extends \yii\db\ActiveRecord {
     }
 
     public function getLoanType($loan_type_id) {
-
+        $return = '';
+        
         $loan_data = LoanTypes::findOne($loan_type_id);
 
         if (!empty($loan_data)) {
