@@ -11,6 +11,7 @@ use Yii;
  * @property integer $user_id
  * @property string $message
  * @property integer $is_unread
+ * @property integer $application_id
  * @property string $notification_created_at
  * @property integer $created_by
  * @property string $created_on
@@ -37,7 +38,7 @@ class Notifications extends \yii\db\ActiveRecord
             [['id'], 'required'],
             [['id', 'user_id', 'is_unread', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['message'], 'string'],
-            [['notification_created_at', 'created_on', 'updated_on'], 'safe'],
+            [['application_id', 'notification_created_at', 'created_on', 'updated_on'], 'safe'],
         ];
     }
 
@@ -51,6 +52,7 @@ class Notifications extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'message' => 'Message',
             'is_unread' => 'Is Unread',
+            'application_id' => 'Application Id',
             'notification_created_at' => 'Notification Created At',
             'created_by' => 'Created By',
             'created_on' => 'Created On',

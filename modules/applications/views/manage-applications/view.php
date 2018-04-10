@@ -65,11 +65,11 @@ $this->params['breadcrumbs'][] = 'View';
         <div class="row">
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('case_id') ?></label>
-                <div class="readonlydiv"><?= $model->getInstituteNameType($model->case_id) ?></div>
+                <div class="readonlydiv"><?= $model->case_id ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('branch') ?></label>
-                <div class="readonlydiv"><?= $model->getInstituteNameType($model->branch) ?></div>
+                <div class="readonlydiv"><?= $model->branch ?></div>
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('institute_id') ?></label>
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
             <div class="col-lg-3">
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_name') ?></label>
-                <div class="readonlydiv"><?= $model->getLoanType($model->company_name) ?></div>
+                <div class="readonlydiv"><?= $model->company_name ?></div>
             </div>
         </div>
         <div class="row">
@@ -100,10 +100,8 @@ $this->params['breadcrumbs'][] = 'View';
         </div>
         <div class="row">
             <div class="col-lg-3">
-                <div class="col-lg-12">
-                    <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('address') ?></label>
-                    <textarea class="form-control" readonly=""><?= $model->address ?></textarea>
-                </div>
+                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('address') ?></label>
+                <textarea class="form-control" readonly=""><?= $model->address ?></textarea>
             </div>
         </div>
     </div>

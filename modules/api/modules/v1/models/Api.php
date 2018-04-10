@@ -13,6 +13,7 @@ use app\modules\applications\models\ApplicantPhotos;
 use app\modules\applications\models\Noc;
 use app\modules\applications\models\Kyc;
 use app\modules\applications\models\ApplicationsVerifiersRevoked;
+use app\models\Notifications;
 use mdm\admin\models\UserDetails;
 
 /**
@@ -395,6 +396,44 @@ class Api extends \yii\db\ActiveRecord {
         return $select_fields;
     }
     
+    function getVerificationType($verification_type) {
+        $verification_type_text = '';
+        if(!empty($verification_type)) {
+            switch ($verification_type) {
+                case 1:
+                    $verification_type_text = 'Residence';
+                    break;
+                case 2:
+                    $verification_type_text = 'Business';
+                    break;
+                case 3:
+                    $verification_type_text = 'Office';
+                    break;
+                case 4:
+                    $verification_type_text = 'NOC (Business/Conditional)';
+                    break;
+                case 5:
+                    $verification_type_text = 'Residence/Office';
+                    break;
+                case 6:
+                    $verification_type_text = 'Builder Profile';
+                    break;
+                case 7:
+                    $verification_type_text = 'Property (APF)';
+                    break;
+                case 8:
+                    $verification_type_text = 'Individual Property';
+                    break;
+                case 9:
+                    $verification_type_text = 'NOC (Society)';
+                    break;
+                default:
+                    $verification_type_text = 'Residence';
+            }
+        }
+        return $verification_type_text;
+    }
+    
     function get_docs_photos($id, $application_id, $type, $section) {
         $return_array = array();
         
@@ -460,6 +499,9 @@ class Api extends \yii\db\ActiveRecord {
                 #update application status
                 self::update_application_status($application_id);
             }
+            
+            self::addNotification($verification_status, $verification_details);
+            
             return true;
         }
         return false;
@@ -660,5 +702,30 @@ class Api extends \yii\db\ActiveRecord {
             }
         }
         return $return_array;
+    }
+    
+    public function addNotification($verification_status, $verification_details) {
+        $notification_model = new Notifications();
+        $application_id = $verification_details->application_id;
+        $application_details = Applications::find()->where(['id' => $application_id])->one();     
+        $message = '';
+        switch ($verification_status) {
+            case 1:
+                $message = 'Verification Started for '.$application_details->application_id.', address type : '.self::getVerificationType($verification_details->verification_type);
+                break;
+            case 2:
+                $message = 'Verification Completed for '.$application_details->application_id.', address type : '.self::getVerificationType($verification_details->verification_type);
+                break;
+            case 3:
+                $message = 'Site Revoked for '.$application_details->application_id.', address type : '.self::getVerificationType($verification_details->verification_type);
+                break;
+        }
+        $notification_model->user_id = $application_details->created_by;
+        $notification_model->message = $message;
+        $notification_model->is_unread = 1;
+        $notification_model->application_id = $application_id;
+        $notification_model->notification_created_at = date("Y-m-d H:i:s");
+        $notification_model->created_by = $verification_details->mobile_user_id;
+        $notification_model->save(false);
     }
 }

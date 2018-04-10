@@ -48,6 +48,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bucket-md/as
         <?php $this->endBody(); ?>
         <?php
         $this->registerJsFile(
+                '@web/js/site_common.js'
+        );
+        $this->registerJsFile(
                 'http://' . $_SERVER['HTTP_HOST'] . ':3000/socket.io/socket.io.js'
         );
         $this->registerJsFile(
