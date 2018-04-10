@@ -14,3 +14,6 @@ CREATE TABLE `tbl_notifications` (
 
 ALTER TABLE `dvs`.`tbl_notifications` 
 CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `dvs`.`tbl_notifications` 
+ADD COLUMN `application_id` INT(11) NULL AFTER `is_unread`;

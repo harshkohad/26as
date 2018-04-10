@@ -496,7 +496,7 @@ class CommonUtility extends Component {
 
     public static function getNotifications() {
         $user_id = Yii::$app->user->getId();
-        $notifications = Notifications::find()->where(['user_id' => $user_id])->all();
+        $notifications = Notifications::find()->where(['user_id' => $user_id, 'is_unread' => 0])->all();
 
         $return_data = '';
 
