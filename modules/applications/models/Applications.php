@@ -374,7 +374,7 @@ class Applications extends \yii\db\ActiveRecord {
             'busi_remarks' => 'Remarks',
             'busi_status' => 'Status',
             'office_company_name_board' => 'Company Name Board',
-            'office_designation' => 'Designation',
+            'office_designation' => 'Applicant Designation',
             'office_met_person' => 'Met Person',
             'office_met_person_designation' => 'Met Person Designation',
             'office_department' => 'Department',

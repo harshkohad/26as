@@ -1070,9 +1070,9 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
-                    <div class="col-lg-3"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
                     <div class="col-lg-3"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row office_verification_disable">

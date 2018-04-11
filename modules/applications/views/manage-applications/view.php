@@ -1146,16 +1146,16 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->office_company_name_board ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->office_designation ?></div>
-                    </div>
-                    <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person') ?></label>
                         <div class="readonlydiv"><?= $model->office_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person_designation') ?></label>
                         <div class="readonlydiv"><?= $model->office_met_person_designation ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
+                        <div class="readonlydiv"><?= $model->office_designation ?></div>
                     </div>
                 </div>
 
