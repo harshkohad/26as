@@ -82,3 +82,14 @@ CHANGE COLUMN `property_apf_area` `property_apf_area` INT(6) NULL DEFAULT 0 ,
 CHANGE COLUMN `indiv_property_area` `indiv_property_area` INT(6) NULL DEFAULT 0 ,
 CHANGE COLUMN `created_by` `created_by` INT(11) NULL DEFAULT 0 ,
 CHANGE COLUMN `update_by` `update_by` INT(11) NULL DEFAULT 0 ;
+
+
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `resi_rented_owner_name` VARCHAR(100) NULL DEFAULT NULL AFTER `resi_not_reachable_remarks`,
+ADD COLUMN `resi_rent_amount` VARCHAR(500) NULL DEFAULT NULL AFTER `resi_rented_owner_name`;
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `busi_rented_owner_name` VARCHAR(100) NULL DEFAULT NULL AFTER `busi_not_reachable_remarks`,
+ADD COLUMN `busi_rent_amount` VARCHAR(500) NULL DEFAULT NULL AFTER `busi_rented_owner_name`;
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `resi_office_rented_owner_name` VARCHAR(100) NULL DEFAULT NULL AFTER `resi_office_not_reachable_remarks`,
+ADD COLUMN `resi_office_rent_amount` VARCHAR(500) NULL DEFAULT NULL AFTER `resi_office_rented_owner_name`;
