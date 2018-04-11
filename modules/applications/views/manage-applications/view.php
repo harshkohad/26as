@@ -601,7 +601,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--ITR-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -615,7 +615,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--Financial-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -682,7 +682,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--Bank Statement-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -796,15 +796,39 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_relation') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_relation) ?></div>
                     </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
-                    </div>
+                    <?php if ($model->resi_ownership_status != 1) {
+                        ?>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
+                        </div>
+                    <?php }
+                    ?>
+
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status_text') ?></label>
                         <div class="readonlydiv"><?= $model->resi_ownership_status_text ?></div>
                     </div>
                 </div>
+                <?php if ($model->resi_ownership_status == 1) {
+                    ?>
+                    <div class="row resi_verification_disable">
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $model->resi_rented_owner_name ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $model->resi_rent_amount ?></div>
+                        </div>
+                    </div>
+
+                <?php }
+                ?>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_home_area') ?></label>
@@ -968,11 +992,19 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 </div>
 
-                <div class="row busi_verification_disable">                            
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
-                    </div>
+                <div class="row busi_verification_disable">
+                    <?php if ($model->busi_ownership_status != 1) {
+                        ?>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                        </div>
+                    <?php }
+                    ?>
+                    <!--                    <div class="col-lg-3">
+                                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
+                                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                                        </div>-->
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
                         <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
@@ -986,7 +1018,24 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
                     </div>                            
                 </div>
-
+                <?php if ($model->busi_ownership_status == 1) {
+                    ?>
+                    <div class="row busi_verification_disable">
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $model->busi_rented_owner_name ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $model->busi_rent_amount ?></div>
+                        </div>
+                    </div>
+                <?php }
+                ?>
                 <div class="row busi_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
@@ -1214,10 +1263,19 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
+
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_relation) ?></div>
                     </div>
+                    <?php if ($model->resi_office_ownership_status != 1) {
+                        ?>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
+                        </div>
+                    <?php }
+                    ?>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
                         <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
@@ -1231,6 +1289,24 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->resi_office_home_area ?></div>
                     </div>
                 </div>
+                <?php if ($model->resi_office_ownership_status == 1) {
+                    ?>
+                    <div class="row resi_office_verification_disable">
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $model->resi_office_rented_owner_name ?></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $model->resi_office_rent_amount ?></div>
+                        </div>
+                    </div>
+                <?php }
+                ?>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_stay_years') ?></label>
@@ -1355,7 +1431,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--Builder Profile-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -1457,7 +1533,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--Property(APF)-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -1571,7 +1647,7 @@ $this->params['breadcrumbs'][] = 'View';
             </div>
         </div>
     </div>
-    
+
     <!--Individual Property-->
     <div class="panel panel-default cust-panel">
         <div class="panel-heading">
@@ -1816,7 +1892,7 @@ $this->params['breadcrumbs'][] = 'View';
     </div>
 </div>
 
-<script src="https://maps.google.com/maps/api/js?key=<?=Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP']?>"></script>
+<script src="https://maps.google.com/maps/api/js?key=<?= Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP'] ?>"></script>
 
 <?php
 $this->registerJs("
