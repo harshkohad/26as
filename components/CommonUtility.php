@@ -231,7 +231,7 @@ class CommonUtility extends Component {
             $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
-    
+
     public function getCountryDropdown() {
         $countryArray = [
             ['name' => 'Afghanistan', 'value' => 'Afghanistan'],
@@ -496,7 +496,7 @@ class CommonUtility extends Component {
 
     public static function getNotifications() {
         $user_id = Yii::$app->user->getId();
-        $notifications = Notifications::find()->where(['user_id' => $user_id, 'is_unread' => 0])->all();
+        $notifications = Notifications::find()->where(['user_id' => $user_id, 'is_unread' => 1, 'type' => 0])->all();
 
         $return_data = '';
 
@@ -505,7 +505,7 @@ class CommonUtility extends Component {
                 <i class="fa fa-bell-o"></i>
                 <span class="badge bg-warning">' . $count . '</span>
             </a>';
-        $return_data .= '<ul class="dropdown-menu extended inbox">
+        $return_data .= '<ul class="dropdown-menu extended inbox notifications">
                 <li>
                     <p>Notifications</p>
                 </li>';
@@ -526,8 +526,46 @@ class CommonUtility extends Component {
             }
         }
 
+        $return_data .= '<li><a href="#">See all notifications</a></li>';
+
         $return_data .= '</ul>';
 
         return $return_data;
     }
+
+    public static function getAlerts() {
+        $user_id = Yii::$app->user->getId();
+        $alerts = Notifications::find()->where(['user_id' => $user_id, 'is_unread' => 1, 'type' => 1])->all();
+        $return_data = '';
+        $count = count($alerts);
+        $return_data .= '<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="fa fa-exclamation-triangle"></i>
+                <span class="badge bg-success">' . $count . '</span>
+            </a>';
+        $return_data .= '<ul class="dropdown-menu extended inbox alerts">
+                <li>
+                    <p>Alerts</p>
+                </li>';
+        if (!empty($alerts)) {
+            foreach ($alerts as $alert_data) {
+                $return_data .= '<li>
+                    <a href="#">                        
+                        <span class="subject">
+                            <span class="from">' . self::getCreatedByNameById($alert_data['created_by']) . '</span>
+                            <span class="time">' . self::time_elapsed_string($alert_data['notification_created_at']) . '</span>
+                        </span>
+                        <span class="message">
+                            ' . $alert_data['message'] . '
+                        </span>
+                    </a>
+                </li>';
+            }
+        }
+        $return_data .= '<li><a href="#">See all alerts</a></li>';
+
+        $return_data .= '</ul>';
+
+        return $return_data;
+    }
+
 }

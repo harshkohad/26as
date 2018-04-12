@@ -25,30 +25,14 @@ use yii\helpers\Html;
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
+            <!-- alerts dropdown start-->
+            <li id="header_inbox_bar" class="dropdown">
+                <?php echo \app\components\CommonUtility::getAlerts(); ?>
+            </li>
+            <!-- alerts dropdown end-->
             <!-- notification dropdown start-->
             <li id="header_notification_bar" class="dropdown">
-                <!--            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="badge bg-warning">1</span>
-                            </a>
-                            <ul class="dropdown-menu extended inbox">
-                                <li>
-                                    <p>Notifications</p>
-                                </li>
-                                <li>
-                                    <a href="#">                        
-                                        <span class="subject">
-                                        <span class="from">Jonathan Smith</span>
-                                        <span class="time">Just now</span>
-                                        </span>
-                                        <span class="message">
-                                            Hello, this is an example msg.
-                                        </span>
-                                    </a>
-                                </li>
-                
-                            </ul>-->
-<?php echo \app\components\CommonUtility::getNotifications(); ?>
+                <?php echo \app\components\CommonUtility::getNotifications(); ?>
             </li>
             <!-- notification dropdown end -->
         </ul>
