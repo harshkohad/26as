@@ -260,6 +260,7 @@ class ManageApplicationsController extends Controller {
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
+        
         if (Yii::$app->request->post()) {
 //            echo '<pre>';
 //            print_r(Yii::$app->request->post());

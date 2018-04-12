@@ -821,10 +821,15 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+
                     <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
+                <div class="row resi_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
 
+                </div>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
@@ -948,12 +953,16 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
 
                 </div>
+                <div class="row busi_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_rent_amount')->textInput() ?></div>
 
+                </div>
                 <div class="row busi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
@@ -1061,9 +1070,9 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
-                    <div class="col-lg-3"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
                     <div class="col-lg-3"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row office_verification_disable">
@@ -1151,11 +1160,15 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
                 </div>
+                <div class="row resi_office_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_rent_amount')->textInput() ?></div>
 
+                </div>
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
@@ -1809,7 +1822,7 @@ $loantypes->id = $model->loan_type_id;
 ?></div>
             </div>-->
 
-<script src="https://maps.google.com/maps/api/js?key=<?=Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP']?>"></script>
+<script src="https://maps.google.com/maps/api/js?key=<?= Yii::$app->params['GOOGLE_MAPS_API_KEY_POPUP'] ?>"></script>
 
 <?php
 $this->registerJs("
@@ -2358,5 +2371,33 @@ $this->registerJs("
                 $("#applications-busi_designation_others").attr("readonly", "readonly");
             }
         });
+        var is_rented = $("#applications-resi_ownership_status").val();
+        hideRented("resi", is_rented);
+        $("#applications-resi_ownership_status").change(function () {
+            var is_rented = $(this).val();
+            hideRented("resi", is_rented);
+        });
+        var is_rented = $("#applications-busi_ownership_status").val();
+        hideRented("busi", is_rented);
+        $("#applications-busi_ownership_status").change(function () {
+            var is_rented = $(this).val();
+            hideRented("busi", is_rented);
+        });
+        var is_rented = $("#applications-resi_office_ownership_status").val();
+        hideRented("resi_office", is_rented);
+        $("#applications-resi_office_ownership_status").change(function () {
+            var is_rented = $(this).val();
+            hideRented("resi_office", is_rented);
+        });
+        function hideRented(source, value) {
+            if (value == 1) {
+                $(".field-applications-" + source + "_rented_owner_name").show();
+                $(".field-applications-" + source + "_rent_amount").show();
+            } else {
+                $(".field-applications-" + source + "_rented_owner_name").hide();
+                $(".field-applications-" + source + "_rent_amount").hide();
+            }
+        }
+
     });
 </script>
