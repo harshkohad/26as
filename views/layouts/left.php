@@ -21,6 +21,7 @@ use mdm\admin\components\Helper;
                         include \Yii::$app->basePath . '/config/menu/Applications.php',
                         include \Yii::$app->basePath . '/config/menu/GenerateMis.php',
                         include \Yii::$app->basePath . '/config/menu/ManageMobileApp.php',
+                        include \Yii::$app->basePath . '/config/menu/Announacements.php',
                         include \Yii::$app->basePath . '/config/menu/Settings.php',
                         //include \Yii::$app->basePath . '/config/menu/UserProfile.php',
                     ]

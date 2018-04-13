@@ -62,4 +62,7 @@ return [
     'applications' => [
         'class' => 'app\modules\applications\Module',
     ],
+    'announcements' => [
+        'class' => 'app\modules\announcements\Module',
+    ],
 ];
