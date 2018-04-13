@@ -7,11 +7,11 @@ return [
     'items' => [
         [
             'label' => 'Notifications',
-            'url' => ['/announcements/manage-announacements/manage-notifications']
+            'url' => ['/announcements/manage-announcements/manage-notifications']
         ],
         [
             'label' => 'Alerts',
-            'url' => ['/announcements/manage-announacements/manage-alerts']
+            'url' => ['/announcements/manage-announcements/manage-alerts']
         ]        
     ]
 ];
