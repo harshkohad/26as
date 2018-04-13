@@ -62,7 +62,7 @@ return [
     'applications' => [
         'class' => 'app\modules\applications\Module',
     ],
-    'announacements' => [
-        'class' => 'app\modules\announacements\Module',
+    'announcements' => [
+        'class' => 'app\modules\announcements\Module',
     ],
 ];
