@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\announacements\controllers;
+namespace app\modules\announcements\controllers;
 
 use Yii;
 use app\models\Notifications;
@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class ManageAnnounacementsController extends \yii\web\Controller {
+class ManageAnnouncementsController extends \yii\web\Controller {
 
     public function actionManageNotifications() {
         $model = new Notifications();
@@ -17,7 +17,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
             'type' => 0
         ]);
         $data = $query->all();
-        return $this->render('/announacements/manage-notifications', [
+        return $this->render('/announcements/manage-notifications', [
                     'data' => $data,
                     'label' => "Notifications",
         ]);
@@ -30,7 +30,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
             'type' => 1
         ]);
         $data = $query->all();
-        return $this->render('/announacements/manage-notifications', [
+        return $this->render('/announcements/manage-notifications', [
                     'data' => $data,
                     'label' => "Alerts",
         ]);
