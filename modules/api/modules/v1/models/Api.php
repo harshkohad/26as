@@ -272,6 +272,7 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['verification_id'] = $site['verification_id'];
                 $temp_array['application_id'] = $site['application_id'];
                 $temp_array['applicant_name'] = $site['applicant_name'];
+                $temp_array['loan_type'] = $site['loan_type'];
                 $temp_array['verification_address'] = $site['verification_address'].self::getContactNo($site['mobile_no'], $site['alternate_contact_no']);
                 $temp_array['verification_triggers'] = $site['verification_triggers'];
                 $temp_array['date_of_application'] = $site['date_of_application'];
@@ -333,9 +334,15 @@ class Api extends \yii\db\ActiveRecord {
                 }
             }
             #site info
-            $site_info = self::get_site_info($app_id, $application_details['application_id']);
+            $site_info = self::get_site_info($app_id, $verification_type);
             if(!empty($site_info)) {
                 $return_array['site_info'] = $site_info;
+            }
+            
+            #kyc details
+            $kyc_details = self::get_kyc_details($app_id, $application_details['application_id']);
+            if(!empty($kyc_details)) {
+                $return_array['kyc_details'] = $kyc_details;
             }
             
             return $return_array;
@@ -687,7 +694,7 @@ class Api extends \yii\db\ActiveRecord {
         return $return_array;
     }
     
-    public function get_site_info($id, $application_id) {
+    public function get_kyc_details($id, $application_id) {
         $return_array = array();
         $photos = Kyc::find()->where(['application_id' => $id, 'is_deleted' => '0', 'send_for_verification' => '1'])->all();
         if (!empty($photos)) {
@@ -700,6 +707,19 @@ class Api extends \yii\db\ActiveRecord {
                 $temp_array['remarks'] = $photos_data['remarks'];
                 $return_array[] = $temp_array;
             }
+        }
+        return $return_array;
+    }
+    
+    public function get_site_info($id, $verification_type) {
+        $return_array = array();
+        $connection = Yii::$app->getDb();
+        $site_details = $connection->createCommand("SELECT * FROM view_all_sites WHERE app_id = {$id} AND verification_type_id = {$verification_type}")->queryOne();
+        if(!empty($site_details)) {
+            $return_array['applicant_name'] = $site_details['applicant_name'];
+            $return_array['verification_address'] = $site_details['verification_address'].self::getContactNo($site_details['mobile_no'], $site_details['alternate_contact_no']);
+            $return_array['institute_name'] = $site_details['institute_name'];  
+            $return_array['loan_type'] = $site_details['loan_type'];
         }
         return $return_array;
     }
