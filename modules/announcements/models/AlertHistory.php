@@ -2,7 +2,7 @@
 
 //namespace app\models;
 
-namespace app\modules\announacements\models;
+namespace app\modules\announcements\models;
 
 use Yii;
 use yii\data\ActiveDataProvider;

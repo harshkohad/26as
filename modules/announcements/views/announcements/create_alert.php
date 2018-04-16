@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
-use app\modules\announacements\models\AlertHistory;
+use app\modules\announcements\models\AlertHistory;
 
 $alertModel = new AlertHistory();
 /* @var $this yii\web\View */
@@ -59,7 +59,7 @@ $form = ActiveForm::begin(['id' => 'create_alert_form', 'action' => 'create-aler
 $this->registerJs("$(function(){   
             $('#add_alert').on('click', function() {
                var form_data = $('#create_alert_form').serialize();
-               var url = '" . yii\helpers\Url::to(["manage-announacements/create-alert"]) . "';
+               var url = '" . yii\helpers\Url::to(["manage-announcements/create-alert"]) . "';
                 $.post(url, form_data,function(response) {
                     window.location.reload();
                 });
@@ -77,7 +77,7 @@ $json_input = $alertModel->getEmployeeList();
 //        var form_data = $('#create_alert').serialize();
 //        alert(form_data);
 //        return false;
-////        var url = '" . yii\helpers\Url::to(["manage-announacements/create-alert"]) . "';
+////        var url = '" . yii\helpers\Url::to(["manage-announcements/create-alert"]) . "';
 ////        $.post(url, form_data, function (response) {
 ////            alert(response);
 ////            //window.location.reload();

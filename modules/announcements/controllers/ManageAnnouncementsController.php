@@ -1,16 +1,16 @@
 <?php
 
-namespace app\modules\announacements\controllers;
+namespace app\modules\announcements\controllers;
 
 use Yii;
 use app\models\Notifications;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\modules\announacements\models\AlertHistory;
+use app\modules\announcements\models\AlertHistory;
 use app\models\User;
 
-class ManageAnnounacementsController extends \yii\web\Controller {
+class ManageAnnouncementsController extends \yii\web\Controller {
 
     public function actionManageNotifications() {
         $model = new Notifications();
@@ -19,7 +19,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
             'type' => 0
         ]);
         $data = $query->all();
-        return $this->render('/announacements/manage-notifications', [
+        return $this->render('/announcements/manage-notifications', [
                     'data' => $data,
                     'label' => "Notifications",
         ]);
@@ -32,7 +32,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
             'type' => 1
         ]);
         $data = $query->all();
-        return $this->render('/announacements/manage-notifications', [
+        return $this->render('/announcements/manage-notifications', [
                     'data' => $data,
                     'label' => "Alerts",
         ]);
@@ -123,7 +123,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
             }
         }
 
-        return $this->render('/announacements/admin-manage-alerts', [
+        return $this->render('/announcements/admin-manage-alerts', [
                     'data' => $data,
         ]);
     }
@@ -164,7 +164,7 @@ class ManageAnnounacementsController extends \yii\web\Controller {
                 }
             }
         }
-        echo $this->renderAjax("/announacements/create_alert", ['model' => $model]);
+        echo $this->renderAjax("/announcements/create_alert", ['model' => $model]);
     }
 
 }

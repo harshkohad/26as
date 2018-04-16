@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\announacements;
+namespace app\modules\announcements;
 
 use Yii;
 use yii\base\Module as BaseModule;
@@ -9,14 +9,14 @@ use yii\web\Application;
 /**
  * Description of Administration
  *
- * @author shriram
+ * @author prashant
  */
 class Module extends BaseModule {
 
     public function init() {
         parent::init();
         if (Yii::$app instanceof Application) {
-            $this->controllerNamespace = 'app\modules\announacements\controllers';
+            $this->controllerNamespace = 'app\modules\announcements\controllers';
         }
     }
 
