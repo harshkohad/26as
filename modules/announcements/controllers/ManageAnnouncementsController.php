@@ -7,6 +7,8 @@ use app\models\Notifications;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\announcements\models\AlertHistory;
+use app\models\User;
 
 class ManageAnnouncementsController extends \yii\web\Controller {
 
@@ -108,6 +110,61 @@ class ManageAnnouncementsController extends \yii\web\Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionAdminManageAlerts() {
+        $model = new AlertHistory();
+        $query = AlertHistory::find();
+        $data = $query->all();
+        if (!empty($data)) {
+            foreach ($data as $key => $dataDtl) {
+                $name = $model->getEmployeeId($dataDtl['user_ids']);
+                $data[$key]['user_ids'] = $name;
+            }
+        }
+
+        return $this->render('/announcements/admin-manage-alerts', [
+                    'data' => $data,
+        ]);
+    }
+
+    public function actionCreateAlert() {
+        $model = new AlertHistory();
+        if (!empty(Yii::$app->request->post())) {
+            $data = Yii::$app->request->post();
+            $data = $data['AlertHistory'];
+            if ($data['is_all'] == 1) {
+                $model->is_all = "All";
+                $sql = "SELECT id  FROM `user`";
+                $results = Yii::$app->db->createCommand($sql)->queryAll();
+                if (!empty($results)) {
+                    foreach ($results as $result) {
+                        if (empty($model->user_ids))
+                            $model->user_ids = $result['id'];
+                        else
+                            $model->user_ids .= "," . $result['id'];
+                    }
+                }
+            } else {
+                $model->user_ids = $data['user_ids'];
+            }
+            $model->message = $data['message'];
+            $model->created_by = Yii::$app->user->getId();
+            $model->created_at = date("Y-m-d H:i:s");
+            $userIds = explode(",", $model->user_ids);
+            if (!empty($userIds) AND $model->save(false)) {
+                foreach ($userIds as $userId) {
+                    $notificationModel = new Notifications();
+                    $notificationModel->user_id = $userId;
+                    $notificationModel->message = $model->message;
+                    $notificationModel->type = 1;
+                    $notificationModel->created_by = Yii::$app->user->getId();
+                    $notificationModel->created_on = date("Y-m-d H:i:s");
+                    $notificationModel->save(false);
+                }
+            }
+        }
+        echo $this->renderAjax("/announcements/create_alert", ['model' => $model]);
     }
 
 }
