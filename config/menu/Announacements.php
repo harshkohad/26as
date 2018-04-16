@@ -12,7 +12,11 @@ return [
         [
             'label' => 'Alerts',
             'url' => ['/announacements/manage-announacements/manage-alerts']
-        ]        
+        ],
+        [
+            'label' => 'Manage Alerts',
+            'url' => ['/announacements/manage-announacements/admin-manage-alerts']
+        ]
     ]
 ];
 
