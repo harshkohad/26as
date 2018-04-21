@@ -244,15 +244,16 @@ use Yii;
  * @property integer $update_by
  * @property string $updated_on
  * @property integer $is_deleted
+ * @property string $resi_rented_owner_name
+ * @property string $resi_rent_amount
+ * @property string $busi_rented_owner_name
+ * @property string $busi_rent_amount
+ * @property string $resi_office_rented_owner_name
+ * @property string $resi_office_rent_amount
  */
 class Applications extends \yii\db\ActiveRecord {
 
-//    public $resi_rented_owner_name;
-//    public $resi_rent_amount;
-//    public $busi_rented_owner_name;
-//    public $busi_rent_amount;
-//    public $resi_office_rented_owner_name;
-//    public $resi_office_rent_amount;
+
 
     /**
      * @inheritdoc
@@ -419,7 +420,7 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_office_relation' => 'Relation',
             'resi_office_home_area' => 'Home Area',
             'resi_office_ownership_status' => 'Address type',
-            'resi_office_ownership_status_text' => 'Address type Text',
+            'resi_office_ownership_status_text' => 'Address type Others',
             'resi_office_stay_years' => 'Stay Years',
             'resi_office_total_family_members' => 'Total Family Members',
             'resi_office_working_members' => 'Working Members',
@@ -432,7 +433,7 @@ class Applications extends \yii\db\ActiveRecord {
             'resi_office_tpc_for_applicant' => 'Tpc For Applicant',
             'resi_office_tpc_for_company' => 'Tpc For Company',
             'resi_office_locality' => 'Locality',
-            'resi_office_locality_text' => 'Locality Text',
+            'resi_office_locality_text' => 'Locality Others',
             'resi_office_landmark_1' => 'Landmark 1',
             'resi_office_landmark_2' => 'Landmark 2',
             'resi_office_structure' => 'Structure',
@@ -531,6 +532,22 @@ class Applications extends \yii\db\ActiveRecord {
             'update_by' => 'Update By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
+            'resi_rented_owner_name' => 'Rent Owner Name',
+            'resi_rent_amount' => 'Rent Amount',
+            'busi_rented_owner_name' => 'Rent Owner Name',
+            'busi_rent_amount' => 'Rent Amount',
+            'resi_office_rented_owner_name' => 'Rent Owner Name',
+            'resi_office_rent_amount' => 'Rent Amount',
+            'busi_is_reachable' => 'Is Reachable',
+            'resi_is_reachable' => 'Is Reachable',
+            'office_is_reachable' => 'Is Reachable',
+            'resi_office_is_reachable' => 'Is Reachable',
+            'builder_profile_is_reachable' => 'Is Reachable',
+            'property_apf_is_reachable' => 'Is Reachable',
+            'indiv_property_is_reachable' => 'Is Reachable',
+            'noc_soc_is_reachable' => 'Is Reachable',
+            'noc_is_reachable' => 'Is Reachable',
+            'busi_designation_others' => 'Designation Others',
         ];
     }
 

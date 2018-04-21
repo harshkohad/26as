@@ -12,6 +12,9 @@ use kartik\select2\Select2;
 $institutes->id = $model->institute_id;
 $loantypes->id = $model->loan_type_id;
 //$area_model->id = $model->area_id;
+//echo '<pre>';
+//print_r($model);
+//die;
 ?>
 
 <section class="panel">
@@ -93,7 +96,7 @@ $loantypes->id = $model->loan_type_id;
         Verification Addresses
     </header>
 </section>
-
+<!--Verification Addresses-->
 <div class="row">
     <div class="col-lg-4">
         <div class="panel panel-default cust-panel">
@@ -615,6 +618,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
     </div>
 </div>
+<!--End Verification Addresses-->
 
 <section class="panel">
     <header class="panel-heading">
@@ -622,6 +626,7 @@ $loantypes->id = $model->loan_type_id;
     </header>
 </section>
 
+<!--Back Office-->
 <div class="panel-group" id="backoffice" style="margin-bottom: 20px;">
     <!--KYC-->
     <div class="panel panel-default cust-panel">
@@ -777,6 +782,282 @@ $loantypes->id = $model->loan_type_id;
         </div>
     </div>
 </div>
+<!--New section-->
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel-group" id="backoffice1" style="margin-bottom: 20px;">
+            <!--PANCARD-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#pancard">
+                            <strong>PANCARD</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="pancard" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--AADHAR CARD-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#aadharcard">
+                            <strong>AADHAR CARD</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="aadharcard" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--PASSPORT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#passport">
+                            <strong>PASSPORT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="passport" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--ELECTRICITY BILL-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#elec_bill">
+                            <strong>ELECTRICITY BILL</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="elec_bill" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--TELEPHONE / MOBILE BILL-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#tele_bill">
+                            <strong>TELEPHONE / MOBILE BILL</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="tele_bill" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--VOTER ID-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#voter_id">
+                            <strong>VOTER ID</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="voter_id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--DRIVING LICENSE-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#driv_lic">
+                            <strong>DRIVING LICENSE</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="driv_lic" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel-group" id="backoffice2" style="margin-bottom: 20px;">
+            <!--COMPANY ID-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#company_id">
+                            <strong>COMPANY ID</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="company_id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--SHOP ACT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#shop_act">
+                            <strong>SHOP ACT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="shop_act" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--GST CERTIFICATE-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#gst_cert">
+                            <strong>GST CERTIFICATE</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="gst_cert" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--RENT AGREEMENT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#rent_agree">
+                            <strong>RENT AGREEMENT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="rent_agree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--SALE AGREEMENT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#sale_agree">
+                            <strong>SALE AGREEMENT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="sale_agree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--OC/CC/PLAN-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#oc_cc_plan">
+                            <strong>OC/CC/PLAN</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="oc_cc_plan" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--OCR RECEIPT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#ocr_receipt">
+                            <strong>OCR RECEIPT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        </span>
+                    </h4>
+                </div>
+                <div id="ocr_receipt" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Back Office-->
 
 <section class="panel">
     <header class="panel-heading">
@@ -795,7 +1076,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="resi_verification" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -808,9 +1089,6 @@ $loantypes->id = $model->loan_type_id;
                         </div>
                     </div>                           
                 </div>
-                <div>
-
-                </div>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_society_name_plate')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_door_name_plate')->textInput(['maxlength' => true]) ?></div>
@@ -821,14 +1099,12 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
-
                 </div>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
@@ -923,7 +1199,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="busi_verification" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -953,24 +1229,20 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
                 </div>
                 <div class="row busi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rent_amount')->textInput() ?></div>
-
                 </div>
                 <div class="row busi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_area')->textInput() ?></div>
-
                 </div>
-
                 <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>  
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
@@ -985,10 +1257,7 @@ $loantypes->id = $model->loan_type_id;
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-6"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-9 busi_verification_enable"><?= $form->field($model, 'busi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 busi_verification_disable">
@@ -1020,12 +1289,7 @@ $loantypes->id = $model->loan_type_id;
                         </div>
                     </div>                      
                 </div>
-
-                <div class="row busi_verification_disable">                            
-                    <div class="col-lg-12"><?= $form->field($model, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
-                </div>
-
-                <div class="row  busi_verification_disable">
+                <div class="row busi_verification_disable">
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="btn-group" data-toggle="buttons">
@@ -1040,7 +1304,11 @@ $loantypes->id = $model->loan_type_id;
                             </label>
                         </div>
                     </div>
-                </div>    
+                    <div class="col-lg-9"><?= $form->field($model, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
+                </div>                 
+                <div class="row">
+                    <div class="col-lg-9 busi_verification_enable"><?= $form->field($model, 'busi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                </div>
             </div>
         </div>
     </div>    
@@ -1055,7 +1323,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="office_verification" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1138,7 +1406,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="resi_office_verification" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1160,14 +1428,13 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
                 </div>
-                <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                <div class="row resi_office_verification_disable">                    
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_rent_amount')->textInput() ?></div>
-
                 </div>
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
@@ -1232,6 +1499,23 @@ $loantypes->id = $model->loan_type_id;
                     </div>
                     <div class="col-lg-3"></div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-9 resi_office_verification_disable"><?= $form->field($model, 'resi_office_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_verification_disable">
+                        <label>Status</label><br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary <?= ($model->resi_office_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            </label>
+                            <label class="btn btn-primary <?= ($model->resi_office_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            </label>
+                            <label class="btn btn-primary <?= ($model->resi_office_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1246,7 +1530,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="builder_profile" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1312,7 +1596,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="property_apf" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1382,7 +1666,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="individual_property" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1446,7 +1730,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="noc_soc" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1502,7 +1786,7 @@ $loantypes->id = $model->loan_type_id;
         </div>
         <div id="noc" class="panel-collapse collapse">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" style="padding-bottom:10px;">
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
