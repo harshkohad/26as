@@ -745,6 +745,282 @@ $this->params['breadcrumbs'][] = 'View';
     </div>
 </div>
 
+<!--New section-->
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel-group" id="backoffice1" style="margin-bottom: 20px;">
+            <!--PANCARD-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#pancard">
+                            <strong>PANCARD</strong>
+                        </a>
+                        <span class="pull-right"> 
+                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="pancard" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--AADHAR CARD-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#aadharcard">
+                            <strong>AADHAR CARD</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="aadharcard" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--PASSPORT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#passport">
+                            <strong>PASSPORT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="passport" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--ELECTRICITY BILL-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#elec_bill">
+                            <strong>ELECTRICITY BILL</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="elec_bill" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--TELEPHONE / MOBILE BILL-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#tele_bill">
+                            <strong>TELEPHONE / MOBILE BILL</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="tele_bill" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--VOTER ID-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#voter_id">
+                            <strong>VOTER ID</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="voter_id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--DRIVING LICENSE-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice1" href="#driv_lic">
+                            <strong>DRIVING LICENSE</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="driv_lic" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel-group" id="backoffice2" style="margin-bottom: 20px;">
+            <!--COMPANY ID-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#company_id">
+                            <strong>COMPANY ID</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="company_id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--SHOP ACT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#shop_act">
+                            <strong>SHOP ACT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="shop_act" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--GST CERTIFICATE-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#gst_cert">
+                            <strong>GST CERTIFICATE</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="gst_cert" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--RENT AGREEMENT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#rent_agree">
+                            <strong>RENT AGREEMENT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="rent_agree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--SALE AGREEMENT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#sale_agree">
+                            <strong>SALE AGREEMENT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="sale_agree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--OC/CC/PLAN-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#oc_cc_plan">
+                            <strong>OC/CC/PLAN</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="oc_cc_plan" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+            
+            <!--OCR RECEIPT-->
+            <div class="panel panel-default cust-panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#backoffice2" href="#ocr_receipt">
+                            <strong>OCR RECEIPT</strong>
+                        </a>
+                        <span class="pull-right" style="margin-top:-2px !important;"> 
+                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                        </span>
+                    </h4>
+                </div>
+                <div id="ocr_receipt" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        fsdfds
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="panel">
     <header class="panel-heading">
         Verifier's Data
@@ -840,7 +1116,7 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_total_family_members') ?></label>
-                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_total_family_members) ?></div>
+                        <div class="readonlydiv"><?= $model->resi_total_family_members ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
@@ -969,15 +1245,10 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation') ?></label>
                         <div class="readonlydiv"><?= $model->getDesignation($model->busi_designation) ?></div>
                     </div>
-                    <?php if ($model->busi_designation == "6") {
-                        ?>
-                        <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation_others') ?></label>
-                            <div class="readonlydiv"><?= $model->busi_designation_others; ?></div>
-                        </div>
-                    <?php }
-                    ?>
-
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation_others') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_designation_others; ?></div>
+                    </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_nature_of_business') ?></label>
                         <div class="readonlydiv"><?= $model->busi_nature_of_business ?></div>
@@ -986,45 +1257,29 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_years_in_business') ?></label>
                         <div class="readonlydiv"><?= $model->busi_years_in_business ?></div>
                     </div>
+                </div>
+
+                <div class="row busi_verification_disable">                    
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_type_of_business') ?></label>
                         <div class="readonlydiv"><?= $model->getBusiType($model->busi_type_of_business) ?></div>
-                    </div>
-                </div>
-
-                <div class="row busi_verification_disable">
-                    <?php if ($model->busi_ownership_status != 1) {
-                        ?>
-                        <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
-                        </div>
-                    <?php }
-                    ?>
-                    <!--                    <div class="col-lg-3">
-                                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
-                                        </div>-->
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality') ?></label>
                         <div class="readonlydiv"><?= $model->getBusiLocality($model->busi_locality) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_text') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
-                    </div>                            
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
+                    </div>                      
                 </div>
                 <?php if ($model->busi_ownership_status == 1) {
                     ?>
                     <div class="row busi_verification_disable">
-                        <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
-                        </div>
                         <div class="col-lg-3">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rented_owner_name') ?></label>
                             <div class="readonlydiv"><?= $model->busi_rented_owner_name ?></div>
@@ -1036,7 +1291,11 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 <?php }
                 ?>
-                <div class="row busi_verification_disable">
+                <div class="row busi_verification_disable">                    
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_text') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
+                    </div>      
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
                         <div class="readonlydiv"><?= $model->busi_staff_declared ?></div>
@@ -1048,14 +1307,13 @@ $this->params['breadcrumbs'][] = 'View';
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_area') ?></label>
                         <div class="readonlydiv"><?= $model->busi_area ?></div>
-                    </div>
+                    </div>                
+                </div>
+                <div class="row busi_verification_disable">                    
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_1') ?></label>
                         <div class="readonlydiv"><?= $model->busi_landmark_1 ?></div>
-                    </div>                   
-                </div>
-
-                <div class="row busi_verification_disable">
+                    </div>   
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_2') ?></label>
                         <div class="readonlydiv"><?= $model->busi_landmark_2 ?></div>
@@ -1064,7 +1322,7 @@ $this->params['breadcrumbs'][] = 'View';
                         <label>Activity Seen</label>
                         <div class="readonlydiv"><?= ($model->busi_activity_seen == 0) ? 'Yes' : 'No' ?></div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_structure') ?></label>
                         <div class="readonlydiv"><?= $model->busi_structure ?></div>
                     </div>
@@ -1107,18 +1365,15 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>                      
                 </div>
 
-                <div class="row busi_verification_disable">                            
-                    <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_remarks ?></div>
-                    </div>
-                </div>   
-
-                <div class="row busi_verification_disable">
+                <div class="row busi_verification_disable"> 
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="readonlydiv"><?= ($model->busi_status == 0) ? 'Positive' : (($model->busi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
+                    <div class="col-lg-9">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_remarks ?></div>
+                    </div>                   
                 </div>
             </div>
         </div>
@@ -1268,14 +1523,6 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_relation) ?></div>
                     </div>
-                    <?php if ($model->resi_office_ownership_status != 1) {
-                        ?>
-                        <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
-                        </div>
-                    <?php }
-                    ?>
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
                         <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
@@ -1292,10 +1539,6 @@ $this->params['breadcrumbs'][] = 'View';
                 <?php if ($model->resi_office_ownership_status == 1) {
                     ?>
                     <div class="row resi_office_verification_disable">
-                        <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
-                        </div>
                         <div class="col-lg-3">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rented_owner_name') ?></label>
                             <div class="readonlydiv"><?= $model->resi_office_rented_owner_name ?></div>
@@ -1826,8 +2069,16 @@ $this->params['breadcrumbs'][] = 'View';
         </div>
         <div id="noc" class="panel-collapse collapse">
             <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($model->noc_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                    </div>
+                </div>
                 <div class="row noc_verification_disable">
-                    <?php echo $nocTable; ?>
+                    <div class="col-lg-12">
+                        <?php echo $nocTable; ?>
+                    </div>
                 </div>
                 <div class="row noc_verification_enable">
                     <div class="col-lg-9">

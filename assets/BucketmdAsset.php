@@ -17,15 +17,19 @@ class BucketmdAsset extends AssetBundle
         'css/style-responsive.css',
         'css/clndr.css',
         'css/bootstrap-reset.css',
+        'css/bootstrap-switch.css',
+        'css/bootstrap-toggle.min.css',
     ];
     public $js = [
         'js/scripts.js',
         'js/jquery-ui/jquery-ui-1.10.1.custom.min.js',
         'js/jquery.dcjqaccordion.2.7.js',
+        'js/bootstrap-switch.js',
         'js/jquery.scrollTo.min.js',
         'js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js',
         'js/jquery.nicescroll.js',
-        'js/bootbox.min.js',
+        'js/bootbox.min.js',     
+        'js/bootstrap-toggle.min.js',
     ];
     public $depends = [
         'rmrevin\yii\fontawesome\AssetBundle',
