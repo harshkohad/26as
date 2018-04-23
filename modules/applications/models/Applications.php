@@ -253,87 +253,6 @@ use Yii;
  */
 class Applications extends \yii\db\ActiveRecord {
 
-    public $pan_first_name = "";
-    public $pan_last_name = "";
-    public $pan_middle_name = "";
-    public $pan_pan_no = "";
-    public $pan_dob = "";
-    public $pan_date_of_issue = "";
-    public $pan_address = "";
-    public $pan_is_complete = "";
-    public $ac_first_name = "";
-    public $ac_last_name = "";
-    public $ac_middle_name = "";
-    public $ac_aadhar_no = "";
-    public $ac_dob = "";
-    public $ac_address = "";
-    public $ac_mobile_no = "";
-    public $ac_is_complete = "";
-    public $passport_first_name = "";
-    public $passport_last_name = "";
-    public $passport_middle_name = "";
-    public $passport_passport_no = "";
-    public $passport_address = "";
-    public $passport_validity = "";
-    public $passport_date_of_issue = "";
-    public $passport_is_complete = "";
-    public $electricity_name = "";
-    public $electricity_address = "";
-    public $electricity_is_complete = "";
-    public $telephone_is_complete = "";
-    public $telephone_mobile_no = "";
-    public $telephone_name = "";
-    public $telephone_address = "";
-    public $telephone_amount = "";
-    public $voter_first_name = "";
-    public $voter_last_name = "";
-    public $voter_middle_name = "";
-    public $voter_voter_id_no = "";
-    public $voter_address = "";
-    public $voter_is_complete = "";
-    public $driving_is_complete = '';
-    public $driving_name = '';
-    public $driving_driving_license_number = '';
-    public $driving_valifity = '';
-    public $driving_date_of_issue = '';
-    public $company_is_complete = '';
-    public $company_name = '';
-    public $company_designation = '';
-    public $shop_act_is_complete = '';
-    public $shop_act_name = '';
-    public $shop_act_shop_act_no = '';
-    public $shop_act_address = '';
-    public $shop_act_from_date = '';
-    public $shop_act_till_date = '';
-    public $gst_name = '';
-    public $gst_is_complete = '';
-    public $gst_gst_no = '';
-    public $gst_address = '';
-    public $rent_aggeement_met_name = "";
-    public $rent_aggeement_owner_name = "";
-    public $rent_aggeement_rent_amount = "";
-    public $rent_aggeement_deposit_amount = "";
-    public $rent_aggeement_validity = "";
-    public $rent_aggeement_is_complete = "";
-    public $seller_is_complete = "";
-    public $seller_name = "";
-    public $seller_purchaser_name = "";
-    public $seller_address = "";
-    public $oc_cc_plan_cts_no = "";
-    public $oc_cc_plan_issuing_authority = "";
-    public $oc_cc_plan_signature = "";
-    public $oc_cc_plan_is_complete = "";
-    
-    public $ocr_receipt_builder_name = '';
-    public $ocr_receipt_met_person = '';
-    public $ocr_receipt_designation = '';
-    public $ocr_receipt_amount = '';
-    public $ocr_receipt_receipt_no = '';
-    public $ocr_receipt_signature = '';
-    public $ocr_receipt_tpc = '';
-    public $ocr_receipt_landmark = '';
-    public $ocr_receipt_is_complete = "";
-
     /**
      * @inheritdoc
      */
@@ -348,7 +267,11 @@ class Applications extends \yii\db\ActiveRecord {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id', 'date_of_birth', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'alternate_contact_no', 'case_id', 'branch', 'company_name', 'address'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'resi_home_area', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_area', 'busi_locality', 'office_employment_years', 'application_status', 'resi_relation', 'resi_ownership_status', 'busi_ownership_status', 'builder_profile_type_of_office', 'resi_office_ownership_status', 'resi_office_locality', 'property_apf_property_status', 'indiv_property_property_type', 'noc_soc_society_type', 'created_by', 'update_by', 'is_deleted', 'resi_market_feedback', 'resi_status', 'busi_status', 'office_status', 'noc_status', 'busi_is_reachable', 'resi_is_reachable', 'office_is_reachable', 'resi_office_is_reachable', 'builder_profile_is_reachable', 'property_apf_is_reachable', 'indiv_property_is_reachable', 'noc_soc_is_reachable', 'noc_is_reachable'], 'integer'],
-            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode', 'created_on', 'updated_on', 'application_id', 'resi_rented_owner_name', 'resi_rent_amount', 'busi_rented_owner_name', 'busi_rent_amount', 'resi_office_rented_owner_name', 'resi_office_rent_amount'], 'safe'],
+            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode', 'created_on', 'updated_on', 'application_id', 'resi_rented_owner_name', 'resi_rent_amount', 'busi_rented_owner_name', 'busi_rent_amount', 'resi_office_rented_owner_name', 'resi_office_rent_amount','pan_first_name','pan_last_name'
+                ,'pan_middle_name','pan_address','pan_pan_no','pan_dob','pan_date_of_issue','pan_is_complete','ac_first_name','ac_last_name','ac_middle_name','ac_aadhar_no','ac_dob','ac_address','ac_mobile_no','ac_is_complete','passport_first_name','passport_last_name','passport_middle_name','passport_passport_no','passport_passport_no','passport_address','passport_validity','passport_date_of_issue','passport_is_complete',
+                'electricity_name','electricity_address','electricity_is_complete','telephone_is_complete','telephone_mobile_no','telephone_amount','telephone_name','telephone_address','voter_first_name','voter_last_name','voter_middle_name','voter_address','voter_voter_id_no','voter_is_complete','driving_is_complete','driving_name','driving_driving_license_number','driving_validity','driving_date_of_issue','company_is_complete','company_name','company_designation',
+                'shop_act_is_complete','shop_act_name','shop_act_shop_act_no','shop_act_address','shop_act_from_date','shop_act_till_date','gst_name','gst_is_complete','gst_gst_no','gst_address','rent_aggeement_met_name','rent_aggeement_owner_name','rent_aggeement_rent_amount','rent_aggeement_deposit_amount','rent_aggeement_is_complete','rent_aggeement_validity','seller_is_complete','seller_name','seller_purchaser_name','seller_address','oc_cc_plan_cts_no','oc_cc_plan_is_complete','oc_cc_plan_issuing_authority',
+                'oc_cc_plan_signature','ocr_receipt_builder_name','ocr_receipt_met_person','ocr_receipt_designation','ocr_receipt_signature','ocr_receipt_tpc','ocr_receipt_landmark','ocr_receipt_amount','ocr_receipt_receipt_no','ocr_receipt_is_complete','noc_soc_chairman_name','noc_soc_secretary_name','noc_soc_tresurer_name'], 'safe'],
             [['first_name', 'middle_name', 'last_name', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure', 'resi_office_structure', 'resi_office_remarks', 'builder_profile_current_projects', 'builder_profile_previous_projects', 'busi_address_trigger', 'resi_address', 'resi_address_trigger', 'office_address', 'office_address_trigger', 'busi_address', 'noc_address', 'noc_address_trigger', 'resi_office_address', 'resi_office_address_trigger', 'builder_profile_address', 'builder_profile_address_trigger', 'property_apf_address', 'property_apf_address_trigger', 'indiv_property_address', 'indiv_property_address_trigger', 'noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
             //['aadhaar_card_no', 'integer', 'max' => 12],
@@ -692,6 +615,9 @@ class Applications extends \yii\db\ActiveRecord {
             'noc_soc_is_reachable' => 'Is Reachable',
             'noc_is_reachable' => 'Is Reachable',
             'busi_designation_others' => 'Designation Others',
+            'noc_soc_chairman_name' => 'Chairman Name',
+            'noc_soc_secretary_name' => 'Secretary Name',
+            'noc_soc_tresurer_name' => 'Tresurer Name',
         ];
     }
 

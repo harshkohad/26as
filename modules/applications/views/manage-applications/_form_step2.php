@@ -1037,7 +1037,20 @@ $loantypes->id = $model->loan_type_id;
                         <div class="row">
                             <div class="col-lg-3"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'driving_driving_license_number')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'driving_valifity')->textArea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[driving_validity]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->driving_validity,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
                             <div class="col-lg-3">
                                 <?php
                                 echo '<label class="control-label">Date Of Issue</label>';
@@ -1978,6 +1991,11 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row noc_soc_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_chairman_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_secretary_name')->textInput(['maxlength' => true]) ?></div>
+                </div>
+                <div class="row noc_soc_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_tresurer_name')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-9 noc_soc_verification_enable"><?= $form->field($model, 'noc_soc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
