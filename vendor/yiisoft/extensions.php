@@ -174,15 +174,6 @@ return array (
       '@yii/elasticsearch' => $vendorDir . '/yiisoft/yii2-elasticsearch',
     ),
   ),
-  'yiisoft/yii2-mongodb' => 
-  array (
-    'name' => 'yiisoft/yii2-mongodb',
-    'version' => '2.1.3.0',
-    'alias' => 
-    array (
-      '@yii/mongodb' => $vendorDir . '/yiisoft/yii2-mongodb',
-    ),
-  ),
   'linslin/yii2-curl' => 
   array (
     'name' => 'linslin/yii2-curl',
@@ -307,6 +298,42 @@ return array (
     'alias' => 
     array (
       '@bucketmd' => $vendorDir . '/bucket-md/widgets',
+    ),
+  ),
+  '2amigos/yii2-gallery-widget' => 
+  array (
+    'name' => '2amigos/yii2-gallery-widget',
+    'version' => '1.1.0.0',
+    'alias' => 
+    array (
+      '@dosamigos/gallery' => $vendorDir . '/2amigos/yii2-gallery-widget/src',
+    ),
+  ),
+  '2amigos/yii2-file-upload-widget' => 
+  array (
+    'name' => '2amigos/yii2-file-upload-widget',
+    'version' => '1.0.8.0',
+    'alias' => 
+    array (
+      '@dosamigos/fileupload' => $vendorDir . '/2amigos/yii2-file-upload-widget/src',
+    ),
+  ),
+  'loveorigami/yii2-bootstrap-toggle' => 
+  array (
+    'name' => 'loveorigami/yii2-bootstrap-toggle',
+    'version' => '1.1.0.0',
+    'alias' => 
+    array (
+      '@lo/widgets' => $vendorDir . '/loveorigami/yii2-bootstrap-toggle',
+    ),
+  ),
+  'kartik-v/yii2-widget-switchinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-switchinput',
+    'version' => '1.3.1.0',
+    'alias' => 
+    array (
+      '@kartik/switchinput' => $vendorDir . '/kartik-v/yii2-widget-switchinput',
     ),
   ),
 );
