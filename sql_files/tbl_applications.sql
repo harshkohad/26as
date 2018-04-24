@@ -93,3 +93,104 @@ ADD COLUMN `busi_rent_amount` VARCHAR(500) NULL DEFAULT NULL AFTER `busi_rented_
 ALTER TABLE `tbl_applications` 
 ADD COLUMN `resi_office_rented_owner_name` VARCHAR(100) NULL DEFAULT NULL AFTER `resi_office_not_reachable_remarks`,
 ADD COLUMN `resi_office_rent_amount` VARCHAR(500) NULL DEFAULT NULL AFTER `resi_office_rented_owner_name`;
+
+
+ALTER TABLE `tbl_applications` ADD `pan_first_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_last_name` VARCHAR(50) NULL DEFAULT NULL; 
+
+
+ALTER TABLE `tbl_applications` ADD `pan_middle_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_address` VARCHAR(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_pan_no` VARCHAR(15) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_dob` datetime NOT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_date_of_issue` datetime NOT NULL; 
+ALTER TABLE `tbl_applications` ADD `pan_is_complete` int(10) NULL; 
+
+
+ALTER TABLE `tbl_applications` ADD `ac_first_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_last_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_middle_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_aadhar_no` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_dob` datetime NOT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_address` VARCHAR(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_mobile_no` int(15) NULL; 
+ALTER TABLE `tbl_applications` ADD `ac_is_complete` int(15) NULL; 
+
+ALTER TABLE `tbl_applications` ADD `passport_first_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_last_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_middle_name` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_passport_no` VARCHAR(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_address` VARCHAR(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_validity` datetime NOT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_date_of_issue` datetime NOT NULL; 
+ALTER TABLE `tbl_applications` ADD `passport_is_complete` int(5) NULL; 
+
+ALTER TABLE `tbl_applications` ADD `electricity_name` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `electricity_address` varchar(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `electricity_is_complete` varchar(50) NULL DEFAULT NULL; 
+
+ALTER TABLE `tbl_applications` ADD `telephone_is_complete` int(50) NULL; 
+ALTER TABLE `tbl_applications` ADD `telephone_mobile_no` int(15) NULL; 
+ALTER TABLE `tbl_applications` ADD `telephone_amount` int(15) NULL; 
+ALTER TABLE `tbl_applications` ADD `telephone_name` varchar(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `telephone_address` varchar(500) NULL DEFAULT NULL; 
+
+ALTER TABLE `tbl_applications` ADD `voter_first_name` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `voter_last_name` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `voter_middle_name` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `voter_address` varchar(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `voter_voter_id_no` int(15) NULL; 
+ALTER TABLE `tbl_applications` ADD `voter_is_complete` int(10) NULL; 
+
+ALTER TABLE `tbl_applications` ADD `driving_is_complete` int(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `driving_name` varchar(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `driving_driving_license_number` varchar(20) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `driving_validity` datetime NULL; 
+ALTER TABLE `tbl_applications` ADD `driving_date_of_issue` datetime NULL; 
+
+ALTER TABLE `tbl_applications` ADD `company_is_complete` int(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `company_name` varchar(100) NULL DEFAULT NULL;  
+ALTER TABLE `tbl_applications` ADD `company_designation` varchar(100) NULL DEFAULT NULL;  
+
+ALTER TABLE `tbl_applications` ADD `shop_act_is_complete` int(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `shop_act_name` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `shop_act_shop_act_no` varchar(50) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `shop_act_address` varchar(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `shop_act_from_date` datetime NULL; 
+ALTER TABLE `tbl_applications` ADD `shop_act_till_date` datetime NULL; 
+
+ALTER TABLE `tbl_applications` ADD `gst_name` varchar(500) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `gst_is_complete` int NULL; 
+ALTER TABLE `tbl_applications` ADD `gst_gst_no` int(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `gst_address` VARCHAR(500) NULL DEFAULT NULL; 
+
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_met_name` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_owner_name` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_rent_amount` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_deposit_amount` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_is_complete` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_validity` DATETIME NULL; 
+
+ALTER TABLE `tbl_applications` ADD `seller_is_complete` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `seller_name` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `seller_purchaser_name` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `seller_address` VARCHAR(500) NULL DEFAULT NULL; 
+
+ALTER TABLE `tbl_applications` ADD `oc_cc_plan_cts_no` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `oc_cc_plan_is_complete` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `oc_cc_plan_issuing_authority` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `oc_cc_plan_signature` VARCHAR(100) NULL DEFAULT NULL; 
+
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_builder_name` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_met_person` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_designation` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_signature` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_tpc` VARCHAR(100) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_landmark` VARCHAR(200) NULL DEFAULT NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_amount` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_receipt_no` INT(10) NULL; 
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_is_complete` INT(10) NULL; 
+
+ALTER TABLE `tbl_applications` ADD `noc_soc_chairman_name` VARCHAR(200) NULL DEFAULT NULL AFTER `noc_not_reachable_remarks`; 
+ALTER TABLE `tbl_applications` ADD `noc_soc_secretary_name` VARCHAR(200) NULL DEFAULT NULL AFTER `noc_soc_chairman_name`; 
+ALTER TABLE `tbl_applications` ADD `noc_soc_tresurer_name` VARCHAR(200) NULL DEFAULT NULL AFTER `noc_soc_secretary_name`; 

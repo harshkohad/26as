@@ -794,17 +794,55 @@ $loantypes->id = $model->loan_type_id;
                             <strong>PANCARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'pan_is_complete')->checkbox(['label' => ''])->label(FALSE);
+                            ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="pancard" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'pan_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'pan_middle_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'pan_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'pan_pan_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">DOB</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[pan_dob]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->pan_dob,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[pan_date_of_issue]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->pan_date_of_issue,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                            <div class="col-lg-3"><?= $form->field($model, 'pan_address')->textarea(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--AADHAR CARD-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -813,17 +851,42 @@ $loantypes->id = $model->loan_type_id;
                             <strong>AADHAR CARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'ac_is_complete')->checkbox(['label' => ''])->label(FALSE);
+                            ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="aadharcard" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_middle_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_aadhar_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">DOB</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[ac_dob]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->ac_dob,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ac_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--PASSPORT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -831,18 +894,55 @@ $loantypes->id = $model->loan_type_id;
                         <a data-toggle="collapse" data-parent="#backoffice1" href="#passport">
                             <strong>PASSPORT</strong>
                         </a>
-                        <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                        <span class="pull-right" style="margin-top:-2px !important;">
+                            <?= $form->field($model, 'passport_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="passport" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'passport_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'passport_middle_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'passport_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'passport_passport_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'passport_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Validity</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[passport_validity]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->passport_validity,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[passport_date_of_issue]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->passport_date_of_issue,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--ELECTRICITY BILL-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -851,17 +951,21 @@ $loantypes->id = $model->loan_type_id;
                             <strong>ELECTRICITY BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'electricity_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="elec_bill" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'electricity_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'electricity_address')->textarea(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--TELEPHONE / MOBILE BILL-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -870,17 +974,26 @@ $loantypes->id = $model->loan_type_id;
                             <strong>TELEPHONE / MOBILE BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'telephone_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="tele_bill" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_middle_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_voter_id_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_address')->textarea() ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--VOTER ID-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -889,17 +1002,23 @@ $loantypes->id = $model->loan_type_id;
                             <strong>VOTER ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'voter_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="voter_id" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_address')->textArea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_amount')->textInput() ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--DRIVING LICENSE-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -908,13 +1027,45 @@ $loantypes->id = $model->loan_type_id;
                             <strong>DRIVING LICENSE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'driving_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="driv_lic" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'driving_driving_license_number')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[driving_validity]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->driving_validity,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[driving_date_of_issue]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->driving_date_of_issue,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -930,17 +1081,21 @@ $loantypes->id = $model->loan_type_id;
                             <strong>COMPANY ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'company_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="company_id" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'company_designation')->textInput(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--SHOP ACT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -949,17 +1104,52 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SHOP ACT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'shop_act_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="shop_act" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_shop_act_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">From Date</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[shop_act_from_date]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->shop_act_from_date,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Till Date</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[shop_act_till_date]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->shop_act_till_date,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--GST CERTIFICATE-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -968,17 +1158,22 @@ $loantypes->id = $model->loan_type_id;
                             <strong>GST CERTIFICATE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'gst_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="gst_cert" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'gst_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'gst_gst_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'gst_address')->textarea(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--RENT AGREEMENT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -987,17 +1182,39 @@ $loantypes->id = $model->loan_type_id;
                             <strong>RENT AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="rent_agree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_met_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_owner_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_rent_amount')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3">
+                                <?php
+                                echo '<label class="control-label">Validity</label>';
+                                echo DatePicker::widget([
+                                    'name' => 'Applications[rent_aggeement_validity]',
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'value' => $model->rent_aggeement_validity,
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
+                                        'format' => 'yyyy-mm-dd'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_deposit_amount')->textInput(['maxlength' => true]) ?></div>
                     </div>
                 </div>
             </div>
-            
+
             <!--SALE AGREEMENT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -1006,17 +1223,22 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SALE AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'seller_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="sale_agree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'seller_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'seller_purchaser_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'seller_address')->textarea(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--OC/CC/PLAN-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -1025,17 +1247,22 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OC/CC/PLAN</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'oc_cc_plan_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="oc_cc_plan" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_cts_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_issuing_authority')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_signature')->textInput(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--OCR RECEIPT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -1044,13 +1271,25 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OCR RECEIPT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">
+                            <?= $form->field($model, 'ocr_receipt_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
+                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
                         </span>
                     </h4>
                 </div>
                 <div id="ocr_receipt" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_builder_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_met_person')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_amount')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_receipt_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_signature')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_landmark')->textInput(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1752,6 +1991,11 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row noc_soc_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_chairman_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_secretary_name')->textInput(['maxlength' => true]) ?></div>
+                </div>
+                <div class="row noc_soc_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_tresurer_name')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-9 noc_soc_verification_enable"><?= $form->field($model, 'noc_soc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>

@@ -361,7 +361,6 @@ class ManageApplicationsController extends Controller {
                 }
             }
             $model->load(Yii::$app->request->post());
-
             if (!empty($_POST['Applications']['resi_not_reachable_remarks']))
                 $model->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
