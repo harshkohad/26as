@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
-    'yii\\mongodb\\' => array($vendorDir . '/yiisoft/yii2-mongodb'),
     'yii\\jui\\' => array($vendorDir . '/yiisoft/yii2-jui'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
@@ -19,7 +18,9 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'moonland\\phpexcel\\' => array($vendorDir . '/moonlandsoft/yii2-phpexcel'),
+    'lo\\widgets\\' => array($vendorDir . '/loveorigami/yii2-bootstrap-toggle'),
     'linslin\\yii2\\curl\\' => array($vendorDir . '/linslin/yii2-curl'),
+    'kartik\\switchinput\\' => array($vendorDir . '/kartik-v/yii2-widget-switchinput'),
     'kartik\\sidenav\\' => array($vendorDir . '/kartik-v/yii2-widget-sidenav'),
     'kartik\\select2\\' => array($vendorDir . '/kartik-v/yii2-widget-select2'),
     'kartik\\popover\\' => array($vendorDir . '/kartik-v/yii2-popover-x'),
@@ -39,6 +40,8 @@ return array(
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
     'dosamigos\\tableexport\\' => array($vendorDir . '/2amigos/yii2-table-export-widget'),
     'dosamigos\\grid\\' => array($vendorDir . '/2amigos/yii2-grid-view-library'),
+    'dosamigos\\gallery\\' => array($vendorDir . '/2amigos/yii2-gallery-widget/src'),
+    'dosamigos\\fileupload\\' => array($vendorDir . '/2amigos/yii2-file-upload-widget/src'),
     'dosamigos\\editable\\' => array($vendorDir . '/2amigos/yii2-editable-widget'),
     'dosamigos\\assets\\' => array($vendorDir . '/2amigos/yii2-dosamigos-asset-bundle'),
     'dmstr\\' => array($vendorDir . '/dmstr/yii2-adminlte-asset'),

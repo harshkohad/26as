@@ -793,10 +793,15 @@ $loantypes->id = $model->loan_type_id;
                         <a data-toggle="collapse" data-parent="#backoffice1" href="#pancard">
                             <strong>PANCARD</strong>
                         </a>
-                        <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'pan_is_complete')->checkbox(['label' => ''])->label(FALSE);
-                            ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                        <span class="pull-right" style="margin-top:-2px !important;">                            
+                            <?= $form->field($model, 'pan_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -851,9 +856,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>AADHAR CARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'ac_is_complete')->checkbox(['label' => ''])->label(FALSE);
-                            ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'ac_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -895,8 +905,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>PASSPORT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;">
-                            <?= $form->field($model, 'passport_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                                    <?= $form->field($model, 'passport_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -951,8 +967,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>ELECTRICITY BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'electricity_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                                <?= $form->field($model, 'electricity_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -974,8 +996,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>TELEPHONE / MOBILE BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'telephone_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'telephone_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>                            
                         </span>
                     </h4>
                 </div>
@@ -1002,8 +1030,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>VOTER ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'voter_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'voter_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?> 
                         </span>
                     </h4>
                 </div>
@@ -1027,8 +1061,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>DRIVING LICENSE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'driving_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'driving_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1081,16 +1121,22 @@ $loantypes->id = $model->loan_type_id;
                             <strong>COMPANY ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'company_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'company_id_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
                 <div id="company_id" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'company_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'company_id_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'company_id_designation')->textInput(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1104,8 +1150,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SHOP ACT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'shop_act_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'shop_act_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1158,8 +1210,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>GST CERTIFICATE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'gst_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'gst_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1182,8 +1240,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>RENT AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1223,8 +1287,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SALE AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'seller_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'seller_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1247,8 +1317,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OC/CC/PLAN</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'oc_cc_plan_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'oc_cc_plan_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1271,8 +1347,14 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OCR RECEIPT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'ocr_receipt_is_complete')->checkbox(['label' => ''])->label(FALSE); ?>
-                            <!--<input type="checkbox" data-toggle="toggle" data-width="115" data-size="mini" data-on="<i class='fa fa-check'></i> Verified" data-off="<i class='fa fa-times'></i> Not Verified" data-onstyle="success" data-offstyle="danger">-->
+                            <?= $form->field($model, 'ocr_receipt_is_complete')->checkbox(['label' => '',
+                                        'data-toggle' => "toggle",
+                                        'data-width' => "115",
+                                        'data-size' => "mini",
+                                        'data-on' => "<i class='fa fa-check'></i> Verified",
+                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                        'data-onstyle' => "success",
+                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
                         </span>
                     </h4>
                 </div>
@@ -1310,7 +1392,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_verification"><strong>Residence Verification</strong></a>
-                <?= $model->verificationStatus($model->id, 1); ?>
+<?= $model->verificationStatus($model->id, 1); ?>
             </h4>
         </div>
         <div id="resi_verification" class="panel-collapse collapse">
@@ -1386,7 +1468,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="resi_docs">
-                                    <?php echo $resiDocsTable; ?>
+<?php echo $resiDocsTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1400,7 +1482,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="resi_photos">
-                                    <?php echo $resiPhotosTable; ?>
+<?php echo $resiPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1433,7 +1515,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#busi_verification"><strong>Business Verification</strong></a>
-                <?= $model->verificationStatus($model->id, 2); ?>
+<?= $model->verificationStatus($model->id, 2); ?>
             </h4>
         </div>
         <div id="busi_verification" class="panel-collapse collapse">
@@ -1508,7 +1590,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="busi_docs">
-                                    <?php echo $busiDocsTable; ?>
+<?php echo $busiDocsTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1522,7 +1604,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="busi_photos">
-                                    <?php echo $busiPhotosTable; ?>
+<?php echo $busiPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1557,7 +1639,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#office_verification"><strong>Office Verification</strong></a>
-                <?= $model->verificationStatus($model->id, 3); ?>
+<?= $model->verificationStatus($model->id, 3); ?>
             </h4>
         </div>
         <div id="office_verification" class="panel-collapse collapse">
@@ -1609,7 +1691,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $officePhotosTable; ?>
+<?php echo $officePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1640,7 +1722,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
-                <?= $model->verificationStatus($model->id, 5); ?>
+<?= $model->verificationStatus($model->id, 5); ?>
             </h4>
         </div>
         <div id="resi_office_verification" class="panel-collapse collapse">
@@ -1731,7 +1813,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $resiOfficePhotosTable; ?>
+<?php echo $resiOfficePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1764,7 +1846,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
-                <?= $model->verificationStatus($model->id, 6); ?>
+<?= $model->verificationStatus($model->id, 6); ?>
             </h4>
         </div>
         <div id="builder_profile" class="panel-collapse collapse">
@@ -1815,7 +1897,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $builderProfilePhotosTable; ?>
+<?php echo $builderProfilePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1830,7 +1912,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
-                <?= $model->verificationStatus($model->id, 7); ?>
+<?= $model->verificationStatus($model->id, 7); ?>
             </h4>
         </div>
         <div id="property_apf" class="panel-collapse collapse">
@@ -1885,7 +1967,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $propertyApfPhotosTable; ?>
+<?php echo $propertyApfPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1900,7 +1982,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
-                <?= $model->verificationStatus($model->id, 8); ?>
+<?= $model->verificationStatus($model->id, 8); ?>
             </h4>
         </div>
         <div id="individual_property" class="panel-collapse collapse">
@@ -1949,7 +2031,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $indivPropertyPhotosTable; ?>
+<?php echo $indivPropertyPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1964,7 +2046,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
-                <?= $model->verificationStatus($model->id, 9); ?>
+<?= $model->verificationStatus($model->id, 9); ?>
             </h4>
         </div>
         <div id="noc_soc" class="panel-collapse collapse">
@@ -2010,7 +2092,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-                                    <?php echo $nocSocPhotosTable; ?>
+<?php echo $nocSocPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -2025,7 +2107,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
-                <?= $model->verificationStatus($model->id, 4); ?>
+<?= $model->verificationStatus($model->id, 4); ?>
             </h4>
         </div>
         <div id="noc" class="panel-collapse collapse">
@@ -2045,7 +2127,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row noc_verification_disable">
                     <div class="col-lg-12" id="noc_table">
-                        <?php echo $nocTable; ?>
+<?php echo $nocTable; ?>
                     </div>
                 </div>    
                 <div id="loader_noc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
@@ -2064,7 +2146,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="noc_photos">
-                                    <?php echo $nocPhotosTable; ?>
+<?php echo $nocPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -2095,7 +2177,7 @@ $loantypes->id = $model->loan_type_id;
 
 <div class="row">
     <div class="col-lg-12">
-        <?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+<?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 </div>
 

@@ -15,7 +15,6 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
-            'yii\\mongodb\\' => 12,
             'yii\\jui\\' => 8,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
@@ -36,10 +35,12 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         ),
         'l' => 
         array (
+            'lo\\widgets\\' => 11,
             'linslin\\yii2\\curl\\' => 18,
         ),
         'k' => 
         array (
+            'kartik\\switchinput\\' => 19,
             'kartik\\sidenav\\' => 15,
             'kartik\\select2\\' => 15,
             'kartik\\popover\\' => 15,
@@ -62,6 +63,8 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         array (
             'dosamigos\\tableexport\\' => 22,
             'dosamigos\\grid\\' => 15,
+            'dosamigos\\gallery\\' => 18,
+            'dosamigos\\fileupload\\' => 21,
             'dosamigos\\editable\\' => 19,
             'dosamigos\\assets\\' => 17,
             'dmstr\\' => 6,
@@ -69,6 +72,17 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+        ),
+        'Z' => 
+        array (
+            'Zend\\Validator\\' => 15,
+            'Zend\\Stdlib\\' => 12,
+            'Zend\\Escaper\\' => 13,
+        ),
+        'P' => 
+        array (
+            'PhpOffice\\PhpWord\\' => 18,
+            'PhpOffice\\Common\\' => 17,
         ),
         'F' => 
         array (
@@ -80,10 +94,6 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
-        ),
-        'yii\\mongodb\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-mongodb',
         ),
         'yii\\jui\\' => 
         array (
@@ -129,9 +139,17 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         array (
             0 => __DIR__ . '/..' . '/moonlandsoft/yii2-phpexcel',
         ),
+        'lo\\widgets\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/loveorigami/yii2-bootstrap-toggle',
+        ),
         'linslin\\yii2\\curl\\' => 
         array (
             0 => __DIR__ . '/..' . '/linslin/yii2-curl',
+        ),
+        'kartik\\switchinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-switchinput',
         ),
         'kartik\\sidenav\\' => 
         array (
@@ -209,6 +227,14 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-grid-view-library',
         ),
+        'dosamigos\\gallery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-gallery-widget/src',
+        ),
+        'dosamigos\\fileupload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-file-upload-widget/src',
+        ),
         'dosamigos\\editable\\' => 
         array (
             0 => __DIR__ . '/..' . '/2amigos/yii2-editable-widget',
@@ -224,6 +250,26 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'Zend\\Validator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-validator/src',
+        ),
+        'Zend\\Stdlib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
+        ),
+        'Zend\\Escaper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-escaper/src',
+        ),
+        'PhpOffice\\PhpWord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpword/src/PhpWord',
+        ),
+        'PhpOffice\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/common/src/Common',
         ),
         'Faker\\' => 
         array (
@@ -262,12 +308,17 @@ class ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0
         ),
     );
 
+    public static $classMap = array (
+        'PclZip' => __DIR__ . '/..' . '/pclzip/pclzip/pclzip.lib.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb67f4ccc492bdd59afbcc1ba1d1df3f0::$classMap;
 
         }, null, ClassLoader::class);
     }

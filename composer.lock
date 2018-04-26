@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0721106505ab8dac60737dce6ee861fd",
-    "content-hash": "68b66b4ac34d90e9ecbc93dc7bce3409",
+    "content-hash": "0ef58bd901163308166003c1b2dea4ef",
     "packages": [
         {
             "name": "2amigos/yii2-dosamigos-asset-bundle",
@@ -48,7 +47,7 @@
                 "extension",
                 "yii"
             ],
-            "time": "2014-09-01 13:43:36"
+            "time": "2014-09-01T13:43:36+00:00"
         },
         {
             "name": "2amigos/yii2-editable-widget",
@@ -92,7 +91,126 @@
                 "x-editable",
                 "yii"
             ],
-            "time": "2015-02-20 15:13:36"
+            "time": "2015-02-20T15:13:36+00:00"
+        },
+        {
+            "name": "2amigos/yii2-file-upload-widget",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-file-upload-widget.git",
+                "reference": "2fd078f589d4acdd2cbfb70eea88d526480b0102"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-file-upload-widget/zipball/2fd078f589d4acdd2cbfb70eea88d526480b0102",
+                "reference": "2fd078f589d4acdd2cbfb70eea88d526480b0102",
+                "shasum": ""
+            },
+            "require": {
+                "2amigos/yii2-gallery-widget": "~1.0",
+                "bower-asset/blueimp-file-upload": "~9.9",
+                "yiisoft/yii2": "~2.0.0",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\fileupload\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Blueimp file upload widget for the Yii framework",
+            "homepage": "https://github.com/2amigos/yii2-file-upload-widget",
+            "keywords": [
+                "2amigos",
+                "upload",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-10-17T11:18:48+00:00"
+        },
+        {
+            "name": "2amigos/yii2-gallery-widget",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-gallery-widget.git",
+                "reference": "0ce7de28d05a4662da7698773993b5a0245a6136"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-gallery-widget/zipball/0ce7de28d05a4662da7698773993b5a0245a6136",
+                "reference": "0ce7de28d05a4662da7698773993b5a0245a6136",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/blueimp-gallery": "~2.17.0",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\gallery\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Blueimp gallery widget for the Yii framework",
+            "homepage": "https://github.com/2amigos/yii2-gallery-widget",
+            "keywords": [
+                "2amigos",
+                "gallery",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-09-09T16:01:44+00:00"
         },
         {
             "name": "2amigos/yii2-grid-view-library",
@@ -137,19 +255,19 @@
                 "widget",
                 "yii"
             ],
-            "time": "2014-12-17 09:28:22"
+            "time": "2014-12-17T09:28:22+00:00"
         },
         {
             "name": "2amigos/yii2-table-export-widget",
             "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/2amigos/yii2-table-export-widget.git",
+                "url": "https://github.com/2amigos/yii2-export-grid-button-widget.git",
                 "reference": "0af42eda7fdb6fdaea825582bf0be63f368e80c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-table-export-widget/zipball/0af42eda7fdb6fdaea825582bf0be63f368e80c1",
+                "url": "https://api.github.com/repos/2amigos/yii2-export-grid-button-widget/zipball/0af42eda7fdb6fdaea825582bf0be63f368e80c1",
                 "reference": "0af42eda7fdb6fdaea825582bf0be63f368e80c1",
                 "shasum": ""
             },
@@ -181,7 +299,8 @@
                 "widget",
                 "yii"
             ],
-            "time": "2014-09-01 22:06:17"
+            "abandoned": "https://github.com/2amigos/yii2-exportable-widget",
+            "time": "2014-09-01T22:06:17+00:00"
         },
         {
             "name": "almasaeed2010/adminlte",
@@ -221,7 +340,134 @@
                 "theme",
                 "web"
             ],
-            "time": "2017-01-08 21:03:57"
+            "time": "2017-01-08T21:03:57+00:00"
+        },
+        {
+            "name": "bower-asset/blueimp-canvas-to-blob",
+            "version": "v3.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Canvas-to-Blob.git",
+                "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/9f3deb2e710d39c72a988559609d9dc9a319de0b",
+                "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/blueimp-file-upload",
+            "version": "v9.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/jQuery-File-Upload.git",
+                "reference": "e6f059023afdae3efe9ce66970745254caa80256"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/e6f059023afdae3efe9ce66970745254caa80256",
+                "reference": "e6f059023afdae3efe9ce66970745254caa80256",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/blueimp-canvas-to-blob": ">=2.1.1",
+                "bower-asset/blueimp-load-image": ">=1.13.0",
+                "bower-asset/blueimp-tmpl": ">=2.5.4",
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "js/jquery.fileupload.js"
+                ],
+                "bower-asset-ignore": [
+                    "/*.*",
+                    "/cors",
+                    "css/jquery-ui-demo-ie8.css",
+                    "css/jquery-ui-demo.css",
+                    "css/style.css",
+                    "js/app.js",
+                    "js/main.js",
+                    "server",
+                    "test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "File Upload widget with multiple file selection, drag&amp;drop support, progress bar, validation and preview images.",
+            "keywords": [
+                "bootstrap",
+                "chunk",
+                "cross-domain",
+                "cross-site",
+                "drag",
+                "drop",
+                "file",
+                "gae",
+                "go",
+                "jquery",
+                "multiple",
+                "php",
+                "preview",
+                "progress",
+                "python",
+                "resume",
+                "selection",
+                "upload",
+                "widget"
+            ]
+        },
+        {
+            "name": "bower-asset/blueimp-gallery",
+            "version": "v2.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/Gallery.git",
+                "reference": "8336bb5934cb623608808601129db3fbf9201a09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/Gallery/zipball/8336bb5934cb623608808601129db3fbf9201a09",
+                "reference": "8336bb5934cb623608808601129db3fbf9201a09",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/blueimp-load-image",
+            "version": "v2.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Load-Image.git",
+                "reference": "5660ef0f68a34352f4574351ab86f3ecf82240f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/5660ef0f68a34352f4574351ab86f3ecf82240f2",
+                "reference": "5660ef0f68a34352f4574351ab86f3ecf82240f2",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/blueimp-tmpl",
+            "version": "v3.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Templates.git",
+                "reference": "da7647cb93fff2030e73a701db22c66de76a9919"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/da7647cb93fff2030e73a701db22c66de76a9919",
+                "reference": "da7647cb93fff2030e73a701db22c66de76a9919",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -270,6 +516,46 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-toggle",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minhur/bootstrap-toggle.git",
+                "reference": "187e332b7431afe3d0c07eeef92782ce59a77d66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minhur/bootstrap-toggle/zipball/187e332b7431afe3d0c07eeef92782ce59a77d66",
+                "reference": "187e332b7431afe3d0c07eeef92782ce59a77d66",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./js/bootstrap-toggle.min.js",
+                    "./css/bootstrap-toggle.min.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Bootstrap Toggle is a highly flexible Bootstrap plugin that converts checkboxes into toggles",
+            "keywords": [
+                "bootstrap",
+                "bootstrap-switch",
+                "bootstrap-toggle",
+                "switch",
+                "toggle"
             ]
         },
         {
@@ -591,7 +877,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2015-03-06 05:28:07"
+            "time": "2015-03-06T05:28:07+00:00"
         },
         {
             "name": "cebe/yii2-gravatar",
@@ -634,7 +920,7 @@
                 "gravatar",
                 "yii"
             ],
-            "time": "2013-12-10 17:49:58"
+            "time": "2013-12-10T17:49:58+00:00"
         },
         {
             "name": "dmstr/yii2-adminlte-asset",
@@ -694,7 +980,7 @@
                 "theme",
                 "yii2"
             ],
-            "time": "2016-10-21 02:03:45"
+            "time": "2016-10-21T02:03:45+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -738,7 +1024,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2013-11-30 08:25:19"
+            "time": "2013-11-30T08:25:19+00:00"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -786,7 +1072,7 @@
                 "font",
                 "icon"
             ],
-            "time": "2016-10-24 15:52:54"
+            "time": "2016-10-24T15:52:54+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -839,7 +1125,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-04-02 18:38:08"
+            "time": "2017-04-02T18:38:08+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -888,7 +1174,7 @@
                 "popover",
                 "popover-x"
             ],
-            "time": "2017-01-04 06:24:03"
+            "time": "2017-01-04T06:24:03+00:00"
         },
         {
             "name": "kartik-v/php-date-formatter",
@@ -937,7 +1223,7 @@
                 "php-date-formatter.js",
                 "time"
             ],
-            "time": "2017-01-08 09:13:05"
+            "time": "2017-01-08T09:13:05+00:00"
         },
         {
             "name": "kartik-v/yii2-date-range",
@@ -949,7 +1235,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/ea94a6351759a4ce69be7ee477dab67f6dd4b862",
+                "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/d66ba0805b64fbad4235f623b259e59421354e6a",
                 "reference": "d66ba0805b64fbad4235f623b259e59421354e6a",
                 "shasum": ""
             },
@@ -991,7 +1277,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-12-16 15:59:06"
+            "time": "2016-12-16T15:59:06+00:00"
         },
         {
             "name": "kartik-v/yii2-datecontrol",
@@ -1043,7 +1329,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2017-01-14 11:34:27"
+            "time": "2017-01-14T11:34:27+00:00"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -1095,7 +1381,7 @@
                 "modal",
                 "yii2"
             ],
-            "time": "2016-09-13 18:15:26"
+            "time": "2016-09-13T18:15:26+00:00"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -1107,7 +1393,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-editable/zipball/5f4939aee712d35bd4ef34e419a25de7b084a221",
+                "url": "https://api.github.com/repos/kartik-v/yii2-editable/zipball/ab4eef2530cee6b6e9fc965f9f20c1eafe281b06",
                 "reference": "ab4eef2530cee6b6e9fc965f9f20c1eafe281b06",
                 "shasum": ""
             },
@@ -1148,7 +1434,7 @@
                 "popover-x",
                 "widget"
             ],
-            "time": "2017-01-31 17:43:34"
+            "time": "2017-01-31T17:43:34+00:00"
         },
         {
             "name": "kartik-v/yii2-export",
@@ -1207,7 +1493,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2016-04-18 16:54:14"
+            "time": "2016-04-18T16:54:14+00:00"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -1219,7 +1505,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/ffccccb8ab23838461483a6139814f66187bcb3b",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/c1c6a2e1987fb76d606ebdca467248030d31a65d",
                 "reference": "c1c6a2e1987fb76d606ebdca467248030d31a65d",
                 "shasum": ""
             },
@@ -1260,7 +1546,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-01-03 17:51:05"
+            "time": "2017-01-03T17:51:05+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1311,7 +1597,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-09-04 09:25:29"
+            "time": "2016-09-04T09:25:29+00:00"
         },
         {
             "name": "kartik-v/yii2-popover-x",
@@ -1359,7 +1645,7 @@
                 "popover",
                 "popover-x"
             ],
-            "time": "2016-01-12 16:59:09"
+            "time": "2016-01-12T16:59:09+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-colorinput",
@@ -1413,7 +1699,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-03-09 14:26:42"
+            "time": "2017-03-09T14:26:42+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -1425,7 +1711,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/9110ecce9deb59dc116fe6c3dd6df5d7eb439a3c",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/92e04c6a9ff90c4290db7566f68af429f2d641d5",
                 "reference": "92e04c6a9ff90c4290db7566f68af429f2d641d5",
                 "shasum": ""
             },
@@ -1467,7 +1753,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-11-11 15:42:04"
+            "time": "2016-11-11T15:42:04+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -1516,7 +1802,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-01-19 15:04:42"
+            "time": "2017-01-19T15:04:42+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1528,7 +1814,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/d2c8dcde1aa69ac0c4a0e3b3cfc0d79b3cc2a550",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/6b9c344c41df5d5c305589770893e14628e6eacc",
                 "reference": "6b9c344c41df5d5c305589770893e14628e6eacc",
                 "shasum": ""
             },
@@ -1571,7 +1857,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-04-15 05:25:51"
+            "time": "2017-04-15T05:25:51+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -1624,7 +1910,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-04-12 09:00:24"
+            "time": "2017-04-12T09:00:24+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -1673,7 +1959,57 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09 08:07:23"
+            "time": "2014-11-09T08:07:23+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-switchinput",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-switchinput.git",
+                "reference": "7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-switchinput/zipball/7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6",
+                "reference": "7d8ee999d79bcdc1601da5cd59439ac7eb1f5ea6",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\switchinput\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper widget for the Bootstrap Switch plugin to use checkboxes & radios as toggle switchinputes (sub repo split from yii2-widgets)",
+            "homepage": "https://github.com/kartik-v/yii2-widget-switchinput",
+            "keywords": [
+                "bootstrap",
+                "extension",
+                "form",
+                "input",
+                "jquery",
+                "plugin",
+                "switchinput",
+                "toggle",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-10T16:47:35+00:00"
         },
         {
             "name": "linslin/yii2-curl",
@@ -1716,7 +2052,53 @@
                 "restful",
                 "yii2"
             ],
-            "time": "2016-10-31 12:31:06"
+            "time": "2016-10-31T12:31:06+00:00"
+        },
+        {
+            "name": "loveorigami/yii2-bootstrap-toggle",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-bootstrap-toggle.git",
+                "reference": "27ee6469f784b9163c03ee760e34c7ef751be148"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-bootstrap-toggle/zipball/27ee6469f784b9163c03ee760e34c7ef751be148",
+                "reference": "27ee6469f784b9163c03ee760e34c7ef751be148",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap-toggle": "*",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "require-dev": {
+                "yiisoft/yii2-debug": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lo\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Lukyanov",
+                    "email": "loveorigami@mail.ru"
+                }
+            ],
+            "description": "Yii2 bootstrap-toggle widget",
+            "keywords": [
+                "bootstrap",
+                "toggle",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-05-12T15:57:40+00:00"
         },
         {
             "name": "moonlandsoft/yii2-phpexcel",
@@ -1761,7 +2143,7 @@
                 "xls",
                 "yii2"
             ],
-            "time": "2015-09-06 07:50:33"
+            "time": "2015-09-06T07:50:33+00:00"
         },
         {
             "name": "pclzip/pclzip",
@@ -1798,7 +2180,7 @@
                 "php",
                 "zip"
             ],
-            "time": "2014-06-05 11:42:24"
+            "time": "2014-06-05T11:42:24+00:00"
         },
         {
             "name": "phpoffice/common",
@@ -1853,7 +2235,7 @@
                 "office",
                 "php"
             ],
-            "time": "2016-07-07 17:26:55"
+            "time": "2016-07-07T17:26:55+00:00"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -1910,7 +2292,8 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2015-05-01 07:00:55"
+            "abandoned": "phpoffice/phpspreadsheet",
+            "time": "2015-05-01T07:00:55+00:00"
         },
         {
             "name": "phpoffice/phpword",
@@ -2010,7 +2393,7 @@
                 "word",
                 "writer"
             ],
-            "time": "2016-07-31 08:53:39"
+            "time": "2016-07-31T08:53:39+00:00"
         },
         {
             "name": "rmrevin/yii2-fontawesome",
@@ -2062,7 +2445,7 @@
                 "font",
                 "yii"
             ],
-            "time": "2017-01-11 14:05:47"
+            "time": "2017-01-11T14:05:47+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2115,7 +2498,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-06-06 14:19:39"
+            "time": "2015-06-06T14:19:39+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -2215,7 +2598,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-02-08 09:04:32"
+            "time": "2017-02-08T09:04:32+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2265,7 +2648,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2016-03-17 03:29:28"
+            "time": "2016-03-17T03:29:28+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -2315,7 +2698,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-12-20 13:26:02"
+            "time": "2016-12-20T13:26:02+00:00"
         },
         {
             "name": "yiisoft/yii2-elasticsearch",
@@ -2364,7 +2747,7 @@
                 "search",
                 "yii2"
             ],
-            "time": "2016-03-17 04:45:15"
+            "time": "2016-03-17T04:45:15+00:00"
         },
         {
             "name": "yiisoft/yii2-jui",
@@ -2414,56 +2797,7 @@
                 "jQuery UI",
                 "yii2"
             ],
-            "time": "2016-07-22 22:26:59"
-        },
-        {
-            "name": "yiisoft/yii2-mongodb",
-            "version": "2.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-mongodb.git",
-                "reference": "431811d9d030b4ece6ce32e13650af640e82fa14"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-mongodb/zipball/431811d9d030b4ece6ce32e13650af640e82fa14",
-                "reference": "431811d9d030b4ece6ce32e13650af640e82fa14",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mongodb": ">=1.0.0",
-                "yiisoft/yii2": "~2.0.5"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\mongodb\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com"
-                }
-            ],
-            "description": "MongoDB extension for the Yii framework",
-            "keywords": [
-                "GridFS",
-                "active-record",
-                "mongo",
-                "mongodb",
-                "yii2"
-            ],
-            "time": "2017-02-15 14:11:36"
+            "time": "2016-07-22T22:26:59+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -2513,7 +2847,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2016-09-09 11:48:11"
+            "time": "2016-09-09T11:48:11+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -2558,7 +2892,7 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2015-05-07 14:55:31"
+            "time": "2015-05-07T14:55:31+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -2613,7 +2947,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2015-07-21 13:55:46"
+            "time": "2015-07-21T13:55:46+00:00"
         },
         {
             "name": "zendframework/zend-validator",
@@ -2678,7 +3012,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2015-09-08 21:04:17"
+            "time": "2015-09-08T21:04:17+00:00"
         }
     ],
     "packages-dev": [
@@ -2759,7 +3093,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-05-29 06:29:14"
+            "time": "2015-05-29T06:29:14+00:00"
         },
         {
             "name": "phpspec/php-diff",
@@ -2793,7 +3127,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2013-11-01 13:02:21"
+            "time": "2013-11-01T13:02:21+00:00"
         },
         {
             "name": "yiisoft/yii2-codeception",
@@ -2839,7 +3173,7 @@
                 "yii2"
             ],
             "abandoned": "codeception/codeception",
-            "time": "2016-03-17 03:41:26"
+            "time": "2016-03-17T03:41:26+00:00"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -2886,7 +3220,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2016-11-24 09:42:29"
+            "time": "2016-11-24T09:42:29+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -2933,7 +3267,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2015-03-01 06:22:44"
+            "time": "2015-03-01T06:22:44+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -2986,7 +3320,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-03-18 14:09:46"
+            "time": "2016-03-18T14:09:46+00:00"
         }
     ],
     "aliases": [],
