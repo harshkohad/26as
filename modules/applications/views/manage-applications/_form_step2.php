@@ -794,14 +794,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>PANCARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;">                            
-                            <?= $form->field($model, 'pan_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'pan_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -856,14 +858,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>AADHAR CARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'ac_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'ac_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -905,14 +909,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>PASSPORT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;">
-                                    <?= $form->field($model, 'passport_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'passport_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -967,14 +973,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>ELECTRICITY BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                                <?= $form->field($model, 'electricity_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'electricity_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -996,14 +1004,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>TELEPHONE / MOBILE BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'telephone_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>                            
+                            <?=
+                            $form->field($model, 'telephone_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>                            
                         </span>
                     </h4>
                 </div>
@@ -1030,14 +1040,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>VOTER ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'voter_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?> 
+                            <?=
+                            $form->field($model, 'voter_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?> 
                         </span>
                     </h4>
                 </div>
@@ -1061,14 +1073,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>DRIVING LICENSE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'driving_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'driving_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1121,14 +1135,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>COMPANY ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'company_id_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'company_id_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1150,14 +1166,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SHOP ACT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'shop_act_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'shop_act_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1210,14 +1228,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>GST CERTIFICATE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'gst_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'gst_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1240,14 +1260,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>RENT AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1287,14 +1309,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>SALE AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'seller_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'seller_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1317,14 +1341,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OC/CC/PLAN</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'oc_cc_plan_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'oc_cc_plan_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1347,14 +1373,16 @@ $loantypes->id = $model->loan_type_id;
                             <strong>OCR RECEIPT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <?= $form->field($model, 'ocr_receipt_is_complete')->checkbox(['label' => '',
-                                        'data-toggle' => "toggle",
-                                        'data-width' => "115",
-                                        'data-size' => "mini",
-                                        'data-on' => "<i class='fa fa-check'></i> Verified",
-                                        'data-off' => "<i class='fa fa-times'></i> Not Verified",
-                                        'data-onstyle' => "success",
-                                        'data-offstyle' => "danger"])->label(FALSE);  ?>
+                            <?=
+                            $form->field($model, 'ocr_receipt_is_complete')->checkbox(['label' => '',
+                                'data-toggle' => "toggle",
+                                'data-width' => "115",
+                                'data-size' => "mini",
+                                'data-on' => "<i class='fa fa-check'></i> Verified",
+                                'data-off' => "<i class='fa fa-times'></i> Not Verified",
+                                'data-onstyle' => "success",
+                                'data-offstyle' => "danger"])->label(FALSE);
+                            ?>
                         </span>
                     </h4>
                 </div>
@@ -1392,7 +1420,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_verification"><strong>Residence Verification</strong></a>
-<?= $model->verificationStatus($model->id, 1); ?>
+                <?= $model->verificationStatus($model->id, 1); ?>
             </h4>
         </div>
         <div id="resi_verification" class="panel-collapse collapse">
@@ -1411,27 +1439,29 @@ $loantypes->id = $model->loan_type_id;
                     </div>                           
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_society_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable"><?= $form->field($model, 'resi_shifted_tenure')->textInput() ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_working_members')->textInput() ?></div>                            
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"><?= $form->field($model, 'resi_working_members')->textInput() ?></div>                            
                 </div>
 
                 <div class="row resi_verification_disable">
@@ -1441,8 +1471,10 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div>                            
                 </div>
 
+
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-9"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"><?= $form->field($model, 'resi_reason_for_closed')->textInput() ?></div>
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1468,7 +1500,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="resi_docs">
-<?php echo $resiDocsTable; ?>
+                                    <?php echo $resiDocsTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1482,7 +1514,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="resi_photos">
-<?php echo $resiPhotosTable; ?>
+                                    <?php echo $resiPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1515,7 +1547,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#busi_verification"><strong>Business Verification</strong></a>
-<?= $model->verificationStatus($model->id, 2); ?>
+                <?= $model->verificationStatus($model->id, 2); ?>
             </h4>
         </div>
         <div id="busi_verification" class="panel-collapse collapse">
@@ -1537,10 +1569,10 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
-                <div class="row busi_verification_disable">
+                <div class="row busi_verification_disable busi_locked_disable busi_shifted_disble">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '6' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_designation_others')->textInput(['maxlength' => true, 'readonly' => "readonly"]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
@@ -1549,20 +1581,27 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row busi_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
                 </div>
-                <div class="row busi_verification_disable">
+                <div class="row busi_verification_disable busi_locked_disable busi_shifted_disble">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rent_amount')->textInput() ?></div>
                 </div>
                 <div class="row busi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_area')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_area')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disble"><?= $form->field($model, 'busi_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable"><?= $form->field($model, 'busi_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row busi_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>  
@@ -1578,10 +1617,10 @@ $loantypes->id = $model->loan_type_id;
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 busi_verification_disable">
+                    <div class="col-lg-6 busi_verification_disable busi_locked_disable busi_shifted_disable">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -1590,7 +1629,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="busi_docs">
-<?php echo $busiDocsTable; ?>
+                                    <?php echo $busiDocsTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1604,7 +1643,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="busi_photos">
-<?php echo $busiPhotosTable; ?>
+                                    <?php echo $busiPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1639,7 +1678,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#office_verification"><strong>Office Verification</strong></a>
-<?= $model->verificationStatus($model->id, 3); ?>
+                <?= $model->verificationStatus($model->id, 3); ?>
             </h4>
         </div>
         <div id="office_verification" class="panel-collapse collapse">
@@ -1658,30 +1697,37 @@ $loantypes->id = $model->loan_type_id;
                     </div>                           
                 </div>
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
-                    <div class="col-lg-3"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
-                    <div class="col-lg-3"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>  
+                    <div class="col-lg-3"><?= $form->field($model, 'office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_enable"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+
                 </div>
 
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'office_department')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'office_employment_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>                                                       
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_department')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_employment_years')->textInput() ?></div>
+
                 </div>
 
                 <div class="row office_verification_disable">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>                                       
                     <div class="col-lg-3"><?= $form->field($model, 'office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'office_tpc_for_company')->textInput(['maxlength' => true]) ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'office_landmark')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"></div>
                 </div>
+                <div class="row office_verification_disable">
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disble"><?= $form->field($model, 'office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable"><?= $form->field($model, 'office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
+                </div>
                 <div class="row">
                     <div class="col-lg-9 office_verification_enable"><?= $form->field($model, 'office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 office_verification_disable"><?= $form->field($model, 'office_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-6 office_verification_disable "><?= $form->field($model, 'office_remarks')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-6">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
@@ -1691,7 +1737,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $officePhotosTable; ?>
+                                    <?php echo $officePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1722,7 +1768,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#resi_office_verification"><strong>Residence/Office Verification</strong></a>
-<?= $model->verificationStatus($model->id, 5); ?>
+                <?= $model->verificationStatus($model->id, 5); ?>
             </h4>
         </div>
         <div id="resi_office_verification" class="panel-collapse collapse">
@@ -1743,25 +1789,31 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_society_name_plate')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    
                 </div>
                 <div class="row resi_office_verification_disable">                    
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_rented_owner_name')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_rent_amount')->textInput() ?></div>
+                </div>
+                <div class="row resi_office_verification_disable">
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disble"><?= $form->field($model, 'office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_enable"><?= $form->field($model, 'office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
                 </div>
 
                 <div class="row resi_office_verification_disable">                            
@@ -1772,9 +1824,9 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_employment_years')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_employment_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
@@ -1787,7 +1839,7 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_2')->textInput(['maxlength' => true]) ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_structure')->textInput(['maxlength' => true]) ?></div>                            
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary <?= ($model->resi_office_market_feedback == 0) ? 'active' : '' ?>">
@@ -1813,7 +1865,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $resiOfficePhotosTable; ?>
+                                    <?php echo $resiOfficePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1846,7 +1898,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#builder_profile"><strong>Builder Profile</strong></a>
-<?= $model->verificationStatus($model->id, 6); ?>
+                <?= $model->verificationStatus($model->id, 6); ?>
             </h4>
         </div>
         <div id="builder_profile" class="panel-collapse collapse">
@@ -1897,7 +1949,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $builderProfilePhotosTable; ?>
+                                    <?php echo $builderProfilePhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1912,7 +1964,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#property_apf"><strong>Property (APF)</strong></a>
-<?= $model->verificationStatus($model->id, 7); ?>
+                <?= $model->verificationStatus($model->id, 7); ?>
             </h4>
         </div>
         <div id="property_apf" class="panel-collapse collapse">
@@ -1967,7 +2019,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $propertyApfPhotosTable; ?>
+                                    <?php echo $propertyApfPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -1982,7 +2034,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#individual_property"><strong>Individual Property</strong></a>
-<?= $model->verificationStatus($model->id, 8); ?>
+                <?= $model->verificationStatus($model->id, 8); ?>
             </h4>
         </div>
         <div id="individual_property" class="panel-collapse collapse">
@@ -2031,7 +2083,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $indivPropertyPhotosTable; ?>
+                                    <?php echo $indivPropertyPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -2046,7 +2098,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc_soc"><strong>NOC (Society)</strong></a>
-<?= $model->verificationStatus($model->id, 9); ?>
+                <?= $model->verificationStatus($model->id, 9); ?>
             </h4>
         </div>
         <div id="noc_soc" class="panel-collapse collapse">
@@ -2092,7 +2144,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="office_photos">
-<?php echo $nocSocPhotosTable; ?>
+                                    <?php echo $nocSocPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -2107,7 +2159,7 @@ $loantypes->id = $model->loan_type_id;
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#noc"><strong>NOC (Business/Conditional)</strong></a>
-<?= $model->verificationStatus($model->id, 4); ?>
+                <?= $model->verificationStatus($model->id, 4); ?>
             </h4>
         </div>
         <div id="noc" class="panel-collapse collapse">
@@ -2127,7 +2179,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row noc_verification_disable">
                     <div class="col-lg-12" id="noc_table">
-<?php echo $nocTable; ?>
+                        <?php echo $nocTable; ?>
                     </div>
                 </div>    
                 <div id="loader_noc" style="display: none; height: 350px; margin: auto; text-align: center; padding: 70px 0;">
@@ -2146,7 +2198,7 @@ $loantypes->id = $model->loan_type_id;
                             </div>
                             <div class="panel-body" style="height: 200px;overflow-y: auto;">
                                 <div id="noc_photos">
-<?php echo $nocPhotosTable; ?>
+                                    <?php echo $nocPhotosTable; ?>
                                 </div>
                             </div>
                         </div>
@@ -2177,7 +2229,7 @@ $loantypes->id = $model->loan_type_id;
 
 <div class="row">
     <div class="col-lg-12">
-<?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton(($model->isNewRecord || $step2 == 1) ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 </div>
 
@@ -3006,6 +3058,48 @@ $this->registerJs("
             } else {
                 $(".field-applications-" + source + "_rented_owner_name").hide();
                 $(".field-applications-" + source + "_rent_amount").hide();
+            }
+        }
+        var resi_availability_status = $("#applications-resi_available_status").val();
+        availableHide("resi", resi_availability_status);
+        $("#applications-resi_available_status").change(function () {
+            var resi_availability_status = $(this).val();
+            availableHide("resi", resi_availability_status);
+        });
+        var busi_availability_status = $("#applications-busi_available_status").val();
+        availableHide("busi", busi_availability_status);
+        $("#applications-busi_available_status").change(function () {
+            var busi_availability_status = $(this).val();
+            availableHide("busi", busi_availability_status);
+        });
+        var office_availability_status = $("#applications-office_available_status").val();
+        availableHide("office", office_availability_status);
+        $("#applications-office_available_status").change(function () {
+            var office_availability_status = $(this).val();
+            availableHide("office", office_availability_status);
+        });
+        var resi_office_availability_status = $("#applications-resi_available_status").val();
+        availableHide("resi_office", resi_office_availability_status);
+        $("#applications-resi_office_available_status").change(function () {
+            var resi_office_availability_status = $(this).val();
+            availableHide("resi_office", resi_office_availability_status);
+        });
+
+        function availableHide(source, availability_status) {
+            $("." + source + "_verification_disable").show();
+            if (availability_status == 2) {
+                $("." + source + "_locked_disable").hide();
+                $("." + source + "_locked_enable").show();
+            }
+            if (availability_status == 3) {
+                $("." + source + "_shifted_disable").hide();
+                $("." + source + "_shifted_enable").show();
+            }
+            if (availability_status == 4 || availability_status == 1) {
+                $("." + source + "_shifted_enable").show();
+                $("." + source + "_shifted_disable").show();
+                $("." + source + "_locked_enable").show();
+                $("." + source + "_locked_disable").show();
             }
         }
 
