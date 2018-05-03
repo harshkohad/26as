@@ -1452,7 +1452,7 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
                     <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3 resi_locked_disable resi_shifted_disable"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
                     <div class="col-lg-3 resi_locked_disable resi_shifted_enable"><?= $form->field($model, 'resi_shifted_tenure')->textInput() ?></div>
@@ -1466,15 +1466,16 @@ $loantypes->id = $model->loan_type_id;
 
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'resi_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div>                            
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_1')->textInput(['maxlength' => true]) ?></div>                           
                 </div>
 
 
-                <div class="row resi_verification_disable">
+                <div class="row resi_verification_disable">                    
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"><?= $form->field($model, 'resi_reason_for_closed')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"></div>
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1584,21 +1585,22 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_locality')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                 </div>
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disble">
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rented_owner_name')->textInput() ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_rent_amount')->textInput() ?></div>
                 </div>
                 <div class="row busi_verification_disable">
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality_type')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>                    
                 </div>
 
 
                 <div class="row">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disble"><?= $form->field($model, 'busi_area')->textInput() ?></div>
                     <div class="col-lg-3 busi_locked_enable busi_shifted_disble"><?= $form->field($model, 'busi_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_enable"><?= $form->field($model, 'busi_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
@@ -1698,7 +1700,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row office_verification_disable">
                     <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>  
-                    <div class="col-lg-3"><?= $form->field($model, 'office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
                     <div class="col-lg-3 office_locked_disable office_shifted_enable"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
                     <div class="col-lg-3 office_locked_disable office_shifted_disable"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
 
@@ -1797,7 +1799,7 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Loacked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
                     
                 </div>
                 <div class="row resi_office_verification_disable">                    
@@ -1833,10 +1835,11 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_company')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
                 </div>
-                <div class="row resi_office_verification_disable">                            
+                <div class="row resi_office_verification_disable">     
+                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_2')->textInput(['maxlength' => true]) ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'resi_office_structure')->textInput(['maxlength' => true]) ?></div>                            
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disble">
@@ -1850,7 +1853,7 @@ $loantypes->id = $model->loan_type_id;
                             </label>
                         </div>
                     </div> 
-                    <div class="col-lg-3"></div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-lg-9 resi_office_verification_enable"><?= $form->field($model, 'resi_office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
