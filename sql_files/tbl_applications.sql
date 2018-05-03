@@ -197,4 +197,18 @@ ALTER TABLE `tbl_applications` ADD `noc_soc_tresurer_name` VARCHAR(200) NULL DEF
 
 ALTER TABLE `tbl_applications` 
 CHANGE COLUMN `telephone_address` `telephone_address` TEXT NULL DEFAULT NULL ;
- 
+
+ALTER TABLE `tbl_applications` ADD `resi_available_status` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Available for Verification, 2 : Door Locked, 3 : Shifted, 4 : Door Locked & Shifted' AFTER `resi_rent_amount`; 
+ALTER TABLE `tbl_applications` ADD `resi_shifted_tenure` INT(4) NULL DEFAULT 0 AFTER `resi_available_status`;
+ALTER TABLE `tbl_applications` ADD `busi_available_status` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Available for Verification, 2 : Door Locked, 3 : Shifted, 4 : Door Locked & Shifted' AFTER `busi_rent_amount`;
+ALTER TABLE `tbl_applications` ADD `busi_shifted_tenure` INT(4) NULL DEFAULT 0 AFTER `busi_available_status`;
+ALTER TABLE `tbl_applications` ADD `busi_reason_for_closed` varchar(100) NULL DEFAULT NULL AFTER `busi_shifted_tenure`;
+ALTER TABLE `tbl_applications` ADD `office_available_status` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Available for Verification, 2 : Door Locked, 3 : Shifted, 4 : Door Locked & Shifted' AFTER `office_not_reachable_remarks`;
+ALTER TABLE `tbl_applications` ADD `office_shifted_tenure` INT(4) NULL DEFAULT 0 AFTER `office_available_status`;
+ALTER TABLE `tbl_applications` ADD `office_reason_for_closed` varchar(100) NULL DEFAULT NULL AFTER `busi_shifted_tenure`;
+ALTER TABLE `tbl_applications` ADD `resi_office_available_status` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Available for Verification, 2 : Door Locked, 3 : Shifted, 4 : Door Locked & Shifted' AFTER `resi_office_rent_amount`;
+ALTER TABLE `tbl_applications` ADD `resi_office_shifted_tenure` INT(4) NULL DEFAULT 0 AFTER `resi_office_available_status`;
+ALTER TABLE `tbl_applications` ADD `resi_office_reason_for_closed` varchar(100) NULL DEFAULT NULL AFTER `busi_shifted_tenure`;
+ALTER TABLE `tbl_applications` ADD `resi_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `resi_locality_text`;
+ALTER TABLE `tbl_applications` ADD `busi_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `busi_locality_text`;
+ALTER TABLE `tbl_applications` ADD `resi_office_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `resi_office_locality_text`;
