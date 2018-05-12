@@ -1020,13 +1020,10 @@ $loantypes->id = $model->loan_type_id;
                 <div id="tele_bill" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_first_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_middle_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_last_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_voter_id_no')->textInput() ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_address')->textarea() ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_address')->textArea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'telephone_amount')->textInput() ?></div>
                         </div>
                     </div>
                 </div>
@@ -1056,10 +1053,10 @@ $loantypes->id = $model->loan_type_id;
                 <div id="voter_id" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_mobile_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_address')->textArea(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_amount')->textInput() ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_middle_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'voter_voter_id_no')->textInput() ?></div>
                         </div>
                     </div>
                 </div>
@@ -1089,7 +1086,7 @@ $loantypes->id = $model->loan_type_id;
                 <div id="driv_lic" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
+                                <div class="col-lg-3"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3"><?= $form->field($model, 'driving_driving_license_number')->textInput(['maxlength' => true]) ?></div>
                             <div class="col-lg-3">
                                 <?php

@@ -763,11 +763,42 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="pancard" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_first_name') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_first_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_middle_name') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_middle_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_last_name') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_last_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_pan_no') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_pan_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_dob') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_dob ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_date_of_issue') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_date_of_issue ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_address') ?></label>
+                                <div class="readonlydiv"><?= $model->pan_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--AADHAR CARD-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -782,11 +813,42 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="aadharcard" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_first_name') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_first_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_middle_name') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_middle_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_last_name') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_last_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_aadhar_no') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_aadhar_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_dob') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_dob ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_mobile_no') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_mobile_no ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_address') ?></label>
+                                <div class="readonlydiv"><?= $model->ac_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--PASSPORT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -801,11 +863,36 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="passport" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_first_name') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_first_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_middle_name') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_middle_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_last_name') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_last_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_passport_no') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_passport_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_validity') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_validity ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_date_of_issue') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_date_of_issue ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--ELECTRICITY BILL-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -820,11 +907,20 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="elec_bill" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('electricity_name') ?></label>
+                                <div class="readonlydiv"><?= $model->electricity_name ?></div>
+                            </div>
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('electricity_address') ?></label>
+                                <div class="readonlydiv"><?= $model->electricity_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--TELEPHONE / MOBILE BILL-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -839,11 +935,28 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="tele_bill" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_mobile_no') ?></label>
+                                <div class="readonlydiv"><?= $model->telephone_mobile_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_name') ?></label>
+                                <div class="readonlydiv"><?= $model->telephone_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_address') ?></label>
+                                <div class="readonlydiv"><?= $model->telephone_address ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->telephone_amount ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--VOTER ID-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -858,11 +971,32 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="voter_id" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_first_name') ?></label>
+                                <div class="readonlydiv"><?= $model->voter_first_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_middle_name') ?></label>
+                                <div class="readonlydiv"><?= $model->voter_middle_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_last_name') ?></label>
+                                <div class="readonlydiv"><?= $model->voter_last_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_voter_id_no') ?></label>
+                                <div class="readonlydiv"><?= $model->voter_voter_id_no ?></div>
+                            </div>
+                            <div class="col-lg-8">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_address') ?></label>
+                                <div class="readonlydiv"><?= $model->voter_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--DRIVING LICENSE-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -877,7 +1011,24 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="driv_lic" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_name') ?></label>
+                                <div class="readonlydiv"><?= $model->driving_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_driving_license_number') ?></label>
+                                <div class="readonlydiv"><?= $model->driving_driving_license_number ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_validity') ?></label>
+                                <div class="readonlydiv"><?= $model->driving_validity ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_date_of_issue') ?></label>
+                                <div class="readonlydiv"><?= $model->driving_date_of_issue ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -899,11 +1050,20 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="company_id" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_id_name') ?></label>
+                                <div class="readonlydiv"><?= $model->company_id_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_id_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->company_id_designation ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--SHOP ACT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -918,11 +1078,32 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="shop_act" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_name') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_shop_act_no') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_shop_act_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_address') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_address ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_from_date') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_from_date ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_till_date') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_till_date ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--GST CERTIFICATE-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -937,11 +1118,24 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="gst_cert" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_name') ?></label>
+                                <div class="readonlydiv"><?= $model->gst_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_gst_no') ?></label>
+                                <div class="readonlydiv"><?= $model->gst_gst_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_address') ?></label>
+                                <div class="readonlydiv"><?= $model->gst_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--RENT AGREEMENT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -956,11 +1150,32 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="rent_agree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_met_name') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_aggeement_met_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_owner_name') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_aggeement_owner_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_rent_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_aggeement_rent_amount ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_validity') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_aggeement_validity ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_deposit_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_aggeement_deposit_amount ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--SALE AGREEMENT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -975,11 +1190,24 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="sale_agree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_name') ?></label>
+                                <div class="readonlydiv"><?= $model->seller_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_purchaser_name') ?></label>
+                                <div class="readonlydiv"><?= $model->seller_purchaser_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_address') ?></label>
+                                <div class="readonlydiv"><?= $model->seller_address ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--OC/CC/PLAN-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -994,11 +1222,24 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="oc_cc_plan" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_cts_no') ?></label>
+                                <div class="readonlydiv"><?= $model->oc_cc_plan_cts_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_issuing_authority') ?></label>
+                                <div class="readonlydiv"><?= $model->oc_cc_plan_issuing_authority ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_signature') ?></label>
+                                <div class="readonlydiv"><?= $model->oc_cc_plan_signature ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!--OCR RECEIPT-->
             <div class="panel panel-default cust-panel">
                 <div class="panel-heading">
@@ -1013,7 +1254,42 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div id="ocr_receipt" class="panel-collapse collapse">
                     <div class="panel-body">
-                        fsdfds
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_builder_name') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_builder_name ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_met_person') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_met_person ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_designation') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_designation ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_amount ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_receipt_no') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_receipt_no ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_signature') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_signature ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_tpc') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_tpc ?></div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_landmark') ?></label>
+                                <div class="readonlydiv"><?= $model->ocr_receipt_landmark ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
