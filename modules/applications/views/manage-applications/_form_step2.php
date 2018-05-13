@@ -1472,7 +1472,7 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row resi_verification_disable">                    
                     <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div> 
                     <div class="col-lg-3"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable"></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"></div>
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
@@ -1567,7 +1567,7 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">

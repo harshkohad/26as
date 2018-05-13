@@ -1322,42 +1322,42 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
 
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_society_name_plate') ?></label>
                         <div class="readonlydiv"><?= $model->resi_society_name_plate ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_door_name_plate') ?></label>
                         <div class="readonlydiv"><?= $model->resi_door_name_plate ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_tpc_neighbor_1') ?></label>
                         <div class="readonlydiv"><?= $model->resi_tpc_neighbor_1 ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_tpc_neighbor_2') ?></label>
                         <div class="readonlydiv"><?= $model->resi_tpc_neighbor_2 ?></div>
                     </div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_met_person') ?></label>
                         <div class="readonlydiv"><?= $model->resi_met_person ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_relation') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_relation) ?></div>
                     </div>
                     <?php if ($model->resi_ownership_status != 1) {
                         ?>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
                             <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
                         </div>
                     <?php }
                     ?>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status_text') ?></label>
                         <div class="readonlydiv"><?= $model->resi_ownership_status_text ?></div>
                     </div>
@@ -1365,15 +1365,15 @@ $this->params['breadcrumbs'][] = 'View';
                 <?php if ($model->resi_ownership_status == 1) {
                     ?>
                     <div class="row resi_verification_disable">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
                             <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rented_owner_name') ?></label>
                             <div class="readonlydiv"><?= $model->resi_rented_owner_name ?></div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rent_amount') ?></label>
                             <div class="readonlydiv"><?= $model->resi_rent_amount ?></div>
                         </div>
@@ -1383,18 +1383,23 @@ $this->params['breadcrumbs'][] = 'View';
                 ?>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_available_status') ?></label>
+                        
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->resi_available_status) ?></div>
+                    </div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_home_area') ?></label>
                         <div class="readonlydiv"><?= $model->resi_home_area ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_stay_years') ?></label>
                         <div class="readonlydiv"><?= $model->resi_stay_years ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_total_family_members') ?></label>
                         <div class="readonlydiv"><?= $model->resi_total_family_members ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
                         <div class="readonlydiv"><?= $model->resi_working_members ?></div>
                     </div>
@@ -1510,13 +1515,13 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_company_name_board') ?></label>
                         <div class="readonlydiv"><?= $model->busi_company_name_board ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_met_person') ?></label>
                         <div class="readonlydiv"><?= $model->busi_met_person ?></div>
                     </div>
                 </div>
 
-                <div class="row busi_verification_disable">
+                <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation') ?></label>
                         <div class="readonlydiv"><?= $model->getDesignation($model->busi_designation) ?></div>
@@ -1536,26 +1541,26 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
 
                 <div class="row busi_verification_disable">                    
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_type_of_business') ?></label>
                         <div class="readonlydiv"><?= $model->getBusiType($model->busi_type_of_business) ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality') ?></label>
                         <div class="readonlydiv"><?= $model->getBusiLocality($model->busi_locality) ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
                         <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
                         <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
                     </div>                      
                 </div>
                 <?php if ($model->busi_ownership_status == 1) {
                     ?>
-                    <div class="row busi_verification_disable">
+                    <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <div class="col-lg-3">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rented_owner_name') ?></label>
                             <div class="readonlydiv"><?= $model->busi_rented_owner_name ?></div>
@@ -1568,23 +1573,40 @@ $this->params['breadcrumbs'][] = 'View';
                 <?php }
                 ?>
                 <div class="row busi_verification_disable">                    
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_type') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_locality_type ?></div>
+                    </div>      
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_text') ?></label>
                         <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
                     </div>      
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->busi_available_status) ?></div>
+                    </div>      
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
                         <div class="readonlydiv"><?= $model->busi_staff_declared ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_seen') ?></label>
                         <div class="readonlydiv"><?= $model->busi_staff_seen ?></div>
                     </div>                            
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_area') ?></label>
                         <div class="readonlydiv"><?= $model->busi_area ?></div>
-                    </div>                
+                    </div>           
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable busi_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_reason_for_closed ?></div>
+                    </div>      
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $model->busi_shifted_tenure ?></div>
+                    </div>  
                 </div>
+
                 <div class="row busi_verification_disable">                    
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_1') ?></label>
@@ -1611,7 +1633,7 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 </div>   
                 <div class="row">
-                    <div class="col-lg-6 busi_verification_disable">
+                    <div class="col-lg-6 busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
@@ -1677,38 +1699,44 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->office_company_name_board ?></div>
                     </div>
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->office_available_status) ?></div>
+                    </div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_enable office_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person') ?></label>
                         <div class="readonlydiv"><?= $model->office_met_person ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person_designation') ?></label>
                         <div class="readonlydiv"><?= $model->office_met_person_designation ?></div>
                     </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->office_designation ?></div>
-                    </div>
+
                 </div>
 
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
+                        <div class="readonlydiv"><?= $model->office_designation ?></div>
+                    </div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_department') ?></label>
                         <div class="readonlydiv"><?= $model->office_department ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_nature_of_company') ?></label>
                         <div class="readonlydiv"><?= $model->office_nature_of_company ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_employment_years') ?></label>
                         <div class="readonlydiv"><?= $model->office_employment_years ?></div>
                     </div>
-                    <div class="col-lg-3">
+
+                </div>
+                <div class="row office_verification_disable">
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_net_salary_amount') ?></label>
                         <div class="readonlydiv"><?= $model->office_net_salary_amount ?></div>
                     </div>
-                </div>
-                <div class="row office_verification_disable">
                     <div class="col-lg-3">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_tpc_for_applicant') ?></label>
                         <div class="readonlydiv"><?= $model->office_tpc_for_applicant ?></div>
@@ -1723,6 +1751,14 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable office_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $model->office_reason_for_closed ?></div>
+                    </div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable office_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $model->office_shifted_tenure ?></div>
+                    </div>
                     <div class="col-lg-6 office_verification_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_not_reachable_remarks') ?></label>
                         <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('office_not_reachable_remarks', $model->office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
@@ -1784,18 +1820,18 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_door_name_plate') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_door_name_plate ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_1') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_1 ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_2') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_2 ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_relation) ?></div>
                     </div>
@@ -1808,18 +1844,19 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->resi_office_ownership_status_text ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_home_area') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_home_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->resi_office_available_status) ?></div>
                     </div>
+
                 </div>
                 <?php if ($model->resi_office_ownership_status == 1) {
                     ?>
                     <div class="row resi_office_verification_disable">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rented_owner_name') ?></label>
                             <div class="readonlydiv"><?= $model->resi_office_rented_owner_name ?></div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                             <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rent_amount') ?></label>
                             <div class="readonlydiv"><?= $model->resi_office_rent_amount ?></div>
                         </div>
@@ -1827,19 +1864,38 @@ $this->params['breadcrumbs'][] = 'View';
                 <?php }
                 ?>
                 <div class="row resi_office_verification_disable">
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $model->office_reason_for_closed ?></div>
+                    </div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_enable resi_office_locked_shifted_enable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $model->office_shifted_tenure ?></div>
+                    </div>
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->resi_office_available_status ?></div>
+                    </div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_home_area') ?></label>
+                        <div class="readonlydiv"><?= $model->resi_office_home_area ?></div>
+                    </div>
+                </div>
+                <div class="row resi_office_verification_disable">
+
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_stay_years') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_stay_years ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_total_family_members') ?></label>
                         <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_total_family_members) ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_working_members') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_working_members ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_company_name_board') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_company_name_board ?></div>
                     </div>
@@ -1863,15 +1919,15 @@ $this->params['breadcrumbs'][] = 'View';
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_nature_of_company') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_nature_of_company ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_employment_years') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_employment_years ?></div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_net_salary_amount') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_net_salary_amount ?></div>
                     </div>
@@ -1907,7 +1963,7 @@ $this->params['breadcrumbs'][] = 'View';
                         <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_structure') ?></label>
                         <div class="readonlydiv"><?= $model->resi_office_structure ?></div>
                     </div>
-                    <div class="col-lg-3"> 
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"> 
                         <label>Market Feedback</label>
                         <div class="readonlydiv"><?= ($model->resi_office_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                     </div>
@@ -2502,6 +2558,39 @@ $this->registerJs("
             } else {
                 $("." + source + "_verification_disable").show();
                 $("." + source + "_verification_enable").hide();
+            }
+        }
+        
+        var resiChecked = '<?php echo $model->resi_available_status; ?>'
+        availableHide("resi", resiChecked);
+        var busiChecked = '<?php echo $model->busi_available_status; ?>'
+        availableHide("busi", busiChecked);
+        var officeChecked = '<?php echo $model->office_available_status; ?>'
+        availableHide("office", officeChecked);
+        var resiChecked = '<?php echo $model->resi_office_available_status; ?>'
+        availableHide("resi_office", resiChecked);
+        
+        function availableHide(source, availability_status) {
+            $("." + source + "_verification_disable").show();
+            if (availability_status == 2) {
+                $("." + source + "_locked_disable").hide();
+                $("." + source + "_locked_enable").show();
+            }
+            if (availability_status == 3) {
+                $("." + source + "_shifted_disable").hide();
+                $("." + source + "_shifted_enable").show();
+            }
+            if (availability_status == 4) {
+                $("." + source + "_locked_shifted_disable").hide();
+                $("." + source + "_locked_shifted_enable").show();
+            }
+            if (availability_status == 1) {
+                $("." + source + "_shifted_enable").show();
+                $("." + source + "_shifted_disable").show();
+                $("." + source + "_locked_enable").show();
+                $("." + source + "_locked_disable").show();
+                $("." + source + "_locked_shifted_enable").show();
+                $("." + source + "_locked_shifted_disable").show();
             }
         }
     });
