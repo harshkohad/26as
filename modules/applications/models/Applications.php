@@ -252,7 +252,6 @@ use Yii;
  * @property string $resi_office_rent_amount
  */
 class Applications extends \yii\db\ActiveRecord {
-
 //    public $resi_available_status = "";
 //    public $resi_shifted_tenure = "";
 //    public $resi_reason_for_closed = "";
@@ -630,12 +629,12 @@ class Applications extends \yii\db\ActiveRecord {
             'voter_middle_name' => 'Middle Name',
             'voter_last_name' => 'Last Name',
             'voter_voter_id_no' => 'Voter ID No',
-            'voter_address' => 'Address',            
+            'voter_address' => 'Address',
             'resi_available_status' => 'Availability Status',
             'resi_shifted_tenure' => 'Shifted Tenure',
             'busi_available_status' => 'Availability Status',
             'busi_reason_for_closed' => 'Reason for closure',
-            'busi_shifted_tenure' => 'Shifted Tenure',            
+            'busi_shifted_tenure' => 'Shifted Tenure',
             'office_available_status' => 'Availability Status',
             'office_reason_for_closed' => 'Reason for closure',
             'office_shifted_tenure' => 'Shifted Tenure',
@@ -1104,6 +1103,27 @@ class Applications extends \yii\db\ActiveRecord {
         }
 
         return $return_data;
+    }
+
+    public function getAvailableStatus($available_status) {
+        $return = '';
+
+        switch ($available_status) {
+            case 1:
+                $return = 'Available for Verification';
+                break;
+            case 2:
+                $return = 'Door Locked';
+                break;
+            case 3:
+                $return = 'Shifted';
+                break;
+            case 3:
+                $return = 'Door Locked & Shifted';
+                break;
+        }
+
+        return $return;
     }
 
 }
