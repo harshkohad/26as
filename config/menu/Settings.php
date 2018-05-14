@@ -31,5 +31,9 @@ return [
             'label' => 'Manage Templates',
             'url' => ['/applications/institute-header-template/create-template']
         ],
+        [
+            'label' => 'Manage Institutes',
+            'url' => ['/applications/institutes/index']
+        ],
     ]
 ];
