@@ -260,7 +260,7 @@ class ManageApplicationsController extends Controller {
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 0);
 
         $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
-        
+
         if (Yii::$app->request->post()) {
 //            echo '<pre>';
 //            print_r(Yii::$app->request->post());
@@ -1700,6 +1700,19 @@ class ManageApplicationsController extends Controller {
             $modelHistory->save(false);
         }
         echo "Done";
+    }
+
+    public function actionCreatePara() {
+        //echo "<pre/>",print_r($_REQUEST);die;;
+        $sql = "show columns from tbl_applications";
+        $columns = Yii::$app->db->createCommand($sql)->queryAll();
+        $fields = array();
+        foreach ($columns as $column) {
+            $fields[] = $column['Field'];
+            if (count($fields) > 20)
+                break;
+        }
+        return $this->render('test', ['fields' => $fields]);
     }
 
 }
