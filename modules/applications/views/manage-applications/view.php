@@ -2361,8 +2361,16 @@ $this->params['breadcrumbs'][] = 'View';
                         <div class="readonlydiv"><?= $model->noc_soc_previous_owner ?></div>
                     </div>
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_chairman_name') ?></label>
+                        <div class="readonlydiv"><?= $model->noc_soc_chairman_name ?></div>
                     </div>
                     <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_secretary_name') ?></label>
+                        <div class="readonlydiv"><?= $model->noc_soc_secretary_name ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_tresurer_name') ?></label>
+                        <div class="readonlydiv"><?= $model->noc_soc_tresurer_name ?></div>
                     </div>
                 </div>
                 <div class="row noc_soc_verification_enable">
