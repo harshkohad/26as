@@ -1720,7 +1720,7 @@ class ManageApplicationsController extends Controller {
             if (count($fields) > 20)
                 break;
         }
-        return $this->render('test', ['fields' => $fields]);
+        return $this->render('create_para', ['fields' => $fields]);
     }
 
 }
