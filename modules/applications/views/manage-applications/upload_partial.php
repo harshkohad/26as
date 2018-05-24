@@ -122,6 +122,7 @@ yii\bootstrap\Modal::end();
             var value = $(this).val();
             var dest = $(this).attr('rel');
             $("#profile_id_" + dest).val(value);
+            $('#profile_modal').modal('hide');
 //            document.getElementById("profile_id_" + dest).value = value;
         });
 
