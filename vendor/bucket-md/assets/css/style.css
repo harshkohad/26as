@@ -5724,3 +5724,12 @@ right: -1px;
 .map_marker {
     cursor: pointer !important; 
 }
+
+#dynamicvartags p {
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #95b75d;
+    color: #fff;
+    border-radius: 2px;
+    margin: 0 5px 5px 0;
+}
