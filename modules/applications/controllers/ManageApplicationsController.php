@@ -769,7 +769,7 @@ class ManageApplicationsController extends Controller {
                     $return_data .= "<td>{$app_profile['aadhaar_card_no']}</td>";
                     $return_data .= "<td>{$app_profile['company_name']}</td>";
                     $return_data .= "<td>{$app_profile['address']}</td>";
-                    $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="' . $app_profile['id'] . '">
+                    $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="' . $app_profile['id'] . '" rel="' . $app_profile['first_name'] . '_' . $app_profile['middle_name'] . '_' . $app_profile['last_name'] . '">
                                      <i class="fa fa-external-link"></i> Select</button></td>';
                     $return_data .= '</tr>';
                 }
@@ -1266,7 +1266,6 @@ class ManageApplicationsController extends Controller {
                 $loan_type_id = $data['loan_type_id'];
 
                 $dirname = self::EXCEL_UPLOAD_DIR_NAME;
-
                 if (isset($_FILES['upe_file'])) {
                     $errors = '';
                     $file_name = $_FILES['upe_file']['name'];
@@ -1330,6 +1329,7 @@ class ManageApplicationsController extends Controller {
     public function processAppsExcel($id) {
         try {
             #fetch filename
+            $model = new Applications();
             $apps_data = ApplicationsUploads::find()->where(['id' => $id, 'is_deleted' => '0'])->one();
 
             if (!empty($apps_data)) {
@@ -1339,7 +1339,14 @@ class ManageApplicationsController extends Controller {
                             'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
                             'getOnlySheet' => 'sheet1', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
                 ]);
-
+                if (!empty($data)) {
+                    foreach ($data as $key => $dataDtl) {
+                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}')" . "> Dedupe Check</button><br>
+                        <input type='text' name='profile_id' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}'/> ";
+                    }
+                }
+//                print_r($data);
+//                die;
                 $provider = new \yii\data\ArrayDataProvider([
                     'allModels' => $data,
                     'sort' => [
@@ -1352,6 +1359,7 @@ class ManageApplicationsController extends Controller {
 
                 return $this->renderPartial('upload_partial', [
                             'dataProvider' => $provider,
+                            'model' => $model,
                 ]);
             }
         } catch (\Exception $e) {

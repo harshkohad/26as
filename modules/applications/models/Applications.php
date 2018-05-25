@@ -1126,4 +1126,7 @@ class Applications extends \yii\db\ActiveRecord {
         return $return;
     }
 
+    public function getDedupCheckButton() {
+        
+    }
 }
