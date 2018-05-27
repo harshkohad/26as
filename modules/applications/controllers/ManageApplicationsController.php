@@ -29,6 +29,7 @@ use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use yii\base\ErrorException;
 use PHPExcel_Style_Fill;
 use app\modules\applications\models\ApplicationsHistory;
+use app\modules\applications\models\ApplicationParagraph;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -1340,7 +1341,7 @@ class ManageApplicationsController extends Controller {
                 if (!empty($data)) {
                     foreach ($data as $key => $dataDtl) {
                         $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}')" . "> Dedupe Check</button><br>
-                        <input type='text' name='profile_id' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}'/> ";
+                        <input type='text' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}'/> ";
                     }
                 }
 //                print_r($data);
@@ -1369,6 +1370,8 @@ class ManageApplicationsController extends Controller {
         $response_data = array();
         try {
             if (!empty($_POST)) {
+                echo "<pre/>", print_r($_POST);
+                die;
                 $data = $_POST;
                 $id = $data['id'];
                 #fetch filename
@@ -1711,16 +1714,35 @@ class ManageApplicationsController extends Controller {
     }
 
     public function actionCreatePara() {
-        //echo "<pre/>",print_r($_REQUEST);die;;
+
         $sql = "show columns from tbl_applications";
         $columns = Yii::$app->db->createCommand($sql)->queryAll();
         $fields = array();
         foreach ($columns as $column) {
             $fields[] = $column['Field'];
-            if (count($fields) > 20)
-                break;
+        }
+        if (!empty($_REQUEST)) {
+            $model = new ApplicationParagraph();
+            $model->name = $_REQUEST['inputParagraphTitle'];
+            $model->paragraph = $_REQUEST['inputParagraph'];
+            $model->created_at = date("Y-m-d H:i:s");
+            $model->created_by = Yii::$app->user->id;
+            $model->save();
+            return $this->redirect(['create-para']);
         }
         return $this->render('create_para', ['fields' => $fields]);
+    }
+
+    public function actionManageParagraphs() {
+        $model = new ApplicationParagraph();
+
+        $dataProvider = $model->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 10];
+
+        return $this->render('manage_paragraph', [
+                    'searchModel' => $model,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 
 }
