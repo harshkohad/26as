@@ -2919,6 +2919,24 @@ $this->registerJs("
                 var marker = new google.maps.Marker({position:latlon,map:map,title:'You are here!'});
                 $('#mapmodal').modal('show'); 
             }
+            
+            $(document).on('click', '.photoViewLocation', function() {
+                var record_id = this.value;
+                var data = {record_id: record_id};
+                //ajax call
+                $.post('photo-map-details', data, function (response) {
+                    if(!jQuery.isEmptyObject(response)) {
+                        var obj = jQuery.parseJSON(response);
+                        if(obj.latitude != '' && obj.longitude != '') {
+                            showPosition(obj.latitude, obj.longitude);
+                        } else {
+                            alert('Something went wrong!!!');
+                        }
+                    } else {
+                        alert('Something went wrong!!!');
+                    }
+                });
+            });
 });
 ");
 ?>
