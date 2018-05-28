@@ -1667,7 +1667,7 @@ class ManageApplicationsController extends Controller {
             $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'is_deleted' => '0'])->all();
             $string = '<form id="select_status"><div class="col-lg-12"><label class="control-label">Change Application Status</label>
                  <div class="panel-body"><div class="row"><select class="form-control" id="application_status" name="status">
-                    <option value="">Select Verifier</option>
+                    <option value="">Select Status</option>
                 ';
             if ($application_status == 1 AND empty($verifiers_data)) {
                 $string .= '<option value="2">Inprogress</option>';

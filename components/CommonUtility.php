@@ -513,7 +513,7 @@ class CommonUtility extends Component {
         if (!empty($notifications)) {
             foreach ($notifications as $notification_data) {
                 $return_data .= '<li>
-                    <a href="#">                        
+                    <a href="'.Yii::$app->request->baseUrl.'/announcements/manage-announcements/manage-notifications">                        
                         <span class="subject">
                             <span class="from">' . self::getCreatedByNameById($notification_data['created_by']) . '</span>
                             <span class="time">' . self::time_elapsed_string($notification_data['notification_created_at']) . '</span>
@@ -526,7 +526,7 @@ class CommonUtility extends Component {
             }
         }
 
-        $return_data .= '<li><a href="#">See all notifications</a></li>';
+        $return_data .= '<li><a href="'.Yii::$app->request->baseUrl.'/announcements/manage-announcements/manage-notifications">See all notifications</a></li>';
 
         $return_data .= '</ul>';
 
@@ -549,7 +549,7 @@ class CommonUtility extends Component {
         if (!empty($alerts)) {
             foreach ($alerts as $alert_data) {
                 $return_data .= '<li>
-                    <a href="#">                        
+                    <a href="'.Yii::$app->request->baseUrl.'/announcements/manage-announcements/manage-alerts">                        
                         <span class="subject">
                             <span class="from">' . self::getCreatedByNameById($alert_data['created_by']) . '</span>
                             <span class="time">' . self::time_elapsed_string($alert_data['notification_created_at']) . '</span>
@@ -561,7 +561,7 @@ class CommonUtility extends Component {
                 </li>';
             }
         }
-        $return_data .= '<li><a href="#">See all alerts</a></li>';
+        $return_data .= '<li><a href="'.Yii::$app->request->baseUrl.'/announcements/manage-announcements/manage-alerts">See all alerts</a></li>';
 
         $return_data .= '</ul>';
 

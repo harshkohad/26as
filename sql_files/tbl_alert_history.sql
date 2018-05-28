@@ -8,6 +8,8 @@ CREATE TABLE `tbl_alert_history` (
   `is_deleted` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE `tbl_alert_history` 
+CHANGE COLUMN `created_at` `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
 
 ALTER TABLE `tbl_alert_history`
   ADD PRIMARY KEY (`id`);
@@ -15,5 +17,4 @@ ALTER TABLE `tbl_alert_history`
 ALTER TABLE `tbl_alert_history`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE `tbl_alert_history` ADD `is_all` VA
-CHAR(10) NULL DEFAULT 'No' AFTER `is_deleted`; 
+ALTER TABLE `tbl_alert_history` ADD `is_all` VARCHAR(10) NULL DEFAULT 'No' AFTER `is_deleted`; 

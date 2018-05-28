@@ -23,7 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'institute_id',
                 'loan_type_id',
                 'file_name',
-                'status',
+                [
+                    'attribute' => 'status',
+                    'value' => function($model) {
+                        return $model->status == 0 ? 'New' : 'Processed';
+                    },
+                    'filter' => [
+                        0 => 'New',
+                        1 => 'Processed'
+                    ],
+                ],
                 // 'created_by',
                 'created_on',
                 // 'updated_by',
