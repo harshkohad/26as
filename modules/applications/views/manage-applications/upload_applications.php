@@ -105,10 +105,35 @@ $this->registerJs("
             
             $('#upe_final_submit').on('click',(function(e) {
                 var uploaded_id = $('#uploaded_id').val();
+//                var profile_ids = $('input[name=profile_id]').val();
+                var profile_ids = document.getElementsByName('profile_id');
+                
+
+
+                var nodesArray = Array.prototype.slice.call(profile_ids);
+                console.log(nodesArray);
+                var data = {id: uploaded_id,profile_id:nodesArray};
+            $.post('submit-u-excel', data, function (response) {
+                    $('#response_div').html('');
+                    $('#response_div').hide();
+                    $('#section_final').hide();
+                    floatingResponse(response);
+                });
+                
+            
+                
+                var profile_ids ='';
+                $('input.profile_id').each(function() {
+                     //profile_ids[uploaded_id] = $(this).val();
+                     alert(uploaded_id+'----'+$(this).val());
+                     profile_ids += ','+ uploaded_id+ '-'+ $(this).val();
+                });
+                alert(profile_ids);return false;
+                //var myJSON = JSON.stringify(profile_ids); 
                 $('#final_submit').hide();
                 $('#uploaded_id').val('');
                 $('#response_div').html('Submitting!!! <img src='+loader_link+'>');
-                var data = {id: uploaded_id};
+                var data = {id: uploaded_id,profile_id:myJSON};
                 //ajax call
                 $.post('submit-u-excel', data, function (response) {
                     $('#response_div').html('');
