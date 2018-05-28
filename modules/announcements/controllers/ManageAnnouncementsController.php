@@ -13,7 +13,9 @@ use app\models\User;
 class ManageAnnouncementsController extends \yii\web\Controller {
 
     public function actionManageNotifications() {
-        $model = new Notifications();
+        //Update all notifications to read
+        Notifications::updateAll(['is_unread' => 0], 'type = 0 AND is_unread = 1 AND user_id = "'.Yii::$app->user->getId().'"');
+        
         $query = Notifications::find();
         $query->andFilterWhere([
             'type' => 0
@@ -26,7 +28,9 @@ class ManageAnnouncementsController extends \yii\web\Controller {
     }
 
     public function actionManageAlerts() {
-        $model = new Notifications();
+        //Update all notifications to read
+        Notifications::updateAll(['is_unread' => 0], 'type = 1 AND is_unread = 1 AND user_id = "'.Yii::$app->user->getId().'"');
+        
         $query = Notifications::find();
         $query->andFilterWhere([
             'type' => 1

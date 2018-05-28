@@ -4,6 +4,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Update User:' . " " . "$model->username";
+$this->params['breadcrumbs'][] = ['label' => Yii::t('rbac-admin', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
+$controllerId = $this->context->uniqueId . '/';
 ?>
 <div class="device-credentials-update">
 
@@ -37,7 +41,8 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'last_name') ?>
                     </div>
                 </div>
-                <div class="clearfix"></div>
+            </div>
+            <div class="row">
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($model, 'username')->input('text', ['readonly' => true]) ?>
@@ -53,7 +58,8 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'designation') ?>
                     </div>
                 </div>
-                <div class="clearfix"></div>
+            </div>
+            <div class="row">
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($userDetails, 'mobile')->input('text', ['placeholder' => 'xxx-xxx-xxxx', 'maxlength' => 12]) ?>
@@ -69,7 +75,8 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'zip')->input('text', ['maxlength' => 12]) ?>
                     </div>
                 </div>
-                <div class="clearfix"></div>
+            </div>
+            <div class="row">
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($userDetails, 'city') ?>
@@ -85,8 +92,8 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'country')->dropDownList(Yii::$app->commonUtility->getCountryDropdown(), ['prompt' => '(Select Country)']) ?>
                     </div>
                 </div>
-                <div class="clearfix"></div>
-
+            </div>
+            <div class="row">    
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($userDetails, 'pin')->input('text', ['maxlength' => 6]) ?>
@@ -97,6 +104,15 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'address')->textArea() ?>
                     </div>
                 </div>
+            </div>
+            <div class="row">    
+                <div class="col-lg-4">
+                    <div>
+                        <?= $form->field($model, 'status')->dropDownList($statusData, ['prompt' => 'Select Status'])->label('Select Status') ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-4">
                     <div>
                         <?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?>
@@ -112,15 +128,19 @@ $this->title = 'Update User:' . " " . "$model->username";
                         <?= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?>
                     </div>
                 </div>
-                <div class="clearfix"></div>
             </div>
-            <div class="form-group">
-                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success btn-flat' : 'btn btn-primary btn-flat']) ?>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success btn-flat' : 'btn btn-primary btn-flat']) ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <?php ActiveForm::end(); ?>
-
 </div>
+
+<?php ActiveForm::end(); ?>
+
+
+</div>    

@@ -323,6 +323,9 @@ class UserController extends BaseController {
     }
 
     public function actionUpdate($id = FALSE) {
+        $statusData = array();
+        $statusData[0] = "Inactive";
+        $statusData[10] = "Active";
         #Find User Routes
         $currentUserRoutes = array_keys(Helper::getRoutesByUser(Yii::$app->user->id));
 
@@ -372,6 +375,8 @@ class UserController extends BaseController {
             }
         }
         if ($userDetails->load(Yii::$app->request->post())) {
+            $model->status = $_POST['User']['status'];
+            $model->update(FALSE);
             if ($userDetails->update(FALSE)) {
                 $institute = new Institutes();
                 if ($model->userDetails->institute_id == 0) {
@@ -403,6 +408,7 @@ class UserController extends BaseController {
                     'instituteData' => $instituteData,
                     'loanData' => $loanData,
                     'roles' => $roles,
+                    'statusData' => $statusData
         ]);
     }
 
