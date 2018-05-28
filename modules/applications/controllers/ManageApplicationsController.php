@@ -904,18 +904,20 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<table class="table table-striped table-bordered">
                         <thead>
                         <tr class="tr-header">
-                            <th>Preview</th>
-                            <th>Remarks</th>';
+                            <th class="text-center">Preview</th>
+                            <th class="text-center">Remarks</th>
+                            <th class="text-center">Location</th>';
         if ($getHtml == 0) {
-            $return_html .= '<th><button type="button" class="btn btn-primary addMorePhotos" value="' . $section . '_' . $type . '"><i class="fa fa-plus"></i></button></th>';
+            $return_html .= '<th class="text-center"><button type="button" class="btn btn-primary addMorePhotos" value="' . $section . '_' . $type . '"><i class="fa fa-plus"></i></button></th>';
         }
         $return_html .= '</tr></thead>';
         if (!empty($photos)) {
             foreach ($photos as $photos_data) {
                 $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'] . '" class="user-image" alt="Image" width="40"></a>';
                 $return_html .= '<tr>';
-                $return_html .= '<td>' . $image_link . '</td>';
+                $return_html .= '<td align="center">' . $image_link . '</td>';
                 $return_html .= '<td>' . $photos_data['remarks'] . '</td>';
+                $return_html .= '<td align="center"><button type="button" class="btn btn-info photoViewLocation" value="' . $photos_data['id'] . '"><i class="fa fa-map-marker"></i></button></td>';
 
                 if ($getHtml == 0) {
                     $return_html .= '<td align="center"><button type="button" class="btn btn-danger deletePhotos" value="' . $photos_data['id'] . '_' . $photos_data['section'] . '_' . $photos_data['type'] . '"><i class="fa fa-trash-o"></i></button></td>';
@@ -1732,7 +1734,7 @@ class ManageApplicationsController extends Controller {
         }
         return $this->render('create_para', ['fields' => $fields]);
     }
-
+  
     public function actionManageParagraphs() {
         $model = new ApplicationParagraph();
 
@@ -1744,5 +1746,17 @@ class ManageApplicationsController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-
+  
+    public function actionPhotoMapDetails() {
+        $return_data = '';
+        $data = $_POST;
+        $id = $data['record_id'];
+        #get data
+        $query = "SELECT * FROM tbl_applicant_photos WHERE id = $id";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        if (!empty($table_data)) {
+            $return_data = '{"latitude":"' . $table_data['latitude'] . '", "longitude":"' . $table_data['longitude'] . '"}';
+        }
+        return $return_data;
+    }
 }
