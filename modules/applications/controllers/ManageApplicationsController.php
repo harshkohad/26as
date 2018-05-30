@@ -1030,12 +1030,16 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function getVerifierDropdown($app_id, $verification_type) {
+    public function getVerifierDropdown($app_id, $verification_type, $is_manage) {
         $selected_id = self::checkVerifierForApplicationExist($app_id, $verification_type);
         $allVerifiers_data = TblMobileUsers::find()->asArray()->all();
+        $readonly = '';
+        if($is_manage == 0) {
+            $readonly = 'readonly="readonly"';
+        }
         $return_html = '';
         $return_html .= '<label class="control-label">Select Verifier</label>';
-        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '">';
+        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" '.$readonly.'>';
         $return_html .= '<option value="">Select Verifier</option>';
         if (!empty($allVerifiers_data)) {
             foreach ($allVerifiers_data as $allVerifiers) {
@@ -1065,6 +1069,7 @@ class ManageApplicationsController extends Controller {
 
         if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
+            $is_manage = $_POST['is_manage'];
             $applications_model = Applications::findOne($app_id);
             if ($applications_model->resi_address_verification == 1 ||
                     $applications_model->busi_address_verification == 1 ||
@@ -1077,31 +1082,31 @@ class ManageApplicationsController extends Controller {
                     $applications_model->noc_soc_address_verification == 1
             ) {
                 if ($applications_model->resi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->busi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->noc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->resi_office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->builder_profile_address_verification == 1) {
-                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->property_apf_address_verification == 1) {
-                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->indiv_property_address_verification == 1) {
-                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->noc_soc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $is_manage, $return_html);
                 }
             } else {
                 $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
@@ -1110,7 +1115,7 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function verifierModalRow($app_id, $verification_type, $applications_model, $pincode, &$return_html) {
+    public function verifierModalRow($app_id, $verification_type, $applications_model, $pincode, $is_manage, &$return_html) {
         switch ($verification_type) {
             case 2 :
                 $address_name = 'Business';
@@ -1144,16 +1149,21 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<div class="row">';
         $return_html .= '<div class="col-lg-4"><label class="control-label" for="name" style=" margin-top: 0px;">' . $applications_model->getAttributeLabel($pincode) . '</label>
     <div class="readonlydiv">' . $applications_model->$pincode . '</div></div>';
-        $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type) . '</div>';
-        $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
-        $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
-        if (!empty($ifverexist)) {
-            $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
-            $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+        $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type, $is_manage) . '</div>';
+        if($is_manage) {
+            $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
+            $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
+            if (!empty($ifverexist)) {
+                $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
+                $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+            } else {
+                $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $app_id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+            }
+            $return_html .= '</div>';
         } else {
-            $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $app_id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+            $return_html .= '<div class="col-lg-4"></div>';
         }
-        $return_html .= '</div>';
+        
         $return_html .= '</div>';
         $return_html .= '<div class="row">';
         $return_html .= '<div class="col-lg-4"></div>';
