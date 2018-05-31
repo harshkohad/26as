@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <!--logo start-->
     <div class="brand">
 
-        <a href="index.php" class="logo" style="margin: 20px 0 0 25px !important;">       
+        <a href="<?PHP echo Yii::$app->request->baseUrl; ?>/index.php" class="logo" style="margin: 20px 0 0 25px !important;">       
             <img src="<?PHP echo Yii::$app->request->baseUrl; ?>/images/dvs_new_logo_hori_200_800.png" alt="" height="40" style="margin-left: auto; margin-right: auto; display: block;">
         </a>
         <div class="sidebar-toggle-box">

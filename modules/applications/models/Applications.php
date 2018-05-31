@@ -906,6 +906,15 @@ class Applications extends \yii\db\ActiveRecord {
 
     public function getVerifierStatus($id, $application_status) {
         $return = '';
+        
+        $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
+
+        $count = 0;
+        if (!empty($verifiers_data)) {
+            foreach ($verifiers_data as $verifier_data) {
+                $count++;
+            }
+        }
 
         if ($application_status == 1 || $application_status == 2) {
             $assignable_count = 0;
@@ -947,15 +956,7 @@ class Applications extends \yii\db\ActiveRecord {
                 if ($applications_model->noc_soc_address_verification == 1) {
                     $assignable_count++;
                 }
-            }
-            $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
-
-            $count = 0;
-            if (!empty($verifiers_data)) {
-                foreach ($verifiers_data as $verifier_data) {
-                    $count++;
-                }
-            }
+            }         
 
             $return = '<div><span style="color:#3c8dbc;font-weight:bold">Assignable : ' . $assignable_count . '</span><br><span style="color:#00a65a;font-weight:bold">Assigned : ' . $count . '</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm manageVerifier" value="' . $id . '">Manage Verifiers</button></div>';
 //        switch ($verifier_status) {
@@ -973,7 +974,7 @@ class Applications extends \yii\db\ActiveRecord {
 //                break;
 //        }
         } else {
-            $return = '<span style="color:#e70606;font-weight:bold">NA</span>';
+            $return = '<div><span style="color:#00a65a;font-weight:bold">Assigned : ' . $count . '</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-info btn-sm viewVerifier" value="' . $id . '">View Verifiers</button></div>';
         }
 
         return $return;

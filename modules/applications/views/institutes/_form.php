@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
         <?php $form = ActiveForm::begin(); ?>
         <div class="row">
             <div class="col-lg-3"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
+            <div class="col-lg-3"><?= $form->field($model, 'abbreviation')->textInput(['maxlength' => true, 'style'=>'text-transform:uppercase']) ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12" style="text-align: right;">

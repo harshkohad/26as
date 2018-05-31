@@ -172,7 +172,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="modal-header label-success">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><i class="text-white fa fa-pencil-square-o"></i> <span
-                        class="text-white bold">Manage Verifier</span></h4>
+                        class="text-white bold"><span id="model_title">Manage</span> Verifier</span></h4>
             </div>
             <div class="modal-body" id="verifier_modal_body" style="height:450px; overflow:auto;">
 
@@ -225,8 +225,20 @@ $this->registerJs("
             window.loader_img = '" . $loader_img . "';
             $(document).on('click', '.manageVerifier', function() {
                 var app_id = this.value;
-                var data = {app_id: app_id,};
+                var data = {app_id: app_id, is_manage: 1};
                 $.post('get-verifier', data, function (response) {
+                    $('#model_title').html('Manage');
+                    $('#modal-manage-verifier').modal('show'); 
+                    $('#verifier_modal_body').html(response);
+                });
+                
+            });
+            
+            $(document).on('click', '.viewVerifier', function() {
+                var app_id = this.value;
+                var data = {app_id: app_id, is_manage: 0};
+                $.post('get-verifier', data, function (response) {
+                    $('#model_title').html('View');
                     $('#modal-manage-verifier').modal('show'); 
                     $('#verifier_modal_body').html(response);
                 });

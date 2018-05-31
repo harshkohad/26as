@@ -19,7 +19,7 @@ class InstitutesSearch extends Institutes
     {
         return [
             [['id', 'download_pdf', 'download_excel', 'char_count', 'is_alphanumeric', 'is_active', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['name', 'file_name', 'created_on', 'updated_on'], 'safe'],
+            [['name', 'abbreviation', 'file_name', 'created_on', 'updated_on'], 'safe'],
         ];
     }
 
@@ -73,6 +73,7 @@ class InstitutesSearch extends Institutes
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'abbreviation', $this->abbreviation])
             ->andFilterWhere(['like', 'file_name', $this->file_name]);
 
         return $dataProvider;

@@ -216,7 +216,7 @@ class ManageApplicationsController extends Controller {
             }
             if ($model->save()) {
                 #Save Application id
-                $model->application_id = self::getApplicationId($model->id);
+                $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                 $model->save();
                 $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
                 return $this->redirect(['update', 'id' => $model->id, 'step2' => $step2]);
@@ -785,9 +785,16 @@ class ManageApplicationsController extends Controller {
         return $return_data;
     }
 
-    public function getApplicationId($id) {
+    public function getApplicationId($id, $institute_id = NULL) {
+        $short_form = '';
+        if(!empty($institute_id)) {
+            $institute_data = Institutes::findOne($institute_id);
+            if(!empty($institute_data)) {
+                $short_form = $institute_data->abbreviation;
+            }
+        }
         $curr_data = date('dmy');
-        $prefix = 'ACS';
+        $prefix = 'ACS'.$short_form;
         $number = str_pad($id, 5, '0', STR_PAD_LEFT);
 
         return $prefix . $curr_data . $number;
@@ -905,18 +912,20 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<table class="table table-striped table-bordered">
                         <thead>
                         <tr class="tr-header">
-                            <th>Preview</th>
-                            <th>Remarks</th>';
+                            <th class="text-center">Preview</th>
+                            <th class="text-center">Remarks</th>
+                            <th class="text-center">Location</th>';
         if ($getHtml == 0) {
-            $return_html .= '<th><button type="button" class="btn btn-primary addMorePhotos" value="' . $section . '_' . $type . '"><i class="fa fa-plus"></i></button></th>';
+            $return_html .= '<th class="text-center"><button type="button" class="btn btn-primary addMorePhotos" value="' . $section . '_' . $type . '"><i class="fa fa-plus"></i></button></th>';
         }
         $return_html .= '</tr></thead>';
         if (!empty($photos)) {
             foreach ($photos as $photos_data) {
                 $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::KYC_UPLOAD_DIR_NAME . $application_id . '/thumbs/' . $photos_data['file_name'] . '" class="user-image" alt="Image" width="40"></a>';
                 $return_html .= '<tr>';
-                $return_html .= '<td>' . $image_link . '</td>';
+                $return_html .= '<td align="center">' . $image_link . '</td>';
                 $return_html .= '<td>' . $photos_data['remarks'] . '</td>';
+                $return_html .= '<td align="center"><button type="button" class="btn btn-info photoViewLocation" value="' . $photos_data['id'] . '"><i class="fa fa-map-marker"></i></button></td>';
 
                 if ($getHtml == 0) {
                     $return_html .= '<td align="center"><button type="button" class="btn btn-danger deletePhotos" value="' . $photos_data['id'] . '_' . $photos_data['section'] . '_' . $photos_data['type'] . '"><i class="fa fa-trash-o"></i></button></td>';
@@ -1029,12 +1038,16 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function getVerifierDropdown($app_id, $verification_type) {
+    public function getVerifierDropdown($app_id, $verification_type, $is_manage) {
         $selected_id = self::checkVerifierForApplicationExist($app_id, $verification_type);
         $allVerifiers_data = TblMobileUsers::find()->asArray()->all();
+        $disabled = '';
+        if($is_manage == 0) {
+            $disabled = 'disabled';
+        }
         $return_html = '';
         $return_html .= '<label class="control-label">Select Verifier</label>';
-        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '">';
+        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" '.$disabled.'>';
         $return_html .= '<option value="">Select Verifier</option>';
         if (!empty($allVerifiers_data)) {
             foreach ($allVerifiers_data as $allVerifiers) {
@@ -1064,6 +1077,7 @@ class ManageApplicationsController extends Controller {
 
         if (!empty($_POST)) {
             $app_id = $_POST['app_id'];
+            $is_manage = $_POST['is_manage'];
             $applications_model = Applications::findOne($app_id);
             if ($applications_model->resi_address_verification == 1 ||
                     $applications_model->busi_address_verification == 1 ||
@@ -1076,31 +1090,31 @@ class ManageApplicationsController extends Controller {
                     $applications_model->noc_soc_address_verification == 1
             ) {
                 if ($applications_model->resi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->busi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->noc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->resi_office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->builder_profile_address_verification == 1) {
-                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->property_apf_address_verification == 1) {
-                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->indiv_property_address_verification == 1) {
-                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->noc_soc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $return_html);
+                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $is_manage, $return_html);
                 }
             } else {
                 $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
@@ -1109,7 +1123,7 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    public function verifierModalRow($app_id, $verification_type, $applications_model, $pincode, &$return_html) {
+    public function verifierModalRow($app_id, $verification_type, $applications_model, $pincode, $is_manage, &$return_html) {
         switch ($verification_type) {
             case 2 :
                 $address_name = 'Business';
@@ -1143,16 +1157,21 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<div class="row">';
         $return_html .= '<div class="col-lg-4"><label class="control-label" for="name" style=" margin-top: 0px;">' . $applications_model->getAttributeLabel($pincode) . '</label>
     <div class="readonlydiv">' . $applications_model->$pincode . '</div></div>';
-        $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type) . '</div>';
-        $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
-        $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
-        if (!empty($ifverexist)) {
-            $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
-            $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+        $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type, $is_manage) . '</div>';
+        if($is_manage) {
+            $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
+            $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
+            if (!empty($ifverexist)) {
+                $return_html .= '<button type="button" class="btn btn-primary update_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '"><i class="fa fa-pencil"></i> Update</button> ';
+                $return_html .= '<button type="button" class="btn btn-danger delete_app_verifier" value="' . $ifverexist['id'] . '_' . $verification_type . '_' . $app_id . '"><i class="fa fa-times"></i> Delete</button>';
+            } else {
+                $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $app_id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+            }
+            $return_html .= '</div>';
         } else {
-            $return_html .= '<button type="button" class="btn btn-success add_app_verifier" value="' . $app_id . '_' . $verification_type . '"><i class="fa fa-plus"></i> Add</button>';
+            $return_html .= '<div class="col-lg-4"></div>';
         }
-        $return_html .= '</div>';
+        
         $return_html .= '</div>';
         $return_html .= '<div class="row">';
         $return_html .= '<div class="col-lg-4"></div>';
@@ -1458,7 +1477,7 @@ class ManageApplicationsController extends Controller {
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
                     #Save Application id
-                    $model->application_id = self::getApplicationId($model->id);
+                    $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                     self::updateLatLong($model->id);
                     $model->save();
                     #Update status
@@ -1679,7 +1698,7 @@ class ManageApplicationsController extends Controller {
             $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $app_id, 'is_deleted' => '0'])->all();
             $string = '<form id="select_status"><div class="col-lg-12"><label class="control-label">Change Application Status</label>
                  <div class="panel-body"><div class="row"><select class="form-control" id="application_status" name="status">
-                    <option value="">Select Verifier</option>
+                    <option value="">Select Status</option>
                 ';
             if ($application_status == 1 AND empty($verifiers_data)) {
                 $string .= '<option value="2">Inprogress</option>';
@@ -1746,7 +1765,7 @@ class ManageApplicationsController extends Controller {
         }
         return $this->render('create_para', ['fields' => $fields]);
     }
-
+  
     public function actionManageParagraphs() {
         $model = new ApplicationParagraph();
 
@@ -1759,8 +1778,17 @@ class ManageApplicationsController extends Controller {
         ]);
     }
 
-    public function actionUpdateParagraph($id) {
-        
+  
+    public function actionPhotoMapDetails() {
+        $return_data = '';
+        $data = $_POST;
+        $id = $data['record_id'];
+        #get data
+        $query = "SELECT * FROM tbl_applicant_photos WHERE id = $id";
+        $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
+        if (!empty($table_data)) {
+            $return_data = '{"latitude":"' . $table_data['latitude'] . '", "longitude":"' . $table_data['longitude'] . '"}';
+        }
+        return $return_data;
     }
-
 }
