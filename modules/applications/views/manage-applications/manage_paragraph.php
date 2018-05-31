@@ -13,6 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="panel">
     <div class="panel-body">
+        <p>
+            <?= Html::a('Create Paragraph', ['create-paragraph'], ['class' => 'btn btn-success']) ?> 
+
+        </p> 
         <div>
             <?=
             GridView::widget([
@@ -24,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'paragraph',
                     'created_at',
                     'created_by',
-                    'modified_at',
-                    'modified_by',
+//                    'modified_at',
+//                    'modified_by',
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]);

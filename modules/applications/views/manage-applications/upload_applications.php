@@ -53,18 +53,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="responsemsg"> </div>
 </div>
 
-<section class="panel" id="section_final" style="display: none;">
-    <div class="panel-body">
-        <div class="col-lg-12" >
-            <p id="final_submit" style="display: none; float: right;">
-                <button type="button" class="btn btn-success" id="upe_final_submit">Submit</button>
-            </p>
-            <div id="response_div" style="display: none; clear: both;">
+<form id="final_upe_form" method="post" enctype="multipart/form-data">
+    <section class="panel" id="section_final" style="display: none;">
+        <div class="panel-body">
+            <div class="col-lg-12" >
+                <p id="final_submit" style="display: none; float: right;">
+                    <button type="button" class="btn btn-success" id="upe_final_submit">Submit</button>
+                </p>
+                <div id="response_div" style="display: none; clear: both;">
+                </div>
+                <input type="hidden" id="uploaded_id" name="uploaded_id" />
             </div>
-            <input type="hidden" id="uploaded_id" name="uploaded_id" />
         </div>
-    </div>
-</section>
+    </section>
+</form>
+
 
 <?php
 $this->registerJs("
@@ -104,43 +107,32 @@ $this->registerJs("
             }));
             
             $('#upe_final_submit').on('click',(function(e) {
+                
                 var uploaded_id = $('#uploaded_id').val();
-//                var profile_ids = $('input[name=profile_id]').val();
-                var profile_ids = document.getElementsByName('profile_id');
+                var profile_ids = '';
+                var key = '';
+                $('input[type=text]').each(function(){
+                    var value = $(this).val();
+                    key = $(this).attr('rel');
+                    if(key!='' && value!=''){
+                        if(profile_ids=='')
+                            profile_ids += key +'='+ value;
+                        else    
+                            profile_ids += ','+key +'='+ value;   
+                    }
+                });
                 
 
-
-                var nodesArray = Array.prototype.slice.call(profile_ids);
-                console.log(nodesArray);
-                var data = {id: uploaded_id,profile_id:nodesArray};
+            var data = {id: uploaded_id,profile_id:profile_ids};
+            $('#response_div').html('Submitting!!! <img src='+loader_link+'>');
             $.post('submit-u-excel', data, function (response) {
                     $('#response_div').html('');
                     $('#response_div').hide();
                     $('#section_final').hide();
                     floatingResponse(response);
                 });
-                
-            
-                
-                var profile_ids ='';
-                $('input.profile_id').each(function() {
-                     //profile_ids[uploaded_id] = $(this).val();
-                     alert(uploaded_id+'----'+$(this).val());
-                     profile_ids += ','+ uploaded_id+ '-'+ $(this).val();
-                });
-                alert(profile_ids);return false;
-                //var myJSON = JSON.stringify(profile_ids); 
                 $('#final_submit').hide();
                 $('#uploaded_id').val('');
-                $('#response_div').html('Submitting!!! <img src='+loader_link+'>');
-                var data = {id: uploaded_id,profile_id:myJSON};
-                //ajax call
-                $.post('submit-u-excel', data, function (response) {
-                    $('#response_div').html('');
-                    $('#response_div').hide();
-                    $('#section_final').hide();
-                    floatingResponse(response);
-                });
             }));
             
             function floatingResponse(response){
