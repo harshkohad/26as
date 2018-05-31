@@ -1360,7 +1360,7 @@ class ManageApplicationsController extends Controller {
                 ]);
                 if (!empty($data)) {
                     foreach ($data as $key => $dataDtl) {
-                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}')" . "> Dedupe Check</button><br>
+                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}','{$dataDtl['Pan Card No']}','{$dataDtl['Mobile No']}','{$dataDtl['Aadhaar Card No']}')" . "> Dedupe Check</button><br>
                         <input type='text' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}' rel='$key'/> ";
                     }
                 }
