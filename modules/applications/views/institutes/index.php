@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                 //'id',
                 'name',
+                'abbreviation',
                 //'download_pdf',
                 //'download_excel',
                 //'char_count',
