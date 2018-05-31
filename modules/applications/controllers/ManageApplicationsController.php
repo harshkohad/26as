@@ -215,7 +215,7 @@ class ManageApplicationsController extends Controller {
             }
             if ($model->save()) {
                 #Save Application id
-                $model->application_id = self::getApplicationId($model->id);
+                $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                 $model->save();
                 $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
                 return $this->redirect(['update', 'id' => $model->id, 'step2' => $step2]);
@@ -784,9 +784,16 @@ class ManageApplicationsController extends Controller {
         return $return_data;
     }
 
-    public function getApplicationId($id) {
+    public function getApplicationId($id, $institute_id = NULL) {
+        $short_form = '';
+        if(!empty($institute_id)) {
+            $institute_data = Institutes::findOne($institute_id);
+            if(!empty($institute_data)) {
+                $short_form = $institute_data->abbreviation;
+            }
+        }
         $curr_data = date('dmy');
-        $prefix = 'ACS';
+        $prefix = 'ACS'.$short_form;
         $number = str_pad($id, 5, '0', STR_PAD_LEFT);
 
         return $prefix . $curr_data . $number;
@@ -1033,13 +1040,13 @@ class ManageApplicationsController extends Controller {
     public function getVerifierDropdown($app_id, $verification_type, $is_manage) {
         $selected_id = self::checkVerifierForApplicationExist($app_id, $verification_type);
         $allVerifiers_data = TblMobileUsers::find()->asArray()->all();
-        $readonly = '';
+        $disabled = '';
         if($is_manage == 0) {
-            $readonly = 'readonly="readonly"';
+            $disabled = 'disabled';
         }
         $return_html = '';
         $return_html .= '<label class="control-label">Select Verifier</label>';
-        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" '.$readonly.'>';
+        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" '.$disabled.'>';
         $return_html .= '<option value="">Select Verifier</option>';
         if (!empty($allVerifiers_data)) {
             foreach ($allVerifiers_data as $allVerifiers) {
@@ -1456,7 +1463,7 @@ class ManageApplicationsController extends Controller {
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
                     #Save Application id
-                    $model->application_id = self::getApplicationId($model->id);
+                    $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                     self::updateLatLong($model->id);
                     $model->save();
                     #Update status

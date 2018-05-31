@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $abbreviation
  * @property integer $download_pdf
  * @property integer $download_excel
  * @property integer $char_count
@@ -37,10 +38,13 @@ class Institutes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'abbreviation'], 'required'],
             [['download_pdf', 'download_excel', 'char_count', 'is_alphanumeric', 'is_active', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on'], 'safe'],
+            [['name', 'abbreviation', 'created_on', 'updated_on'], 'safe'],
             [['file_name'], 'string', 'max' => 1000],
             [['name'], 'string', 'max' => 150],
+            [['abbreviation'], 'string', 'length'=>[2,2]],
+            [['abbreviation'], 'match', 'pattern' => '/^[A-Z]+$/', 'message' => 'Invalid characters in Short Form.'],
         ];
     }
 
@@ -52,6 +56,7 @@ class Institutes extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Institute Name',
+            'abbreviation' => 'Short Form',
             'download_pdf' => 'Download Pdf',
             'download_excel' => 'Download Excel',
             'char_count' => 'Char Count',

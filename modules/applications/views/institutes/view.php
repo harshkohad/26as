@@ -30,6 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('name') ?></label>
                 <div class="readonlydiv"><?= $model->name ?></div>
             </div>
+            <div class="col-lg-3">
+                <label class="control-label" for="abbreviation" style=" margin-top: 0px;"><?= $model->getAttributeLabel('abbreviation') ?></label>
+                <div class="readonlydiv"><?= $model->abbreviation ?></div>
+            </div>
         </div>
     </div>
 </section>
