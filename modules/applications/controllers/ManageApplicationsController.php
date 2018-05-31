@@ -784,11 +784,13 @@ class ManageApplicationsController extends Controller {
         return $return_data;
     }
 
-    public function getApplicationId($id, $institute_id) {
+    public function getApplicationId($id, $institute_id = NULL) {
         $short_form = '';
-        $institute_data = Institutes::findOne($institute_id);
-        if(!empty($institute_data)) {
-            $short_form = $institute_data->abbreviation;
+        if(!empty($institute_id)) {
+            $institute_data = Institutes::findOne($institute_id);
+            if(!empty($institute_data)) {
+                $short_form = $institute_data->abbreviation;
+            }
         }
         $curr_data = date('dmy');
         $prefix = 'ACS'.$short_form;
