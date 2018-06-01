@@ -92,6 +92,7 @@ class ManageApplicationsController extends Controller {
         'NOC (Business/Conditional) Pincode' => 'noc_address_pincode',
         'NOC (Business/Conditional) Triggers' => 'noc_address_trigger',
         'NOC (Business/Conditional) Send for verification' => 'noc_address_verification',
+        'Profile ID' => 'profile_id',
     );
     public $excel_columns_applicant_profile = array(
         'First Name' => 'first_name',
@@ -1359,8 +1360,8 @@ class ManageApplicationsController extends Controller {
                 ]);
                 if (!empty($data)) {
                     foreach ($data as $key => $dataDtl) {
-                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}')" . "> Dedupe Check</button><br>
-                        <input type='text' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}'/> ";
+                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}','{$dataDtl['Pan Card No']}','{$dataDtl['Mobile No']}','{$dataDtl['Aadhaar Card No']}')" . "> Dedupe Check</button><br>
+                        <input type='text' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}' rel='$key'/> ";
                     }
                 }
 //                print_r($data);
@@ -1389,8 +1390,16 @@ class ManageApplicationsController extends Controller {
         $response_data = array();
         try {
             if (!empty($_POST)) {
-                echo "<pre/>", print_r($_POST);
-                die;
+
+                $finalProfileIds = [];
+                if (!empty($_POST['profile_id'])) {
+                    $profileIds = $_POST['profile_id'];
+                    $profileIds = explode(",", $profileIds);
+                    foreach ($profileIds as $profileId) {
+                        $singleProfile = explode("=", $profileId);
+                        $finalProfileIds[$singleProfile[0]] = $singleProfile[1];
+                    }
+                }
                 $data = $_POST;
                 $id = $data['id'];
                 #fetch filename
@@ -1404,7 +1413,7 @@ class ManageApplicationsController extends Controller {
                                 'getOnlySheet' => 'sheet1', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
                     ]);
                     if (!empty($data)) {
-                        $r_data = self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id);
+                        $r_data = self::saveExeclData($id, $data, $apps_data->institute_id, $apps_data->loan_type_id, $finalProfileIds);
                         $status = 'failure';
                         $msg = 'Something went wrong!!!';
                         if (!empty($r_data)) {
@@ -1430,9 +1439,9 @@ class ManageApplicationsController extends Controller {
         }
     }
 
-    function saveExeclData($id, $data, $institute_id, $loan_type_id) {
+    function saveExeclData($id, $data, $institute_id, $loan_type_id, $profileIds = []) {
         try {
-            foreach ($data as $exceldata) {
+            foreach ($data as $key1 => $exceldata) {
                 $model = new Applications();
                 $new_applicant_profile = new ApplicantProfile();
                 foreach ($exceldata as $key => $value) {
@@ -1457,8 +1466,13 @@ class ManageApplicationsController extends Controller {
                         $model->$fkey = $value;
                     }
                 }
-                $new_applicant_profile->save(FALSE);
-                $model->profile_id = $new_applicant_profile->id;
+
+                if (isset($profileIds[$key1]))
+                    $model->profile_id = $profileIds[$key1];
+                if (empty($model->profile_id)) {
+                    $new_applicant_profile->save(FALSE);
+                    $model->profile_id = $new_applicant_profile->id;
+                }
                 $model->institute_id = $institute_id;
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
@@ -1470,9 +1484,6 @@ class ManageApplicationsController extends Controller {
                     $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
                     $apps_data->status = 1;
                     $apps_data->save();
-                    $response_data['msg'] = 'Successfully Added!!!';
-                    $response_data['status'] = 'success';
-                    return $response_data;
                 } else {
                     $errors = self::processDbErrors($model->getErrors());
                     throw new \Exception($errors);
@@ -1483,6 +1494,9 @@ class ManageApplicationsController extends Controller {
             $response_data['status'] = 'failure';
             return $response_data;
         }
+        $response_data['msg'] = 'Successfully Added!!!';
+        $response_data['status'] = 'success';
+        return $response_data;
     }
 
     public function processDbErrors($data) {
@@ -1732,7 +1746,7 @@ class ManageApplicationsController extends Controller {
         echo "Done";
     }
 
-    public function actionCreatePara() {
+    public function actionCreateParagraph() {
 
         $sql = "show columns from tbl_applications";
         $columns = Yii::$app->db->createCommand($sql)->queryAll();
@@ -1747,7 +1761,7 @@ class ManageApplicationsController extends Controller {
             $model->created_at = date("Y-m-d H:i:s");
             $model->created_by = Yii::$app->user->id;
             $model->save();
-            return $this->redirect(['create-para']);
+            return $this->redirect(['create-paragraph']);
         }
         return $this->render('create_para', ['fields' => $fields]);
     }
@@ -1763,6 +1777,7 @@ class ManageApplicationsController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+
   
     public function actionPhotoMapDetails() {
         $return_data = '';
