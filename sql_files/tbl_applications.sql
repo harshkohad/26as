@@ -212,3 +212,6 @@ ALTER TABLE `tbl_applications` ADD `resi_office_reason_for_closed` varchar(100) 
 ALTER TABLE `tbl_applications` ADD `resi_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `resi_locality_text`;
 ALTER TABLE `tbl_applications` ADD `busi_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `busi_locality_text`;
 ALTER TABLE `tbl_applications` ADD `resi_office_locality_type` TINYINT(1) NULL DEFAULT '0' AFTER `resi_office_locality_text`;
+
+ALTER TABLE `tbl_applications` 
+DROP COLUMN `company_is_complete`;
