@@ -39,8 +39,6 @@ class ApiController extends Controller {
                     'add-noc-met-person' => ['post'],
                     'upload-photos-new' => ['post'],
                     'delete-photos-noc' => ['post'],
-                    'get-loc-image' => ['get'],
-                    'testing' => ['get'],
                 ],
             ],
         ];
