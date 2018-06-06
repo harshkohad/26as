@@ -10,6 +10,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property integer $paragraph_type
  * @property resource $paragraph
  * @property string $created_at
  */
@@ -36,7 +37,7 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
             [['paragraph'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
-            [['type_of_verification', 'door_status'], 'integer', 'max' => 10],
+            [['type_of_verification', 'door_status', 'paragraph_type'], 'integer', 'max' => 1],
         ];
     }
 
@@ -47,6 +48,7 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'paragraph_type' => 'Paragraph Type',
             'paragraph' => 'Paragraph',
             'type_of_verification' => 'Type of Verification',
             'door_status' => 'Door Status',
@@ -82,6 +84,7 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
         $query->andFilterWhere([
             'id' => $this->id,
             'name' => $this->name,
+            'paragraph_type' => $this->paragraph_type,
             'paragraph' => $this->paragraph,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
@@ -129,4 +132,15 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
         return "";
     }
 
+    public function getTypeOfPragraph($id = '') {
+        $verification = [
+            0 => "Report",
+            1 => "PDF"
+        ];
+        if (empty($id))
+            return $verification;
+        if (isset($verification[$id]))
+            return $verification[$id];
+        return "";
+    }
 }

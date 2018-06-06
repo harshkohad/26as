@@ -14,64 +14,42 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pragraph-create">
     <section class="panel cust-panel panel-default">
         <div class="panel-body">
-
+            <form>
             <div class="row">
-                <!--Text area-->
-                <form>
-                    <div class="col-lg-6 ">
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'type_of_verification')->dropDownList($model->getTypeOfVerification(), ['rel' => 'resi_status']) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'door_status')->dropDownList($model->getDoorLockedShif(), ['rel' => 'resi_status']) ?></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-10"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="form-group col-lg-12">
-                                <div class="col-lg-9"><?= $form->field($model, 'paragraph')->textArea(['maxlength' => true, 'rows' => 17]) ?></div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <button type="submit" class="btn btn-primary" id="itr_submit">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!--Draggable fields-->
-                <div class="col-lg-6">
+                <div class="col-lg-3"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
+                <div class="col-lg-3"><?= $form->field($model, 'paragraph_type')->dropDownList($model->getTypeOfPragraph(), ['rel' => 'resi_status']) ?></div>
+                <div class="col-lg-3"><?= $form->field($model, 'type_of_verification')->dropDownList($model->getTypeOfVerification(), ['rel' => 'resi_status']) ?></div>
+                <div class="col-lg-3"><?= $form->field($model, 'door_status')->dropDownList($model->getDoorLockedShif(), ['rel' => 'resi_status']) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--Draggable fields-->
                     <label class="control-label" for="dynamicvartags" style=" margin-top: 0px;">Dynamic Variables</label>
-                    <div id="dynamicvartags">
+                    <div id="dynamicvartags" style="height : 150px; overflow-y: scroll;">
                         <?php
                         $counter = 1;
-                        foreach ($fields as $key => $field) {
+                        foreach ($fields as $field) {
                             ?>
-                            <div class="row">
-                                <div class="form-group col-lg-3"><p style="font-size: 15px;" draggable="true" id="<?= $counter ?>">{<?= $fields[$key] ?>}</p></div>
-                                <?php
-                                if (isset($fields[$key + 1])) {
-                                    $key++;
-                                    ?>
-                                    <div class="form-group col-lg-3">
-                                        <p style="font-size: 15px;" draggable="true" id="<?= $counter ?>">{<?= $fields[$key] ?>}</p>
-                                    </div>
-
-                                    <?php
-                                    $counter++;
-                                };
-                                ?>
-                                </p>
-                            </div>
-
+                            <p style="font-size: 15px;" draggable="true" id="<?= $counter ?>">{<?= $field ?>}</p>
                             <?php
                             $counter++;
                         }
                         ?>
                     </div>
+                    <br><br>
                 </div>
-
-
-
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <?= $form->field($model, 'paragraph')->textArea(['maxlength' => true, 'rows' => 9]) ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <?= Html::submitButton('Create', ['class' => 'btn btn-primary']) ?>
+                </div>
+            </div>
+            </form>
         </div>
     </section>    
 </div>
