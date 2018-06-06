@@ -161,6 +161,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                         $select .= ",concat($value) as $name";
                 }
 
+                $header[] = "Remark";
                 $where = "";
                 if (!empty($start_date))
                     $where .= " AND date(created_on)>='{$start_date}'";
@@ -170,12 +171,10 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $finalData = array();
                 $results = Yii::$app->db->createCommand($sql)->queryAll();
                 if (!empty($results)) {
-                    foreach ($results as $result) {
-                        $report = $this->getReport($result['id']);
+                    foreach ($results as $key => $result) {
+                        $results[$key]['Remark'] = $this->getReport($result['id']);
                     }
                 }
-                echo "<pre/>", print_r($results);
-                die;
                 return ['data' => $results, 'columns' => $header];
                 $isDownload = $this->downloadFile($header, $results);
                 return true;
@@ -191,20 +190,26 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         $result = Yii::$app->db->createCommand($sql)->queryOne();
         $model = new ApplicationParagraph();
         $sourceIds = $model->getTypeOfVerification();
+        $paragraph = "";
         if (!empty($result)) {
             if ($result['resi_status'] == 1) {
-                $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id);
+                $paragraph .= $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id);
+                $paragraph .= "\n" . $this->getParagraph(array_search("Business Verification", $sourceIds), $result['busi_available_status'], $id);
+                $paragraph .= "\n" . $this->getParagraph(array_search("Office Verification", $sourceIds), $result['office_available_status'], $id);
+                $paragraph .= "\n" . $this->getParagraph(array_search("Residence/Office Verification", $sourceIds), $result['resi_office_available_status'], $id);
             }
         }
-        echo "<pre/>", print_r($results);
-        die;
+        return $paragraph;
     }
 
     public function getParagraph($source, $doorStatus, $recordId) {
+        $model = new ApplicationParagraph();
+        $loantypes = new LoanTypes();
         $sql = "SELECT paragraph from tbl_application_paragraph where type_of_verification=$source AND door_status=$doorStatus";
         $result = Yii::$app->db->createCommand($sql)->queryOne();
+        $replacedPara = "";
         if (!empty($result)) {
-            $paragraph = $result['paragraph'];
+            $paragraph = $result['paragraph'] . "Doing for {busi_designation}";
             if (preg_match_all('/{+(.*?)}/', $paragraph, $matches)) {
                 if (!empty($matches) AND isset($matches[1])) {
                     $select = implode(",", $matches[1]);
@@ -212,19 +217,39 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                     $results = Yii::$app->db->createCommand($sql)->queryOne();
                     if (!empty($results)) {
                         foreach ($results as $field => $value) {
-                            if ($filed == 'applicant_type') {
-                                
+                            $fieldVar = "{" . $field . "}";
+                            if ($field == 'applicant_type') {
+                                $results[$field] = $model->applicant_type[$results[$field]];
+                            } elseif ($field == 'loan_type_id') {
+                                $loans = $loantypes->find()->where(['id' => $results[$field]])->asArray()->one();
+                                $results[$fieldVar] = $loans['loan_name'];
+                            } elseif (preg_match("/designation/", $field)) {
+                                $results[$fieldVar] = (isset($model->designation[$results[$field]]) ? $model->designation[$results[$field]] : "");
+                            } elseif (preg_match("/type_of_business/", $field)) {
+                                $results[$fieldVar] = $model->type_of_business[$results[$field]];
+                            } elseif (preg_match("/ownership_status/", $field)) {
+                                $results[$fieldVar] = $model->ownership_status[$results[$field]];
+                            } elseif (preg_match("/locality_type/", $field)) {
+                                $results[$fieldVar] = $model->locality_type[$results[$field]];
+                            } elseif (preg_match("/available_status/", $field)) {
+                                $results[$fieldVar] = $model->available_status[$results[$field]];
+                            } elseif (preg_match("/property_status/", $field)) {
+                                $results[$fieldVar] = $model->property_status[$results[$field]];
+                            } elseif (preg_match("/property_type/", $field)) {
+                                $results[$fieldVar] = $model->property_type[$results[$field]];
+                            } else {
+                                $results[$fieldVar] = $value;
                             }
+                            unset($results[$field]);
                         }
+                        $keys = array_keys($results);
+                        $values = array_values($results);
                     }
-                    echo "<pre/>", print_r($results);
                 }
-
-                echo "<pre/>", print_r($matches);
+                $replacedPara = str_replace($keys, $values, $paragraph);
             }
         }
-        echo "<pre/>", print_r($result);
-        die;
+        return $replacedPara;
     }
 
 }
