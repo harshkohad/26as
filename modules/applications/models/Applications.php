@@ -906,7 +906,7 @@ class Applications extends \yii\db\ActiveRecord {
 
     public function getVerifierStatus($id, $application_status) {
         $return = '';
-        
+
         $verifiers_data = ApplicationsVerifiers::find()->where(['application_id' => $id, 'is_deleted' => '0'])->all();
 
         $count = 0;
@@ -956,7 +956,7 @@ class Applications extends \yii\db\ActiveRecord {
                 if ($applications_model->noc_soc_address_verification == 1) {
                     $assignable_count++;
                 }
-            }         
+            }
 
             $return = '<div><span style="color:#3c8dbc;font-weight:bold">Assignable : ' . $assignable_count . '</span><br><span style="color:#00a65a;font-weight:bold">Assigned : ' . $count . '</span></div><div style="clear:both;"><button type="button" class="btn btn-block btn-primary btn-sm manageVerifier" value="' . $id . '">Manage Verifiers</button></div>';
 //        switch ($verifier_status) {
