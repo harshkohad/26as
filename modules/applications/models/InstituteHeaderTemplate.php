@@ -149,6 +149,8 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $fields = $teplateData['final_fields'];
                 $fields = json_decode($fields);
                 $select = "";
+                $srno = 1;
+                $header[] = "Sr.No";
                 foreach ($fields as $key => $value) {
                     $header[] = $key;
                     if (preg_match("/(,)/", $value)) {
@@ -161,7 +163,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                         $select .= ",concat($value) as $name";
                 }
 
-                $header[] = "Remark";
+                $header[] = "Remarks";
                 $where = "";
                 if (!empty($start_date))
                     $where .= " AND date(created_on)>='{$start_date}'";
@@ -171,11 +173,17 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $finalData = array();
                 $results = Yii::$app->db->createCommand($sql)->queryAll();
                 if (!empty($results)) {
+                    $id = 1;
+                    $finalResult = [];
                     foreach ($results as $key => $result) {
-                        $results[$key]['Remark'] = $this->getReport($result['id']);
+                        $finalResult[$key]['Sr.No'] = $id;
+                        $results[$key]['Remarks'] = $this->getReport($result['id']);
+                        $finalResult[$key] = array_merge($finalResult[$key], $results[$key]);
+                        unset($finalResult[$key]['id']);
+                        $id++;
                     }
                 }
-                return ['data' => $results, 'columns' => $header];
+                return ['data' => $finalResult, 'columns' => $header];
                 $isDownload = $this->downloadFile($header, $results);
                 return true;
             }
@@ -194,11 +202,13 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         if (!empty($result)) {
             if ($result['resi_status'] == 1) {
                 $paragraph .= $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id);
-                $paragraph .= "\n" . $this->getParagraph(array_search("Business Verification", $sourceIds), $result['busi_available_status'], $id);
-                $paragraph .= "\n" . $this->getParagraph(array_search("Office Verification", $sourceIds), $result['office_available_status'], $id);
-                $paragraph .= "\n" . $this->getParagraph(array_search("Residence/Office Verification", $sourceIds), $result['resi_office_available_status'], $id);
+                $paragraph .= $this->getParagraph(array_search("Business Verification", $sourceIds), $result['busi_available_status'], $id);
+                $paragraph .= $this->getParagraph(array_search("Office Verification", $sourceIds), $result['office_available_status'], $id);
+                $paragraph .= $this->getParagraph(array_search("Residence/Office Verification", $sourceIds), $result['resi_office_available_status'], $id);
             }
         }
+        if (empty($paragraph))
+            $paragraph = "N/A";
         return $paragraph;
     }
 
@@ -209,7 +219,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
         $result = Yii::$app->db->createCommand($sql)->queryOne();
         $replacedPara = "";
         if (!empty($result)) {
-            $paragraph = $result['paragraph'] . "Doing for {busi_designation}";
+            $paragraph = $result['paragraph'];
             if (preg_match_all('/{+(.*?)}/', $paragraph, $matches)) {
                 if (!empty($matches) AND isset($matches[1])) {
                     $select = implode(",", $matches[1]);
@@ -226,17 +236,17 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                             } elseif (preg_match("/designation/", $field)) {
                                 $results[$fieldVar] = (isset($model->designation[$results[$field]]) ? $model->designation[$results[$field]] : "");
                             } elseif (preg_match("/type_of_business/", $field)) {
-                                $results[$fieldVar] = $model->type_of_business[$results[$field]];
+                                $results[$fieldVar] = (isset($model->type_of_business[$results[$field]]) ? $model->type_of_business[$results[$field]] : "");
                             } elseif (preg_match("/ownership_status/", $field)) {
-                                $results[$fieldVar] = $model->ownership_status[$results[$field]];
+                                $results[$fieldVar] = (isset($model->ownership_status[$results[$field]]) ? $model->ownership_status[$results[$field]] : "");
                             } elseif (preg_match("/locality_type/", $field)) {
-                                $results[$fieldVar] = $model->locality_type[$results[$field]];
+                                $results[$fieldVar] = (isset($model->locality_type[$results[$field]]) ? $model->locality_type[$results[$field]] : "");
                             } elseif (preg_match("/available_status/", $field)) {
-                                $results[$fieldVar] = $model->available_status[$results[$field]];
+                                $results[$fieldVar] = (isset($model->available_status[$results[$field]]) ? $model->available_status[$results[$field]] : "");
                             } elseif (preg_match("/property_status/", $field)) {
-                                $results[$fieldVar] = $model->property_status[$results[$field]];
+                                $results[$fieldVar] = (isset($model->property_status[$results[$field]]) ? $model->property_status[$results[$field]] : "");
                             } elseif (preg_match("/property_type/", $field)) {
-                                $results[$fieldVar] = $model->property_type[$results[$field]];
+                                $results[$fieldVar] = (isset($model->property_type[$results[$field]]) ? $model->property_type[$results[$field]] : "");
                             } else {
                                 $results[$fieldVar] = $value;
                             }
@@ -246,7 +256,7 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                         $values = array_values($results);
                     }
                 }
-                $replacedPara = str_replace($keys, $values, $paragraph);
+                $replacedPara = str_replace($keys, $values, $paragraph) . PHP_EOL;
             }
         }
         return $replacedPara;

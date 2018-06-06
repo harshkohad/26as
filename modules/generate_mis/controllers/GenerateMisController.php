@@ -27,12 +27,13 @@ class GenerateMisController extends \yii\web\Controller {
     }
 
     public function actionDownload() {
-        
+
         if (!empty($_REQUEST) & !empty($_REQUEST['data'])) {
             $data = unserialize($_REQUEST['data']);
             $model = new InstituteHeaderTemplate();
             $institute_id = $data['institute_id'];
             $results = $model->downloadCsvFile($institute_id, $data['start_date'], $data['end_date']);
+            
             if (!empty($results)) {
                 $data = $results['data'];
                 $columns = $results['columns'];
