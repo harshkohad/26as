@@ -16,10 +16,16 @@ use Yii;
  */
 class ApplicationParagraph extends \yii\db\ActiveRecord {
 
-//    public $type_of_verification;
-//    public $door_status;
-//    public $inputParagraphTitle;
-//    public $inputParagraph;
+    public $applicant_type = ['1' => 'Salaried', '2' => 'Self-employed'];
+    public $designation = ['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '7' => 'Others'];
+    public $type_of_business = ['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'];
+    public $ownership_status = ['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'];
+    public $locality_type = ['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'];
+    public $available_status = ['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'];
+    public $relation = ['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'];
+    public $total_family_members = ['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'];
+    public $property_status = ['1' => 'Freshland', '2' => 'Redevelopment'];
+    public $property_type = ['1' => 'Fresh Property', '2' => 'Old Sold Out'];
 
     /**
      * @inheritdoc
@@ -33,7 +39,7 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'paragraph','type_of_verification','door_status'], 'required'],
+            [['name', 'paragraph', 'type_of_verification', 'door_status'], 'required'],
             [['paragraph'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
@@ -101,15 +107,15 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
 
     public function getTypeOfVerification($id = '') {
         $verification = [
-            0 => "Residence Verification",
-            1 => "Business Verification",
-            2 => "Office Verification",
-            3 => "Residence/Office Verification",
-            4 => "Builder Profile",
-            5 => "Property (APF)",
-            6 => "Individual Property",
-            7 => "NOC (Society)",
-            8 => "NOC (Business/Conditional)"
+            1 => "Residence Verification",
+            2 => "Business Verification",
+            3 => "Office Verification",
+            4 => "Residence/Office Verification",
+            5 => "Builder Profile",
+            6 => "Property (APF)",
+            7 => "Individual Property",
+            8 => "NOC (Society)",
+            9 => "NOC (Business/Conditional)"
         ];
         if (empty($id))
             return $verification;
@@ -120,10 +126,10 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
 
     public function getDoorLockedShif($id = '') {
         $verification = [
-            0 => "Shifted",
-            1 => "Locked",
-            2 => "Shifted/Locked",
-            3 => "Open for verification",
+            1 => "Shifted",
+            2 => "Locked",
+            3 => "Shifted/Locked",
+            4 => "Open for verification",
         ];
         if (empty($id))
             return $verification;

@@ -1571,7 +1571,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '6' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '7' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_designation_others')->textInput(['maxlength' => true, 'readonly' => "readonly"]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"><?= $form->field($model, 'busi_years_in_business')->textInput() ?></div>
@@ -1810,7 +1810,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row resi_office_verification_disable">                            
                     <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
                 </div>
