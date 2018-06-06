@@ -15,6 +15,11 @@ use Yii;
  */
 class ApplicationParagraph extends \yii\db\ActiveRecord {
 
+//    public $type_of_verification;
+//    public $door_status;
+//    public $inputParagraphTitle;
+//    public $inputParagraph;
+
     /**
      * @inheritdoc
      */
@@ -27,10 +32,11 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-//            [['name', 'paragraph', 'created_at'], 'required'],
+            [['name', 'paragraph','type_of_verification','door_status'], 'required'],
             [['paragraph'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
+            [['type_of_verification', 'door_status'], 'integer', 'max' => 10],
         ];
     }
 
@@ -42,6 +48,8 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'name' => 'Name',
             'paragraph' => 'Paragraph',
+            'type_of_verification' => 'Type of Verification',
+            'door_status' => 'Door Status',
             'created_at' => 'Created At',
         ];
     }
@@ -86,6 +94,39 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
                 ->andFilterWhere(['like', 'created_at', $this->created_at]);
 
         return $dataProvider;
+    }
+
+    public function getTypeOfVerification($id = '') {
+        $verification = [
+            0 => "Residence Verification",
+            1 => "Business Verification",
+            2 => "Office Verification",
+            3 => "Residence/Office Verification",
+            4 => "Builder Profile",
+            5 => "Property (APF)",
+            6 => "Individual Property",
+            7 => "NOC (Society)",
+            8 => "NOC (Business/Conditional)"
+        ];
+        if (empty($id))
+            return $verification;
+        if (isset($verification[$id]))
+            return $verification[$id];
+        return "";
+    }
+
+    public function getDoorLockedShif($id = '') {
+        $verification = [
+            0 => "Shifted",
+            1 => "Locked",
+            2 => "Shifted/Locked",
+            3 => "Open for verification",
+        ];
+        if (empty($id))
+            return $verification;
+        if (isset($verification[$id]))
+            return $verification[$id];
+        return "";
     }
 
 }

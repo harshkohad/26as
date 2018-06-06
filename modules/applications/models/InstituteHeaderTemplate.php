@@ -166,15 +166,65 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                     $where .= " AND date(created_on)>='{$start_date}'";
                 if (!empty($end_date))
                     $where .= " AND date(created_on)<='{$end_date}'";
-                $sql = "select $select from tbl_applications where institute_id=$institute_id $where";
+                $sql = "select id,$select from tbl_applications where institute_id=$institute_id $where";
                 $finalData = array();
                 $results = Yii::$app->db->createCommand($sql)->queryAll();
+                if (!empty($results)) {
+                    foreach ($results as $result) {
+                        $report = $this->getReport($result['id']);
+                    }
+                }
+                echo "<pre/>", print_r($results);
+                die;
                 return ['data' => $results, 'columns' => $header];
                 $isDownload = $this->downloadFile($header, $results);
                 return true;
             }
         }
         return false;
+    }
+
+    public function getReport($id) {
+        $sql = "select resi_status,resi_available_status,busi_status,busi_available_status,
+                 office_status,office_available_status,resi_office_status,resi_office_available_status
+                 from tbl_applications where id=$id";
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        $model = new ApplicationParagraph();
+        $sourceIds = $model->getTypeOfVerification();
+        if (!empty($result)) {
+            if ($result['resi_status'] == 1) {
+                $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id);
+            }
+        }
+        echo "<pre/>", print_r($results);
+        die;
+    }
+
+    public function getParagraph($source, $doorStatus, $recordId) {
+        $sql = "SELECT paragraph from tbl_application_paragraph where type_of_verification=$source AND door_status=$doorStatus";
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        if (!empty($result)) {
+            $paragraph = $result['paragraph'];
+            if (preg_match_all('/{+(.*?)}/', $paragraph, $matches)) {
+                if (!empty($matches) AND isset($matches[1])) {
+                    $select = implode(",", $matches[1]);
+                    $sql = "select $select from tbl_applications where id=$recordId";
+                    $results = Yii::$app->db->createCommand($sql)->queryOne();
+                    if (!empty($results)) {
+                        foreach ($results as $field => $value) {
+                            if ($filed == 'applicant_type') {
+                                
+                            }
+                        }
+                    }
+                    echo "<pre/>", print_r($results);
+                }
+
+                echo "<pre/>", print_r($matches);
+            }
+        }
+        echo "<pre/>", print_r($result);
+        die;
     }
 
 }

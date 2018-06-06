@@ -787,14 +787,14 @@ class ManageApplicationsController extends Controller {
 
     public function getApplicationId($id, $institute_id = NULL) {
         $short_form = '';
-        if(!empty($institute_id)) {
+        if (!empty($institute_id)) {
             $institute_data = Institutes::findOne($institute_id);
-            if(!empty($institute_data)) {
+            if (!empty($institute_data)) {
                 $short_form = $institute_data->abbreviation;
             }
         }
         $curr_data = date('dmy');
-        $prefix = 'ACS'.$short_form;
+        $prefix = 'ACS' . $short_form;
         $number = str_pad($id, 5, '0', STR_PAD_LEFT);
 
         return $prefix . $curr_data . $number;
@@ -1042,12 +1042,12 @@ class ManageApplicationsController extends Controller {
         $selected_id = self::checkVerifierForApplicationExist($app_id, $verification_type);
         $allVerifiers_data = TblMobileUsers::find()->asArray()->all();
         $disabled = '';
-        if($is_manage == 0) {
+        if ($is_manage == 0) {
             $disabled = 'disabled';
         }
         $return_html = '';
         $return_html .= '<label class="control-label">Select Verifier</label>';
-        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" '.$disabled.'>';
+        $return_html .= '<select class="form-control" id="verifier_' . $verification_type . '" ' . $disabled . '>';
         $return_html .= '<option value="">Select Verifier</option>';
         if (!empty($allVerifiers_data)) {
             foreach ($allVerifiers_data as $allVerifiers) {
@@ -1158,7 +1158,7 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<div class="col-lg-4"><label class="control-label" for="name" style=" margin-top: 0px;">' . $applications_model->getAttributeLabel($pincode) . '</label>
     <div class="readonlydiv">' . $applications_model->$pincode . '</div></div>';
         $return_html .= '<div class="col-lg-4">' . self::getVerifierDropdown($app_id, $verification_type, $is_manage) . '</div>';
-        if($is_manage) {
+        if ($is_manage) {
             $return_html .= '<div class="col-lg-4" id="type_' . $verification_type . '"><label class="control-label">Actions</label><br>';
             $ifverexist = self::checkVerifierForApplicationExist($app_id, $verification_type);
             if (!empty($ifverexist)) {
@@ -1171,7 +1171,7 @@ class ManageApplicationsController extends Controller {
         } else {
             $return_html .= '<div class="col-lg-4"></div>';
         }
-        
+
         $return_html .= '</div>';
         $return_html .= '<div class="row">';
         $return_html .= '<div class="col-lg-4"></div>';
@@ -1754,18 +1754,20 @@ class ManageApplicationsController extends Controller {
         foreach ($columns as $column) {
             $fields[] = $column['Field'];
         }
+        $model = new ApplicationParagraph();
+
         if (!empty($_REQUEST)) {
-            $model = new ApplicationParagraph();
-            $model->name = $_REQUEST['inputParagraphTitle'];
-            $model->paragraph = $_REQUEST['inputParagraph'];
+            $model->attributes = $_REQUEST['ApplicationParagraph'];
+            $model->type_of_verification = $_REQUEST['ApplicationParagraph']['type_of_verification'];
+            $model->door_status = $_REQUEST['ApplicationParagraph']['door_status'];
             $model->created_at = date("Y-m-d H:i:s");
             $model->created_by = Yii::$app->user->id;
             $model->save();
             return $this->redirect(['create-paragraph']);
         }
-        return $this->render('create_para', ['fields' => $fields]);
+        return $this->render('create_para', ['fields' => $fields, 'model' => $model]);
     }
-  
+
     public function actionManageParagraphs() {
         $model = new ApplicationParagraph();
 
@@ -1778,7 +1780,6 @@ class ManageApplicationsController extends Controller {
         ]);
     }
 
-  
     public function actionPhotoMapDetails() {
         $return_data = '';
         $data = $_POST;
@@ -1791,4 +1792,5 @@ class ManageApplicationsController extends Controller {
         }
         return $return_data;
     }
+
 }

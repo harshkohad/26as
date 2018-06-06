@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
@@ -9,24 +10,23 @@ $this->title = 'Create Paragraph';
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php $form = ActiveForm::begin(); ?>
 <div class="pragraph-create">
-    <section class="panel">
+    <section class="panel cust-panel panel-default">
         <div class="panel-body">
 
             <div class="row">
                 <!--Text area-->
                 <form>
-
-
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 ">
                         <div class="row">
+                            <div class="col-lg-3"><?= $form->field($model, 'type_of_verification')->dropDownList($model->getTypeOfVerification(), ['rel' => 'resi_status']) ?></div>
+                            <div class="col-lg-3"><?= $form->field($model, 'door_status')->dropDownList($model->getDoorLockedShif(), ['rel' => 'resi_status']) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10"><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></div>
                             <div class="form-group col-lg-12">
-                                <label for="inputParagraphTitle">Paragraph Title</label>
-                                <input type="text" class="form-control" id="inputParagraphTitle" name="inputParagraphTitle">
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="inputParagraph">Paragraph</label>
-                                <textarea name="inputParagraph" rows="17" cols="78"></textarea>
+                                <div class="col-lg-9"><?= $form->field($model, 'paragraph')->textArea(['maxlength' => true, 'rows' => 17]) ?></div>
                             </div>
 
                         </div>
@@ -75,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </section>    
 </div>
+<?php ActiveForm::end(); ?>
 <?php
 $this->registerJs("$(function(){  
     document.addEventListener('dragstart', function (event) {
