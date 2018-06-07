@@ -282,7 +282,7 @@ class Applications extends \yii\db\ActiveRecord {
             [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'resi_address_pincode', 'office_address_pincode', 'busi_address_pincode', 'noc_address_pincode', 'resi_office_address_pincode', 'builder_profile_address_pincode', 'property_apf_address_pincode', 'indiv_property_address_pincode', 'noc_soc_address_pincode', 'created_on', 'updated_on', 'application_id', 'resi_rented_owner_name', 'resi_rent_amount', 'busi_rented_owner_name', 'busi_rent_amount', 'resi_office_rented_owner_name', 'resi_office_rent_amount', 'pan_first_name', 'pan_last_name'
             , 'pan_middle_name', 'pan_address', 'pan_pan_no', 'pan_dob', 'pan_date_of_issue', 'pan_is_complete', 'ac_first_name', 'ac_last_name', 'ac_middle_name', 'ac_aadhar_no', 'ac_dob', 'ac_address', 'ac_mobile_no', 'ac_is_complete', 'passport_first_name', 'passport_last_name', 'passport_middle_name', 'passport_passport_no', 'passport_passport_no', 'passport_address', 'passport_validity', 'passport_date_of_issue', 'passport_is_complete',
             'electricity_name', 'electricity_address', 'electricity_is_complete', 'telephone_is_complete', 'telephone_mobile_no', 'telephone_amount', 'telephone_name', 'telephone_address', 'voter_first_name', 'voter_last_name', 'voter_middle_name', 'voter_address', 'voter_voter_id_no', 'voter_is_complete', 'driving_is_complete', 'driving_name', 'driving_driving_license_number', 'driving_validity', 'driving_date_of_issue', 'company_name', 'company_designation',
-            'shop_act_is_complete', 'shop_act_name', 'shop_act_shop_act_no', 'shop_act_address', 'shop_act_from_date', 'shop_act_till_date', 'gst_name', 'gst_is_complete', 'gst_gst_no', 'gst_address', 'rent_aggeement_met_name', 'rent_aggeement_owner_name', 'rent_aggeement_rent_amount', 'rent_aggeement_deposit_amount', 'rent_aggeement_is_complete', 'rent_aggeement_validity', 'seller_is_complete', 'seller_name', 'seller_purchaser_name', 'seller_address', 'oc_cc_plan_cts_no', 'oc_cc_plan_is_complete', 'oc_cc_plan_issuing_authority',
+            'shop_act_is_complete', 'shop_act_name', 'shop_act_shop_act_no', 'shop_act_address', 'shop_act_from_date', 'shop_act_till_date', 'gst_name', 'gst_is_complete', 'gst_gst_no', 'gst_address', 'rent_agreement_met_name', 'rent_agreement_owner_name', 'rent_agreement_rent_amount', 'rent_agreement_deposit_amount', 'rent_agreement_is_complete', 'rent_agreement_validity', 'sale_agreement_is_complete', 'sale_agreement_seller_name', 'sale_agreement_purchaser_name', 'sale_agreement_address', 'oc_cc_plan_cts_no', 'oc_cc_plan_is_complete', 'oc_cc_plan_issuing_authority',
             'oc_cc_plan_signature', 'ocr_receipt_builder_name', 'ocr_receipt_met_person', 'ocr_receipt_designation', 'ocr_receipt_signature', 'ocr_receipt_tpc', 'ocr_receipt_landmark', 'ocr_receipt_amount', 'ocr_receipt_receipt_no', 'ocr_receipt_is_complete', 'noc_soc_chairman_name', 'noc_soc_secretary_name', 'noc_soc_tresurer_name', 'resi_available_status', 'resi_shifted_tenure', 'busi_reason_for_closed', 'busi_shifted_tenure', 'busi_available_status', 'office_available_status', 'office_reason_for_closed', 'office_shifted_tenure', 'resi_office_available_status', 'resi_office_reason_for_closed', 'resi_office_shifted_tenure'], 'safe'],
             [['first_name', 'middle_name', 'last_name', 'resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_ownership_status_text', 'resi_landmark_1', 'resi_landmark_2', 'busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_landmark_1', 'busi_landmark_2', 'office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year', 'resi_address', 'office_address', 'busi_address', 'noc_address', 'resi_address_trigger', 'office_address_trigger', 'busi_address_trigger', 'noc_address_trigger', 'resi_locality_text', 'busi_locality_text'], 'string', 'max' => 150],
             [['resi_remarks', 'busi_remarks', 'office_remarks', 'bank_address', 'bank_narration', 'resi_structure', 'busi_structure', 'office_structure', 'noc_structure', 'resi_office_structure', 'resi_office_remarks', 'builder_profile_current_projects', 'builder_profile_previous_projects', 'busi_address_trigger', 'resi_address', 'resi_address_trigger', 'office_address', 'office_address_trigger', 'busi_address', 'noc_address', 'noc_address_trigger', 'resi_office_address', 'resi_office_address_trigger', 'builder_profile_address', 'builder_profile_address_trigger', 'property_apf_address', 'property_apf_address_trigger', 'indiv_property_address', 'indiv_property_address_trigger', 'noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
@@ -576,14 +576,14 @@ class Applications extends \yii\db\ActiveRecord {
             'oc_cc_plan_cts_no' => "CTS No",
             'oc_cc_plan_issuing_authority' => "Issuing Authority",
             'oc_cc_plan_signature' => "Signature",
-            'seller_name' => "Name",
-            'seller_purchaser_name' => "Purchaser Name",
-            'seller_address' => "Address",
-            'rent_aggeement_met_name' => "Met Name",
-            'rent_aggeement_owner_name' => "Owner Name",
-            'rent_aggeement_rent_amount' => "Rent Amount",
-            'rent_aggeement_validity' => "Validity",
-            'rent_aggeement_deposit_amount' => "Deposit Amount",
+            'sale_agreement_seller_name' => "Name",
+            'sale_agreement_purchaser_name' => "Purchaser Name",
+            'sale_agreement_address' => "Address",
+            'rent_agreement_met_name' => "Met Name",
+            'rent_agreement_owner_name' => "Owner Name",
+            'rent_agreement_rent_amount' => "Rent Amount",
+            'rent_agreement_validity' => "Validity",
+            'rent_agreement_deposit_amount' => "Deposit Amount",
             'gst_name' => "Name",
             'gst_gst_no' => "GST No",
             'gst_address' => "Address",
@@ -1129,5 +1129,13 @@ class Applications extends \yii\db\ActiveRecord {
 
     public function getDedupCheckButton() {
         
+    }
+    
+    public function getBadge($status) {
+        if($status == 0) {
+            return '<span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>';
+        } else {
+            return '<span class="badge" style="background: #a9d86e !important;">VERIFIED</span>';
+        }
     }
 }

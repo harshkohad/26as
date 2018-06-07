@@ -110,12 +110,12 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
             1 => "Residence Verification",
             2 => "Business Verification",
             3 => "Office Verification",
-            4 => "Residence/Office Verification",
-            5 => "Builder Profile",
-            6 => "Property (APF)",
-            7 => "Individual Property",
-            8 => "NOC (Society)",
-            9 => "NOC (Business/Conditional)"
+            4 => "NOC (Business/Conditional)",
+            5 => "Residence/Office Verification",
+            6 => "Builder Profile",
+            7 => "Property (APF)",
+            8 => "Individual Property",
+            9 => "NOC (Society)"
         ];
         if (empty($id))
             return $verification;
@@ -126,10 +126,10 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
 
     public function getDoorLockedShif($id = '') {
         $verification = [
-            1 => "Shifted",
-            2 => "Locked",
-            3 => "Shifted/Locked",
-            4 => "Open for verification",
+            1 => "Available for Verification",
+            2 => "Door Locked",
+            3 => "Shifted",
+            4 => "Door Locked & Shifted",
         ];
         if (empty($id))
             return $verification;
