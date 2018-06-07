@@ -933,9 +933,9 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '</tr>';
             }
         } else {
-            $colspan = 2;
+            $colspan = 3;
             if ($getHtml == 0) {
-                $colspan = 3;
+                $colspan = 4;
             }
             $return_html .= '<tr>';
             $return_html .= '<td colspan="' . $colspan . '">No records Found!!!</td>';

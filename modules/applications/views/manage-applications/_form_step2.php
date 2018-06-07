@@ -809,14 +809,29 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="pancard" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->pan_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[pan_feedback]" autocomplete="off" <?= ($model->pan_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->pan_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[pan_feedback]" autocomplete="off" <?= ($model->pan_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>  
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'pan_first_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'pan_middle_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'pan_last_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'pan_pan_no')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'pan_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'pan_middle_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>    
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'pan_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'pan_pan_no')->textInput() ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">DOB</label>';
                                 echo DatePicker::widget([
@@ -830,7 +845,7 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Date Of Issue</label>';
                                 echo DatePicker::widget([
@@ -844,7 +859,10 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                            <div class="col-lg-3"><?= $form->field($model, 'pan_address')->textarea(['maxlength' => true]) ?></div>
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'pan_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -873,14 +891,29 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="aadharcard" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->ac_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[ac_feedback]" autocomplete="off" <?= ($model->ac_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->ac_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[ac_feedback]" autocomplete="off" <?= ($model->ac_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>  
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_first_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_middle_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_last_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_aadhar_no')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ac_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ac_middle_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'ac_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ac_aadhar_no')->textInput() ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">DOB</label>';
                                 echo DatePicker::widget([
@@ -894,8 +927,10 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_address')->textarea(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ac_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ac_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'ac_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -924,15 +959,29 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="passport" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->passport_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[passport_feedback]" autocomplete="off" <?= ($model->passport_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->passport_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[passport_feedback]" autocomplete="off" <?= ($model->passport_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>  
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'passport_first_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'passport_middle_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'passport_last_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'passport_passport_no')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'passport_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'passport_middle_name')->textInput(['maxlength' => true]) ?></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'passport_address')->textarea(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6"><?= $form->field($model, 'passport_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'passport_passport_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Validity</label>';
                                 echo DatePicker::widget([
@@ -946,7 +995,7 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Date Of Issue</label>';
                                 echo DatePicker::widget([
@@ -960,6 +1009,10 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'passport_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -988,9 +1041,22 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="elec_bill" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->electricity_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[electricity_feedback]" autocomplete="off" <?= ($model->electricity_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->electricity_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[electricity_feedback]" autocomplete="off" <?= ($model->electricity_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>  
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'electricity_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'electricity_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'electricity_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'electricity_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1019,11 +1085,26 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="tele_bill" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->telephone_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[telephone_feedback]" autocomplete="off" <?= ($model->telephone_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->telephone_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[telephone_feedback]" autocomplete="off" <?= ($model->telephone_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_mobile_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_address')->textArea(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'telephone_amount')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'telephone_mobile_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'telephone_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'telephone_amount')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'telephone_address')->textArea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1052,11 +1133,29 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="voter_id" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->voter_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[voter_feedback]" autocomplete="off" <?= ($model->voter_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->voter_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[voter_feedback]" autocomplete="off" <?= ($model->voter_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_first_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_middle_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_last_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'voter_voter_id_no')->textInput() ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'voter_first_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'voter_middle_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'voter_last_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'voter_voter_id_no')->textInput() ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'voter_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1085,12 +1184,27 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="driv_lic" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->driving_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[driving_feedback]" autocomplete="off" <?= ($model->driving_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->driving_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[driving_feedback]" autocomplete="off" <?= ($model->driving_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                                <div class="col-lg-3"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'driving_driving_license_number')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6"><?= $form->field($model, 'driving_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'driving_driving_license_number')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <?php
-                                echo '<label class="control-label">Date Of Issue</label>';
+                                echo '<label class="control-label">Validity Upto</label>';
                                 echo DatePicker::widget([
                                     'name' => 'Applications[driving_validity]',
                                     'type' => DatePicker::TYPE_INPUT,
@@ -1102,7 +1216,7 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Date Of Issue</label>';
                                 echo DatePicker::widget([
@@ -1147,9 +1261,22 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="company_id" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->company_id_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[company_id_feedback]" autocomplete="off" <?= ($model->company_id_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->company_id_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[company_id_feedback]" autocomplete="off" <?= ($model->company_id_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'company_id_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'company_id_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'company_id_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'company_id_designation')->textInput(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1178,11 +1305,25 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="shop_act" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->shop_act_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[shop_act_feedback]" autocomplete="off" <?= ($model->shop_act_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->shop_act_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[shop_act_feedback]" autocomplete="off" <?= ($model->shop_act_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_shop_act_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'shop_act_address')->textarea(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6"><?= $form->field($model, 'shop_act_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'shop_act_shop_act_no')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">From Date</label>';
                                 echo DatePicker::widget([
@@ -1196,9 +1337,7 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Till Date</label>';
                                 echo DatePicker::widget([
@@ -1212,6 +1351,10 @@ $loantypes->id = $model->loan_type_id;
                                 ]);
                                 ?>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-12"><?= $form->field($model, 'shop_act_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1240,10 +1383,25 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="gst_cert" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->gst_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[gst_feedback]" autocomplete="off" <?= ($model->gst_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->gst_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[gst_feedback]" autocomplete="off" <?= ($model->gst_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'gst_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'gst_gst_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'gst_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'gst_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'gst_gst_no')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'gst_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1258,7 +1416,7 @@ $loantypes->id = $model->loan_type_id;
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
                             <?=
-                            $form->field($model, 'rent_aggeement_is_complete')->checkbox(['label' => '',
+                            $form->field($model, 'rent_agreement_is_complete')->checkbox(['label' => '',
                                 'data-toggle' => "toggle",
                                 'data-width' => "115",
                                 'data-size' => "mini",
@@ -1272,17 +1430,32 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="rent_agree" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->rent_agreement_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[rent_agreement_feedback]" autocomplete="off" <?= ($model->rent_agreement_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->rent_agreement_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[rent_agreement_feedback]" autocomplete="off" <?= ($model->rent_agreement_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_met_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_owner_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_rent_amount')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-6"><?= $form->field($model, 'rent_agreement_met_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'rent_agreement_owner_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'rent_agreement_rent_amount')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6">
                                 <?php
                                 echo '<label class="control-label">Validity</label>';
                                 echo DatePicker::widget([
-                                    'name' => 'Applications[rent_aggeement_validity]',
+                                    'name' => 'Applications[rent_agreement_validity]',
                                     'type' => DatePicker::TYPE_INPUT,
-                                    'value' => $model->rent_aggeement_validity,
+                                    'value' => $model->rent_agreement_validity,
                                     'pluginOptions' => [
                                         'autoclose' => true,
                                         'format' => 'yyyy-mm-dd'
@@ -1291,12 +1464,12 @@ $loantypes->id = $model->loan_type_id;
                                 ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3"><?= $form->field($model, 'rent_aggeement_deposit_amount')->textInput(['maxlength' => true]) ?></div>
+                        <div class="row">
+                            <div class="col-lg-6"><?= $form->field($model, 'rent_agreement_deposit_amount')->textInput(['maxlength' => true]) ?></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>    
 
             <!--SALE AGREEMENT-->
             <div class="panel panel-default cust-panel">
@@ -1307,7 +1480,7 @@ $loantypes->id = $model->loan_type_id;
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
                             <?=
-                            $form->field($model, 'seller_is_complete')->checkbox(['label' => '',
+                            $form->field($model, 'sale_agreement_is_complete')->checkbox(['label' => '',
                                 'data-toggle' => "toggle",
                                 'data-width' => "115",
                                 'data-size' => "mini",
@@ -1321,10 +1494,25 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="sale_agree" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->sale_agreement_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[sale_agreement_feedback]" autocomplete="off" <?= ($model->sale_agreement_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->sale_agreement_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[sale_agreement_feedback]" autocomplete="off" <?= ($model->sale_agreement_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'seller_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'seller_purchaser_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'seller_address')->textarea(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'sale_agreement_seller_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'sale_agreement_purchaser_name')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12"><?= $form->field($model, 'sale_agreement_address')->textarea(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1353,10 +1541,25 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="oc_cc_plan" class="panel-collapse collapse">
                     <div class="panel-body">
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->oc_cc_plan_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[oc_cc_plan_feedback]" autocomplete="off" <?= ($model->oc_cc_plan_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->oc_cc_plan_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[oc_cc_plan_feedback]" autocomplete="off" <?= ($model->oc_cc_plan_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
+                        </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_cts_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_issuing_authority')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'oc_cc_plan_signature')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'oc_cc_plan_cts_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'oc_cc_plan_issuing_authority')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6"><?= $form->field($model, 'oc_cc_plan_signature')->textInput(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>
@@ -1385,17 +1588,34 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div id="ocr_receipt" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_builder_name')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_met_person')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_designation')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_amount')->textInput(['maxlength' => true]) ?></div>
+                        <div class="row" style="padding-bottom:10px;">
+                            <div class="col-lg-6">
+                                <label>Feedback</label><br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary <?= ($model->ocr_receipt_feedback == 0) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[ocr_receipt_feedback]" autocomplete="off" <?= ($model->ocr_receipt_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                    </label>
+                                    <label class="btn btn-primary <?= ($model->ocr_receipt_feedback == 1) ? 'active' : '' ?>">
+                                        <input type="radio" name="Applications[ocr_receipt_feedback]" autocomplete="off" <?= ($model->ocr_receipt_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                    </label>
+                                </div>
+                            </div> 
                         </div>
                         <div class="row">
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_receipt_no')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_signature')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_tpc')->textInput(['maxlength' => true]) ?></div>
-                            <div class="col-lg-3"><?= $form->field($model, 'ocr_receipt_landmark')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_builder_name')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_met_person')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">     
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_designation')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_amount')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_receipt_no')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_signature')->textInput(['maxlength' => true]) ?></div>
+                        </div>
+                        <div class="row">     
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_tpc')->textInput(['maxlength' => true]) ?></div>
+                            <div class="col-lg-6"><?= $form->field($model, 'ocr_receipt_landmark')->textInput(['maxlength' => true]) ?></div>
                         </div>
                     </div>
                 </div>

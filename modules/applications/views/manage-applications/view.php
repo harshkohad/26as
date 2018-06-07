@@ -757,40 +757,50 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>PANCARD</strong>
                         </a>
                         <span class="pull-right"> 
-                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                            <?= $model->getBadge($model->pan_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="pancard" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->pan_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_first_name') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_first_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_middle_name') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_middle_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_last_name') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_last_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_pan_no') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_pan_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_dob') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_dob ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_date_of_issue') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_date_of_issue ?></div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('pan_address') ?></label>
                                 <div class="readonlydiv"><?= $model->pan_address ?></div>
                             </div>
@@ -807,40 +817,50 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>AADHAR CARD</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->ac_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="aadharcard" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->ac_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_first_name') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_first_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_middle_name') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_middle_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_last_name') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_last_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_aadhar_no') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_aadhar_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_dob') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_dob ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_mobile_no') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_mobile_no ?></div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-10">
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ac_address') ?></label>
                                 <div class="readonlydiv"><?= $model->ac_address ?></div>
                             </div>
@@ -857,36 +877,52 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>PASSPORT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->passport_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="passport" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->passport_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_first_name') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_first_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_middle_name') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_middle_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_last_name') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_last_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_passport_no') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_passport_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_validity') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_validity ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_date_of_issue') ?></label>
                                 <div class="readonlydiv"><?= $model->passport_date_of_issue ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('passport_address') ?></label>
+                                <div class="readonlydiv"><?= $model->passport_address ?></div>
                             </div>
                         </div>
                     </div>
@@ -901,18 +937,24 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>ELECTRICITY BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                            <?= $model->getBadge($model->electricity_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="elec_bill" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('electricity_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->electricity_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('electricity_name') ?></label>
                                 <div class="readonlydiv"><?= $model->electricity_name ?></div>
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('electricity_address') ?></label>
                                 <div class="readonlydiv"><?= $model->electricity_address ?></div>
                             </div>
@@ -929,28 +971,36 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>TELEPHONE / MOBILE BILL</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->telephone_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="tele_bill" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->telephone_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_mobile_no') ?></label>
                                 <div class="readonlydiv"><?= $model->telephone_mobile_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_name') ?></label>
                                 <div class="readonlydiv"><?= $model->telephone_name ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_address') ?></label>
-                                <div class="readonlydiv"><?= $model->telephone_address ?></div>
-                            </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_amount') ?></label>
                                 <div class="readonlydiv"><?= $model->telephone_amount ?></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('telephone_address') ?></label>
+                                <div class="readonlydiv"><?= $model->telephone_address ?></div>
                             </div>
                         </div>
                     </div>
@@ -965,30 +1015,40 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>VOTER ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->voter_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="voter_id" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->voter_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_first_name') ?></label>
                                 <div class="readonlydiv"><?= $model->voter_first_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_middle_name') ?></label>
                                 <div class="readonlydiv"><?= $model->voter_middle_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_last_name') ?></label>
                                 <div class="readonlydiv"><?= $model->voter_last_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_voter_id_no') ?></label>
                                 <div class="readonlydiv"><?= $model->voter_voter_id_no ?></div>
                             </div>
-                            <div class="col-lg-8">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('voter_address') ?></label>
                                 <div class="readonlydiv"><?= $model->voter_address ?></div>
                             </div>
@@ -1005,26 +1065,34 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>DRIVING LICENSE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->driving_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="driv_lic" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->driving_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_name') ?></label>
                                 <div class="readonlydiv"><?= $model->driving_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_driving_license_number') ?></label>
                                 <div class="readonlydiv"><?= $model->driving_driving_license_number ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_validity') ?></label>
                                 <div class="readonlydiv"><?= $model->driving_validity ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('driving_date_of_issue') ?></label>
                                 <div class="readonlydiv"><?= $model->driving_date_of_issue ?></div>
                             </div>
@@ -1044,18 +1112,24 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>COMPANY ID</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                            <?= $model->getBadge($model->company_id_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="company_id" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_id_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->company_id_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_id_name') ?></label>
                                 <div class="readonlydiv"><?= $model->company_id_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('company_id_designation') ?></label>
                                 <div class="readonlydiv"><?= $model->company_id_designation ?></div>
                             </div>
@@ -1072,32 +1146,42 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>SHOP ACT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->shop_act_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="shop_act" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->shop_act_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_name') ?></label>
                                 <div class="readonlydiv"><?= $model->shop_act_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_shop_act_no') ?></label>
                                 <div class="readonlydiv"><?= $model->shop_act_shop_act_no ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_address') ?></label>
-                                <div class="readonlydiv"><?= $model->shop_act_address ?></div>
-                            </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_from_date') ?></label>
                                 <div class="readonlydiv"><?= $model->shop_act_from_date ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_till_date') ?></label>
                                 <div class="readonlydiv"><?= $model->shop_act_till_date ?></div>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('shop_act_address') ?></label>
+                                <div class="readonlydiv"><?= $model->shop_act_address ?></div>
                             </div>
                         </div>
                     </div>
@@ -1112,22 +1196,30 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>GST CERTIFICATE</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->gst_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="gst_cert" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->gst_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_name') ?></label>
                                 <div class="readonlydiv"><?= $model->gst_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_gst_no') ?></label>
                                 <div class="readonlydiv"><?= $model->gst_gst_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('gst_address') ?></label>
                                 <div class="readonlydiv"><?= $model->gst_address ?></div>
                             </div>
@@ -1144,32 +1236,42 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>RENT AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #a9d86e !important;">VERIFIED</span>
+                            <?= $model->getBadge($model->rent_agreement_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="rent_agree" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_met_name') ?></label>
-                                <div class="readonlydiv"><?= $model->rent_aggeement_met_name ?></div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->rent_agreement_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_owner_name') ?></label>
-                                <div class="readonlydiv"><?= $model->rent_aggeement_owner_name ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_met_name') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_agreement_met_name ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_rent_amount') ?></label>
-                                <div class="readonlydiv"><?= $model->rent_aggeement_rent_amount ?></div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_owner_name') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_agreement_owner_name ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_validity') ?></label>
-                                <div class="readonlydiv"><?= $model->rent_aggeement_validity ?></div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_rent_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_agreement_rent_amount ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_aggeement_deposit_amount') ?></label>
-                                <div class="readonlydiv"><?= $model->rent_aggeement_deposit_amount ?></div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_validity') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_agreement_validity ?></div>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('rent_agreement_deposit_amount') ?></label>
+                                <div class="readonlydiv"><?= $model->rent_agreement_deposit_amount ?></div>
                             </div>
                         </div>
                     </div>
@@ -1184,24 +1286,32 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>SALE AGREEMENT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->sale_agreement_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="sale_agree" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_name') ?></label>
-                                <div class="readonlydiv"><?= $model->seller_name ?></div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('sale_agreement_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->sale_agreement_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_purchaser_name') ?></label>
-                                <div class="readonlydiv"><?= $model->seller_purchaser_name ?></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('sale_agreement_seller_name') ?></label>
+                                <div class="readonlydiv"><?= $model->sale_agreement_seller_name ?></div>
                             </div>
-                            <div class="col-lg-4">
-                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('seller_address') ?></label>
-                                <div class="readonlydiv"><?= $model->seller_address ?></div>
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('sale_agreement_purchaser_name') ?></label>
+                                <div class="readonlydiv"><?= $model->sale_agreement_purchaser_name ?></div>
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-12">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('sale_agreement_address') ?></label>
+                                <div class="readonlydiv"><?= $model->sale_agreement_address ?></div>
                             </div>
                         </div>
                     </div>
@@ -1216,22 +1326,30 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>OC/CC/PLAN</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->oc_cc_plan_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="oc_cc_plan" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->oc_cc_plan_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_cts_no') ?></label>
                                 <div class="readonlydiv"><?= $model->oc_cc_plan_cts_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_issuing_authority') ?></label>
                                 <div class="readonlydiv"><?= $model->oc_cc_plan_issuing_authority ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('oc_cc_plan_signature') ?></label>
                                 <div class="readonlydiv"><?= $model->oc_cc_plan_signature ?></div>
                             </div>
@@ -1248,44 +1366,54 @@ $this->params['breadcrumbs'][] = 'View';
                             <strong>OCR RECEIPT</strong>
                         </a>
                         <span class="pull-right" style="margin-top:-2px !important;"> 
-                            <span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>
+                            <?= $model->getBadge($model->ocr_receipt_is_complete); ?>
                         </span>
                     </h4>
                 </div>
                 <div id="ocr_receipt" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+                                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_feedback') ?></label>
+                                <div class="readonlydiv"><?= ($model->ocr_receipt_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_builder_name') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_builder_name ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_met_person') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_met_person ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_designation') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_designation ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_amount') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_amount ?></div>
                             </div>
-                            <div class="col-lg-4">
+                        </div>
+                        <div class="row">    
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_receipt_no') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_receipt_no ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_signature') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_signature ?></div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_tpc') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_tpc ?></div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('ocr_receipt_landmark') ?></label>
                                 <div class="readonlydiv"><?= $model->ocr_receipt_landmark ?></div>
                             </div>
