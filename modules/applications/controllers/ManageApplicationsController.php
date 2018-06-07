@@ -1763,7 +1763,8 @@ class ManageApplicationsController extends Controller {
             $model->created_at = date("Y-m-d H:i:s");
             $model->created_by = Yii::$app->user->id;
             $model->save();
-            return $this->redirect(['create-paragraph']);
+            \Yii::$app->getSession()->setFlash('success', 'Record added Successfully.');
+            return $this->redirect(['manage-paragraphs']);
         }
         return $this->render('create_para', ['fields' => $fields, 'model' => $model]);
     }
@@ -1791,6 +1792,40 @@ class ManageApplicationsController extends Controller {
             $return_data = '{"latitude":"' . $table_data['latitude'] . '", "longitude":"' . $table_data['longitude'] . '"}';
         }
         return $return_data;
+    }
+
+    public function actionUpdateParagraph($id) {
+        $model = new ApplicationParagraph();
+        $model = ApplicationParagraph::findOne($id);
+        $sql = "show columns from tbl_applications";
+        $columns = Yii::$app->db->createCommand($sql)->queryAll();
+        $fields = array();
+        foreach ($columns as $column) {
+            $fields[] = $column['Field'];
+        }
+        if (!empty($_REQUEST) && isset($_REQUEST['ApplicationParagraph'])) {
+            $model->attributes = $_REQUEST['ApplicationParagraph'];
+            $model->type_of_verification = $_REQUEST['ApplicationParagraph']['type_of_verification'];
+            $model->door_status = $_REQUEST['ApplicationParagraph']['door_status'];
+            $model->modified_at = date("Y-m-d H:i:s");
+            $model->modified_by = Yii::$app->user->id;
+            $model->save();
+            \Yii::$app->getSession()->setFlash('success', 'Record updated Successfully.');
+            return $this->redirect(['manage-paragraphs']);
+        }
+
+        return $this->render('create_para', [
+                    'model' => $model,
+                    'fields' => $fields,
+        ]);
+    }
+
+    public function actionDeleteParagraph($id) {
+        if (!empty($_REQUEST) AND isset($_REQUEST['id'])) {
+            $updateFilePull = ApplicationParagraph::updateAll(['is_deleted' => 1, 'deleted_by' => Yii::$app->user->id], ['id' => $id]);
+            \Yii::$app->getSession()->setFlash('success', 'Record deleted Successfully.');
+            return $this->redirect(['manage-paragraphs']);
+        }
     }
 
 }

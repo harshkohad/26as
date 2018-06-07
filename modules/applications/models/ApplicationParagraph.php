@@ -43,7 +43,7 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
             [['paragraph'], 'string'],
             [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
-            [['type_of_verification', 'door_status', 'paragraph_type'], 'integer', 'max' => 1],
+            [['door_status', 'type_of_verification'], 'integer', 'min' => 1],
         ];
     }
 
@@ -81,12 +81,12 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
         ]);
 
         $this->load($params);
-
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
+        } else {
+            
         }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'name' => $this->name,
@@ -149,4 +149,23 @@ class ApplicationParagraph extends \yii\db\ActiveRecord {
             return $verification[$id];
         return "";
     }
+
+    public function getParagraphType($model) {
+        if ($model->paragraph_type == 0)
+            return "Report";
+        return "PDF";
+    }
+
+    public function getTypeOfVerificationStatus($model) {
+        if (!empty($model->type_of_verification))
+            return $this->getTypeOfVerification($model->type_of_verification);
+        return "N/A";
+    }
+
+    public function getDoorStatus($model) {
+        if (!empty($model->door_status))
+            return $this->getDoorLockedShif($model->door_status);
+        return "N/A";
+    }
+
 }
