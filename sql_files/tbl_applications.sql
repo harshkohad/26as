@@ -1,4 +1,4 @@
-ALTER TABLE `acs`.`tbl_applications` 
+ALTER TABLE `tbl_applications` 
 CHANGE COLUMN `builder_profile_type_of_office` `builder_profile_type_of_office` TINYINT(1) NULL DEFAULT NULL COMMENT '1 : Shopline, 2 : Commercial, 3 : Independent, 4 : Residential' ,
 CHANGE COLUMN `property_apf_property_status` `property_apf_property_status` TINYINT(1) NULL DEFAULT NULL COMMENT '1 : Freshland, 2 : Redevelopment' ,
 CHANGE COLUMN `indiv_property_property_type` `indiv_property_property_type` TINYINT(1) NULL DEFAULT NULL COMMENT '1 : Fresh Property, 2 : Old Sold Out' ,
@@ -25,7 +25,7 @@ CHANGE COLUMN `noc_soc_society_type` `noc_soc_society_type` TINYINT(1) NULL DEFA
 ALTER TABLE `tbl_applications` 
 CHANGE COLUMN `busi_area` `busi_area` INT(11) NULL DEFAULT 0 ;
 
-ALTER TABLE `acs`.`tbl_applications` 
+ALTER TABLE `tbl_applications` 
 CHANGE COLUMN `noc_status` `noc_status` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative, 2 : Credit Refer' ;
 
 ALTER TABLE `tbl_applications` ADD `company_name` VARCHAR(100) NULL DEFAULT NULL,ADD `address` VARCHAR(500) NULL DEFAULT NULL; 
@@ -215,3 +215,58 @@ ALTER TABLE `tbl_applications` ADD `resi_office_locality_type` TINYINT(1) NULL D
 
 ALTER TABLE `tbl_applications` 
 DROP COLUMN `company_is_complete`;
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `telephone_is_complete` `telephone_is_complete` INT(50) NULL DEFAULT NULL AFTER `telephone_address`;
+CHANGE COLUMN `driving_is_complete` `driving_is_complete` INT(10) NULL DEFAULT NULL AFTER `driving_date_of_issue`,
+CHANGE COLUMN `company_id_is_complete` `company_id_is_complete` INT(10) NULL DEFAULT NULL AFTER `company_id_designation`,
+CHANGE COLUMN `shop_act_is_complete` `shop_act_is_complete` INT(10) NULL DEFAULT NULL AFTER `shop_act_till_date`,
+CHANGE COLUMN `gst_is_complete` `gst_is_complete` INT(11) NULL DEFAULT NULL AFTER `gst_address`,
+CHANGE COLUMN `rent_aggeement_validity` `rent_aggeement_validity` DATETIME NULL DEFAULT NULL AFTER `rent_aggeement_deposit_amount`,
+CHANGE COLUMN `seller_is_complete` `seller_is_complete` INT(10) NULL DEFAULT NULL AFTER `seller_address`,
+CHANGE COLUMN `oc_cc_plan_is_complete` `oc_cc_plan_is_complete` INT(10) NULL DEFAULT NULL AFTER `oc_cc_plan_signature`;
+
+ALTER TABLE `tbl_applications` ADD `pan_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `pan_is_complete`;
+ALTER TABLE `tbl_applications` ADD `ac_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `ac_is_complete`;
+ALTER TABLE `tbl_applications` ADD `passport_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `passport_is_complete`;
+ALTER TABLE `tbl_applications` ADD `electricity_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `electricity_is_complete`;
+ALTER TABLE `tbl_applications` ADD `telephone_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `telephone_is_complete`;
+ALTER TABLE `tbl_applications` ADD `voter_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `voter_is_complete`;
+ALTER TABLE `tbl_applications` ADD `driving_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `driving_is_complete`;
+ALTER TABLE `tbl_applications` ADD `company_id_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `company_id_is_complete`;
+ALTER TABLE `tbl_applications` ADD `shop_act_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `shop_act_is_complete`;
+ALTER TABLE `tbl_applications` ADD `gst_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `gst_is_complete`;
+ALTER TABLE `tbl_applications` ADD `rent_aggeement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `rent_aggeement_is_complete`;
+ALTER TABLE `tbl_applications` ADD `seller_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `seller_is_complete`;
+ALTER TABLE `tbl_applications` ADD `oc_cc_plan_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `oc_cc_plan_is_complete`;
+ALTER TABLE `tbl_applications` ADD `ocr_receipt_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `ocr_receipt_is_complete`;
+
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `rent_aggeement_met_name` `rent_agreement_met_name` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_owner_name` `rent_agreement_owner_name` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_rent_amount` `rent_agreement_rent_amount` INT(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_deposit_amount` `rent_agreement_deposit_amount` INT(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_validity` `rent_agreement_validity` DATETIME NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_is_complete` `rent_agreement_is_complete` INT(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `rent_aggeement_feedback` `rent_agreement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Positive, 2 : Negative' ,
+CHANGE COLUMN `seller_name` `sale_agreement_seller_name` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `seller_purchaser_name` `sale_agreement_purchaser_name` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `seller_address` `sale_agreement_address` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `seller_is_complete` `sale_agreement_is_complete` INT(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `seller_feedback` `sale_agreement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Positive, 2 : Negative' ;
+
+ALTER TABLE `tbl_applications` CHANGE COLUMN `pan_is_complete` `pan_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `ac_is_complete` `ac_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `passport_is_complete` `passport_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `electricity_is_complete` `electricity_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `telephone_is_complete` `telephone_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `voter_is_complete` `voter_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `driving_is_complete` `driving_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `company_id_is_complete` `company_id_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `shop_act_is_complete` `shop_act_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `gst_is_complete` `gst_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `rent_agreement_is_complete` `rent_agreement_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `sale_agreement_is_complete` `sale_agreement_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `oc_cc_plan_is_complete` `oc_cc_plan_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
+ALTER TABLE `tbl_applications` CHANGE COLUMN `ocr_receipt_is_complete` `ocr_receipt_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
