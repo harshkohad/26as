@@ -35,5 +35,9 @@ return [
             'label' => 'Manage Institutes',
             'url' => ['/applications/institutes/index']
         ],
+        [
+            'label' => 'Manage Paragraphs',
+            'url' => ['/applications/manage-applications/manage-paragraphs']
+        ],
     ]
 ];
