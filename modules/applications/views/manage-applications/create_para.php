@@ -6,8 +6,10 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\modules\applications\models\Applications */
 
-$this->title = 'Create Paragraph';
-$this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
+$title = isset($_GET['id']) ? 'Update' : 'Create';
+
+$this->title = $title.' Paragraph';
+$this->params['breadcrumbs'][] = ['label' => 'Manage Paragraph', 'url' => ['manage-paragraphs']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -46,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <?= Html::submitButton('Create', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton($title, ['class' => 'btn btn-primary']) ?>
                 </div>
             </div>
             </form>
