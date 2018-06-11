@@ -236,7 +236,7 @@ ALTER TABLE `tbl_applications` ADD `driving_feedback` TINYINT(1) NULL DEFAULT '0
 ALTER TABLE `tbl_applications` ADD `company_id_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `company_id_is_complete`;
 ALTER TABLE `tbl_applications` ADD `shop_act_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `shop_act_is_complete`;
 ALTER TABLE `tbl_applications` ADD `gst_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `gst_is_complete`;
-ALTER TABLE `tbl_applications` ADD `rent_aggeement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `rent_aggeement_is_complete`;
+ALTER TABLE `tbl_applications` ADD `rent_agreement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `rent_aggeement_is_complete`;
 ALTER TABLE `tbl_applications` ADD `seller_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `seller_is_complete`;
 ALTER TABLE `tbl_applications` ADD `oc_cc_plan_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `oc_cc_plan_is_complete`;
 ALTER TABLE `tbl_applications` ADD `ocr_receipt_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '0 : Positive, 1 : Negative' AFTER `ocr_receipt_is_complete`;
@@ -254,7 +254,7 @@ CHANGE COLUMN `seller_name` `sale_agreement_seller_name` VARCHAR(100) NULL DEFAU
 CHANGE COLUMN `seller_purchaser_name` `sale_agreement_purchaser_name` VARCHAR(100) NULL DEFAULT NULL ,
 CHANGE COLUMN `seller_address` `sale_agreement_address` TEXT NULL DEFAULT NULL ,
 CHANGE COLUMN `seller_is_complete` `sale_agreement_is_complete` INT(10) NULL DEFAULT NULL ,
-CHANGE COLUMN `seller_feedback` `sale_agreement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Positive, 2 : Negative' ;
+CHANGE COLUMN `seller_aggeement_feedback` `sale_agreement_feedback` TINYINT(1) NULL DEFAULT '0' COMMENT '1 : Positive, 2 : Negative' ;
 
 ALTER TABLE `tbl_applications` CHANGE COLUMN `pan_is_complete` `pan_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
 ALTER TABLE `tbl_applications` CHANGE COLUMN `ac_is_complete` `ac_is_complete` TINYINT(1) NULL DEFAULT 0 COMMENT '0 : Not verified, 1 : Verified' ;
