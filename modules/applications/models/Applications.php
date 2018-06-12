@@ -1119,7 +1119,7 @@ class Applications extends \yii\db\ActiveRecord {
             case 3:
                 $return = 'Shifted';
                 break;
-            case 3:
+            case 4:
                 $return = 'Door Locked & Shifted';
                 break;
         }
