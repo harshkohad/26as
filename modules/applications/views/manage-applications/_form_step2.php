@@ -111,7 +111,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->resi_address_verification != 1) {
+                        if ($applicationResi->resi_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -125,13 +125,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'resi_address')->textArea() ?>
+                        <?= $form->field($applicationResi, 'resi_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'resi_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationResi, 'resi_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -144,7 +144,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'resi_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationResi, 'resi_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
@@ -1646,67 +1646,67 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Yes
+                            <label class="btn  resi_verification_is_reachable btn-primary <?= ($applicationResi->resi_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResi[resi_is_reachable]" autocomplete="off" <?= ($applicationResi->resi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> Yes
                             </label>
-                            <label class="btn resi_verification_is_reachable btn-primary <?= ($model->resi_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_is_reachable]" autocomplete="off" <?= ($model->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> No
+                            <label class="btn resi_verification_is_reachable btn-primary <?= ($applicationResi->resi_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResi[resi_is_reachable]" autocomplete="off" <?= ($applicationResi->resi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="resi_verification_disable" active='resi_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_society_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($model, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($applicationResi, 'resi_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($model, 'resi_rented_owner_name')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($model, 'resi_rent_amount')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($model, 'resi_shifted_tenure')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($applicationResi, 'resi_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($applicationResi, 'resi_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_shifted_tenure')->textInput() ?></div>
                 </div>
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($model, 'resi_home_area')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($model, 'resi_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($model, 'resi_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
-                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($model, 'resi_working_members')->textInput() ?></div>                            
+                    <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable"><?= $form->field($applicationResi, 'resi_home_area')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_stay_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"><?= $form->field($applicationResi, 'resi_working_members')->textInput() ?></div>                            
                 </div>
 
                 <div class="row resi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_1')->textInput(['maxlength' => true]) ?></div>                           
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_landmark_1')->textInput(['maxlength' => true]) ?></div>                           
                 </div>
 
 
                 <div class="row resi_verification_disable">                    
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_structure')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_landmark_2')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3"><?= $form->field($applicationResi, 'resi_structure')->textInput() ?></div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable"></div>
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary <?= ($model->resi_market_feedback == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                                <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
                             <label class="btn btn-primary <?= ($model->resi_market_feedback == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_market_feedback]" autocomplete="off" <?= ($model->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                                <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 resi_verification_enable"><?= $form->field($model, 'resi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 resi_verification_enable"><?= $form->field($applicationResi, 'resi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>    
                 <div class="row">
                     <div class="col-lg-6 resi_verification_disable">
@@ -1740,18 +1740,18 @@ $loantypes->id = $model->loan_type_id;
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-9 resi_verification_disable"><?= $form->field($model, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 resi_verification_disable"><?= $form->field($applicationResi, 'resi_remarks')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 resi_verification_disable">
                         <label>Status</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationResi->resi_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($applicationResi->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationResi->resi_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($applicationResi->resi_status == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($model->resi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            <label class="btn btn-primary <?= ($applicationResi->resi_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_status]" autocomplete="off" <?= ($applicationResi->resi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                             </label>
                         </div>
                     </div>
@@ -3298,9 +3298,9 @@ $this->registerJs("
                 $(".field-applications-" + source + "_rent_amount").hide();
             }
         }
-        var resi_availability_status = $("#applications-resi_available_status").val();
+        var resi_availability_status = $("#applicationsresi-resi_available_status").val();
         availableHide("resi", resi_availability_status);
-        $("#applications-resi_available_status").change(function () {
+        $("#applicationsresi-resi_available_status").change(function () {
             var resi_availability_status = $(this).val();
             availableHide("resi", resi_availability_status);
         });

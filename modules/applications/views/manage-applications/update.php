@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = 'Update';
         'propertyApfPhotosTable' => $propertyApfPhotosTable,
         'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
         'nocSocPhotosTable' => $nocSocPhotosTable,
+        'applicationResi' => $applicationResi
     ])
     ?>
 

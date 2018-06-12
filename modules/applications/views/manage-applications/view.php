@@ -127,7 +127,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->resi_address_verification != 1) {
+                        if ($applicationResi->resi_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -141,25 +141,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->resi_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationResi->resi_address ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->resi_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationResi->resi_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationResi->resi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -1444,66 +1444,66 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->resi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationResi->resi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
 
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_society_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_society_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_society_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_society_name_plate ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_door_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_door_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_door_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_door_name_plate ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_tpc_neighbor_1') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_tpc_neighbor_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_tpc_neighbor_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_tpc_neighbor_1 ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_tpc_neighbor_2') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_tpc_neighbor_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_tpc_neighbor_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_tpc_neighbor_2 ?></div>
                     </div>
                 </div>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3 resi_locked_disable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_met_person ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_relation') ?></label>
-                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_relation) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_relation') ?></label>
+                        <div class="readonlydiv"><?= $model->getRelationName($applicationResi->resi_relation) ?></div>
                     </div>
-                    <?php if ($model->resi_ownership_status != 1) {
+                    <?php if ($applicationResi->resi_ownership_status != 1) {
                         ?>
                         <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($applicationResi->resi_ownership_status) ?></div>
                         </div>
                     <?php }
                     ?>
 
                     <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status_text') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_ownership_status_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_ownership_status_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_ownership_status_text ?></div>
                     </div>
                 </div>
-                <?php if ($model->resi_ownership_status == 1) {
+                <?php if ($applicationResi->resi_ownership_status == 1) {
                     ?>
                     <div class="row resi_verification_disable">
                         <div class="col-lg-3 resi_locked_enable resi_shifted_enable resi_locked_shifted_enable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_ownership_status') ?></label>
-                            <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_ownership_status) ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_ownership_status') ?></label>
+                            <div class="readonlydiv"><?= $model->getOwnershipStatus($applicationResi->resi_ownership_status) ?></div>
                         </div>
                         <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rented_owner_name') ?></label>
-                            <div class="readonlydiv"><?= $model->resi_rented_owner_name ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $applicationResi->resi_rented_owner_name ?></div>
                         </div>
                         <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_rent_amount') ?></label>
-                            <div class="readonlydiv"><?= $model->resi_rent_amount ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $applicationResi->resi_rent_amount ?></div>
                         </div>
                     </div>
 
@@ -1511,62 +1511,62 @@ $this->params['breadcrumbs'][] = 'View';
                 ?>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_available_status') ?></label>
-                        
-                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->resi_available_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_available_status') ?></label>
+
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($applicationResi->resi_available_status) ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_disable resi_shifted_disable resi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_home_area') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_home_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_home_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_home_area ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_stay_years') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_stay_years ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_stay_years') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_stay_years ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_total_family_members') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_total_family_members ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_total_family_members') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_total_family_members ?></div>
                     </div>
                     <div class="col-lg-3 resi_locked_enable resi_shifted_disable resi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_working_members') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_working_members ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_working_members') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_working_members ?></div>
                     </div>
 
                 </div>
                 <div class="row resi_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_locality') ?></label>
-                        <div class="readonlydiv"><?= $model->getResiLocality($model->resi_locality) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_locality') ?></label>
+                        <div class="readonlydiv"><?= $model->getResiLocality($applicationResi->resi_locality) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_locality_text') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_locality_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_locality_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_locality_text ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_landmark_1') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_landmark_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_landmark_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_landmark_1 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_landmark_2') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_landmark_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_landmark_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_landmark_2 ?></div>
                     </div> 
                 </div>
 
                 <div class="row resi_verification_disable">
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_structure') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_structure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_structure') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_structure ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label>Market Feedback</label>
-                        <div class="readonlydiv"><?= ($model->resi_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                        <div class="readonlydiv"><?= ($applicationResi->resi_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                     </div>                           
                 </div>
 
                 <div class="row resi_verification_enable">
                     <div class="col-lg-3">
                         <label>Reachable Remark</label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_not_reachable_remarks', $model->resi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_not_reachable_remarks', $applicationResi->resi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -1602,12 +1602,12 @@ $this->params['breadcrumbs'][] = 'View';
 
                 <div class="row resi_verification_disable">
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_remarks ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResi->getAttributeLabel('resi_remarks') ?></label>
+                        <div class="readonlydiv"><?= $applicationResi->resi_remarks ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label>Status</label>
-                        <div class="readonlydiv"><?= ($model->resi_status == 0) ? 'Positive' : (($model->resi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                        <div class="readonlydiv"><?= ($applicationResi->resi_status == 0) ? 'Positive' : (($applicationResi->resi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
                 </div>
             </div>
@@ -2668,7 +2668,7 @@ $this->registerJs("
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        var resiChecked = '<?php echo $model->resi_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationResi->resi_is_reachable; ?>'
         autoShowHide(resiChecked, "resi");
         var busiChecked = '<?php echo $model->busi_is_reachable; ?>'
         autoShowHide(busiChecked, "busi");
@@ -2696,7 +2696,7 @@ $this->registerJs("
                 $("." + source + "_verification_enable").hide();
             }
         }
-        
+
         var resiChecked = '<?php echo $model->resi_available_status; ?>'
         availableHide("resi", resiChecked);
         var busiChecked = '<?php echo $model->busi_available_status; ?>'
@@ -2705,7 +2705,7 @@ $this->registerJs("
         availableHide("office", officeChecked);
         var resiChecked = '<?php echo $model->resi_office_available_status; ?>'
         availableHide("resi_office", resiChecked);
-        
+
         function availableHide(source, availability_status) {
             $("." + source + "_verification_disable").show();
             if (availability_status == 2) {

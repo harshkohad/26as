@@ -30,6 +30,7 @@ use yii\base\ErrorException;
 use PHPExcel_Style_Fill;
 use app\modules\applications\models\ApplicationsHistory;
 use app\modules\applications\models\ApplicationParagraph;
+use app\modules\applications\models\ApplicationsResi;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -155,6 +156,9 @@ class ManageApplicationsController extends Controller {
         $propertyApfPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 7, 1, 1);
         $indivPropertyPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 8, 1, 1);
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 1);
+        $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+        if (empty($applicationResi))
+            $applicationResi = new ApplicationsResi();
         return $this->render('view', [
                     'model' => $model,
                     'itrTable' => $itrTable,
@@ -171,6 +175,7 @@ class ManageApplicationsController extends Controller {
                     'propertyApfPhotosTable' => $propertyApfPhotosTable,
                     'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                     'nocSocPhotosTable' => $nocSocPhotosTable,
+                    'applicationResi' => $applicationResi,
         ]);
     }
 
@@ -186,6 +191,7 @@ class ManageApplicationsController extends Controller {
         $institutes = new Institutes();
         $loantypes = new LoanTypes();
         $area_model = new Area();
+        $applicationResi = new ApplicationsResi();
         if (!empty($profile_id)) {
             $applicant_profile = ApplicantProfile::find($profile_id)->one();
             $data = $applicant_profile->attributes;
@@ -229,6 +235,7 @@ class ManageApplicationsController extends Controller {
                         'loantypes' => $loantypes,
                         'area_model' => $area_model,
                         'errors' => $errors,
+                        'applicationResi' => $applicationResi,
             ]);
         }
     }
@@ -245,6 +252,11 @@ class ManageApplicationsController extends Controller {
         $institutes = new Institutes();
         $loantypes = new LoanTypes();
         $pincode_master = new PincodeMaster();
+        $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+        if (empty($applicationResi))
+            $applicationResi = new ApplicationsResi();
+//        print_r($applicationResi);
+//        die;
         //$area_model = new Area();
         $itrTable = $this->actionGetItrTable($id);
         $nocTable = $this->actionGetNocTable($id);
@@ -283,11 +295,11 @@ class ManageApplicationsController extends Controller {
             //Lat long
             if ($model->resi_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['resi_address_pincode'], $_POST['Applications']['resi_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsResi']['resi_address_pincode'], $_POST['ApplicationsResi']['resi_address']);
 
                 if (!empty($latlong)) {
-                    $model->resi_address_lat = $latlong['latitude'];
-                    $model->resi_address_long = $latlong['longitude'];
+                    $applicationResi->resi_address_lat = $latlong['latitude'];
+                    $applicationResi->resi_address_long = $latlong['longitude'];
                 }
             }
             if ($model->office_address_verification == 1) {
@@ -363,8 +375,8 @@ class ManageApplicationsController extends Controller {
                 }
             }
             $model->load(Yii::$app->request->post());
-            if (!empty($_POST['Applications']['resi_not_reachable_remarks']))
-                $model->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsResi']['resi_not_reachable_remarks']))
+                $applicationResi->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsResi']['resi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
                 $model->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['office_not_reachable_remarks']))
@@ -380,8 +392,10 @@ class ManageApplicationsController extends Controller {
             if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
                 $model->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
 
-
+            $applicationResi->attributes = $_POST['ApplicationsResi'];
+            $applicationResi->application_id = $id;
             if ($model->save()) {
+                $applicationResi->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $errors[] = $model->getErrors();
@@ -405,6 +419,7 @@ class ManageApplicationsController extends Controller {
                             'propertyApfPhotosTable' => $propertyApfPhotosTable,
                             'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                             'nocSocPhotosTable' => $nocSocPhotosTable,
+                            'applicationResi' => $applicationResi
                 ]);
             }
         } else {
@@ -428,6 +443,8 @@ class ManageApplicationsController extends Controller {
                         'propertyApfPhotosTable' => $propertyApfPhotosTable,
                         'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                         'nocSocPhotosTable' => $nocSocPhotosTable,
+                        'nocSocPhotosTable' => $nocSocPhotosTable,
+                        'applicationResi' => $applicationResi
             ]);
         }
     }
