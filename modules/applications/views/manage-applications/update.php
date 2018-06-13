@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = 'Update';
         'nocSocPhotosTable' => $nocSocPhotosTable,
         'applicationResi' => $applicationResi,
         'applicationBusi' => $applicationBusi,
+        'applicationNocBusi' => $applicationNocBusi
     ])
     ?>
 

@@ -52,6 +52,11 @@ use Yii;
  * @property string $resi_office_address_trigger
  * @property string $resi_office_address_lat
  * @property string $resi_office_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsResiOffice extends \yii\db\ActiveRecord
 {
@@ -70,7 +75,8 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'resi_office_address_verification'], 'integer'],
+            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'resi_office_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['resi_office_not_reachable_remarks'], 'string'],
             [['resi_office_reason_for_closed', 'resi_office_rented_owner_name'], 'string', 'max' => 100],
             [['resi_office_society_name_plate', 'resi_office_door_name_plate', 'resi_office_tpc_neighbor_1', 'resi_office_tpc_neighbor_2', 'resi_office_met_person', 'resi_office_met_person_designation', 'resi_office_relation', 'resi_office_ownership_status_text', 'resi_office_company_name_board', 'resi_office_designation', 'resi_office_department', 'resi_office_nature_of_company', 'resi_office_net_salary_amount', 'resi_office_tpc_for_applicant', 'resi_office_tpc_for_company', 'resi_office_locality_text', 'resi_office_landmark_1', 'resi_office_landmark_2'], 'string', 'max' => 150],
@@ -132,6 +138,11 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord
             'resi_office_address_trigger' => 'Resi Office Address Trigger',
             'resi_office_address_lat' => 'Resi Office Address Lat',
             'resi_office_address_long' => 'Resi Office Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }

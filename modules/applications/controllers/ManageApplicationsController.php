@@ -32,6 +32,7 @@ use app\modules\applications\models\ApplicationsHistory;
 use app\modules\applications\models\ApplicationParagraph;
 use app\modules\applications\models\ApplicationsResi;
 use app\modules\applications\models\ApplicationsBusi;
+use app\modules\applications\models\ApplicationsNocBusi;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -196,7 +197,6 @@ class ManageApplicationsController extends Controller {
         $institutes = new Institutes();
         $loantypes = new LoanTypes();
         $area_model = new Area();
-        $applicationResi = new ApplicationsResi();
         if (!empty($profile_id)) {
             $applicant_profile = ApplicantProfile::find($profile_id)->one();
             $data = $applicant_profile->attributes;
@@ -240,7 +240,6 @@ class ManageApplicationsController extends Controller {
                         'loantypes' => $loantypes,
                         'area_model' => $area_model,
                         'errors' => $errors,
-                        'applicationResi' => $applicationResi,
             ]);
         }
     }
@@ -263,8 +262,13 @@ class ManageApplicationsController extends Controller {
             $applicationResi = new ApplicationsResi();
         if (empty($applicationBusi))
             $applicationBusi = new ApplicationsBusi();
+        
+        $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
+        if (empty($applicationNocBusi))
+            $applicationNocBusi = new ApplicationsNocBusi();
 //        print_r($applicationResi);
 //        die;
+//        ApplicationsNocBusi
         //$area_model = new Area();
         $itrTable = $this->actionGetItrTable($id);
         $nocTable = $this->actionGetNocTable($id);
@@ -290,10 +294,10 @@ class ManageApplicationsController extends Controller {
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
             #Get checkbox values
-            $model->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
+            $applicationResi->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
             $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
-            $model->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
+            $applicationNocBusi->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
             $model->resi_office_address_verification = isset($_POST['Applications']['resi_office_address_verification'][0]) ? $_POST['Applications']['resi_office_address_verification'][0] : 0;
             $model->builder_profile_address_verification = isset($_POST['Applications']['builder_profile_address_verification'][0]) ? $_POST['Applications']['builder_profile_address_verification'][0] : 0;
             $model->property_apf_address_verification = isset($_POST['Applications']['property_apf_address_verification'][0]) ? $_POST['Applications']['property_apf_address_verification'][0] : 0;
@@ -301,7 +305,7 @@ class ManageApplicationsController extends Controller {
             $model->noc_soc_address_verification = isset($_POST['Applications']['noc_soc_address_verification'][0]) ? $_POST['Applications']['noc_soc_address_verification'][0] : 0;
 
             //Lat long
-            if ($model->resi_address_verification == 1) {
+            if ($applicationResi->resi_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['ApplicationsResi']['resi_address_pincode'], $_POST['ApplicationsResi']['resi_address']);
 
@@ -328,13 +332,13 @@ class ManageApplicationsController extends Controller {
                     $model->busi_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->noc_address_verification == 1) {
+            if ($applicationNocBusi->noc_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['noc_address_pincode'], $_POST['Applications']['noc_address']);
 
                 if (!empty($latlong)) {
-                    $model->noc_address_lat = $latlong['latitude'];
-                    $model->noc_address_long = $latlong['longitude'];
+                    $applicationNocBusi->noc_address_lat = $latlong['latitude'];
+                    $applicationNocBusi->noc_address_long = $latlong['longitude'];
                 }
             }
             if ($model->resi_office_address_verification == 1) {
@@ -389,6 +393,8 @@ class ManageApplicationsController extends Controller {
                 $model->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['office_not_reachable_remarks']))
                 $model->office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
+            if (!empty($_POST['Applications']['noc_not_reachable_remarks']))
+                $applicationNocBusi->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
             if (!empty($_POST['Applications']['resi_office_not_reachable_remarks']))
                 $model->resi_office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
             if (!empty($_POST['Applications']['builder_profile_not_reachable_remarks']))
@@ -398,8 +404,8 @@ class ManageApplicationsController extends Controller {
             if (!empty($_POST['Applications']['indiv_property_not_reachable_remarks']))
                 $model->indiv_property_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['indiv_property_not_reachable_remarks']);
             if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
-                $model->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
-
+                $model->noc_soc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_soc_not_reachable_remarks']);
+          
             if ($model->save()) {
                 $applicationResi->save();
                 if (isset($_POST['ApplicationsResi']) AND ! empty($_POST['ApplicationsResi'])) {
@@ -414,6 +420,8 @@ class ManageApplicationsController extends Controller {
                         echo "<pre/>",print_r($applicationBusi->getErrors());die;
                     }
                 }
+
+                $applicationNocBusi->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $errors[] = $model->getErrors();
@@ -439,6 +447,7 @@ class ManageApplicationsController extends Controller {
                             'nocSocPhotosTable' => $nocSocPhotosTable,
                             'applicationResi' => $applicationResi,
                             'applicationBusi' => $applicationBusi,
+                            'applicationNocBusi' => $applicationNocBusi
                 ]);
             }
         } else {
@@ -465,6 +474,7 @@ class ManageApplicationsController extends Controller {
                         'nocSocPhotosTable' => $nocSocPhotosTable,
                         'applicationResi' => $applicationResi,
                         'applicationBusi' => $applicationBusi,
+                        'applicationNocBusi' => $applicationNocBusi
             ]);
         }
     }

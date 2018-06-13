@@ -33,6 +33,11 @@ use Yii;
  * @property string $property_apf_address_trigger
  * @property string $property_apf_address_lat
  * @property string $property_apf_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsPropertyApf extends \yii\db\ActiveRecord
 {
@@ -51,7 +56,8 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'property_apf_address_verification'], 'integer'],
+            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'property_apf_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['property_apf_not_reachable_remarks'], 'string'],
             [['property_apf_met_person', 'property_apf_met_person_designation', 'property_apf_mode_of_payment', 'property_apf_construction_stock', 'property_apf_work_completed', 'property_apf_possession', 'property_apf_apf', 'property_apf_delay_in_work', 'property_apf_tpc', 'property_apf_landmark'], 'string', 'max' => 150],
             [['property_apf_address', 'property_apf_address_trigger'], 'string', 'max' => 1000],
@@ -92,6 +98,11 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord
             'property_apf_address_trigger' => 'Property Apf Address Trigger',
             'property_apf_address_lat' => 'Property Apf Address Lat',
             'property_apf_address_long' => 'Property Apf Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }

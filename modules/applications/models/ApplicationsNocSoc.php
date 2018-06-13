@@ -26,6 +26,11 @@ use Yii;
  * @property string $noc_soc_address_trigger
  * @property string $noc_soc_address_lat
  * @property string $noc_soc_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsNocSoc extends \yii\db\ActiveRecord
 {
@@ -44,7 +49,8 @@ class ApplicationsNocSoc extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'noc_soc_society_type', 'noc_soc_is_reachable', 'noc_soc_address_verification'], 'integer'],
+            [['application_id', 'noc_soc_society_type', 'noc_soc_is_reachable', 'noc_soc_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['noc_soc_not_reachable_remarks'], 'string'],
             [['noc_soc_chairman_name', 'noc_soc_secretary_name', 'noc_soc_tresurer_name'], 'string', 'max' => 200],
             [['noc_soc_met_person', 'noc_soc_met_person_designation', 'noc_soc_signature_done_by', 'noc_soc_bldg_reg_number', 'noc_soc_previous_owner'], 'string', 'max' => 150],
@@ -79,6 +85,11 @@ class ApplicationsNocSoc extends \yii\db\ActiveRecord
             'noc_soc_address_trigger' => 'Noc Soc Address Trigger',
             'noc_soc_address_lat' => 'Noc Soc Address Lat',
             'noc_soc_address_long' => 'Noc Soc Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }

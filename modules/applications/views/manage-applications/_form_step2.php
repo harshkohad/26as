@@ -149,7 +149,7 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'resi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationResi, 'resi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -573,7 +573,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->noc_address_verification != 1) {
+                        if ($applicationNocBusi->noc_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -587,13 +587,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'noc_address')->textArea() ?>
+                        <?= $form->field($applicationNocBusi, 'noc_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'noc_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationNocBusi, 'noc_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -606,12 +606,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'noc_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationNocBusi, 'noc_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'noc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationNocBusi, 'noc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>

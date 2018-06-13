@@ -45,6 +45,11 @@ use Yii;
  * @property string $busi_address_trigger
  * @property string $busi_address_lat
  * @property string $busi_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsBusi extends \yii\db\ActiveRecord
 {
@@ -63,7 +68,8 @@ class ApplicationsBusi extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_ownership_status', 'busi_area', 'busi_locality', 'busi_locality_type', 'busi_activity_seen', 'busi_status', 'busi_is_reachable', 'busi_available_status', 'busi_shifted_tenure', 'busi_address_verification'], 'integer'],
+            [['application_id', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_ownership_status', 'busi_area', 'busi_locality', 'busi_locality_type', 'busi_activity_seen', 'busi_status', 'busi_is_reachable', 'busi_available_status', 'busi_shifted_tenure', 'busi_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['busi_not_reachable_remarks'], 'string'],
             [['busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_locality_text', 'busi_landmark_1', 'busi_landmark_2'], 'string', 'max' => 150],
             [['busi_designation_others', 'busi_rented_owner_name', 'busi_reason_for_closed'], 'string', 'max' => 100],
@@ -118,6 +124,11 @@ class ApplicationsBusi extends \yii\db\ActiveRecord
             'busi_address_trigger' => 'Busi Address Trigger',
             'busi_address_lat' => 'Busi Address Lat',
             'busi_address_long' => 'Busi Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }
