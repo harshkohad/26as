@@ -28,6 +28,11 @@ use Yii;
  * @property string $indiv_property_address_trigger
  * @property string $indiv_property_address_lat
  * @property string $indiv_property_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsIndivProperty extends \yii\db\ActiveRecord
 {
@@ -46,7 +51,8 @@ class ApplicationsIndivProperty extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'indiv_property_property_type', 'indiv_property_area', 'indiv_property_is_reachable', 'indiv_property_address_verification'], 'integer'],
+            [['application_id', 'indiv_property_property_type', 'indiv_property_area', 'indiv_property_is_reachable', 'indiv_property_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['indiv_property_not_reachable_remarks'], 'string'],
             [['indiv_property_met_person', 'indiv_property_met_person_designation', 'indiv_property_property_confirmed', 'indiv_property_previous_owner', 'indiv_property_approx_market_value', 'indiv_property_society_name_plate', 'indiv_property_door_name_plate', 'indiv_property_tpc', 'indiv_property_landmark'], 'string', 'max' => 150],
             [['indiv_property_address', 'indiv_property_address_trigger'], 'string', 'max' => 1000],
@@ -82,6 +88,11 @@ class ApplicationsIndivProperty extends \yii\db\ActiveRecord
             'indiv_property_address_trigger' => 'Indiv Property Address Trigger',
             'indiv_property_address_lat' => 'Indiv Property Address Lat',
             'indiv_property_address_long' => 'Indiv Property Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }

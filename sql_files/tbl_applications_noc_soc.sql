@@ -26,3 +26,9 @@ ALTER TABLE `tbl_applications_noc_soc`
 ALTER TABLE `tbl_applications_noc_soc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
+ALTER TABLE `tbl_applications_noc_soc` 
+ADD COLUMN `created_by` INT(11) NULL AFTER `noc_soc_address_long`,
+ADD COLUMN `created_on` datetime DEFAULT CURRENT_TIMESTAMP AFTER `created_by`,
+ADD COLUMN `update_by` int(11) DEFAULT NULL AFTER `created_on`,
+ADD COLUMN `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `update_by`,
+ADD COLUMN `is_deleted` tinyint(1) DEFAULT '0' AFTER `updated_on`;
