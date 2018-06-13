@@ -178,7 +178,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->busi_address_verification != 1) {
+                        if ($applicationBusi->busi_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -192,25 +192,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->busi_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationBusi->busi_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->busi_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationBusi->busi_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationBusi->busi_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -1626,138 +1626,138 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->busi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationBusi->busi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row busi_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_tpc_neighbor_1') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_tpc_neighbor_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_tpc_neighbor_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_tpc_neighbor_1 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_tpc_neighbor_2') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_tpc_neighbor_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_tpc_neighbor_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_tpc_neighbor_2 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_company_name_board') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_company_name_board ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_company_name_board') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_company_name_board ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_met_person ?></div>
                     </div>
                 </div>
 
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->getDesignation($model->busi_designation) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_designation') ?></label>
+                        <div class="readonlydiv"><?= $model->getDesignation($applicationBusi->busi_designation) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_designation_others') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_designation_others; ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_designation_others') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_designation_others; ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_nature_of_business') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_nature_of_business ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_nature_of_business') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_nature_of_business ?></div>
                     </div>                            
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_years_in_business') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_years_in_business ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_years_in_business') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_years_in_business ?></div>
                     </div>
                 </div>
 
                 <div class="row busi_verification_disable">                    
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_type_of_business') ?></label>
-                        <div class="readonlydiv"><?= $model->getBusiType($model->busi_type_of_business) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_type_of_business') ?></label>
+                        <div class="readonlydiv"><?= $model->getBusiType($applicationBusi->busi_type_of_business) ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality') ?></label>
-                        <div class="readonlydiv"><?= $model->getBusiLocality($model->busi_locality) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_locality') ?></label>
+                        <div class="readonlydiv"><?= $model->getBusiLocality($applicationBusi->busi_locality) ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getOwnershipStatus($model->busi_ownership_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_ownership_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getOwnershipStatus($applicationBusi->busi_ownership_status) ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_ownership_status_text') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_ownership_status_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_ownership_status_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_ownership_status_text ?></div>
                     </div>                      
                 </div>
-                <?php if ($model->busi_ownership_status == 1) {
+                <?php if ($applicationBusi->busi_ownership_status == 1) {
                     ?>
                     <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
                         <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rented_owner_name') ?></label>
-                            <div class="readonlydiv"><?= $model->busi_rented_owner_name ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $applicationBusi->busi_rented_owner_name ?></div>
                         </div>
                         <div class="col-lg-3">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_rent_amount') ?></label>
-                            <div class="readonlydiv"><?= $model->busi_rent_amount ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $applicationBusi->busi_rent_amount ?></div>
                         </div>
                     </div>
                 <?php }
                 ?>
                 <div class="row busi_verification_disable">                    
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_type') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_locality_type ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_locality_type') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_locality_type ?></div>
                     </div>      
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_locality_text') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_locality_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_locality_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_locality_text ?></div>
                     </div>      
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_available_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->busi_available_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($applicationBusi->busi_available_status) ?></div>
                     </div>      
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_declared') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_staff_declared ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_staff_declared') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_staff_declared ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_staff_seen') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_staff_seen ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_staff_seen') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_staff_seen ?></div>
                     </div>                            
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_area') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_area ?></div>
                     </div>           
                     <div class="col-lg-3 busi_locked_enable busi_shifted_disable busi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_reason_for_closed') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_reason_for_closed ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_reason_for_closed ?></div>
                     </div>      
                     <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_shifted_tenure') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_shifted_tenure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_shifted_tenure ?></div>
                     </div>  
                 </div>
 
                 <div class="row busi_verification_disable">                    
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_1') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_landmark_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_landmark_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_landmark_1 ?></div>
                     </div>   
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_landmark_2') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_landmark_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_landmark_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_landmark_2 ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label>Activity Seen</label>
-                        <div class="readonlydiv"><?= ($model->busi_activity_seen == 0) ? 'Yes' : 'No' ?></div>
+                        <div class="readonlydiv"><?= ($applicationBusi->busi_activity_seen == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_structure') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_structure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_structure') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_structure ?></div>
                     </div>
                 </div>   
 
                 <div class="row busi_verification_enable">                            
                     <div class="col-lg-6">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('busi_not_reachable_remarks', $model->busi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('busi_not_reachable_remarks', $applicationBusi->busi_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>   
                 <div class="row">
@@ -1794,11 +1794,11 @@ $this->params['breadcrumbs'][] = 'View';
                 <div class="row busi_verification_disable"> 
                     <div class="col-lg-3">
                         <label>Status</label>
-                        <div class="readonlydiv"><?= ($model->busi_status == 0) ? 'Positive' : (($model->busi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                        <div class="readonlydiv"><?= ($applicationBusi->busi_status == 0) ? 'Positive' : (($applicationBusi->busi_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('busi_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->busi_remarks ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBusi->getAttributeLabel('busi_remarks') ?></label>
+                        <div class="readonlydiv"><?= $applicationBusi->busi_remarks ?></div>
                     </div>                   
                 </div>
             </div>
@@ -2670,7 +2670,7 @@ $this->registerJs("
     jQuery(document).ready(function () {
         var resiChecked = '<?php echo $applicationResi->resi_is_reachable; ?>'
         autoShowHide(resiChecked, "resi");
-        var busiChecked = '<?php echo $model->busi_is_reachable; ?>'
+        var busiChecked = '<?php echo $applicationBusi->busi_is_reachable; ?>'
         autoShowHide(busiChecked, "busi");
         var resiChecked = '<?php echo $model->office_is_reachable; ?>'
         autoShowHide(resiChecked, "office");
@@ -2697,9 +2697,9 @@ $this->registerJs("
             }
         }
 
-        var resiChecked = '<?php echo $model->resi_available_status; ?>'
+        var resiChecked = '<?php echo $applicationResi->resi_available_status; ?>'
         availableHide("resi", resiChecked);
-        var busiChecked = '<?php echo $model->busi_available_status; ?>'
+        var busiChecked = '<?php echo $applicationBusi->busi_available_status; ?>'
         availableHide("busi", busiChecked);
         var officeChecked = '<?php echo $model->office_available_status; ?>'
         availableHide("office", officeChecked);

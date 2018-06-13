@@ -31,6 +31,7 @@ use PHPExcel_Style_Fill;
 use app\modules\applications\models\ApplicationsHistory;
 use app\modules\applications\models\ApplicationParagraph;
 use app\modules\applications\models\ApplicationsResi;
+use app\modules\applications\models\ApplicationsBusi;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -157,8 +158,11 @@ class ManageApplicationsController extends Controller {
         $indivPropertyPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 8, 1, 1);
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 1);
         $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+        $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
         if (empty($applicationResi))
             $applicationResi = new ApplicationsResi();
+        if (empty($applicationBusi))
+            $applicationBusi = new ApplicationsBusi();
         return $this->render('view', [
                     'model' => $model,
                     'itrTable' => $itrTable,
@@ -176,6 +180,7 @@ class ManageApplicationsController extends Controller {
                     'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                     'nocSocPhotosTable' => $nocSocPhotosTable,
                     'applicationResi' => $applicationResi,
+                    'applicationBusi' => $applicationBusi,
         ]);
     }
 
@@ -253,8 +258,11 @@ class ManageApplicationsController extends Controller {
         $loantypes = new LoanTypes();
         $pincode_master = new PincodeMaster();
         $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+        $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
         if (empty($applicationResi))
             $applicationResi = new ApplicationsResi();
+        if (empty($applicationBusi))
+            $applicationBusi = new ApplicationsBusi();
 //        print_r($applicationResi);
 //        die;
         //$area_model = new Area();
@@ -392,10 +400,20 @@ class ManageApplicationsController extends Controller {
             if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
                 $model->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
 
-            $applicationResi->attributes = $_POST['ApplicationsResi'];
-            $applicationResi->application_id = $id;
             if ($model->save()) {
                 $applicationResi->save();
+                if (isset($_POST['ApplicationsResi']) AND ! empty($_POST['ApplicationsResi'])) {
+                    $applicationResi->attributes = $_POST['ApplicationsResi'];
+                    $applicationResi->application_id = $id;
+                    $applicationResi->save();
+                }
+                if (isset($_POST['ApplicationsBusi']) AND ! empty($_POST['ApplicationsBusi'])) {
+                    $applicationBusi->attributes = $_POST['ApplicationsBusi'];
+                    $applicationBusi->application_id = $id;
+                    if(!$applicationBusi->save()){
+                        echo "<pre/>",print_r($applicationBusi->getErrors());die;
+                    }
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $errors[] = $model->getErrors();
@@ -419,7 +437,8 @@ class ManageApplicationsController extends Controller {
                             'propertyApfPhotosTable' => $propertyApfPhotosTable,
                             'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                             'nocSocPhotosTable' => $nocSocPhotosTable,
-                            'applicationResi' => $applicationResi
+                            'applicationResi' => $applicationResi,
+                            'applicationBusi' => $applicationBusi,
                 ]);
             }
         } else {
@@ -444,7 +463,8 @@ class ManageApplicationsController extends Controller {
                         'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
                         'nocSocPhotosTable' => $nocSocPhotosTable,
                         'nocSocPhotosTable' => $nocSocPhotosTable,
-                        'applicationResi' => $applicationResi
+                        'applicationResi' => $applicationResi,
+                        'applicationBusi' => $applicationBusi,
             ]);
         }
     }
