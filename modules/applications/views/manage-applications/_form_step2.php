@@ -168,7 +168,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->busi_address_verification != 1) {
+                        if ($applicationBusi->busi_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -182,13 +182,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'busi_address')->textArea() ?>
+                        <?= $form->field($applicationBusi, 'busi_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'busi_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationBusi, 'busi_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -201,12 +201,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'busi_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationBusi, 'busi_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'busi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationBusi, 'busi_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -1774,69 +1774,69 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  busi_verification_is_reachable btn-primary <?= ($model->busi_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> Yes
+                            <label class="btn  busi_verification_is_reachable btn-primary <?= ($applicationBusi->busi_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsBusi[busi_is_reachable]" autocomplete="off" <?= ($applicationBusi->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> Yes
                             </label>
-                            <label class="btn busi_verification_is_reachable btn-primary <?= ($model->busi_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> No
+                            <label class="btn busi_verification_is_reachable btn-primary <?= ($applicationBusi->busi_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsBusi[busi_is_reachable]" autocomplete="off" <?= ($applicationBusi->busi_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_verification_is_reachable_radio' rel="busi_verification_disable" active='busi_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row busi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($model, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_company_name_board')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($applicationBusi, 'busi_met_person')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '7' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_designation_others')->textInput(['maxlength' => true, 'readonly' => "readonly"]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_years_in_business')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_designation')->dropDownList(['1' => 'Self', '2' => 'Manager', '3' => 'Accountant', '4' => 'HR', '5' => 'Staff', '6' => 'Security', '7' => 'Others'], ['prompt' => 'Select Designation']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_designation_others')->textInput(['maxlength' => true, 'readonly' => "readonly"]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_nature_of_business')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_years_in_business')->textInput() ?></div>
 
                 </div>
 
                 <div class="row busi_verification_disable">                            
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_locality')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_type_of_business')->dropDownList(['1' => 'DIRECTORSHIP', '2' => 'PROPRIETOR', '3' => 'PARTNERSHIP'], ['prompt' => 'Select Type Of Business']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_locality')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>                            
                 </div>
                 <div class="row busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_rented_owner_name')->textInput() ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_rent_amount')->textInput() ?></div>
                 </div>
                 <div class="row busi_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_locality_type')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_staff_declared')->textInput() ?></div>                    
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_locality_type')->dropDownList(['1' => 'Gala', '2' => 'Shopline', '3' => 'Compound', '4' => 'Resi', '5' => 'Commercial', '6' => 'Other'], ['prompt' => 'Select Locality']) ?></div>                    
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_locality_text')->textInput(['readOnly' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_staff_declared')->textInput() ?></div>                    
                 </div>
 
 
                 <div class="row">
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_staff_seen')->textInput() ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($model, 'busi_area')->textInput() ?></div>
-                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable busi_locked_shifted_enable"><?= $form->field($model, 'busi_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($model, 'busi_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_staff_seen')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_area')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable busi_locked_shifted_enable"><?= $form->field($applicationBusi, 'busi_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($applicationBusi, 'busi_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row busi_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>  
-                    <div class="col-lg-3"><?= $form->field($model, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_landmark_1')->textInput(['maxlength' => true]) ?></div>  
+                    <div class="col-lg-3"><?= $form->field($applicationBusi, 'busi_landmark_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3">
                         <label>Activity Seen</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->busi_activity_seen == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
+                            <label class="btn btn-primary <?= ($applicationBusi->busi_activity_seen == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($applicationBusi->busi_activity_seen == 0) ? 'checked' : '' ?> value="0"> Yes
                             </label>
-                            <label class="btn btn-primary <?= ($model->busi_activity_seen == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($model->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
+                            <label class="btn btn-primary <?= ($applicationBusi->busi_activity_seen == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_activity_seen]" autocomplete="off" <?= ($applicationBusi->busi_activity_seen == 1) ? 'checked' : '' ?> value="1"> No
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-9"><?= $form->field($model, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9"><?= $form->field($applicationBusi, 'busi_structure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 busi_verification_disable busi_locked_disable busi_shifted_disable busi_locked_shifted_disable">
@@ -1872,21 +1872,21 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->busi_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationBusi->busi_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($applicationBusi->busi_status == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->busi_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationBusi->busi_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($applicationBusi->busi_status == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
-                            <label class="btn btn-primary <?= ($model->busi_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($model->busi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            <label class="btn btn-primary <?= ($applicationBusi->busi_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[busi_status]" autocomplete="off" <?= ($applicationBusi->busi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                             </label>
                         </div>
                     </div>
-                    <div class="col-lg-9"><?= $form->field($model, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9"><?= $form->field($applicationBusi, 'busi_remarks')->textInput(['maxlength' => true]) ?></div>
                 </div>                 
                 <div class="row">
-                    <div class="col-lg-9 busi_verification_enable"><?= $form->field($model, 'busi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 busi_verification_enable"><?= $form->field($applicationBusi, 'busi_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
             </div>
         </div>
@@ -3304,9 +3304,9 @@ $this->registerJs("
             var resi_availability_status = $(this).val();
             availableHide("resi", resi_availability_status);
         });
-        var busi_availability_status = $("#applications-busi_available_status").val();
+        var busi_availability_status = $("#applicationsbusi-busi_available_status").val();
         availableHide("busi", busi_availability_status);
-        $("#applications-busi_available_status").change(function () {
+        $("#applicationsbusi-busi_available_status").change(function () {
             var busi_availability_status = $(this).val();
             availableHide("busi", busi_availability_status);
         });
