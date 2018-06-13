@@ -42,6 +42,11 @@ use Yii;
  * @property string $resi_address_trigger
  * @property string $resi_address_lat
  * @property string $resi_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsResi extends \yii\db\ActiveRecord
 {
@@ -60,7 +65,8 @@ class ApplicationsResi extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'resi_home_area', 'resi_ownership_status', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'resi_locality_type', 'resi_market_feedback', 'resi_status', 'resi_is_reachable', 'resi_available_status', 'resi_shifted_tenure', 'resi_address_verification'], 'integer'],
+            [['application_id', 'resi_home_area', 'resi_ownership_status', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'resi_locality_type', 'resi_market_feedback', 'resi_status', 'resi_is_reachable', 'resi_available_status', 'resi_shifted_tenure', 'resi_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['resi_not_reachable_remarks'], 'string'],
             [['resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_locality_text', 'resi_landmark_1', 'resi_landmark_2'], 'string', 'max' => 150],
             [['resi_structure', 'resi_remarks', 'resi_address', 'resi_address_trigger'], 'string', 'max' => 1000],
@@ -112,6 +118,11 @@ class ApplicationsResi extends \yii\db\ActiveRecord
             'resi_address_trigger' => 'Resi Address Trigger',
             'resi_address_lat' => 'Resi Address Lat',
             'resi_address_long' => 'Resi Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }

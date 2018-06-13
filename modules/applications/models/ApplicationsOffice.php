@@ -34,6 +34,11 @@ use Yii;
  * @property string $office_address_trigger
  * @property string $office_address_lat
  * @property string $office_address_long
+ * @property integer $created_by
+ * @property string $created_on
+ * @property integer $update_by
+ * @property string $updated_on
+ * @property integer $is_deleted
  */
 class ApplicationsOffice extends \yii\db\ActiveRecord
 {
@@ -52,7 +57,8 @@ class ApplicationsOffice extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'office_employment_years', 'office_status', 'office_is_reachable', 'office_available_status', 'office_shifted_tenure', 'office_address_verification'], 'integer'],
+            [['application_id', 'office_employment_years', 'office_status', 'office_is_reachable', 'office_available_status', 'office_shifted_tenure', 'office_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on'], 'safe'],
             [['office_not_reachable_remarks'], 'string'],
             [['office_reason_for_closed'], 'string', 'max' => 100],
             [['office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark'], 'string', 'max' => 150],
@@ -95,6 +101,11 @@ class ApplicationsOffice extends \yii\db\ActiveRecord
             'office_address_trigger' => 'Office Address Trigger',
             'office_address_lat' => 'Office Address Lat',
             'office_address_long' => 'Office Address Long',
+            'created_by' => 'Created By',
+            'created_on' => 'Created On',
+            'update_by' => 'Update By',
+            'updated_on' => 'Updated On',
+            'is_deleted' => 'Is Deleted',
         ];
     }
 }
