@@ -58,21 +58,19 @@ use Yii;
  * @property string $updated_on
  * @property integer $is_deleted
  */
-class ApplicationsResiOffice extends \yii\db\ActiveRecord
-{
+class ApplicationsResiOffice extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbl_applications_resi_office';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['application_id'], 'required'],
             [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'resi_office_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
@@ -90,8 +88,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'application_id' => 'Application ID',
@@ -145,4 +142,21 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord
             'is_deleted' => 'Is Deleted',
         ];
     }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if (isset($this->id)) {
+                $this->updated_on = date("Y-m-d H:i:s");
+                $this->update_by = Yii::$app->user->id;
+            } else {
+                $this->created_on = date("Y-m-d H:i:s");
+                $this->created_by = Yii::$app->user->id;
+            }
+
+            return true;
+        }
+
+        return FALSE;
+    }
+
 }

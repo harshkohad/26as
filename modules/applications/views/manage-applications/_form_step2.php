@@ -225,7 +225,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->office_address_verification != 1) {
+                        if ($applicationOffice->office_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -239,7 +239,7 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'office_address')->textArea() ?>
+                        <?= $form->field($applicationOffice, 'office_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
@@ -258,12 +258,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'office_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationOffice, 'office_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationOffice, 'office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>                 
@@ -299,13 +299,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'resi_office_address')->textArea() ?>
+                        <?= $form->field($applicationResiOffice, 'resi_office_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'resi_office_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationResiOffice, 'resi_office_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -318,12 +318,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'resi_office_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationResiOffice, 'resi_office_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'resi_office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationResiOffice, 'resi_office_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -356,13 +356,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'builder_profile_address')->textArea() ?>
+                        <?= $form->field($applicationBuilderProfile, 'builder_profile_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'builder_profile_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationBuilderProfile, 'builder_profile_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -375,12 +375,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'builder_profile_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationBuilderProfile, 'builder_profile_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'builder_profile_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationBuilderProfile, 'builder_profile_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -399,7 +399,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->property_apf_address_verification != 1) {
+                        if ($applicationPropertyApf->property_apf_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -413,13 +413,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'property_apf_address')->textArea() ?>
+                        <?= $form->field($applicationPropertyApf, 'property_apf_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'property_apf_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationPropertyApf, 'property_apf_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -432,12 +432,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'property_apf_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationPropertyApf, 'property_apf_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'property_apf_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationPropertyApf, 'property_apf_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -459,7 +459,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->indiv_property_address_verification != 1) {
+                        if ($applicationIndivProperty->indiv_property_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -473,13 +473,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'indiv_property_address')->textArea() ?>
+                        <?= $form->field($applicationIndivProperty, 'indiv_property_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'indiv_property_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationIndivProperty, 'indiv_property_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -492,12 +492,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'indiv_property_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationIndivProperty, 'indiv_property_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'indiv_property_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationIndivProperty, 'indiv_property_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -516,7 +516,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->noc_soc_address_verification != 1) {
+                        if ($applicationNocSoc->noc_soc_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -530,13 +530,13 @@ $loantypes->id = $model->loan_type_id;
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'noc_soc_address')->textArea() ?>
+                        <?= $form->field($applicationNocSoc, 'noc_soc_address')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'noc_soc_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationNocSoc, 'noc_soc_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -549,12 +549,12 @@ $loantypes->id = $model->loan_type_id;
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <?= $form->field($model, 'noc_soc_address_trigger')->textArea() ?>
+                        <?= $form->field($applicationNocSoc, 'noc_soc_address_trigger')->textArea() ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <?= $form->field($model, 'noc_soc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
+                        <?= $form->field($applicationNocSoc, 'noc_soc_address_verification')->checkboxList(['1' => 'Send for verification'])->label(false); ?>
                     </div>
                 </div>    
             </div>
@@ -1906,47 +1906,47 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  office_verification_is_reachable btn-primary <?= ($model->office_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[office_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='office_verification_is_reachable_radio' rel="office_verification_disable" active='office_verification_enable'> Yes
+                            <label class="btn  office_verification_is_reachable btn-primary <?= ($applicationOffice->office_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsOffice[office_is_reachable]" autocomplete="off" <?= ($applicationOffice->office_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='office_verification_is_reachable_radio' rel="office_verification_disable" active='office_verification_enable'> Yes
                             </label>
-                            <label class="btn office_verification_is_reachable btn-primary <?= ($model->office_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[office_is_reachable]" autocomplete="off" <?= ($model->office_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='office_verification_is_reachable_radio' rel="office_verification_disable" active='office_verification_enable'> No
+                            <label class="btn office_verification_is_reachable btn-primary <?= ($applicationOffice->office_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsOffice[office_is_reachable]" autocomplete="off" <?= ($applicationOffice->office_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='office_verification_is_reachable_radio' rel="office_verification_disable" active='office_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>  
-                    <div class="col-lg-3"><?= $form->field($model, 'office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
-                    <div class="col-lg-3 office_locked_disable office_shifted_enable office_locked_shifted_enable"><?= $form->field($model, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationOffice, 'office_company_name_board')->textInput(['maxlength' => true]) ?></div>  
+                    <div class="col-lg-3"><?= $form->field($applicationOffice, 'office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_enable office_locked_shifted_enable"><?= $form->field($applicationOffice, 'office_met_person')->textInput(['maxlength' => true]) ?></div>     
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
 
                 </div>
 
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_department')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_employment_years')->textInput() ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_department')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_employment_years')->textInput() ?></div>
 
                 </div>
 
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($model, 'office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>                                       
-                    <div class="col-lg-3"><?= $form->field($model, 'office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'office_tpc_for_company')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'office_landmark')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable"><?= $form->field($applicationOffice, 'office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>                                       
+                    <div class="col-lg-3"><?= $form->field($applicationOffice, 'office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationOffice, 'office_tpc_for_company')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3"><?= $form->field($applicationOffice, 'office_landmark')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row office_verification_disable">
-                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable office_locked_shifted_enable"><?= $form->field($model, 'office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable office_locked_shifted_enable"><?= $form->field($model, 'office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_enable busi_shifted_disable office_locked_shifted_enable"><?= $form->field($applicationOffice, 'office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_enable office_locked_shifted_enable"><?= $form->field($applicationOffice, 'office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 office_verification_enable"><?= $form->field($model, 'office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 office_verification_enable"><?= $form->field($applicationOffice, 'office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 office_verification_disable "><?= $form->field($model, 'office_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-6 office_verification_disable "><?= $form->field($applicationOffice, 'office_remarks')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-6">
                         <div class="panel panel-default cust-panel">
                             <div class="panel-heading">
@@ -1966,14 +1966,14 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Status</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->office_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationOffice->office_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($applicationOffice->office_status == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->office_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationOffice->office_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($applicationOffice->office_status == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
-                            <label class="btn btn-primary <?= ($model->office_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($model->office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            <label class="btn btn-primary <?= ($applicationOffice->office_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[office_status]" autocomplete="off" <?= ($applicationOffice->office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                             </label>
                         </div>
                     </div>
@@ -1996,84 +1996,84 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  resi_office_verification_is_reachable btn-primary <?= ($model->resi_office_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_is_reachable]" autocomplete="off" <?= ($model->resi_office_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> Yes
+                            <label class="btn  resi_office_verification_is_reachable btn-primary <?= ($applicationResiOffice->resi_office_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResiOffice[resi_office_is_reachable]" autocomplete="off" <?= ($applicationResiOffice->resi_office_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> Yes
                             </label>
-                            <label class="btn resi_office_verification_is_reachable btn-primary <?= ($model->resi_office_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_is_reachable]" autocomplete="off" <?= ($model->resi_office_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> No
+                            <label class="btn resi_office_verification_is_reachable btn-primary <?= ($applicationResiOffice->resi_office_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResiOffice[resi_office_is_reachable]" autocomplete="off" <?= ($applicationResiOffice->resi_office_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='resi_office_verification_is_reachable_radio' rel="resi_office_verification_disable" active='resi_office_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_society_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_relation')->dropDownList(['1' => 'Self', '2' => 'Father', '3' => 'Mother', '4' => 'Brother', '5' => 'Wife', '6' => 'Son', '7' => 'Daughter', '8' => 'Grandfather', '9' => 'Grand Mother', '10' => 'Uncle', '11' => 'Aunt', '12' => 'Cousin', '13' => 'Employee', '14' => 'Neighbour', '15' => 'Security Guard', '16' => 'NA'], ['prompt' => 'Select Relation']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_ownership_status')->dropDownList(['1' => 'Rented', '2' => 'Owned', '3' => 'Parental', '4' => 'Other'], ['prompt' => 'Select Ownership']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_ownership_status_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_available_status')->dropDownList(['1' => 'Available for Verification', '2' => 'Door Locked', '3' => 'Shifted', '4' => 'Door Locked & Shifted'], ['rel' => 'resi_status']) ?></div>
 
                 </div>
                 <div class="row resi_office_verification_disable">                    
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_home_area')->textInput() ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_rented_owner_name')->textInput() ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_rent_amount')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_home_area')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_rented_owner_name')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_rent_amount')->textInput() ?></div>
                 </div>
                 <div class="row resi_office_verification_disable">
-                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_enable resi_office_locked_shifted_enable"><?= $form->field($model, 'office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($applicationResiOffice, 'resi_office_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_enable resi_office_locked_shifted_enable"><?= $form->field($applicationResiOffice, 'resi_office_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'resi_office_stay_years')->textInput() ?></div>
-                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($model, 'resi_office_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_working_members')->textInput() ?></div> 
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
-                </div>
-
-                <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_met_person')->textInput(['maxlength' => true]) ?></div>     
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_department')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($applicationResiOffice, 'resi_office_stay_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable"><?= $form->field($applicationResiOffice, 'resi_office_total_family_members')->dropDownList(['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15'], ['prompt' => 'Select Family Members']) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_working_members')->textInput() ?></div> 
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_company_name_board')->textInput(['maxlength' => true]) ?></div>            
                 </div>
 
                 <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_employment_years')->textInput() ?></div>
-                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($model, 'resi_office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_met_person')->textInput(['maxlength' => true]) ?></div>     
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_department')->textInput(['maxlength' => true]) ?></div>
                 </div>
 
                 <div class="row resi_office_verification_disable">                            
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_tpc_for_company')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_nature_of_company')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_employment_years')->textInput() ?></div>
+                    <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"><?= $form->field($applicationResiOffice, 'resi_office_net_salary_amount')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_tpc_for_applicant')->textInput(['maxlength' => true]) ?></div>
+                </div>
+
+                <div class="row resi_office_verification_disable">                            
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_tpc_for_company')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_locality')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_locality_type')->dropDownList(['1' => 'Chawl', '2' => 'Building', '3' => 'Bunglow', '4' => 'Other'], ['prompt' => 'Select Locality']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_locality_text')->textInput(['maxlength' => true, 'readOnly' => true]) ?></div>
                 </div>
                 <div class="row resi_office_verification_disable">     
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_landmark_2')->textInput(['maxlength' => true]) ?></div> 
-                    <div class="col-lg-3"><?= $form->field($model, 'resi_office_structure')->textInput(['maxlength' => true]) ?></div>                            
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_landmark_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_landmark_2')->textInput(['maxlength' => true]) ?></div> 
+                    <div class="col-lg-3"><?= $form->field($applicationResiOffice, 'resi_office_structure')->textInput(['maxlength' => true]) ?></div>                            
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_office_market_feedback == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($model->resi_office_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationResiOffice->resi_office_market_feedback == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($applicationResiOffice->resi_office_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_office_market_feedback == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($model->resi_office_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationResiOffice->resi_office_market_feedback == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[resi_office_market_feedback]" autocomplete="off" <?= ($applicationResiOffice->resi_office_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
                         </div>
                     </div> 
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 resi_office_verification_enable"><?= $form->field($model, 'resi_office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 resi_office_verification_enable"><?= $form->field($applicationResiOffice, 'resi_office_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">                           
                     <div class="col-lg-6">
@@ -2093,18 +2093,18 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 resi_office_verification_disable"><?= $form->field($model, 'resi_office_remarks')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 resi_office_verification_disable"><?= $form->field($applicationResiOffice, 'resi_office_remarks')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 resi_office_verification_disable">
                         <label>Status</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationResiOffice->resi_office_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResiOffice[resi_office_status]" autocomplete="off" <?= ($applicationResiOffice->resi_office_status == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationResiOffice->resi_office_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResiOffice[resi_office_status]" autocomplete="off" <?= ($applicationResiOffice->resi_office_status == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_office_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[resi_office_status]" autocomplete="off" <?= ($model->resi_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            <label class="btn btn-primary <?= ($applicationResiOffice->resi_office_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsResiOffice[resi_office_status]" autocomplete="off" <?= ($applicationResiOffice->resi_office_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                             </label>
                         </div>
                     </div>
@@ -2127,38 +2127,38 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  builder_profile_verification_is_reachable btn-primary <?= ($model->builder_profile_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[builder_profile_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> Yes
+                            <label class="btn  builder_profile_verification_is_reachable btn-primary <?= ($applicationBuilderProfile->builder_profile_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsBuilderProfile[builder_profile_is_reachable]" autocomplete="off" <?= ($applicationBuilderProfile->builder_profile_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> Yes
                             </label>
-                            <label class="btn builder_profile_verification_is_reachable btn-primary <?= ($model->builder_profile_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[builder_profile_is_reachable]" autocomplete="off" <?= ($model->builder_profile_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> No
+                            <label class="btn builder_profile_verification_is_reachable btn-primary <?= ($applicationBuilderProfile->builder_profile_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsBuilderProfile[builder_profile_is_reachable]" autocomplete="off" <?= ($applicationBuilderProfile->builder_profile_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='builder_profile_verification_is_reachable_radio' rel="builder_profile_verification_disable" active='builder_profile_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row builder_profile_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_company_name_board')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_exsistence')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row builder_profile_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_current_projects')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_previous_projects')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_staff')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_area')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row builder_profile_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_type_of_office')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Type of Office']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_type_of_office')->dropDownList(['1' => 'test', '2' => 'test1'], ['prompt' => 'Select Type of Office']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_tpc_neighbor_1')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_tpc_neighbor_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationBuilderProfile, 'builder_profile_landmark_1')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 builder_profile_verification_enable"><?= $form->field($model, 'builder_profile_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 builder_profile_verification_enable"><?= $form->field($applicationBuilderProfile, 'builder_profile_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 builder_profile_verification_disable"><?= $form->field($model, 'builder_profile_landmark_2')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3 builder_profile_verification_disable"><?= $form->field($applicationBuilderProfile, 'builder_profile_landmark_2')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 builder_profile_verification_disable"></div>
                     <div class="col-lg-6">
                         <div class="panel panel-default cust-panel">
@@ -2193,41 +2193,41 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  property_apf_verification_is_reachable btn-primary <?= ($model->property_apf_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[property_apf_is_reachable]" autocomplete="off" <?= ($model->property_apf_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> Yes
+                            <label class="btn  property_apf_verification_is_reachable btn-primary <?= ($applicationPropertyApf->property_apf_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsPropertyApf[property_apf_is_reachable]" autocomplete="off" <?= ($applicationPropertyApf->property_apf_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> Yes
                             </label>
-                            <label class="btn property_apf_verification_is_reachable btn-primary <?= ($model->property_apf_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[property_apf_is_reachable]" autocomplete="off" <?= ($model->property_apf_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> No
+                            <label class="btn property_apf_verification_is_reachable btn-primary <?= ($applicationPropertyApf->property_apf_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsPropertyApf[property_apf_is_reachable]" autocomplete="off" <?= ($applicationPropertyApf->property_apf_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='property_apf_verification_is_reachable_radio' rel="property_apf_verification_disable" active='property_apf_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row property_apf_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_property_status')->dropDownList(['1' => 'Freshland', '2' => 'Redevelopment'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_property_status')->dropDownList(['1' => 'Freshland', '2' => 'Redevelopment'], ['prompt' => 'Select Property Status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_no_of_workers')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row property_apf_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_mode_of_payment')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_construction_stock')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_flats')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_how_many_sold')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_mode_of_payment')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_construction_stock')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_total_flats')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_how_many_sold')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row property_apf_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_total_shops')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_area')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_work_completed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_possession')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_total_shops')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_area')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_work_completed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_possession')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row property_apf_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_apf')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_delay_in_work')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_tpc')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'property_apf_landmark')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_apf')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_delay_in_work')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_tpc')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationPropertyApf, 'property_apf_landmark')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 property_apf_verification_enable"><?= $form->field($model, 'property_apf_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 property_apf_verification_enable"><?= $form->field($applicationPropertyApf, 'property_apf_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
@@ -2263,35 +2263,35 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  indiv_property_verification_is_reachable btn-primary <?= ($model->indiv_property_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[indiv_property_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='indiv_property_verification_is_reachable_radio' rel="indiv_property_verification_disable" active='indiv_property_verification_enable'> Yes
+                            <label class="btn  indiv_property_verification_is_reachable btn-primary <?= ($applicationIndivProperty->indiv_property_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsIndivProperty[indiv_property_is_reachable]" autocomplete="off" <?= ($applicationIndivProperty->indiv_property_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='indiv_property_verification_is_reachable_radio' rel="indiv_property_verification_disable" active='indiv_property_verification_enable'> Yes
                             </label>
-                            <label class="btn indiv_property_verification_is_reachable btn-primary <?= ($model->indiv_property_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[indiv_property_is_reachable]" autocomplete="off" <?= ($model->indiv_property_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='indiv_property_verification_is_reachable_radio' rel="indiv_property_verification_disable" active='indiv_property_verification_enable'> No
+                            <label class="btn indiv_property_verification_is_reachable btn-primary <?= ($applicationIndivProperty->indiv_property_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsIndivProperty[indiv_property_is_reachable]" autocomplete="off" <?= ($applicationIndivProperty->indiv_property_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='indiv_property_verification_is_reachable_radio' rel="indiv_property_verification_disable" active='indiv_property_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row indiv_property_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_confirmed')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_property_confirmed')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_previous_owner')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row indiv_property_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_property_type')->dropDownList(['1' => 'Fresh Property', '2' => 'Old Sold Out'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_property_type')->dropDownList(['1' => 'Fresh Property', '2' => 'Old Sold Out'], ['prompt' => 'Select Property Status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_area')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_approx_market_value')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_society_name_plate')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row indiv_property_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_door_name_plate')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_tpc')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'indiv_property_landmark')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_door_name_plate')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_tpc')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationIndivProperty, 'indiv_property_landmark')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 indiv_property_verification_enable"><?= $form->field($model, 'indiv_property_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 indiv_property_verification_enable"><?= $form->field($applicationIndivProperty, 'indiv_property_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
@@ -2327,32 +2327,32 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  noc_soc_verification_is_reachable btn-primary <?= ($model->noc_soc_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_soc_is_reachable]" autocomplete="off" <?= ($model->noc_soc_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> Yes
+                            <label class="btn  noc_soc_verification_is_reachable btn-primary <?= ($applicationNocSoc->noc_soc_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsNocSoc[noc_soc_is_reachable]" autocomplete="off" <?= ($applicationNocSoc->noc_soc_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> Yes
                             </label>
-                            <label class="btn noc_soc_verification_is_reachable btn-primary <?= ($model->noc_soc_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_soc_is_reachable]" autocomplete="off" <?= ($model->noc_soc_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> No
+                            <label class="btn noc_soc_verification_is_reachable btn-primary <?= ($applicationNocSoc->noc_soc_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsNocSoc[noc_soc_is_reachable]" autocomplete="off" <?= ($applicationNocSoc->noc_soc_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='noc_soc_verification_is_reachable_radio' rel="noc_soc_verification_disable" active='noc_soc_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
                 </div>
                 <div class="row noc_soc_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_met_person_designation')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_signature_done_by')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_met_person')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_met_person_designation')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_signature_done_by')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_bldg_reg_number')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row noc_soc_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_chairman_name')->textInput(['maxlength' => true]) ?></div>
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_secretary_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_society_type')->dropDownList(['1' => 'Housing', '2' => 'Mhada', '3' => 'Chawl Society'], ['prompt' => 'Select Property Status']) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_previous_owner')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_chairman_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_secretary_name')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row noc_soc_verification_disable">
-                    <div class="col-lg-3"><?= $form->field($model, 'noc_soc_tresurer_name')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-3"><?= $form->field($applicationNocSoc, 'noc_soc_tresurer_name')->textInput(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 noc_soc_verification_enable"><?= $form->field($model, 'noc_soc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 noc_soc_verification_enable"><?= $form->field($applicationNocSoc, 'noc_soc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
@@ -2388,11 +2388,11 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Is Reachable</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn  noc_verification_is_reachable btn-primary <?= ($model->noc_is_reachable == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_is_reachable]" autocomplete="off" <?= ($model->busi_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_verification_is_reachable_radio' rel="noc_verification_disable" active='noc_verification_enable'> Yes
+                            <label class="btn  noc_verification_is_reachable btn-primary <?= ($applicationNocBusi->noc_is_reachable == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsNocBusi[noc_is_reachable]" autocomplete="off" <?= ($applicationNocBusi->noc_is_reachable == 0) ? 'checked' : '' ?> value="0"  class ='noc_verification_is_reachable_radio' rel="noc_verification_disable" active='noc_verification_enable'> Yes
                             </label>
-                            <label class="btn noc_verification_is_reachable btn-primary <?= ($model->noc_is_reachable == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_is_reachable]" autocomplete="off" <?= ($model->noc_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='noc_verification_is_reachable_radio' rel="noc_verification_disable" active='noc_verification_enable'> No
+                            <label class="btn noc_verification_is_reachable btn-primary <?= ($applicationNocBusi->noc_is_reachable == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="ApplicationsNocBusi[noc_is_reachable]" autocomplete="off" <?= ($applicationNocBusi->noc_is_reachable == 1) ? 'checked' : '' ?> value="1" class ='noc_verification_is_reachable_radio' rel="noc_verification_disable" active='noc_verification_enable'> No
                             </label>
                         </div>
                     </div>                           
@@ -2406,7 +2406,7 @@ $loantypes->id = $model->loan_type_id;
                     <img src='<?php echo Yii::$app->request->BaseUrl; ?>/images/acs_loader.gif'>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9 noc_verification_enable"><?= $form->field($model, 'noc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9 noc_verification_enable"><?= $form->field($applicationNocBusi, 'noc_not_reachable_remarks')->textArea(['maxlength' => true]) ?></div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
@@ -2426,18 +2426,18 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-6"></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-9"><?= $form->field($model, 'noc_structure')->textInput(['maxlength' => true]) ?></div>
+                    <div class="col-lg-9"><?= $form->field($applicationNocBusi, 'noc_structure')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3">
                         <label>Status</label>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->noc_status == 0) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 0) ? 'checked' : '' ?> value="0"> Positive
+                            <label class="btn btn-primary <?= ($applicationNocBusi->noc_status == 0) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($applicationNocBusi->noc_status == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->noc_status == 1) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 1) ? 'checked' : '' ?> value="1"> Negative
+                            <label class="btn btn-primary <?= ($applicationNocBusi->noc_status == 1) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($applicationNocBusi->noc_status == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
-                            <label class="btn btn-primary <?= ($model->noc_status == 2) ? 'active' : '' ?>">
-                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($model->noc_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
+                            <label class="btn btn-primary <?= ($applicationNocBusi->noc_status == 2) ? 'active' : '' ?>">
+                                <input type="radio" name="Applications[noc_status]" autocomplete="off" <?= ($applicationNocBusi->noc_status == 2) ? 'checked' : '' ?> value="2"> Credit Refer
                             </label>
                         </div>
                     </div>
@@ -3163,21 +3163,21 @@ $this->registerJs("
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        var resiChecked = $('input[name="Applications[resi_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsResi[resi_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "resi");
-        var resiChecked = $('input[name="Applications[busi_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsBusi[busi_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "busi");
-        var resiChecked = $('input[name="Applications[office_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsOffice[office_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "office");
-        var resiChecked = $('input[name="Applications[resi_office_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsResiOffice[resi_office_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "resi_office");
-        var resiChecked = $('input[name="Applications[builder_profile_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsBuilderProfile[builder_profile_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "builder_profile");
         var resiChecked = $('input[name="Applications[property_apf_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "property_apf");
         var resiChecked = $('input[name="Applications[indiv_property_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "indiv_property");
-        var resiChecked = $('input[name="Applications[noc_soc_is_reachable]"]').filter(":checked").val();
+        var resiChecked = $('input[name="ApplicationsNocSoc[noc_soc_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "noc_soc");
         var resiChecked = $('input[name="Applications[noc_is_reachable]"]').filter(":checked").val();
         autoShowHide(resiChecked, "noc");
@@ -3190,56 +3190,56 @@ $this->registerJs("
                 $("." + source + "_verification_enable").hide();
             }
         }
-        $('input[name="Applications[resi_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsResi[resi_is_reachable]"]').change(function () {
 
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[busi_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsBusi[busi_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[office_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsOffice[office_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[resi_office_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsResiOffice[resi_office_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[property_apf_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsPropertyApf[property_apf_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[indiv_property_is_reachable]"]').change(function () {
+        $('input[name="ApplicationIndivProperty[indiv_property_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[noc_soc_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsNocSoc[noc_soc_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[noc_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsNocBusi[noc_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
             showHide(value, hideValue, enableValue);
         });
-        $('input[name="Applications[builder_profile_is_reachable]"]').change(function () {
+        $('input[name="ApplicationsBuilderProfile[builder_profile_is_reachable]"]').change(function () {
             var value = $(this).filter(":checked").val();
             var hideValue = $(this).attr('rel');
             var enableValue = $(this).attr('active');
@@ -3310,15 +3310,15 @@ $this->registerJs("
             var busi_availability_status = $(this).val();
             availableHide("busi", busi_availability_status);
         });
-        var office_availability_status = $("#applications-office_available_status").val();
+        var office_availability_status = $("#applicationsoffice-office_available_status").val();
         availableHide("office", office_availability_status);
-        $("#applications-office_available_status").change(function () {
+        $("#applicationsoffice-office_available_status").change(function () {
             var office_availability_status = $(this).val();
             availableHide("office", office_availability_status);
         });
-        var resi_office_availability_status = $("#applications-resi_available_status").val();
+        var resi_office_availability_status = $("#applicationsresioffice-resi_available_status").val();
         availableHide("resi_office", resi_office_availability_status);
-        $("#applications-resi_office_available_status").change(function () {
+        $("#applicationsresioffice-resi_office_available_status").change(function () {
             var resi_office_availability_status = $(this).val();
             availableHide("resi_office", resi_office_availability_status);
         });

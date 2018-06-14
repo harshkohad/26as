@@ -51,21 +51,19 @@ use Yii;
  * @property string $updated_on
  * @property integer $is_deleted
  */
-class ApplicationsBusi extends \yii\db\ActiveRecord
-{
+class ApplicationsBusi extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbl_applications_busi';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['application_id'], 'required'],
             [['application_id', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_ownership_status', 'busi_area', 'busi_locality', 'busi_locality_type', 'busi_activity_seen', 'busi_status', 'busi_is_reachable', 'busi_available_status', 'busi_shifted_tenure', 'busi_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
@@ -83,8 +81,7 @@ class ApplicationsBusi extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'application_id' => 'Application ID',
@@ -131,4 +128,21 @@ class ApplicationsBusi extends \yii\db\ActiveRecord
             'is_deleted' => 'Is Deleted',
         ];
     }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if (isset($this->id)) {
+                $this->updated_on = date("Y-m-d H:i:s");
+                $this->update_by = Yii::$app->user->id;
+            } else {
+                $this->created_on = date("Y-m-d H:i:s");
+                $this->created_by = Yii::$app->user->id;
+            }
+            
+            return true;
+        }
+
+        return FALSE;
+    }
+
 }

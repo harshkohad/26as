@@ -39,21 +39,19 @@ use Yii;
  * @property string $updated_on
  * @property integer $is_deleted
  */
-class ApplicationsPropertyApf extends \yii\db\ActiveRecord
-{
+class ApplicationsPropertyApf extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbl_applications_property_apf';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['application_id'], 'required'],
             [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'property_apf_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
@@ -69,8 +67,7 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'application_id' => 'Application ID',
@@ -105,4 +102,21 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord
             'is_deleted' => 'Is Deleted',
         ];
     }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if (isset($this->id)) {
+                $this->updated_on = date("Y-m-d H:i:s");
+                $this->update_by = Yii::$app->user->id;
+            } else {
+                $this->created_on = date("Y-m-d H:i:s");
+                $this->created_by = Yii::$app->user->id;
+            }
+
+            return true;
+        }
+
+        return FALSE;
+    }
+
 }
