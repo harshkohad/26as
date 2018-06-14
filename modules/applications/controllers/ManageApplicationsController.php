@@ -32,7 +32,13 @@ use app\modules\applications\models\ApplicationsHistory;
 use app\modules\applications\models\ApplicationParagraph;
 use app\modules\applications\models\ApplicationsResi;
 use app\modules\applications\models\ApplicationsBusi;
+use app\modules\applications\models\ApplicationsOffice;
 use app\modules\applications\models\ApplicationsNocBusi;
+use app\modules\applications\models\ApplicationsResiOffice;
+use app\modules\applications\models\ApplicationsBuilderProfile;
+use app\modules\applications\models\ApplicationsPropertyApf;
+use app\modules\applications\models\ApplicationsIndivProperty;
+use app\modules\applications\models\ApplicationsNocSoc;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -258,12 +264,11 @@ class ManageApplicationsController extends Controller {
         $pincode_master = new PincodeMaster();
         $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
         $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
+        $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
         if (empty($applicationResi))
             $applicationResi = new ApplicationsResi();
         if (empty($applicationBusi))
-            $applicationBusi = new ApplicationsBusi();
-        
-        $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
+            $applicationBusi = new ApplicationsBusi();       
         if (empty($applicationNocBusi))
             $applicationNocBusi = new ApplicationsNocBusi();
 //        print_r($applicationResi);
@@ -294,10 +299,10 @@ class ManageApplicationsController extends Controller {
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
             #Get checkbox values
-            $applicationResi->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
+            $applicationResi->resi_address_verification = isset($_POST['ApplicationsResi']['resi_address_verification'][0]) ? $_POST['ApplicationsResi']['resi_address_verification'][0] : 0;
             $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
-            $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
-            $applicationNocBusi->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
+            $applicationBusi->busi_address_verification = isset($_POST['ApplicationsBusi']['busi_address_verification'][0]) ? $_POST['ApplicationsBusi']['busi_address_verification'][0] : 0;
+            $applicationNocBusi->noc_address_verification = isset($_POST['ApplicationsNocBusi']['noc_address_verification'][0]) ? $_POST['ApplicationsNocBusi']['noc_address_verification'][0] : 0;
             $model->resi_office_address_verification = isset($_POST['Applications']['resi_office_address_verification'][0]) ? $_POST['Applications']['resi_office_address_verification'][0] : 0;
             $model->builder_profile_address_verification = isset($_POST['Applications']['builder_profile_address_verification'][0]) ? $_POST['Applications']['builder_profile_address_verification'][0] : 0;
             $model->property_apf_address_verification = isset($_POST['Applications']['property_apf_address_verification'][0]) ? $_POST['Applications']['property_apf_address_verification'][0] : 0;
@@ -314,6 +319,15 @@ class ManageApplicationsController extends Controller {
                     $applicationResi->resi_address_long = $latlong['longitude'];
                 }
             }
+            if ($applicationBusi->busi_address_verification == 1) {
+                $latlong = array();
+                $latlong = Applications::getLatLong($_POST['ApplicationsBusi']['busi_address_pincode'], $_POST['ApplicationsBusi']['busi_address']);
+
+                if (!empty($latlong)) {
+                    $applicationBusi->busi_address_lat = $latlong['latitude'];
+                    $applicationBusi->busi_address_long = $latlong['longitude'];
+                }
+            }
             if ($model->office_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['Applications']['office_address_pincode'], $_POST['Applications']['office_address']);
@@ -323,18 +337,9 @@ class ManageApplicationsController extends Controller {
                     $model->office_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->busi_address_verification == 1) {
-                $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['busi_address_pincode'], $_POST['Applications']['busi_address']);
-
-                if (!empty($latlong)) {
-                    $model->busi_address_lat = $latlong['latitude'];
-                    $model->busi_address_long = $latlong['longitude'];
-                }
-            }
             if ($applicationNocBusi->noc_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['noc_address_pincode'], $_POST['Applications']['noc_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsNocBusi']['noc_address_pincode'], $_POST['ApplicationsNocBusi']['noc_address']);
 
                 if (!empty($latlong)) {
                     $applicationNocBusi->noc_address_lat = $latlong['latitude'];
@@ -389,12 +394,12 @@ class ManageApplicationsController extends Controller {
             $model->load(Yii::$app->request->post());
             if (!empty($_POST['ApplicationsResi']['resi_not_reachable_remarks']))
                 $applicationResi->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsResi']['resi_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
-                $model->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsBusi']['busi_not_reachable_remarks']))
+                $applicationBusi->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsBusi']['busi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['office_not_reachable_remarks']))
                 $model->office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['noc_not_reachable_remarks']))
-                $applicationNocBusi->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsNocBusi']['noc_not_reachable_remarks']))
+                $applicationNocBusi->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsNocBusi']['noc_not_reachable_remarks']);
             if (!empty($_POST['Applications']['resi_office_not_reachable_remarks']))
                 $model->resi_office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
             if (!empty($_POST['Applications']['builder_profile_not_reachable_remarks']))
@@ -407,7 +412,6 @@ class ManageApplicationsController extends Controller {
                 $model->noc_soc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_soc_not_reachable_remarks']);
           
             if ($model->save()) {
-                $applicationResi->save();
                 if (isset($_POST['ApplicationsResi']) AND ! empty($_POST['ApplicationsResi'])) {
                     $applicationResi->attributes = $_POST['ApplicationsResi'];
                     $applicationResi->application_id = $id;
@@ -416,12 +420,16 @@ class ManageApplicationsController extends Controller {
                 if (isset($_POST['ApplicationsBusi']) AND ! empty($_POST['ApplicationsBusi'])) {
                     $applicationBusi->attributes = $_POST['ApplicationsBusi'];
                     $applicationBusi->application_id = $id;
-                    if(!$applicationBusi->save()){
-                        echo "<pre/>",print_r($applicationBusi->getErrors());die;
-                    }
+                    $applicationBusi->save();
                 }
-
-                $applicationNocBusi->save();
+                if (isset($_POST['ApplicationsNocBusi']) AND ! empty($_POST['ApplicationsNocBusi'])) {
+                    $applicationNocBusi->attributes = $_POST['ApplicationsNocBusi'];
+                    $applicationNocBusi->application_id = $id;
+                    $applicationNocBusi->save();
+//                    if(!$applicationNocBusi->save()){
+//                        echo "<pre/>",print_r($applicationNocBusi->getErrors());die;
+//                    }
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $errors[] = $model->getErrors();
@@ -1126,27 +1134,39 @@ class ManageApplicationsController extends Controller {
             $app_id = $_POST['app_id'];
             $is_manage = $_POST['is_manage'];
             $applications_model = Applications::findOne($app_id);
-            if ($applications_model->resi_address_verification == 1 ||
-                    $applications_model->busi_address_verification == 1 ||
+            $applicationResi = ApplicationsResi::findOne(['application_id' => $app_id]);
+            $applicationBusi = ApplicationsBusi::findOne(['application_id' => $app_id]);
+            $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $app_id]);
+            if (empty($applicationResi))
+                $applicationResi = new ApplicationsResi();
+            
+            if (empty($applicationBusi))
+                $applicationBusi = new ApplicationsBusi();  
+            
+            if (empty($applicationNocBusi))
+                $applicationNocBusi = new ApplicationsNocBusi();
+            
+            if ($applicationResi->resi_address_verification == 1 ||
+                    $applicationBusi->busi_address_verification == 1 ||
                     $applications_model->office_address_verification == 1 ||
-                    $applications_model->noc_address_verification == 1 ||
+                    $applicationNocBusi->noc_address_verification == 1 ||
                     $applications_model->resi_office_address_verification == 1 ||
                     $applications_model->builder_profile_address_verification == 1 ||
                     $applications_model->property_apf_address_verification == 1 ||
                     $applications_model->indiv_property_address_verification == 1 ||
                     $applications_model->noc_soc_address_verification == 1
             ) {
-                if ($applications_model->resi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 1, $applications_model, 'resi_address_pincode', $is_manage, $return_html);
+                if ($applicationResi->resi_address_verification == 1) {
+                    self::verifierModalRow($app_id, 1, $applicationResi, 'resi_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->busi_address_verification == 1) {
-                    self::verifierModalRow($app_id, 2, $applications_model, 'busi_address_pincode', $is_manage, $return_html);
+                if ($applicationBusi->busi_address_verification == 1) {
+                    self::verifierModalRow($app_id, 2, $applicationBusi, 'busi_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->office_address_verification == 1) {
                     self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->noc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 4, $applications_model, 'noc_address_pincode', $is_manage, $return_html);
+                if ($applicationNocBusi->noc_address_verification == 1) {
+                    self::verifierModalRow($app_id, 4, $applicationNocBusi, 'noc_address_pincode', $is_manage, $return_html);
                 }
                 if ($applications_model->resi_office_address_verification == 1) {
                     self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $is_manage, $return_html);
