@@ -919,26 +919,38 @@ class Applications extends \yii\db\ActiveRecord {
         if ($application_status == 1 || $application_status == 2) {
             $assignable_count = 0;
             $applications_model = Applications::findOne($id);
-            if ($applications_model->resi_address_verification == 1 ||
-                    $applications_model->busi_address_verification == 1 ||
+            $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+            $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
+            $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
+            if (empty($applicationResi))
+                $applicationResi = new ApplicationsResi();
+            
+            if (empty($applicationBusi))
+                $applicationBusi = new ApplicationsBusi();  
+            
+            if (empty($applicationNocBusi))
+                $applicationNocBusi = new ApplicationsNocBusi();
+            
+            if ($applicationResi->resi_address_verification == 1 ||
+                    $applicationBusi->busi_address_verification == 1 ||
                     $applications_model->office_address_verification == 1 ||
-                    $applications_model->noc_address_verification == 1 ||
+                    $applicationNocBusi->noc_address_verification == 1 ||
                     $applications_model->resi_office_address_verification == 1 ||
                     $applications_model->builder_profile_address_verification == 1 ||
                     $applications_model->property_apf_address_verification == 1 ||
                     $applications_model->indiv_property_address_verification == 1 ||
                     $applications_model->noc_soc_address_verification == 1
             ) {
-                if ($applications_model->resi_address_verification == 1) {
+                if ($applicationResi->resi_address_verification == 1) {
                     $assignable_count++;
                 }
-                if ($applications_model->busi_address_verification == 1) {
+                if ($applicationBusi->busi_address_verification == 1) {
                     $assignable_count++;
                 }
                 if ($applications_model->office_address_verification == 1) {
                     $assignable_count++;
                 }
-                if ($applications_model->noc_address_verification == 1) {
+                if ($applicationNocBusi->noc_address_verification == 1) {
                     $assignable_count++;
                 }
                 if ($applications_model->resi_office_address_verification == 1) {
