@@ -54,3 +54,4 @@ ADD COLUMN `update_by` int(11) DEFAULT NULL AFTER `created_on`,
 ADD COLUMN `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `update_by`,
 ADD COLUMN `is_deleted` tinyint(1) DEFAULT '0' AFTER `updated_on`;
 
+ALTER TABLE `tbl_applications_busi` CHANGE `update_by` `updated_by` INT(11) NULL DEFAULT NULL; 

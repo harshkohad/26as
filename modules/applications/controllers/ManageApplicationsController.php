@@ -33,6 +33,12 @@ use app\modules\applications\models\ApplicationParagraph;
 use app\modules\applications\models\ApplicationsResi;
 use app\modules\applications\models\ApplicationsBusi;
 use app\modules\applications\models\ApplicationsNocBusi;
+use app\modules\applications\models\ApplicationsOffice;
+use app\modules\applications\models\ApplicationsResiOffice;
+use app\modules\applications\models\ApplicationsBuilderProfile;
+use app\modules\applications\models\ApplicationsPropertyApf;
+use app\modules\applications\models\ApplicationsIndivProperty;
+use app\modules\applications\models\ApplicationsNocSoc;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -160,10 +166,33 @@ class ManageApplicationsController extends Controller {
         $nocSocPhotosTable = $this->actionGetDocsPhotosTable($id, $model->application_id, 9, 1, 1);
         $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
         $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
+        $applicationOffice = ApplicationsOffice::findOne(['application_id' => $id]);
+        $applicationResiOffice = ApplicationsResiOffice::findOne(['application_id' => $id]);
+        $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
+        $applicationBuilderProfile = ApplicationsBuilderProfile::findOne(['application_id' => $id]);
+        $applicationPropertyApf = ApplicationsPropertyApf::findOne(['application_id' => $id]);
+        $applicationIndivProperty = ApplicationsIndivProperty::findOne(['application_id' => $id]);
+        $applicationNocSoc = ApplicationsNocSoc::findOne(['application_id' => $id]);
         if (empty($applicationResi))
             $applicationResi = new ApplicationsResi();
         if (empty($applicationBusi))
             $applicationBusi = new ApplicationsBusi();
+        if (empty($applicationOffice))
+            $applicationOffice = new ApplicationsOffice();
+        if (empty($applicationResiOffice))
+            $applicationResiOffice = new ApplicationsResiOffice();
+        if (empty($applicationNocBusi))
+            $applicationNocBusi = new ApplicationsNocBusi();
+        if (empty($applicationBuilderProfile))
+            $applicationBuilderProfile = new ApplicationsBuilderProfile();
+        if (empty($applicationBuilderProfile))
+            $applicationBuilderProfile = new ApplicationsBuilderProfile();
+        if (empty($applicationPropertyApf))
+            $applicationPropertyApf = new ApplicationsPropertyApf();
+        if (empty($applicationIndivProperty))
+            $applicationIndivProperty = new ApplicationsIndivProperty();
+        if (empty($applicationNocSoc))
+            $applicationNocSoc = new ApplicationsNocSoc();
         return $this->render('view', [
                     'model' => $model,
                     'itrTable' => $itrTable,
@@ -182,6 +211,13 @@ class ManageApplicationsController extends Controller {
                     'nocSocPhotosTable' => $nocSocPhotosTable,
                     'applicationResi' => $applicationResi,
                     'applicationBusi' => $applicationBusi,
+                    'applicationOffice' => $applicationOffice,
+                    'applicationResiOffice' => $applicationResiOffice,
+                    'applicationNocBusi' => $applicationNocBusi,
+                    'applicationBuilderProfile' => $applicationBuilderProfile,
+                    'applicationPropertyApf' => $applicationPropertyApf,
+                    'applicationIndivProperty' => $applicationIndivProperty,
+                    'applicationNocSoc' => $applicationNocSoc,
         ]);
     }
 
@@ -212,7 +248,7 @@ class ManageApplicationsController extends Controller {
                 $model->profile_id = $profile_id;
                 $new_applicant_profile->save(FALSE);
             } else {
-                #create profile
+#create profile
                 $new_applicant_profile = new ApplicantProfile();
                 $new_applicant_profile->first_name = $post_data['Applications']['first_name'];
                 $new_applicant_profile->middle_name = $post_data['Applications']['middle_name'];
@@ -226,7 +262,7 @@ class ManageApplicationsController extends Controller {
                 $model->profile_id = $new_applicant_profile->id;
             }
             if ($model->save()) {
-                #Save Application id
+#Save Application id
                 $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                 $model->save();
                 $step2 = isset($_REQUEST['step2']) ? $_REQUEST['step2'] : 0;
@@ -258,18 +294,36 @@ class ManageApplicationsController extends Controller {
         $pincode_master = new PincodeMaster();
         $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
         $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
+        $applicationOffice = ApplicationsOffice::findOne(['application_id' => $id]);
+        $applicationResiOffice = ApplicationsResiOffice::findOne(['application_id' => $id]);
+        $applicationBuilderProfile = ApplicationsBuilderProfile::findOne(['application_id' => $id]);
+        $applicationPropertyApf = ApplicationsPropertyApf::findOne(['application_id' => $id]);
+        $applicationIndivProperty = ApplicationsIndivProperty::findOne(['application_id' => $id]);
+        $applicationNocSoc = ApplicationsNocSoc::findOne(['application_id' => $id]);
         if (empty($applicationResi))
             $applicationResi = new ApplicationsResi();
         if (empty($applicationBusi))
             $applicationBusi = new ApplicationsBusi();
-        
+        if (empty($applicationOffice))
+            $applicationOffice = new ApplicationsOffice();
+        if (empty($applicationResiOffice))
+            $applicationResiOffice = new ApplicationsResiOffice();
+        if (empty($applicationBuilderProfile))
+            $applicationBuilderProfile = new ApplicationsBuilderProfile();
+        if (empty($applicationPropertyApf))
+            $applicationPropertyApf = new ApplicationsPropertyApf();
+        if (empty($applicationIndivProperty))
+            $applicationIndivProperty = new ApplicationsIndivProperty();
+        if (empty($applicationNocSoc))
+            $applicationNocSoc = new ApplicationsNocSoc();
+
         $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
         if (empty($applicationNocBusi))
             $applicationNocBusi = new ApplicationsNocBusi();
 //        print_r($applicationResi);
 //        die;
 //        ApplicationsNocBusi
-        //$area_model = new Area();
+//$area_model = new Area();
         $itrTable = $this->actionGetItrTable($id);
         $nocTable = $this->actionGetNocTable($id);
         $kycTable = $this->actionGetKycTable($id, $model->application_id, 0);
@@ -293,18 +347,18 @@ class ManageApplicationsController extends Controller {
 //            die;
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
-            #Get checkbox values
-            $applicationResi->resi_address_verification = isset($_POST['Applications']['resi_address_verification'][0]) ? $_POST['Applications']['resi_address_verification'][0] : 0;
-            $model->office_address_verification = isset($_POST['Applications']['office_address_verification'][0]) ? $_POST['Applications']['office_address_verification'][0] : 0;
-            $model->busi_address_verification = isset($_POST['Applications']['busi_address_verification'][0]) ? $_POST['Applications']['busi_address_verification'][0] : 0;
+#Get checkbox values
+            $applicationResi->resi_address_verification = isset($_POST['ApplicationsResi']['resi_address_verification'][0]) ? $_POST['ApplicationsResi']['resi_address_verification'][0] : 0;
+            $applicationOffice->office_address_verification = isset($_POST['ApplicationsOffice']['office_address_verification'][0]) ? $_POST['ApplicationsOffice']['office_address_verification'][0] : 0;
+            $applicationBusi->busi_address_verification = isset($_POST['ApplicationsBusi']['busi_address_verification'][0]) ? $_POST['ApplicationsBusi']['busi_address_verification'][0] : 0;
             $applicationNocBusi->noc_address_verification = isset($_POST['Applications']['noc_address_verification'][0]) ? $_POST['Applications']['noc_address_verification'][0] : 0;
-            $model->resi_office_address_verification = isset($_POST['Applications']['resi_office_address_verification'][0]) ? $_POST['Applications']['resi_office_address_verification'][0] : 0;
-            $model->builder_profile_address_verification = isset($_POST['Applications']['builder_profile_address_verification'][0]) ? $_POST['Applications']['builder_profile_address_verification'][0] : 0;
-            $model->property_apf_address_verification = isset($_POST['Applications']['property_apf_address_verification'][0]) ? $_POST['Applications']['property_apf_address_verification'][0] : 0;
-            $model->indiv_property_address_verification = isset($_POST['Applications']['indiv_property_address_verification'][0]) ? $_POST['Applications']['indiv_property_address_verification'][0] : 0;
-            $model->noc_soc_address_verification = isset($_POST['Applications']['noc_soc_address_verification'][0]) ? $_POST['Applications']['noc_soc_address_verification'][0] : 0;
+            $applicationResiOffice->resi_office_address_verification = isset($_POST['ApplicationsResiOffice']['resi_office_address_verification'][0]) ? $_POST['ApplicationsResiOffice']['resi_office_address_verification'][0] : 0;
+            $applicationBuilderProfile->builder_profile_address_verification = isset($_POST['ApplicationsBuilderProfile']['builder_profile_address_verification'][0]) ? $_POST['ApplicationsBuilderProfile']['builder_profile_address_verification'][0] : 0;
+            $applicationPropertyApf->property_apf_address_verification = isset($_POST['ApplicationsPropertyApf']['property_apf_address_verification'][0]) ? $_POST['ApplicationsPropertyApf']['property_apf_address_verification'][0] : 0;
+            $applicationIndivProperty->indiv_property_address_verification = isset($_POST['ApplicationsIndivProperty']['indiv_property_address_verification'][0]) ? $_POST['ApplicationsIndivProperty']['indiv_property_address_verification'][0] : 0;
+            $applicationNocSoc->noc_soc_address_verification = isset($_POST['ApplicationsNocSoc']['noc_soc_address_verification'][0]) ? $_POST['ApplicationsNocSoc']['noc_soc_address_verification'][0] : 0;
 
-            //Lat long
+//Lat long
             if ($applicationResi->resi_address_verification == 1) {
                 $latlong = array();
                 $latlong = Applications::getLatLong($_POST['ApplicationsResi']['resi_address_pincode'], $_POST['ApplicationsResi']['resi_address']);
@@ -314,22 +368,22 @@ class ManageApplicationsController extends Controller {
                     $applicationResi->resi_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->office_address_verification == 1) {
+            if ($applicationOffice->office_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['office_address_pincode'], $_POST['Applications']['office_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsOffice']['office_address_pincode'], $_POST['ApplicationsOffice']['office_address']);
 
                 if (!empty($latlong)) {
-                    $model->office_address_lat = $latlong['latitude'];
-                    $model->office_address_long = $latlong['longitude'];
+                    $applicationOffice->office_address_lat = $latlong['latitude'];
+                    $applicationOffice->office_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->busi_address_verification == 1) {
+            if ($applicationBusi->busi_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['busi_address_pincode'], $_POST['Applications']['busi_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsBusi']['busi_address_pincode'], $_POST['Applications']['busi_address']);
 
                 if (!empty($latlong)) {
-                    $model->busi_address_lat = $latlong['latitude'];
-                    $model->busi_address_long = $latlong['longitude'];
+                    $applicationBusi->busi_address_lat = $latlong['latitude'];
+                    $applicationBusi->busi_address_long = $latlong['longitude'];
                 }
             }
             if ($applicationNocBusi->noc_address_verification == 1) {
@@ -341,71 +395,71 @@ class ManageApplicationsController extends Controller {
                     $applicationNocBusi->noc_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->resi_office_address_verification == 1) {
+            if ($applicationResiOffice->resi_office_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['resi_office_address_pincode'], $_POST['Applications']['resi_office_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsResiOffice']['resi_office_address_pincode'], $_POST['ApplicationsResiOffice']['resi_office_address']);
 
                 if (!empty($latlong)) {
                     $model->resi_office_address_lat = $latlong['latitude'];
                     $model->resi_office_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->builder_profile_address_verification == 1) {
+            if ($applicationBuilderProfile->builder_profile_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['builder_profile_address_pincode'], $_POST['Applications']['builder_profile_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsBuilderProfile']['builder_profile_address_pincode'], $_POST['ApplicationsBuilderProfile']['builder_profile_address']);
 
                 if (!empty($latlong)) {
-                    $model->builder_profile_address_lat = $latlong['latitude'];
-                    $model->builder_profile_address_long = $latlong['longitude'];
+                    $applicationBuilderProfile->builder_profile_address_lat = $latlong['latitude'];
+                    $applicationBuilderProfile->builder_profile_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->property_apf_address_verification == 1) {
+            if ($applicationPropertyApf->property_apf_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['property_apf_address_pincode'], $_POST['Applications']['property_apf_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsPropertyApf']['property_apf_address_pincode'], $_POST['ApplicationsPropertyApf']['property_apf_address']);
 
                 if (!empty($latlong)) {
-                    $model->property_apf_address_lat = $latlong['latitude'];
-                    $model->property_apf_address_long = $latlong['longitude'];
+                    $applicationPropertyApf->property_apf_address_lat = $latlong['latitude'];
+                    $applicationPropertyApf->property_apf_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->indiv_property_address_verification == 1) {
+            if ($applicationIndivProperty->indiv_property_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['indiv_property_address_pincode'], $_POST['Applications']['indiv_property_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsIndivProperty']['indiv_property_address_pincode'], $_POST['ApplicationsIndivProperty']['indiv_property_address']);
 
                 if (!empty($latlong)) {
-                    $model->indiv_property_address_lat = $latlong['latitude'];
-                    $model->indiv_property_address_long = $latlong['longitude'];
+                    $applicationIndivProperty->indiv_property_address_lat = $latlong['latitude'];
+                    $applicationIndivProperty->indiv_property_address_long = $latlong['longitude'];
                 }
             }
-            if ($model->noc_soc_address_verification == 1) {
+            if ($applicationNocSoc->noc_soc_address_verification == 1) {
                 $latlong = array();
-                $latlong = Applications::getLatLong($_POST['Applications']['noc_soc_address_pincode'], $_POST['Applications']['noc_soc_address']);
+                $latlong = Applications::getLatLong($_POST['ApplicationsNocSoc']['noc_soc_address_pincode'], $_POST['ApplicationsNocSoc']['noc_soc_address']);
 
                 if (!empty($latlong)) {
-                    $model->noc_soc_address_lat = $latlong['latitude'];
-                    $model->noc_soc_address_long = $latlong['longitude'];
+                    $applicationNocSoc->noc_soc_address_lat = $latlong['latitude'];
+                    $applicationNocSoc->noc_soc_address_long = $latlong['longitude'];
                 }
             }
             $model->load(Yii::$app->request->post());
             if (!empty($_POST['ApplicationsResi']['resi_not_reachable_remarks']))
                 $applicationResi->resi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsResi']['resi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['busi_not_reachable_remarks']))
-                $model->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['busi_not_reachable_remarks']);
+                $applicationBusi->busi_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsBusi']['busi_not_reachable_remarks']);
             if (!empty($_POST['Applications']['office_not_reachable_remarks']))
-                $model->office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['office_not_reachable_remarks']);
+                $applicationOffice->office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsOffice']['office_not_reachable_remarks']);
             if (!empty($_POST['Applications']['noc_not_reachable_remarks']))
                 $applicationNocBusi->noc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['resi_office_not_reachable_remarks']))
-                $model->resi_office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['resi_office_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['builder_profile_not_reachable_remarks']))
-                $model->builder_profile_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['builder_profile_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['property_apf_not_reachable_remarks']))
-                $model->property_apf_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['property_apf_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['indiv_property_not_reachable_remarks']))
-                $model->indiv_property_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['indiv_property_not_reachable_remarks']);
-            if (!empty($_POST['Applications']['noc_soc_not_reachable_remarks']))
-                $model->noc_soc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['Applications']['noc_soc_not_reachable_remarks']);
-          
+            if (!empty($_POST['ApplicationsResiOffice']['resi_office_not_reachable_remarks']))
+                $applicationResiOffice->resi_office_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsResiOffice']['resi_office_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsBuilderProfile']['builder_profile_not_reachable_remarks']))
+                $applicationBuilderProfile->builder_profile_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsBuilderProfile']['builder_profile_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsPropertyApf']['property_apf_not_reachable_remarks']))
+                $applicationPropertyApf->property_apf_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsPropertyApf']['property_apf_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsIndivProperty']['indiv_property_not_reachable_remarks']))
+                $applicationIndivProperty->indiv_property_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsIndivProperty']['indiv_property_not_reachable_remarks']);
+            if (!empty($_POST['ApplicationsNocSoc']['noc_soc_not_reachable_remarks']))
+                $model->noc_soc_not_reachable_remarks = str_replace("\n", PHP_EOL, $_POST['ApplicationsNocSoc']['noc_soc_not_reachable_remarks']);
+
             if ($model->save()) {
                 $applicationResi->save();
                 if (isset($_POST['ApplicationsResi']) AND ! empty($_POST['ApplicationsResi'])) {
@@ -416,12 +470,67 @@ class ManageApplicationsController extends Controller {
                 if (isset($_POST['ApplicationsBusi']) AND ! empty($_POST['ApplicationsBusi'])) {
                     $applicationBusi->attributes = $_POST['ApplicationsBusi'];
                     $applicationBusi->application_id = $id;
-                    if(!$applicationBusi->save()){
-                        echo "<pre/>",print_r($applicationBusi->getErrors());die;
+                    if (!$applicationBusi->save()) {
+                        echo "<pre/>", print_r($applicationBusi->getErrors());
+                        die;
                     }
                 }
-
-                $applicationNocBusi->save();
+                if (isset($_POST['ApplicationsNocBusi']) AND ! empty($_POST['ApplicationsNocBusi'])) {
+                    $applicationNocBusi->attributes = $_POST['ApplicationsNocBusi'];
+                    $applicationNocBusi->application_id = $id;
+                    if (!$applicationNocBusi->save()) {
+                        echo "<pre/>", print_r($applicationNocBusi->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsOffice']) AND ! empty($_POST['ApplicationsOffice'])) {
+                    $applicationOffice->attributes = $_POST['ApplicationsOffice'];
+                    $applicationOffice->application_id = $id;
+                    if (!$applicationOffice->save()) {
+                        echo "<pre/>", print_r($applicationOffice->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsResiOffice']) AND ! empty($_POST['ApplicationsResiOffice'])) {
+                    $applicationResiOffice->attributes = $_POST['ApplicationsResiOffice'];
+                    $applicationResiOffice->application_id = $id;
+                    if (!$applicationResiOffice->save()) {
+                        echo "<pre/>", print_r($applicationResiOffice->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsBuilderProfile']) AND ! empty($_POST['ApplicationsBuilderProfile'])) {
+                    $applicationBuilderProfile->attributes = $_POST['ApplicationsBuilderProfile'];
+                    $applicationBuilderProfile->application_id = $id;
+                    if (!$applicationBuilderProfile->save()) {
+                        echo "<pre/>", print_r($applicationBuilderProfile->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsPropertyApf']) AND ! empty($_POST['ApplicationsPropertyApf'])) {
+                    $applicationPropertyApf->attributes = $_POST['ApplicationsPropertyApf'];
+                    $applicationPropertyApf->application_id = $id;
+                    if (!$applicationPropertyApf->save()) {
+                        echo "<pre/>", print_r($applicationPropertyApf->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsIndivProperty']) AND ! empty($_POST['ApplicationsIndivProperty'])) {
+                    $applicationIndivProperty->attributes = $_POST['ApplicationsIndivProperty'];
+                    $applicationIndivProperty->application_id = $id;
+                    if (!$applicationIndivProperty->save()) {
+                        echo "<pre/>", print_r($applicationIndivProperty->getErrors());
+                        die;
+                    }
+                }
+                if (isset($_POST['ApplicationsNocSoc']) AND ! empty($_POST['ApplicationsNocSoc'])) {
+                    $applicationNocSoc->attributes = $_POST['ApplicationsNocSoc'];
+                    $applicationNocSoc->application_id = $id;
+                    if (!$applicationNocSoc->save()) {
+                        echo "<pre/>", print_r($applicationNocSoc->getErrors());
+                        die;
+                    }
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $errors[] = $model->getErrors();
@@ -447,7 +556,13 @@ class ManageApplicationsController extends Controller {
                             'nocSocPhotosTable' => $nocSocPhotosTable,
                             'applicationResi' => $applicationResi,
                             'applicationBusi' => $applicationBusi,
-                            'applicationNocBusi' => $applicationNocBusi
+                            'applicationNocBusi' => $applicationNocBusi,
+                            'applicationOffice' => $applicationOffice,
+                            'applicationResiOffice' => $applicationResiOffice,
+                            'applicationBuilderProfile' => $applicationBuilderProfile,
+                            'applicationPropertyApf' => $applicationPropertyApf,
+                            'applicationIndivProperty' => $applicationIndivProperty,
+                            'applicationNocSoc' => $applicationNocSoc,
                 ]);
             }
         } else {
@@ -474,7 +589,13 @@ class ManageApplicationsController extends Controller {
                         'nocSocPhotosTable' => $nocSocPhotosTable,
                         'applicationResi' => $applicationResi,
                         'applicationBusi' => $applicationBusi,
-                        'applicationNocBusi' => $applicationNocBusi
+                        'applicationNocBusi' => $applicationNocBusi,
+                        'applicationOffice' => $applicationOffice,
+                        'applicationResiOffice' => $applicationResiOffice,
+                        'applicationBuilderProfile' => $applicationBuilderProfile,
+                        'applicationPropertyApf' => $applicationPropertyApf,
+                        'applicationIndivProperty' => $applicationIndivProperty,
+                        'applicationNocSoc' => $applicationNocSoc,
             ]);
         }
     }
@@ -561,7 +682,7 @@ class ManageApplicationsController extends Controller {
             $assessment_year = $data['assessment_year'];
             $created_by = Yii::$app->user->id;
 
-            #Add data to noc
+#Add data to noc
             $itr_model = new Itr();
 
             $itr_model->application_id = $application_id;
@@ -671,7 +792,7 @@ class ManageApplicationsController extends Controller {
             $remarks = $data['noc_remarks'];
             $created_by = Yii::$app->user->id;
 
-            #Add data to noc
+#Add data to noc
             $noc_model = new Noc();
 
             $noc_model->application_id = $application_id;
@@ -809,7 +930,7 @@ class ManageApplicationsController extends Controller {
                   <tbody>';
                 $sr = 1;
                 foreach ($query as $app_profile) {
-                    #Create table
+#Create table
                     $return_data .= '<tr class="item_row">';
                     $return_data .= "<td>" . $sr++ . "</td>";
                     $return_data .= "<td>" . $app_profile['first_name'] . ' ' . $app_profile['middle_name'] . ' ' . $app_profile['last_name'] . "</td>";
@@ -885,10 +1006,10 @@ class ManageApplicationsController extends Controller {
 
                 if (empty($errors) == true) {
                     if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
-                        #Create Thumbnail
+#Create Thumbnail
                         $upload_img = Applications::thumbnailCreator($newfile_name, $dirname, 'thumbs', '200', '160', $file_tmp, $file_ext);
 
-                        #Add data to kyc
+#Add data to kyc
                         $kyc_model = new Kyc();
 
                         $kyc_model->application_id = $application_id;
@@ -1037,10 +1158,10 @@ class ManageApplicationsController extends Controller {
 
                 if (empty($errors) == true) {
                     if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
-                        #Create Thumbnail
+#Create Thumbnail
                         $upload_img = Applications::thumbnailCreator($newfile_name, $dirname, 'thumbs', '200', '160', $file_tmp, $file_ext);
 
-                        #Add data to kyc
+#Add data to kyc
                         $ap_model = new ApplicantPhotos();
 
                         $ap_model->application_id = $application_id;
@@ -1355,7 +1476,7 @@ class ManageApplicationsController extends Controller {
 
                     if (empty($errors) == true) {
                         if (move_uploaded_file($file_tmp, $dirname . '/' . $newfile_name)) {
-                            #Add data to uploads
+#Add data to uploads
                             $uap_model = new ApplicationsUploads();
                             $uap_model->institute_id = $institute_id;
                             $uap_model->loan_type_id = $loan_type_id;
@@ -1364,7 +1485,7 @@ class ManageApplicationsController extends Controller {
                             $uap_model->save(FALSE);
                             $process = self::processAppsExcel($uap_model->id);
                             if ($process) {
-                                #Send response
+#Send response
                                 $response_data['msg'] = 'Upload Successful!!!';
                                 $response_data['status'] = 'success';
                                 $response_data['html'] = $process;
@@ -1394,7 +1515,7 @@ class ManageApplicationsController extends Controller {
 
     public function processAppsExcel($id) {
         try {
-            #fetch filename
+#fetch filename
             $model = new Applications();
             $apps_data = ApplicationsUploads::find()->where(['id' => $id, 'is_deleted' => '0'])->one();
 
@@ -1449,7 +1570,7 @@ class ManageApplicationsController extends Controller {
                 }
                 $data = $_POST;
                 $id = $data['id'];
-                #fetch filename
+#fetch filename
                 $apps_data = ApplicationsUploads::find()->where(['id' => $id, 'is_deleted' => '0'])->one();
 
                 if (!empty($apps_data)) {
@@ -1523,11 +1644,11 @@ class ManageApplicationsController extends Controller {
                 $model->institute_id = $institute_id;
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
-                    #Save Application id
+#Save Application id
                     $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                     self::updateLatLong($model->id);
                     $model->save();
-                    #Update status
+#Update status
                     $apps_data = ApplicationsUploads::find()->where(['id' => $id])->one();
                     $apps_data->status = 1;
                     $apps_data->save();
@@ -1597,7 +1718,7 @@ class ManageApplicationsController extends Controller {
 
     public function updateLatLong($id) {
         $model = $this->findModel($id);
-        //Lat long
+//Lat long
         if ($model->resi_address_verification == 1) {
             $latlong = array();
             $latlong = Applications::getLatLong($model->resi_address_pincode, $model->resi_address);
@@ -1729,7 +1850,7 @@ class ManageApplicationsController extends Controller {
         $data = $_POST;
         $id = $data['record_id'];
         $type = $data['section_id'];
-        #get data
+#get data
         $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
         $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
         if (!empty($table_data)) {
@@ -1832,7 +1953,7 @@ class ManageApplicationsController extends Controller {
         $return_data = '';
         $data = $_POST;
         $id = $data['record_id'];
-        #get data
+#get data
         $query = "SELECT * FROM tbl_applicant_photos WHERE id = $id";
         $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
         if (!empty($table_data)) {

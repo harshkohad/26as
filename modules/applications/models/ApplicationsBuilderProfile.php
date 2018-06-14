@@ -36,21 +36,19 @@ use Yii;
  * @property string $updated_on
  * @property integer $is_deleted
  */
-class ApplicationsBuilderProfile extends \yii\db\ActiveRecord
-{
+class ApplicationsBuilderProfile extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tbl_applications_builder_profile';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['application_id'], 'required'],
             [['application_id', 'builder_profile_exsistence', 'builder_profile_staff', 'builder_profile_area', 'builder_profile_type_of_office', 'builder_profile_is_reachable', 'builder_profile_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
@@ -66,8 +64,7 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'application_id' => 'Application ID',
@@ -99,4 +96,21 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord
             'is_deleted' => 'Is Deleted',
         ];
     }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if (isset($this->id)) {
+                $this->updated_on = date("Y-m-d H:i:s");
+                $this->update_by = Yii::$app->user->id;
+            } else {
+                $this->created_on = date("Y-m-d H:i:s");
+                $this->created_by = Yii::$app->user->id;
+            }
+
+            return true;
+        }
+
+        return FALSE;
+    }
+
 }

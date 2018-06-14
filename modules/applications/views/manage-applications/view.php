@@ -229,7 +229,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->office_address_verification != 1) {
+                        if ($applicationOffice->office_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -243,25 +243,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->office_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationOffice->office_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->office_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->office_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationOffice->office_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationOffice->office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -282,7 +282,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->resi_office_address_verification != 1) {
+                        if ($applicationResiOffice->resi_office_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -296,25 +296,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->resi_office_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationResiOffice->resi_office_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->resi_office_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationResiOffice->resi_office_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->resi_office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationResiOffice->resi_office_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -334,7 +334,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->builder_profile_address_verification != 1) {
+                        if ($applicationBuilderProfile->builder_profile_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -348,25 +348,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->builder_profile_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationBuilderProfile->builder_profile_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->builder_profile_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationBuilderProfile->builder_profile_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->builder_profile_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationBuilderProfile->builder_profile_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -386,7 +386,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->property_apf_address_verification != 1) {
+                        if ($applicationPropertyApf->property_apf_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -400,25 +400,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->property_apf_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationPropertyApf->property_apf_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->property_apf_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationPropertyApf->property_apf_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->property_apf_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationPropertyApf->property_apf_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -439,7 +439,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->indiv_property_address_verification != 1) {
+                        if ($applicationIndivProperty->indiv_property_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -453,25 +453,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->indiv_property_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationIndivProperty->indiv_property_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->indiv_property_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationIndivProperty->indiv_property_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->indiv_property_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationIndivProperty->indiv_property_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -490,7 +490,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->noc_soc_address_verification != 1) {
+                        if ($applicationNocSoc->noc_soc_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -504,25 +504,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->noc_soc_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationNocSoc->noc_soc_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->noc_soc_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationNocSoc->noc_soc_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->noc_soc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationNocSoc->noc_soc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>
@@ -1817,85 +1817,85 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->office_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationOffice->office_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row office_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_company_name_board') ?></label>
-                        <div class="readonlydiv"><?= $model->office_company_name_board ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_company_name_board') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_company_name_board ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_available_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->office_available_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($applicationOffice->office_available_status) ?></div>
                     </div>
                     <div class="col-lg-3 office_locked_disable office_shifted_enable office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->office_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_met_person ?></div>
                     </div>
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->office_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_met_person_designation ?></div>
                     </div>
 
                 </div>
 
                 <div class="row office_verification_disable">
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->office_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_designation ?></div>
                     </div>
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_department') ?></label>
-                        <div class="readonlydiv"><?= $model->office_department ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_department') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_department ?></div>
                     </div>
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_nature_of_company') ?></label>
-                        <div class="readonlydiv"><?= $model->office_nature_of_company ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_nature_of_company') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_nature_of_company ?></div>
                     </div>
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_employment_years') ?></label>
-                        <div class="readonlydiv"><?= $model->office_employment_years ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_employment_years') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_employment_years ?></div>
                     </div>
 
                 </div>
                 <div class="row office_verification_disable">
                     <div class="col-lg-3 office_locked_disable office_shifted_disable office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_net_salary_amount') ?></label>
-                        <div class="readonlydiv"><?= $model->office_net_salary_amount ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_net_salary_amount') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_net_salary_amount ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_tpc_for_applicant') ?></label>
-                        <div class="readonlydiv"><?= $model->office_tpc_for_applicant ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_tpc_for_applicant') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_tpc_for_applicant ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_tpc_for_company') ?></label>
-                        <div class="readonlydiv"><?= $model->office_tpc_for_company ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_tpc_for_company') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_tpc_for_company ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_landmark') ?></label>
-                        <div class="readonlydiv"><?= $model->office_landmark ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_landmark') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_landmark ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 busi_locked_enable busi_shifted_disable office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_reason_for_closed') ?></label>
-                        <div class="readonlydiv"><?= $model->office_reason_for_closed ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_reason_for_closed ?></div>
                     </div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_enable office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_shifted_tenure') ?></label>
-                        <div class="readonlydiv"><?= $model->office_shifted_tenure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_shifted_tenure ?></div>
                     </div>
                     <div class="col-lg-6 office_verification_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('office_not_reachable_remarks', $model->office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('office_not_reachable_remarks', $applicationOffice->office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 office_verification_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->office_remarks ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationOffice->getAttributeLabel('office_remarks') ?></label>
+                        <div class="readonlydiv"><?= $applicationOffice->office_remarks ?></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="panel panel-default cust-panel">
@@ -1916,7 +1916,7 @@ $this->params['breadcrumbs'][] = 'View';
                 <div class="row office_verification_disable">
                     <div class="col-lg-3">
                         <label>Status</label>
-                        <div class="readonlydiv"><?= ($model->office_status == 0) ? 'Positive' : (($model->office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                        <div class="readonlydiv"><?= ($applicationOffice->office_status == 0) ? 'Positive' : (($applicationOffice->office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
                 </div>
             </div>
@@ -1935,173 +1935,173 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->resi_office_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationResiOffice->resi_office_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_society_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_society_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_society_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_society_name_plate ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_door_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_door_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_door_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_door_name_plate ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_1') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_tpc_neighbor_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_tpc_neighbor_1 ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_neighbor_2') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_tpc_neighbor_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_tpc_neighbor_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_tpc_neighbor_2 ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
 
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_relation') ?></label>
-                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_relation) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_relation') ?></label>
+                        <div class="readonlydiv"><?= $model->getRelationName($applicationResiOffice->resi_office_relation) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getOwnershipStatus($model->resi_office_ownership_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_ownership_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getOwnershipStatus($applicationResiOffice->resi_office_ownership_status) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_ownership_status_text') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_ownership_status_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_ownership_status_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_ownership_status_text ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_available_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getAvailableStatus($model->resi_office_available_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getAvailableStatus($applicationResiOffice->resi_office_available_status) ?></div>
                     </div>
 
                 </div>
-                <?php if ($model->resi_office_ownership_status == 1) {
+                <?php if ($applicationResiOffice->resi_office_ownership_status == 1) {
                     ?>
                     <div class="row resi_office_verification_disable">
                         <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rented_owner_name') ?></label>
-                            <div class="readonlydiv"><?= $model->resi_office_rented_owner_name ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_rented_owner_name') ?></label>
+                            <div class="readonlydiv"><?= $applicationResiOffice->resi_office_rented_owner_name ?></div>
                         </div>
                         <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_rent_amount') ?></label>
-                            <div class="readonlydiv"><?= $model->resi_office_rent_amount ?></div>
+                            <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_rent_amount') ?></label>
+                            <div class="readonlydiv"><?= $applicationResiOffice->resi_office_rent_amount ?></div>
                         </div>
                     </div>
                 <?php }
                 ?>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_reason_for_closed') ?></label>
-                        <div class="readonlydiv"><?= $model->office_reason_for_closed ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_reason_for_closed') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_reason_for_closed ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_enable resi_office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('office_shifted_tenure') ?></label>
-                        <div class="readonlydiv"><?= $model->office_shifted_tenure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_shifted_tenure') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_shifted_tenure ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_available_status') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_available_status ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_available_status') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_available_status ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_home_area') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_home_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_home_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_home_area ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
 
                     <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_stay_years') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_stay_years ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_stay_years') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_stay_years ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_enable resi_office_shifted_disable resi_office_locked_shifted_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_total_family_members') ?></label>
-                        <div class="readonlydiv"><?= $model->getRelationName($model->resi_office_total_family_members) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_total_family_members') ?></label>
+                        <div class="readonlydiv"><?= $model->getRelationName($applicationResiOffice->resi_office_total_family_members) ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_working_members') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_working_members ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_working_members') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_working_members ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_company_name_board') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_company_name_board ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_company_name_board') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_company_name_board ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_met_person_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_department') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_department ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_department') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_department ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_nature_of_company') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_nature_of_company ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_nature_of_company') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_nature_of_company ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_employment_years') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_employment_years ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_employment_years') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_employment_years ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_net_salary_amount') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_net_salary_amount ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_net_salary_amount') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_net_salary_amount ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_for_applicant') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_tpc_for_applicant ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_tpc_for_applicant') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_tpc_for_applicant ?></div>
                     </div>
                 </div>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_tpc_for_company') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_tpc_for_company ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_tpc_for_company') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_tpc_for_company ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality') ?></label>
-                        <div class="readonlydiv"><?= $model->getResiLocality($model->resi_office_locality) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_locality') ?></label>
+                        <div class="readonlydiv"><?= $model->getResiLocality($applicationResiOffice->resi_office_locality) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_locality_text') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_locality_text ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_locality_text') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_locality_text ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_landmark_1') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_landmark_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_landmark_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_landmark_1 ?></div>
                     </div>
                 </div>                        
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_landmark_2') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_landmark_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_landmark_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_landmark_2 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_structure') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_structure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_structure') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_structure ?></div>
                     </div>
                     <div class="col-lg-3 resi_office_locked_disable resi_office_shifted_disable resi_office_locked_shifted_disable"> 
                         <label>Market Feedback</label>
-                        <div class="readonlydiv"><?= ($model->resi_office_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
+                        <div class="readonlydiv"><?= ($applicationResiOffice->resi_office_market_feedback == 0) ? 'Positive' : 'Negative' ?></div>
                     </div>
                     <div class="col-lg-3">
                     </div>
                 </div>
                 <div class="row resi_office_verification_enable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_office_not_reachable_remarks', $model->resi_office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('resi_office_not_reachable_remarks', $applicationResiOffice->resi_office_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">                           
@@ -2123,12 +2123,12 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div class="row resi_office_verification_disable">
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('resi_office_remarks') ?></label>
-                        <div class="readonlydiv"><?= $model->resi_office_remarks ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationResiOffice->getAttributeLabel('resi_office_remarks') ?></label>
+                        <div class="readonlydiv"><?= $applicationResiOffice->resi_office_remarks ?></div>
                     </div>
                     <div class="col-lg-3">
                         <label>Status</label>
-                        <div class="readonlydiv"><?= ($model->resi_office_status == 0) ? 'Positive' : (($model->resi_office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                        <div class="readonlydiv"><?= ($applicationResiOffice->resi_office_status == 0) ? 'Positive' : (($applicationResiOffice->resi_office_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
                 </div>
             </div>
@@ -2147,74 +2147,74 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->busi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationBuilderProfile->builder_profile_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div> 
                 </div>
                 <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_company_name_board') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_company_name_board ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_company_name_board') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_company_name_board ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_met_person_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_exsistence') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_exsistence ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_exsistence') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_exsistence ?></div>
                     </div>
                 </div>                    
                 <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_current_projects') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_current_projects ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_current_projects') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_current_projects ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_previous_projects') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_previous_projects ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_previous_projects') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_previous_projects ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_staff') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_staff ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_staff') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_staff ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_area') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_area ?></div>
                     </div>
                 </div>
                 <div class="row builder_profile_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_type_of_office') ?></label>
-                        <div class="readonlydiv"><?= $model->getOfficeType($model->builder_profile_type_of_office) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_type_of_office') ?></label>
+                        <div class="readonlydiv"><?= $model->getOfficeType($applicationBuilderProfile->builder_profile_type_of_office) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_tpc_neighbor_1') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_tpc_neighbor_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_tpc_neighbor_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_tpc_neighbor_1 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_tpc_neighbor_2') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_tpc_neighbor_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_tpc_neighbor_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_tpc_neighbor_2 ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_landmark_1') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_landmark_1 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_landmark_1') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_landmark_1 ?></div>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-lg-3 builder_profile_verification_enable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('builder_profile_not_reachable_remarks', $model->builder_profile_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('builder_profile_not_reachable_remarks', $applicationBuilderProfile->builder_profile_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-lg-3 builder_profile_verification_disable">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('builder_profile_landmark_2') ?></label>
-                        <div class="readonlydiv"><?= $model->builder_profile_landmark_2 ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationBuilderProfile->getAttributeLabel('builder_profile_landmark_2') ?></label>
+                        <div class="readonlydiv"><?= $applicationBuilderProfile->builder_profile_landmark_2 ?></div>
                     </div>
                     <div class="col-lg-3 builder_profile_verification_disable">
                     </div>
@@ -2249,86 +2249,86 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->property_apf_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationPropertyApf->property_apf_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row property_apf_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_met_person_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_property_status') ?></label>
-                        <div class="readonlydiv"><?= $model->getPropertyStatus($model->property_apf_property_status) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_property_status') ?></label>
+                        <div class="readonlydiv"><?= $model->getPropertyStatus($applicationPropertyApf->property_apf_property_status) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_no_of_workers') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_no_of_workers ?></div>
-                    </div>
-                </div>
-                <div class="row property_apf_verification_disable">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_mode_of_payment') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_mode_of_payment ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_construction_stock') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_construction_stock ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_total_flats') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_total_flats ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_how_many_sold') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_how_many_sold ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_no_of_workers') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_no_of_workers ?></div>
                     </div>
                 </div>
                 <div class="row property_apf_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_total_shops') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_total_shops ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_mode_of_payment') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_mode_of_payment ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_area') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_area ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_construction_stock') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_construction_stock ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_work_completed') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_work_completed ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_total_flats') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_total_flats ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_possession') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_possession ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_how_many_sold') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_how_many_sold ?></div>
                     </div>
                 </div>
                 <div class="row property_apf_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_apf') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_apf ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_total_shops') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_total_shops ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_delay_in_work') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_delay_in_work ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_area ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_tpc') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_tpc ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_work_completed') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_work_completed ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_landmark') ?></label>
-                        <div class="readonlydiv"><?= $model->property_apf_landmark ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_possession') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_possession ?></div>
+                    </div>
+                </div>
+                <div class="row property_apf_verification_disable">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_apf') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_apf ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_delay_in_work') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_delay_in_work ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_tpc') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_tpc ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_landmark') ?></label>
+                        <div class="readonlydiv"><?= $applicationPropertyApf->property_apf_landmark ?></div>
                     </div>
                 </div>
                 <div class="row property_apf_verification_enable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('property_apf_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('property_apf_not_reachable_remarks', $model->property_apf_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationPropertyApf->getAttributeLabel('property_apf_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('property_apf_not_reachable_remarks', $applicationPropertyApf->property_apf_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -2363,66 +2363,66 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->busi_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationIndivProperty->indiv_property_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row indiv_property_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_met_person_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_property_confirmed') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_property_confirmed ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_property_confirmed') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_property_confirmed ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_previous_owner') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_previous_owner ?></div>
-                    </div>
-                </div>
-                <div class="row indiv_property_verification_disable">
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_property_type') ?></label>
-                        <div class="readonlydiv"><?= $model->getPropertyType($model->indiv_property_property_type) ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_area') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_area ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_approx_market_value') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_approx_market_value ?></div>
-                    </div>
-                    <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_society_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_society_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_previous_owner') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_previous_owner ?></div>
                     </div>
                 </div>
                 <div class="row indiv_property_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_door_name_plate') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_door_name_plate ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_property_type') ?></label>
+                        <div class="readonlydiv"><?= $model->getPropertyType($applicationIndivProperty->indiv_property_property_type) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_tpc') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_tpc ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_area') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_area ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_landmark') ?></label>
-                        <div class="readonlydiv"><?= $model->indiv_property_landmark ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_approx_market_value') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_approx_market_value ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_society_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_society_name_plate ?></div>
+                    </div>
+                </div>
+                <div class="row indiv_property_verification_disable">
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_door_name_plate') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_door_name_plate ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_tpc') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_tpc ?></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_landmark') ?></label>
+                        <div class="readonlydiv"><?= $applicationIndivProperty->indiv_property_landmark ?></div>
                     </div>
                     <div class="col-lg-3">
                     </div>
                 </div>
                 <div class="row indiv_property_verification_enable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('indiv_property_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('indiv_property_not_reachable_remarks', $model->indiv_property_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationIndivProperty->getAttributeLabel('indiv_property_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('indiv_property_not_reachable_remarks', $applicationIndivProperty->indiv_property_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -2457,54 +2457,54 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->noc_soc_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationNocSoc->noc_soc_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row noc_soc_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_met_person') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_met_person ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_met_person') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_met_person ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_met_person_designation') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_met_person_designation ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_met_person_designation') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_met_person_designation ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_signature_done_by') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_signature_done_by ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_signature_done_by') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_signature_done_by ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_bldg_reg_number') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_bldg_reg_number ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_bldg_reg_number') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_bldg_reg_number ?></div>
                     </div>
                 </div>                        
                 <div class="row noc_soc_verification_disable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_society_type') ?></label>
-                        <div class="readonlydiv"><?= $model->getSocietyType($model->noc_soc_society_type) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_society_type') ?></label>
+                        <div class="readonlydiv"><?= $model->getSocietyType($applicationNocSoc->noc_soc_society_type) ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_previous_owner') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_previous_owner ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_previous_owner') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_previous_owner ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_chairman_name') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_chairman_name ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_chairman_name') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_chairman_name ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_secretary_name') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_secretary_name ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_secretary_name') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_secretary_name ?></div>
                     </div>
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_tresurer_name') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_soc_tresurer_name ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_tresurer_name') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocSoc->noc_soc_tresurer_name ?></div>
                     </div>
                 </div>
                 <div class="row noc_soc_verification_enable">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_soc_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('noc_soc_not_reachable_remarks', $model->noc_soc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocSoc->getAttributeLabel('noc_soc_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9"><?= \yii\bootstrap\Html::textArea('noc_soc_not_reachable_remarks', $applicationNocSoc->noc_soc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -2539,8 +2539,8 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-3">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_is_reachable') ?></label>
-                        <div class="readonlydiv"><?= ($model->noc_is_reachable == 0) ? 'Yes' : 'No' ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_is_reachable') ?></label>
+                        <div class="readonlydiv"><?= ($applicationNocBusi->noc_is_reachable == 0) ? 'Yes' : 'No' ?></div>
                     </div>
                 </div>
                 <div class="row noc_verification_disable">
@@ -2550,8 +2550,8 @@ $this->params['breadcrumbs'][] = 'View';
                 </div>
                 <div class="row noc_verification_enable">
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_not_reachable_remarks') ?></label>
-                        <div class="col-lg-9 noc_verification_enable"><?= \yii\bootstrap\Html::textArea('noc_not_reachable_remarks', $model->noc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_not_reachable_remarks') ?></label>
+                        <div class="col-lg-9 noc_verification_enable"><?= \yii\bootstrap\Html::textArea('noc_not_reachable_remarks', $applicationNocBusi->noc_not_reachable_remarks, ['maxlength' => true, 'readonly' => 'readonly']) ?></div>
                     </div>
                 </div>
                 <div class="row">
@@ -2574,12 +2574,12 @@ $this->params['breadcrumbs'][] = 'View';
 
                 <div class="row noc_verification_disable">
                     <div class="col-lg-9">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_structure') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_structure ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_structure') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocBusi->noc_structure ?></div>
                     </div>
                     <div class="col-lg-3 noc_verification_disable">
                         <label>Status</label>
-                        <div class="readonlydiv"><?= ($model->noc_status == 0) ? 'Positive' : (($model->noc_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
+                        <div class="readonlydiv"><?= ($applicationNocBusi->noc_status == 0) ? 'Positive' : (($applicationNocBusi->noc_status == 1) ? 'Negative' : 'Credit Refer') ?></div>
                     </div>
                 </div>
             </div>
@@ -2672,19 +2672,19 @@ $this->registerJs("
         autoShowHide(resiChecked, "resi");
         var busiChecked = '<?php echo $applicationBusi->busi_is_reachable; ?>'
         autoShowHide(busiChecked, "busi");
-        var resiChecked = '<?php echo $model->office_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationOffice->office_is_reachable; ?>'
         autoShowHide(resiChecked, "office");
-        var resiChecked = '<?php echo $model->resi_office_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationResiOffice->resi_office_is_reachable; ?>'
         autoShowHide(resiChecked, "resi_office");
-        var resiChecked = '<?php echo $model->builder_profile_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationBuilderProfile->builder_profile_is_reachable; ?>'
         autoShowHide(resiChecked, "builder_profile");
-        var resiChecked = '<?php echo $model->property_apf_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationPropertyApf->property_apf_is_reachable; ?>'
         autoShowHide(resiChecked, "property_apf");
-        var resiChecked = '<?php echo $model->indiv_property_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationIndivProperty->indiv_property_is_reachable; ?>'
         autoShowHide(resiChecked, "indiv_property");
-        var resiChecked = '<?php echo $model->noc_soc_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationNocSoc->noc_soc_is_reachable; ?>'
         autoShowHide(resiChecked, "noc_soc");
-        var resiChecked = '<?php echo $model->noc_is_reachable; ?>'
+        var resiChecked = '<?php echo $applicationNocBusi->noc_is_reachable; ?>'
         autoShowHide(resiChecked, "noc");
 
         function autoShowHide(resiChecked, source) {
@@ -2701,9 +2701,9 @@ $this->registerJs("
         availableHide("resi", resiChecked);
         var busiChecked = '<?php echo $applicationBusi->busi_available_status; ?>'
         availableHide("busi", busiChecked);
-        var officeChecked = '<?php echo $model->office_available_status; ?>'
+        var officeChecked = '<?php echo $applicationOffice->office_available_status; ?>'
         availableHide("office", officeChecked);
-        var resiChecked = '<?php echo $model->resi_office_available_status; ?>'
+        var resiChecked = '<?php echo $applicationResiOffice->resi_office_available_status; ?>'
         availableHide("resi_office", resiChecked);
 
         function availableHide(source, availability_status) {
