@@ -1817,7 +1817,7 @@ $loantypes->id = $model->loan_type_id;
 
 
                 <div class="row">
-                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_staff_seen')->textInput() ?></div>
+                    <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_staff_seen')->textInput(['type' => 'number']) ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_disable busi_locked_shifted_disable"><?= $form->field($applicationBusi, 'busi_area')->textInput() ?></div>
                     <div class="col-lg-3 busi_locked_enable busi_shifted_disable busi_locked_shifted_enable"><?= $form->field($applicationBusi, 'busi_reason_for_closed')->textInput(['maxlength' => true]) ?></div>
                     <div class="col-lg-3 busi_locked_disable busi_shifted_enable busi_locked_shifted_enable"><?= $form->field($applicationBusi, 'busi_shifted_tenure')->textInput(['maxlength' => true]) ?></div>
