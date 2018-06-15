@@ -47,14 +47,14 @@ class ApplicationsNocSoc extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'noc_soc_society_type', 'noc_soc_is_reachable', 'noc_soc_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'noc_soc_society_type', 'noc_soc_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['noc_soc_not_reachable_remarks'], 'string'],
             [['noc_soc_chairman_name', 'noc_soc_secretary_name', 'noc_soc_tresurer_name'], 'string', 'max' => 200],
             [['noc_soc_met_person', 'noc_soc_met_person_designation', 'noc_soc_signature_done_by', 'noc_soc_bldg_reg_number', 'noc_soc_previous_owner'], 'string', 'max' => 150],
             [['noc_soc_address', 'noc_soc_address_trigger'], 'string', 'max' => 1000],
             [['noc_soc_address_pincode'], 'string', 'max' => 10],
-            [['noc_soc_address_lat', 'noc_soc_address_long'], 'string', 'max' => 45],
+            //[['noc_soc_address_lat', 'noc_soc_address_long'], 'string', 'max' => 45],
         ];
     }
 

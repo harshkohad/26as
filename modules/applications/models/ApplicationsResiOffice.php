@@ -73,7 +73,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'resi_office_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['resi_office_not_reachable_remarks'], 'string'],
             [['resi_office_reason_for_closed', 'resi_office_rented_owner_name'], 'string', 'max' => 100],
@@ -81,7 +81,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord {
             [['resi_office_structure', 'resi_office_remarks', 'resi_office_address', 'resi_office_address_trigger'], 'string', 'max' => 1000],
             [['resi_office_rent_amount'], 'string', 'max' => 500],
             [['resi_office_address_pincode'], 'string', 'max' => 10],
-            [['resi_office_address_lat', 'resi_office_address_long'], 'string', 'max' => 45],
+            //[['resi_office_address_lat', 'resi_office_address_long'], 'string', 'max' => 45],
         ];
     }
 
