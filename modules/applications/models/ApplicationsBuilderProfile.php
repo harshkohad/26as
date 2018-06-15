@@ -51,13 +51,13 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'builder_profile_exsistence', 'builder_profile_staff', 'builder_profile_area', 'builder_profile_type_of_office', 'builder_profile_is_reachable', 'builder_profile_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'builder_profile_exsistence', 'builder_profile_staff', 'builder_profile_area', 'builder_profile_type_of_office', 'builder_profile_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['builder_profile_not_reachable_remarks'], 'string'],
             [['builder_profile_company_name_board', 'builder_profile_met_person', 'builder_profile_met_person_designation', 'builder_profile_tpc_neighbor_1', 'builder_profile_tpc_neighbor_2', 'builder_profile_landmark_1', 'builder_profile_landmark_2'], 'string', 'max' => 150],
             [['builder_profile_current_projects', 'builder_profile_previous_projects', 'builder_profile_address', 'builder_profile_address_trigger'], 'string', 'max' => 1000],
             [['builder_profile_address_pincode'], 'string', 'max' => 10],
-            [['builder_profile_address_lat', 'builder_profile_address_long'], 'string', 'max' => 45],
+            //[['builder_profile_address_lat', 'builder_profile_address_long'], 'string', 'max' => 45],
         ];
     }
 
