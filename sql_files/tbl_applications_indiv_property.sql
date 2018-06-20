@@ -31,6 +31,6 @@ ALTER TABLE `tbl_applications_indiv_property`
 ALTER TABLE `tbl_applications_indiv_property` 
 ADD COLUMN `created_by` INT(11) NULL AFTER `indiv_property_address_long`,
 ADD COLUMN `created_on` datetime DEFAULT CURRENT_TIMESTAMP AFTER `created_by`,
-ADD COLUMN `update_by` int(11) DEFAULT NULL AFTER `created_on`,
-ADD COLUMN `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `update_by`,
+ADD COLUMN `updated_by` int(11) DEFAULT NULL AFTER `created_on`,
+ADD COLUMN `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `updated_by`,
 ADD COLUMN `is_deleted` tinyint(1) DEFAULT '0' AFTER `updated_on`;

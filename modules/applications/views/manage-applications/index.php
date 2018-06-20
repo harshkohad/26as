@@ -138,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'mobile_user_status_updated_on',
                     // 'created_by',
                     // 'created_on',
-                    // 'update_by',
+                    // 'updated_by',
                     // 'updated_on',
                     // 'is_deleted',
                     [

@@ -19,7 +19,7 @@ class ApplicationsSearch extends Applications {
      */
     public function rules() {
         return [
-            [['id', 'profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'application_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['id', 'profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'application_status', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['application_id', 'first_name', 'middle_name', 'last_name', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'date_of_application', 'financial_pan_card_no', 'financial_name', 'financial_assessment_year', 'financial_date_of_filing', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 'bank_account_holder', 'bank_account_number', 'bank_dated_transaction', 'bank_pan_card_no', 'bank_current_balance', 'bank_account_opening_date', 'bank_date_of_birth', 'bank_address', 'bank_narration', 'created_on', 'updated_on', 'case_id'], 'safe'],
         ];
     }
@@ -88,7 +88,7 @@ class ApplicationsSearch extends Applications {
             'application_status' => $this->application_status,
             'created_by' => $this->created_by,
             'created_on' => $this->created_on,
-            'update_by' => $this->update_by,
+            'updated_by' => $this->updated_by,
             'updated_on' => $this->updated_on,
             'is_deleted' => $this->is_deleted,
         ]);

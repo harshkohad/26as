@@ -35,7 +35,7 @@ use Yii;
  * @property string $property_apf_address_long
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -54,7 +54,7 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['property_apf_not_reachable_remarks'], 'string'],
             [['property_apf_met_person', 'property_apf_met_person_designation', 'property_apf_mode_of_payment', 'property_apf_construction_stock', 'property_apf_work_completed', 'property_apf_possession', 'property_apf_apf', 'property_apf_delay_in_work', 'property_apf_tpc', 'property_apf_landmark'], 'string', 'max' => 150],
@@ -97,7 +97,7 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord {
             'property_apf_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
@@ -107,7 +107,7 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             if (isset($this->id)) {
                 $this->updated_on = date("Y-m-d H:i:s");
-                $this->update_by = Yii::$app->user->id;
+                $this->updated_by = Yii::$app->user->id;
             } else {
                 $this->created_on = date("Y-m-d H:i:s");
                 $this->created_by = Yii::$app->user->id;

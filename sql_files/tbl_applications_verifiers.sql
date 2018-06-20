@@ -5,6 +5,6 @@ CHANGE COLUMN `mobile_user_status` `mobile_user_status` TINYINT(1) NULL DEFAULT 
 ALTER TABLE `acs`.`tbl_applications_verifiers_revoked` 
 DROP COLUMN `is_deleted`,
 DROP COLUMN `updated_on`,
-DROP COLUMN `update_by`,
+DROP COLUMN `updated_by`,
 DROP COLUMN `created_by`,
 CHANGE COLUMN `assigned_for_the_day` `old_created_on` DATETIME NULL COMMENT '0 : Not asssigned for the day, 1 : Assigned for the day' ;

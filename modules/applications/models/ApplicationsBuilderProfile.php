@@ -32,7 +32,7 @@ use Yii;
  * @property string $builder_profile_address_long
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -51,7 +51,7 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'builder_profile_exsistence', 'builder_profile_staff', 'builder_profile_area', 'builder_profile_type_of_office', 'builder_profile_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'builder_profile_exsistence', 'builder_profile_staff', 'builder_profile_area', 'builder_profile_type_of_office', 'builder_profile_is_reachable', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['builder_profile_not_reachable_remarks'], 'string'],
             [['builder_profile_company_name_board', 'builder_profile_met_person', 'builder_profile_met_person_designation', 'builder_profile_tpc_neighbor_1', 'builder_profile_tpc_neighbor_2', 'builder_profile_landmark_1', 'builder_profile_landmark_2'], 'string', 'max' => 150],
@@ -91,7 +91,7 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord {
             'builder_profile_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
@@ -101,7 +101,7 @@ class ApplicationsBuilderProfile extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             if (isset($this->id)) {
                 $this->updated_on = date("Y-m-d H:i:s");
-                $this->update_by = Yii::$app->user->id;
+                $this->updated_by = Yii::$app->user->id;
             } else {
                 $this->created_on = date("Y-m-d H:i:s");
                 $this->created_by = Yii::$app->user->id;

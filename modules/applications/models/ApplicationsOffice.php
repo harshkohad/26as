@@ -36,7 +36,7 @@ use Yii;
  * @property string $office_address_long
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -55,7 +55,7 @@ class ApplicationsOffice extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'office_employment_years', 'office_status', 'office_is_reachable', 'office_available_status', 'office_shifted_tenure', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'office_employment_years', 'office_status', 'office_is_reachable', 'office_available_status', 'office_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['office_not_reachable_remarks'], 'string'],
             [['office_reason_for_closed'], 'string', 'max' => 100],
@@ -100,7 +100,7 @@ class ApplicationsOffice extends \yii\db\ActiveRecord {
             'office_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
@@ -110,7 +110,7 @@ class ApplicationsOffice extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             if (isset($this->id)) {
                 $this->updated_on = date("Y-m-d H:i:s");
-                $this->update_by = Yii::$app->user->id;
+                $this->updated_by = Yii::$app->user->id;
             } else {
                 $this->created_on = date("Y-m-d H:i:s");
                 $this->created_by = Yii::$app->user->id;

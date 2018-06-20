@@ -54,7 +54,7 @@ use Yii;
  * @property string $resi_office_address_long
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -73,7 +73,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'resi_office_home_area', 'resi_office_ownership_status', 'resi_office_stay_years', 'resi_office_total_family_members', 'resi_office_working_members', 'resi_office_employment_years', 'resi_office_locality', 'resi_office_locality_type', 'resi_office_market_feedback', 'resi_office_status', 'resi_office_is_reachable', 'resi_office_available_status', 'resi_office_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['resi_office_not_reachable_remarks'], 'string'],
             [['resi_office_reason_for_closed', 'resi_office_rented_owner_name'], 'string', 'max' => 100],
@@ -137,7 +137,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord {
             'resi_office_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
@@ -147,7 +147,7 @@ class ApplicationsResiOffice extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             if (isset($this->id)) {
                 $this->updated_on = date("Y-m-d H:i:s");
-                $this->update_by = Yii::$app->user->id;
+                $this->updated_by = Yii::$app->user->id;
             } else {
                 $this->created_on = date("Y-m-d H:i:s");
                 $this->created_by = Yii::$app->user->id;
