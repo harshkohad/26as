@@ -140,7 +140,7 @@ CREATE TABLE `tbl_applications` (
   `ocr_receipt_feedback` tinyint(1) DEFAULT '0' COMMENT '0 : Positive, 1 : Negative',
   `created_by` int(11) DEFAULT NULL,
   `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
