@@ -552,7 +552,7 @@ class Applications extends \yii\db\ActiveRecord {
                     $applicationBuilderProfile->builder_profile_address_verification == 1 ||
                     $applicationPropertyApf->property_apf_address_verification == 1 ||
                     $applicationIndivProperty->indiv_property_address_verification == 1 ||
-                    $applicationNocBusi->noc_soc_address_verification == 1
+                    $applicationNocSoc->noc_soc_address_verification == 1
             ) {
                 if ($applicationResi->resi_address_verification == 1) {
                     $assignable_count++;
