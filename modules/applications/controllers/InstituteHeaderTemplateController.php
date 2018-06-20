@@ -142,4 +142,27 @@ class InstituteHeaderTemplateController extends \yii\web\Controller {
         echo $this->render("download_template", ['model' => $model, 'institutes' => $institutes]);
     }
 
+    public function actionSaveUpdatedHeader() {
+        $model = new InstituteHeaderTemplate();
+        if (!empty($_POST)) {
+            $institute_header = $_POST['institute_header'];
+            $institute_id = $_POST['Institutes']['id'];
+            $teplateData = $model->findOne(['institute_id' => $institute_id]);
+            $institute_value = $_POST['institute_value'];
+            $fields = array();
+            if (!empty($institute_header)) {
+                foreach ($institute_header as $key => $value) {
+                    $fields[$value] = $institute_value[$key];
+                }
+            }
+            $teplateData->created_at = date("Y-m-d H:i:s");
+            $teplateData->fields = json_encode($fields);
+            $teplateData->save();
+            echo "Template header deleted.";
+            exit;
+        }
+        echo "Done";
+        exit;
+    }
+
 }

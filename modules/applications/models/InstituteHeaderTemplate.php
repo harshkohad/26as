@@ -88,19 +88,30 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
     }
 
     public function getJsonInput() {
-        $sql = "show columns from tbl_applications";
+        $sql = "SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_busi' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_resi' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_office' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_resi_office' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_indiv_property' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_noc_busi' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_noc_soc' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_property_apf' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                union SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications_builder_profile' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on');";
         $results = Yii::$app->db->createCommand($sql)->queryAll();
         $data = array();
         $ignoreArray = array('id', 'application_id', 'profile_id', 'created_by', 'created_on', 'updated_by', 'updated_on', 'is_deleted');
         foreach ($results as $key => $value) {
-            if (!in_array($value['Field'], $ignoreArray))
-                $data[] = array('id' => $value['Field'], 'name' => $value['Field']);
+            if (!in_array($value['column_name'], $ignoreArray))
+                $data[] = array('id' => $value['column_name'], 'name' => $value['column_name']);
         }
         return json_encode($data);
     }
 
     public function getViewButton($model) {
-        return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
+        $links = "";
+        $links .= Html::a('<i class="glyphicon glyphicon-edit"></i>', Url::toRoute(['institute-header-template/next-template-form', 'id' => $model->institute_id]), ['data-method' => 'post']);
+        return $links;
     }
 
     public function downloadFile($header, $arraydata) {
