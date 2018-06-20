@@ -245,7 +245,7 @@ $loantypes->id = $model->loan_type_id;
                 <div class="row">    
                     <div class="col-lg-12">
                         <?=
-                        $form->field($model, 'office_address_pincode')->widget(Select2::classname(), [
+                        $form->field($applicationOffice, 'office_address_pincode')->widget(Select2::classname(), [
                             'data' => ArrayHelper::map($pincode_master->find()->asArray()->all(), 'pincode', 'pincode'),
                             'language' => 'en',
                             'options' => ['placeholder' => 'Select pincode ...'],
@@ -285,7 +285,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->resi_office_address_verification != 1) {
+                        if ($applicationResiOffice->resi_office_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -342,7 +342,7 @@ $loantypes->id = $model->loan_type_id;
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->builder_profile_address_verification != 1) {
+                        if ($applicationBuilderProfile->builder_profile_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -1696,10 +1696,10 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_market_feedback == 0) ? 'active' : '' ?>">
+                            <label class="btn btn-primary <?= ($applicationResi->resi_market_feedback == 0) ? 'active' : '' ?>">
                                 <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_market_feedback == 1) ? 'active' : '' ?>">
+                            <label class="btn btn-primary <?= ($applicationResi->resi_market_feedback == 1) ? 'active' : '' ?>">
                                 <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
                         </div>

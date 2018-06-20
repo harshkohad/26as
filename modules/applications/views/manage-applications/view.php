@@ -541,7 +541,7 @@ $this->params['breadcrumbs'][] = 'View';
                         $icon = 'fa fa-check-circle';
                         $icon_color = 'color:#5cb85c';
                         $display = '';
-                        if ($model->noc_address_verification != 1) {
+                        if ($applicationNocBusi->noc_address_verification != 1) {
                             $icon = 'fa fa-times-circle';
                             $icon_color = 'color:#d9534f';
                             $display = 'style="display:none;"';
@@ -555,25 +555,25 @@ $this->params['breadcrumbs'][] = 'View';
             <div class="panel-body" style="display: none;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->noc_address ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_address') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationNocBusi->noc_address ?></textarea>
                     </div>    
                 </div>  
                 <div class="row">    
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address_pincode') ?></label>
-                        <div class="readonlydiv"><?= $model->noc_address_pincode ?></div>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_address_pincode') ?></label>
+                        <div class="readonlydiv"><?= $applicationNocBusi->noc_address_pincode ?></div>
                     </div>
                 </div>  
                 <div class="row">
                     <div class="col-lg-12">
-                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('noc_address_trigger') ?></label>
-                        <textarea class="form-control" readonly=""><?= $model->noc_address_trigger ?></textarea>
+                        <label class="control-label" for="name" style=" margin-top: 0px;"><?= $applicationNocBusi->getAttributeLabel('noc_address_trigger') ?></label>
+                        <textarea class="form-control" readonly=""><?= $applicationNocBusi->noc_address_trigger ?></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <label>Send for verification: <?= ($model->noc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
+                        <label>Send for verification: <?= ($applicationNocBusi->noc_address_verification == 1) ? 'TRUE' : 'FALSE' ?></label>
                     </div>
                 </div>    
             </div>

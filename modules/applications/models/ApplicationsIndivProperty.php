@@ -49,13 +49,13 @@ class ApplicationsIndivProperty extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'indiv_property_property_type', 'indiv_property_area', 'indiv_property_is_reachable', 'indiv_property_address_verification', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'indiv_property_property_type', 'indiv_property_area', 'indiv_property_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['indiv_property_not_reachable_remarks'], 'string'],
             [['indiv_property_met_person', 'indiv_property_met_person_designation', 'indiv_property_property_confirmed', 'indiv_property_previous_owner', 'indiv_property_approx_market_value', 'indiv_property_society_name_plate', 'indiv_property_door_name_plate', 'indiv_property_tpc', 'indiv_property_landmark'], 'string', 'max' => 150],
             [['indiv_property_address', 'indiv_property_address_trigger'], 'string', 'max' => 1000],
             [['indiv_property_address_pincode'], 'string', 'max' => 10],
-            [['indiv_property_address_lat', 'indiv_property_address_long'], 'string', 'max' => 45],
+            //[['indiv_property_address_lat', 'indiv_property_address_long'], 'string', 'max' => 45],
         ];
     }
 

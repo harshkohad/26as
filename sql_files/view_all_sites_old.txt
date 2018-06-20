@@ -1,0 +1,128 @@
+DROP VIEW view_all_sites; 
+CREATE VIEW `view_all_sites` AS SELECT 
+    `tbl_applications`.`id` AS `app_id`,
+    `tbl_applications_verifiers`.`mobile_user_id` AS `mobile_user_id`,
+    `tbl_applications_verifiers`.`id` AS `verification_id`,
+    `tbl_applications`.`application_id` AS `application_id`,
+    `tbl_loan_types`.`loan_name` AS `loan_type`,
+    CONCAT(`tbl_applications`.`first_name`,
+            ' ',
+            `tbl_applications`.`middle_name`,
+            ' ',
+            `tbl_applications`.`last_name`) AS `applicant_name`,
+    (CASE
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 1)
+        THEN
+            CONCAT(`tbl_applications`.`resi_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`resi_address_pincode`)
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 2)
+		THEN
+            CONCAT(`tbl_applications`.`busi_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`busi_address_pincode`)       
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 3)
+        THEN
+            CONCAT(`tbl_applications`.`office_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`office_address_pincode`)
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 4)
+        THEN
+            CONCAT(`tbl_applications`.`noc_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`noc_address_pincode`)
+		WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 5)
+        THEN
+            CONCAT(`tbl_applications`.`resi_office_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`resi_office_address_pincode`)	
+		WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 6)
+        THEN
+            CONCAT(`tbl_applications`.`builder_profile_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`builder_profile_address_pincode`)	
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 7)
+        THEN
+            CONCAT(`tbl_applications`.`property_apf_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`property_apf_address_pincode`)
+		WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 8)
+        THEN
+            CONCAT(`tbl_applications`.`indiv_property_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`indiv_property_address_pincode`)	
+        WHEN
+            (`tbl_applications_verifiers`.`verification_type` = 9)
+        THEN
+            CONCAT(`tbl_applications`.`noc_soc_address`,
+                    ', Pincode : ',
+                    `tbl_applications`.`noc_soc_address_pincode`)				
+					
+    END) AS `verification_address`,
+	`tbl_applications`.`mobile_no` AS `mobile_no`,
+	`tbl_applications`.`alternate_contact_no` AS `alternate_contact_no`,
+    (CASE
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 1) THEN `tbl_applications`.`resi_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 2) THEN `tbl_applications`.`busi_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 3) THEN `tbl_applications`.`office_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 4) THEN `tbl_applications`.`noc_address_trigger`
+		WHEN (`tbl_applications_verifiers`.`verification_type` = 5) THEN `tbl_applications`.`resi_office_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 6) THEN `tbl_applications`.`builder_profile_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 7) THEN `tbl_applications`.`property_apf_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 8) THEN `tbl_applications`.`indiv_property_address_trigger`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 9) THEN `tbl_applications`.`noc_soc_address_trigger`
+    END) AS `verification_triggers`,
+    `tbl_applications`.`date_of_application` AS `date_of_application`,
+    `tbl_applications_verifiers`.`verification_type` AS `verification_type_id`,
+    (CASE
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 1) THEN 'Residence'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 2) THEN 'Business'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 3) THEN 'Office'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 4) THEN 'NOC (Busi/Cond)'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 5) THEN 'Residence/Office'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 6) THEN 'Builder Profile'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 7) THEN 'Property (APF)'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 8) THEN 'Individual Property'
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 9) THEN 'NOC (Society)'
+    END) AS `verification_type`,
+	(CASE
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 1) THEN `tbl_applications`.`resi_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 2) THEN `tbl_applications`.`busi_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 3) THEN `tbl_applications`.`office_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 4) THEN `tbl_applications`.`noc_address_lat`
+		WHEN (`tbl_applications_verifiers`.`verification_type` = 5) THEN `tbl_applications`.`resi_office_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 6) THEN `tbl_applications`.`builder_profile_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 7) THEN `tbl_applications`.`property_apf_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 8) THEN `tbl_applications`.`indiv_property_address_lat`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 9) THEN `tbl_applications`.`noc_soc_address_lat`
+    END) AS `latitude`,
+	(CASE
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 1) THEN `tbl_applications`.`resi_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 2) THEN `tbl_applications`.`busi_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 3) THEN `tbl_applications`.`office_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 4) THEN `tbl_applications`.`noc_address_long`
+		WHEN (`tbl_applications_verifiers`.`verification_type` = 5) THEN `tbl_applications`.`resi_office_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 6) THEN `tbl_applications`.`builder_profile_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 7) THEN `tbl_applications`.`property_apf_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 8) THEN `tbl_applications`.`indiv_property_address_long`
+        WHEN (`tbl_applications_verifiers`.`verification_type` = 9) THEN `tbl_applications`.`noc_soc_address_long`
+    END) AS `longitude`,
+    `tbl_applications_verifiers`.`mobile_user_assigned_date` AS `mobile_user_assigned_date`,
+    `tbl_applications_verifiers`.`mobile_user_status` AS `mobile_user_status`,
+    `tbl_applications_verifiers`.`mobile_user_status_updated_on` AS `mobile_user_status_updated_on`,
+    `tbl_institutes`.`name` AS `institute_name`,
+    `tbl_institutes`.`file_name` AS `file_name`
+FROM
+    `tbl_applications_verifiers`
+    JOIN `tbl_applications` ON (`tbl_applications`.`id` = `tbl_applications_verifiers`.`application_id`)
+    JOIN `tbl_institutes` ON (`tbl_institutes`.`id` = `tbl_applications`.`institute_id`)
+    JOIN `tbl_loan_types` ON (`tbl_loan_types`.`id` = `tbl_applications`.`loan_type_id`)
+ORDER BY `tbl_applications`.`created_on` DESC;
