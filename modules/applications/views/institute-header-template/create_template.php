@@ -32,12 +32,12 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
                 ['class' => 'yii\grid\SerialColumn'],
                 'name',
                 [
-                    'attribute' => 'view',
+                    'attribute' => 'Action',
                     'filter' => false,
                     'format' => 'raw',
                     'value' => [$searchModel, "getViewButton"],
-                ]
-            ],
+                ],
+                            ],
         ]);
         ?>
     </div>
