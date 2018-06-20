@@ -308,7 +308,8 @@ class Api extends \yii\db\ActiveRecord {
         if(!empty($verification_details)) {
             #verification details
             $select_fields = self::getSelectionFields($verification_type);
-            $application_details = Applications::find()
+            $model_name = self::getModelName($verification_type);
+            $application_details = $model_name::find()
                         ->select("{$select_fields}")
                         ->where(['id' => $app_id])->asArray()->one();
             $return_array['verification_details'] = $application_details;
@@ -401,6 +402,44 @@ class Api extends \yii\db\ActiveRecord {
             }
         }
         return $select_fields;
+    }
+    
+    function getModelName($verification_type) {
+        $model_name = '';
+        if(!empty($verification_type)) {
+            switch ($verification_type) {
+                case 1:
+                    $model_name = "ApplicationsResi";
+                    break;
+                case 2:
+                    $model_name = "ApplicationsBusi";
+                    break;
+                case 3:
+                    $model_name = "ApplicationsOffice";
+                    break;
+                case 4:
+                    $model_name = "ApplicationsNocBusi";
+                    break;
+                case 5:
+                    $model_name = "ApplicationsResiOffice";
+                    break;
+                case 6:
+                    $model_name = "ApplicationsBuilderProfile";
+                    break;
+                case 7:
+                    $model_name = "ApplicationsPropertyApf";
+                    break;
+                case 8:
+                    $model_name = "ApplicationsIndivProperty";
+                    break;
+                case 9:
+                    $model_name = "ApplicationsNocSoc";
+                    break;
+                default:
+                    $model_name = "ApplicationsResi";
+            }
+        }
+        return $model_name;
     }
     
     function getVerificationType($verification_type) {
@@ -544,10 +583,11 @@ class Api extends \yii\db\ActiveRecord {
         }
     }
     
-    function update_site_details($received_data, $user_id) {    
+    function update_site_details($received_data, $verification_type, $user_id) {    
         $return_array = array();
-        $model = Applications::find()
-                ->where(['id' => $received_data['id']])
+        $model_name = self::getModelName($verification_type);
+        $model = $model_name::find()
+                ->where(['application_id' => $received_data['id']])
                 ->one();
         
         foreach ($received_data as $key => $value) {

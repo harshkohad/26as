@@ -242,8 +242,9 @@ class ApiController extends Controller {
         $response = Api::process_api_request('UpdateSiteDetails', Yii::$app->getRequest()->getUserIP());
         if (!empty($response->api_usage_id)) {
             $received_data = $response->received_data;
+            $verification_type = (isset($received_data['verification_type'])) ? $received_data['verification_type'] : '';
             #process data
-            $return_status = Api::update_site_details($received_data, $response->user_id);
+            $return_status = Api::update_site_details($received_data, $verification_type, $response->user_id);
             if ($return_status['status'] == 'success') {
                 return Api::api_response($response->api_usage_id, 1, 'Details Updated', $return_status);
             } else {

@@ -1860,7 +1860,7 @@ class ManageApplicationsController extends Controller {
         $data = $_POST;
         $id = $data['record_id'];
         $type = $data['section_id'];
-#get data
+        #get data
         $query = "SELECT * FROM view_all_sites WHERE app_id = $id and verification_type_id = $type";
         $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
         if (!empty($table_data)) {

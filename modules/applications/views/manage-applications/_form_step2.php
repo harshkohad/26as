@@ -1696,10 +1696,10 @@ $loantypes->id = $model->loan_type_id;
                     <div class="col-lg-3">
                         <label>Market Feedback</label><br>
                         <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary <?= ($model->resi_market_feedback == 0) ? 'active' : '' ?>">
+                            <label class="btn btn-primary <?= ($applicationResi->resi_market_feedback == 0) ? 'active' : '' ?>">
                                 <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 0) ? 'checked' : '' ?> value="0"> Positive
                             </label>
-                            <label class="btn btn-primary <?= ($model->resi_market_feedback == 1) ? 'active' : '' ?>">
+                            <label class="btn btn-primary <?= ($applicationResi->resi_market_feedback == 1) ? 'active' : '' ?>">
                                 <input type="radio" name="ApplicationsResi[resi_market_feedback]" autocomplete="off" <?= ($applicationResi->resi_market_feedback == 1) ? 'checked' : '' ?> value="1"> Negative
                             </label>
                         </div>
