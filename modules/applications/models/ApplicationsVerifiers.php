@@ -16,7 +16,7 @@ use Yii;
  * @property string $mobile_user_status_updated_on
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -36,7 +36,7 @@ class ApplicationsVerifiers extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['application_id', 'verification_type', 'mobile_user_id', 'mobile_user_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'verification_type', 'mobile_user_id', 'mobile_user_status', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['mobile_user_assigned_date', 'mobile_user_status_updated_on', 'created_on', 'updated_on'], 'safe'],
         ];
     }
@@ -56,7 +56,7 @@ class ApplicationsVerifiers extends \yii\db\ActiveRecord
             'mobile_user_status_updated_on' => 'Mobile User Status Updated On',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];

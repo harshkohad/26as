@@ -44,7 +44,7 @@ use Yii;
  * @property string $resi_address_long
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -63,7 +63,7 @@ class ApplicationsResi extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'resi_home_area', 'resi_ownership_status', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'resi_locality_type', 'resi_market_feedback', 'resi_status', 'resi_is_reachable', 'resi_available_status', 'resi_shifted_tenure', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'resi_home_area', 'resi_ownership_status', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'resi_locality_type', 'resi_market_feedback', 'resi_status', 'resi_is_reachable', 'resi_available_status', 'resi_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['resi_not_reachable_remarks'], 'string'],
             [['resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_relation', 'resi_ownership_status_text', 'resi_locality_text', 'resi_landmark_1', 'resi_landmark_2'], 'string', 'max' => 150],
@@ -117,7 +117,7 @@ class ApplicationsResi extends \yii\db\ActiveRecord {
             'resi_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
@@ -127,7 +127,7 @@ class ApplicationsResi extends \yii\db\ActiveRecord {
         if (parent::beforeSave($insert)) {
             if (isset($this->id)) {
                 $this->updated_on = date("Y-m-d H:i:s");
-                $this->update_by = Yii::$app->user->id;
+                $this->updated_by = Yii::$app->user->id;
             } else {
                 $this->created_on = date("Y-m-d H:i:s");
                 $this->created_by = Yii::$app->user->id;

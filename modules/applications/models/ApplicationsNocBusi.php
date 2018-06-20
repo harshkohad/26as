@@ -24,7 +24,7 @@ use Yii;
  * @property string $noc_address_long 
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -45,7 +45,7 @@ class ApplicationsNocBusi extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'noc_is_reachable', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['application_id', 'noc_is_reachable', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['noc_not_reachable_remarks'], 'string'],
             [['noc_structure', 'noc_address', 'noc_address_trigger'], 'string', 'max' => 1000],
@@ -78,7 +78,7 @@ class ApplicationsNocBusi extends \yii\db\ActiveRecord
             'noc_address_long' => 'Address Long',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];

@@ -177,7 +177,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'created_on') ?>
 
-    <?php // echo $form->field($model, 'update_by') ?>
+    <?php // echo $form->field($model, 'updated_by') ?>
 
     <?php // echo $form->field($model, 'updated_on') ?>
 
