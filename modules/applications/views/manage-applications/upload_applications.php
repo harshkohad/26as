@@ -137,6 +137,7 @@ $this->registerJs("
             
             function floatingResponse(response){
                 var obj = JSON.parse(response);
+                $('.floatingResponse').show();
                 $('#responsemsg').html(obj.msg);
                 $('.floatingResponse').removeClass('alert-success');
                 $('.floatingResponse').removeClass('alert-danger');

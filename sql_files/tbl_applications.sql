@@ -145,3 +145,6 @@ CREATE TABLE `tbl_applications` (
   `is_deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+ALTER TABLE `tbl_applications` 
+ADD COLUMN `version` INT(11) NULL DEFAULT 0 AFTER `ocr_receipt_feedback`;
