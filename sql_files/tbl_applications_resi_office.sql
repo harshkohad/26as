@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `tbl_applications_resi_office`;
 CREATE TABLE `tbl_applications_resi_office` (
   `id` int(11) NOT NULL,
   `application_id` int(11) NOT NULL,
