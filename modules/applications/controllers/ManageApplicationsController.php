@@ -1622,6 +1622,8 @@ class ManageApplicationsController extends Controller {
             foreach ($data as $key1 => $exceldata) {
                 $model = new Applications();
                 $new_applicant_profile = new ApplicantProfile();
+                echo "<pre/>", print_r($exceldata);
+                die;
                 foreach ($exceldata as $key => $value) {
                     if (array_key_exists($key, $this->excel_columns_applicant_profile)) {
                         $fkey = $this->excel_columns_applicant_profile[$key];
@@ -1641,7 +1643,36 @@ class ManageApplicationsController extends Controller {
                             $value = date("Y-m-d", strtotime($value));
                         }
                         $fkey = $this->excel_columns_applications[$key];
-                        $model->$fkey = $value;
+                        $resi = new ApplicationsResi();
+                        $office = new ApplicationsOffice();
+                        $busi = new ApplicationsBusi();
+                        $resiOffice = new ApplicationsResiOffice();
+                        $builder_profile = new ApplicationsBuilderProfile();
+                        $property_apf = new ApplicationsPropertyApf();
+                        $indiv_propery = new ApplicationsIndivProperty();
+                        $noc_busi = new ApplicationsNocBusi();
+                        $noc_soc = new ApplicationsNocSoc();
+                        if (preg_match("/^resi_/", $fkey) && !preg_match("/^resi_office_/", $fkey)) {
+                            $resi->$fkey = $value;
+                        } elseif (preg_match("/^office_/", $fkey)) {
+                            $office->$fkey = $value;
+                        } elseif (preg_match("/^resi_office_/", $fkey)) {
+                            $resiOffice->$fkey = $value;
+                        } elseif (preg_match("/^busi_/", $fkey)) {
+                            $busi->$fkey = $value;
+                        } elseif (preg_match("/^builder_/", $fkey)) {
+                            $builder_profile->$fkey = $value;
+                        } elseif (preg_match("/^property_apf_/", $fkey)) {
+                            $property_apf->$fkey = $value;
+                        } elseif (preg_match("/^indiv_property_/", $fkey)) {
+                            $indiv_propery->$fkey = $value;
+                        } elseif (preg_match("/^noc_soc_/", $fkey)) {
+                            $noc_busi->$fkey = $value;
+                        } elseif (preg_match("/^noc_/", $fkey) && !preg_match("/^noc_soc_/", $fkey)) {
+                            $noc_soc->$fkey = $value;
+                        } else {
+                            $model->$fkey = $value;
+                        }
                     }
                 }
 
@@ -1655,6 +1686,24 @@ class ManageApplicationsController extends Controller {
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
 #Save Application id
+                    $resi->application_id = $model->id;
+                    $resi->save();
+                    $busi->application_id = $model->id;
+                    $busi->save();
+                    $builder_profile->application_id = $model->id;
+                    $builder_profile->save();
+                    $office->application_id = $model->id;
+                    $office->save();
+                    $resiOffice->application_id = $model->id;
+                    $resiOffice->save();
+                    $property_apf->application_id = $model->id;
+                    $property_apf->save();
+                    $indiv_propery->application_id = $model->id;
+                    $indiv_propery->save();
+                    $noc_busi->application_id = $model->id;
+                    $noc_busi->save();
+                    $noc_soc->application_id = $model->id;
+                    $noc_soc->save();
                     $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                     self::updateLatLong($model->id);
                     $model->save();
