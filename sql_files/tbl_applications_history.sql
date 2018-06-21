@@ -250,7 +250,7 @@ CREATE TABLE `tbl_applications_history` (
   `noc_soc_address_long` varchar(45) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
   `updated_on` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_deleted` tinyint(1) DEFAULT '0',
   `company_name` varchar(100) DEFAULT NULL,

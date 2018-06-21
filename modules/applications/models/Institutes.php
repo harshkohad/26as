@@ -43,7 +43,7 @@ class Institutes extends \yii\db\ActiveRecord
             [['name', 'abbreviation', 'created_on', 'updated_on'], 'safe'],
             [['file_name'], 'string', 'max' => 1000],
             [['name'], 'string', 'max' => 150],
-            [['abbreviation'], 'string', 'length'=>[2,2]],
+            [['abbreviation'], 'string', 'length'=>[2,3]],
             [['abbreviation'], 'match', 'pattern' => '/^[A-Z]+$/', 'message' => 'Invalid characters in Short Form.'],
         ];
     }

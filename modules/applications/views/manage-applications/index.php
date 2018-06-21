@@ -138,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'mobile_user_status_updated_on',
                     // 'created_by',
                     // 'created_on',
-                    // 'update_by',
+                    // 'updated_by',
                     // 'updated_on',
                     // 'is_deleted',
                     [
@@ -213,7 +213,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- /.modal-dialog -->
 </div>
 
-<div class="floatingResponse alert ">
+<div class="floatingResponse alert" style="display: none;">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <div id="responsemsg"> </div>
 </div>

@@ -57,7 +57,7 @@ use Yii;
  * @property integer $application_status
  * @property integer $created_by
  * @property string $created_on
- * @property integer $update_by
+ * @property integer $updated_by
  * @property string $updated_on
  * @property integer $is_deleted
  */
@@ -75,7 +75,7 @@ class Applications extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id', 'date_of_birth', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'alternate_contact_no', 'case_id', 'branch', 'company_name', 'address'], 'required'],
-            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'application_status', 'created_by', 'update_by', 'is_deleted'], 'integer'],
+            [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'application_status', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'created_on', 'updated_on', 'application_id', 'pan_first_name', 'pan_last_name', 'pan_middle_name', 'pan_address', 'pan_pan_no', 'pan_dob', 
               'pan_date_of_issue', 'pan_is_complete', 'ac_first_name', 'ac_last_name', 'ac_middle_name', 'ac_aadhar_no', 'ac_dob', 'ac_address', 'ac_mobile_no', 'ac_is_complete', 'passport_first_name', 'passport_last_name', 'passport_middle_name', 'passport_passport_no', 'passport_passport_no',
               'passport_address', 'passport_validity', 'passport_date_of_issue', 'passport_is_complete', 'electricity_name', 'electricity_address', 'electricity_is_complete', 'telephone_is_complete', 'telephone_mobile_no', 'telephone_amount', 'telephone_name', 'telephone_address', 
@@ -169,7 +169,7 @@ class Applications extends \yii\db\ActiveRecord {
             'application_status' => 'Application Status',
             'created_by' => 'Created By',
             'created_on' => 'Created On',
-            'update_by' => 'Update By',
+            'updated_by' => 'Updated By',
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
             'ocr_receipt_builder_name' => "Builder Name",
