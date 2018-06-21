@@ -213,7 +213,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- /.modal-dialog -->
 </div>
 
-<div class="floatingResponse alert ">
+<div class="floatingResponse alert" style="display: none;">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <div id="responsemsg"> </div>
 </div>

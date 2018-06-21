@@ -86,7 +86,10 @@ $loantypes->id = $model->loan_type_id;
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3"><?= $form->field($model, 'address')->textarea(['address' => true]) ?></div>
+            <div class="col-lg-3">
+                <?= $form->field($model, 'address')->textarea(['address' => true]) ?>
+                <input type="hidden" name="app_version" id="app_version" value="<?= $model->version; ?>" />
+            </div>
         </div>
     </div>
 </section>

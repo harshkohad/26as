@@ -12,7 +12,18 @@ $this->title = $page_title . ' Application: ' . $model->application_id;
 $this->params['breadcrumbs'][] = ['label' => 'Applications', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->application_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
+if(!empty($page_errors)) {
+    $msg = '';
+    foreach($page_errors as $errors) {
+        $msg .= $errors.'<br />';
+    }
+    echo '<div class="floatingResponse alert alert-danger fade in alert-dismissible" style="margin-top:18px;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+    <div id="responsemsg"><strong>'.$msg.'</strong></div>
+</div>';
+}
 ?>
+
 <div class="applications-update">
 
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
@@ -48,6 +59,7 @@ $this->params['breadcrumbs'][] = 'Update';
         'applicationPropertyApf' => $applicationPropertyApf,
         'applicationIndivProperty' => $applicationIndivProperty,
         'applicationNocSoc' => $applicationNocSoc,
+        'page_errors' => $page_errors
     ])
     ?>
 
