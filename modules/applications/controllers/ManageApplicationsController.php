@@ -49,6 +49,9 @@ class ManageApplicationsController extends Controller {
     const EXCEL_UPLOAD_DIR_NAME = "uploads/excelupload";
     const SAMPLE_TEMPLATE_DIR_NAME = "sample_templates";
 
+    public $jsOptions = array(
+        'position' => \yii\web\View::POS_HEAD
+    );
     public $excel_columns_applications = array(
         'First Name' => 'first_name',
         'Middle Name' => 'middle_name',
@@ -2112,6 +2115,41 @@ class ManageApplicationsController extends Controller {
             \Yii::$app->getSession()->setFlash('success', 'Record deleted Successfully.');
             return $this->redirect(['manage-paragraphs']);
         }
+    }
+
+    public function actionGetFields() {
+        $model = new ApplicationParagraph();
+        if (!empty($_REQUEST) AND ! empty($_REQUEST['status'])) {
+            $status = $_REQUEST['status'];
+            if ($model->getTypeOfVerification($status) != null) {
+                $status = $model->getTypeOfVerification($status);
+                $table = "";
+                if (preg_match("/Residence Verification/", $status)) {
+                    $table = "tbl_applications_resi";
+                } elseif (preg_match("/Office Verification/", $status)) {
+                    $table = "tbl_applications_office";
+                } elseif (preg_match("/Business Verification/", $status)) {
+                    $table = "tbl_applications_busi";
+                } elseif (preg_match("/Residence\/Office Verification/", $status)) {
+                    $table = "tbl_applications_resi_office";
+                }
+
+                $sql = "SELECT column_name FROM `information_schema`.`columns` where table_name='tbl_applications' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on')
+                        union SELECT column_name FROM `information_schema`.`columns` where table_name='$table' AND column_name NOT IN('id','application_id','created_by','created_on','update_by','updated_on');";
+                $results = Yii::$app->db->createCommand($sql)->queryAll();
+                $data = "";
+                $ignoreArray = array('id', 'application_id', 'profile_id', 'created_by', 'created_on', 'updated_by', 'updated_on', 'is_deleted');
+                $counter = 1;
+                foreach ($results as $key => $value) {
+                    if (!in_array($value['column_name'], $ignoreArray)) {
+                        $field = $value['column_name'];
+                        $data .= "<p style='font-size: 15px;' draggable='true' id='$counter'>{ $field }</p>";
+                        $counter++;
+                    }
+                }
+            }
+        }
+        echo $data;
     }
 
 }
