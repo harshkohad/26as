@@ -111,7 +111,8 @@ $this->registerJs("
                 var uploaded_id = $('#uploaded_id').val();
                 var profile_ids = '';
                 var key = '';
-                $('input[type=text]').each(function(){
+                var p_id_collection = $('.profile_ids');
+                p_id_collection.each(function(){
                     var value = $(this).val();
                     key = $(this).attr('rel');
                     if(key!='' && value!=''){
