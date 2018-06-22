@@ -596,7 +596,8 @@ class Api extends \yii\db\ActiveRecord {
     function update_site_details($received_data, $verification_type, $user_id) {    
         $return_array = array();
         $model_name = self::getModelName($verification_type);
-        $model = $model_name::find()
+        $obj = new $model_name;  
+        $model = $obj::find()
                 ->where(['application_id' => $received_data['id']])
                 ->one();
         
