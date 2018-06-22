@@ -1668,6 +1668,15 @@ class ManageApplicationsController extends Controller {
             foreach ($data as $key1 => $exceldata) {
                 $model = new Applications();
                 $new_applicant_profile = new ApplicantProfile();
+                $resi = new ApplicationsResi();
+                $office = new ApplicationsOffice();
+                $busi = new ApplicationsBusi();
+                $resiOffice = new ApplicationsResiOffice();
+                $builder_profile = new ApplicationsBuilderProfile();
+                $property_apf = new ApplicationsPropertyApf();
+                $indiv_propery = new ApplicationsIndivProperty();
+                $noc_busi = new ApplicationsNocBusi();
+                $noc_soc = new ApplicationsNocSoc();
                 foreach ($exceldata as $key => $value) {
                     if (array_key_exists($key, $this->excel_columns_applicant_profile)) {
                         $fkey = $this->excel_columns_applicant_profile[$key];
@@ -1687,17 +1696,8 @@ class ManageApplicationsController extends Controller {
                             $value = date("Y-m-d", strtotime($value));
                         }
                         $fkey = $this->excel_columns_applications[$key];
-                        $resi = new ApplicationsResi();
-                        $office = new ApplicationsOffice();
-                        $busi = new ApplicationsBusi();
-                        $resiOffice = new ApplicationsResiOffice();
-                        $builder_profile = new ApplicationsBuilderProfile();
-                        $property_apf = new ApplicationsPropertyApf();
-                        $indiv_propery = new ApplicationsIndivProperty();
-                        $noc_busi = new ApplicationsNocBusi();
-                        $noc_soc = new ApplicationsNocSoc();
                         if (preg_match("/^resi_/", $fkey) && !preg_match("/^resi_office_/", $fkey)) {
-                            $resi->$fkey = $value;
+                            $resi->$fkey = "$value";
                         } elseif (preg_match("/^office_/", $fkey)) {
                             $office->$fkey = $value;
                         } elseif (preg_match("/^resi_office_/", $fkey)) {
@@ -1719,7 +1719,6 @@ class ManageApplicationsController extends Controller {
                         }
                     }
                 }
-
                 if (isset($profileIds[$key1]))
                     $model->profile_id = $profileIds[$key1];
                 if (empty($model->profile_id)) {
