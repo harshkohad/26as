@@ -15,6 +15,15 @@ use app\modules\applications\models\Kyc;
 use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use app\models\Notifications;
 use mdm\admin\models\UserDetails;
+use app\modules\applications\models\ApplicationsResi;
+use app\modules\applications\models\ApplicationsBusi;
+use app\modules\applications\models\ApplicationsOffice;
+use app\modules\applications\models\ApplicationsNocBusi;
+use app\modules\applications\models\ApplicationsResiOffice;
+use app\modules\applications\models\ApplicationsBuilderProfile;
+use app\modules\applications\models\ApplicationsPropertyApf;
+use app\modules\applications\models\ApplicationsIndivProperty;
+use app\modules\applications\models\ApplicationsNocSoc;
 
 /**
  * 
