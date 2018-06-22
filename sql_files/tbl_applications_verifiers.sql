@@ -8,3 +8,6 @@ DROP COLUMN `updated_on`,
 DROP COLUMN `updated_by`,
 DROP COLUMN `created_by`,
 CHANGE COLUMN `assigned_for_the_day` `old_created_on` DATETIME NULL COMMENT '0 : Not asssigned for the day, 1 : Assigned for the day' ;
+
+ALTER TABLE `dvs`.`tbl_applications_verifiers` 
+CHANGE COLUMN `update_by` `updated_by` INT(11) NULL DEFAULT NULL ;
