@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS `tbl_applications_resi`;
 CREATE TABLE `tbl_applications_resi` (
   `id` int(11) NOT NULL,
   `application_id` int(11) NOT NULL,

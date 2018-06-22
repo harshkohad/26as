@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `tbl_applications_builder_profile`;
 CREATE TABLE `tbl_applications_builder_profile` (
   `id` int(11) NOT NULL,
   `application_id` int(11) NOT NULL,

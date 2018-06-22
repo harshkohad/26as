@@ -287,7 +287,7 @@ class ManageApplicationsController extends Controller {
      * @return mixed
      */
     public function actionUpdate($id) {
-        $page_errors = []; 
+        $page_errors = [];
         $model = $this->findModel($id);
 
         $institutes = new Institutes();
@@ -571,41 +571,41 @@ class ManageApplicationsController extends Controller {
                                 'applicationPropertyApf' => $applicationPropertyApf,
                                 'applicationIndivProperty' => $applicationIndivProperty,
                                 'applicationNocSoc' => $applicationNocSoc,
-                                'page_errors' => $page_errors,    
+                                'page_errors' => $page_errors,
                     ]);
                 }
             } else {
                 $page_errors[] = "The Application is already in use by another user!!!";
                 return $this->render('update', [
-                    'model' => $model,
-                    'step2' => $step2,
-                    'institutes' => $institutes,
-                    'loantypes' => $loantypes,
-                    'pincode_master' => $pincode_master,
-                    'itrTable' => $itrTable,
-                    'nocTable' => $nocTable,
-                    'kycTable' => $kycTable,
-                    'resiDocsTable' => $resiDocsTable,
-                    'resiPhotosTable' => $resiPhotosTable,
-                    'busiDocsTable' => $busiDocsTable,
-                    'busiPhotosTable' => $busiPhotosTable,
-                    'officePhotosTable' => $officePhotosTable,
-                    'nocPhotosTable' => $nocPhotosTable,
-                    'resiOfficePhotosTable' => $resiOfficePhotosTable,
-                    'builderProfilePhotosTable' => $builderProfilePhotosTable,
-                    'propertyApfPhotosTable' => $propertyApfPhotosTable,
-                    'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
-                    'nocSocPhotosTable' => $nocSocPhotosTable,
-                    'applicationResi' => $applicationResi,
-                    'applicationBusi' => $applicationBusi,
-                    'applicationNocBusi' => $applicationNocBusi,
-                    'applicationOffice' => $applicationOffice,
-                    'applicationResiOffice' => $applicationResiOffice,
-                    'applicationBuilderProfile' => $applicationBuilderProfile,
-                    'applicationPropertyApf' => $applicationPropertyApf,
-                    'applicationIndivProperty' => $applicationIndivProperty,
-                    'applicationNocSoc' => $applicationNocSoc,
-                    'page_errors' => $page_errors,
+                            'model' => $model,
+                            'step2' => $step2,
+                            'institutes' => $institutes,
+                            'loantypes' => $loantypes,
+                            'pincode_master' => $pincode_master,
+                            'itrTable' => $itrTable,
+                            'nocTable' => $nocTable,
+                            'kycTable' => $kycTable,
+                            'resiDocsTable' => $resiDocsTable,
+                            'resiPhotosTable' => $resiPhotosTable,
+                            'busiDocsTable' => $busiDocsTable,
+                            'busiPhotosTable' => $busiPhotosTable,
+                            'officePhotosTable' => $officePhotosTable,
+                            'nocPhotosTable' => $nocPhotosTable,
+                            'resiOfficePhotosTable' => $resiOfficePhotosTable,
+                            'builderProfilePhotosTable' => $builderProfilePhotosTable,
+                            'propertyApfPhotosTable' => $propertyApfPhotosTable,
+                            'indivPropertyPhotosTable' => $indivPropertyPhotosTable,
+                            'nocSocPhotosTable' => $nocSocPhotosTable,
+                            'applicationResi' => $applicationResi,
+                            'applicationBusi' => $applicationBusi,
+                            'applicationNocBusi' => $applicationNocBusi,
+                            'applicationOffice' => $applicationOffice,
+                            'applicationResiOffice' => $applicationResiOffice,
+                            'applicationBuilderProfile' => $applicationBuilderProfile,
+                            'applicationPropertyApf' => $applicationPropertyApf,
+                            'applicationIndivProperty' => $applicationIndivProperty,
+                            'applicationNocSoc' => $applicationNocSoc,
+                            'page_errors' => $page_errors,
                 ]);
             }
         } else {
@@ -1687,7 +1687,36 @@ class ManageApplicationsController extends Controller {
                             $value = date("Y-m-d", strtotime($value));
                         }
                         $fkey = $this->excel_columns_applications[$key];
-                        $model->$fkey = $value;
+                        $resi = new ApplicationsResi();
+                        $office = new ApplicationsOffice();
+                        $busi = new ApplicationsBusi();
+                        $resiOffice = new ApplicationsResiOffice();
+                        $builder_profile = new ApplicationsBuilderProfile();
+                        $property_apf = new ApplicationsPropertyApf();
+                        $indiv_propery = new ApplicationsIndivProperty();
+                        $noc_busi = new ApplicationsNocBusi();
+                        $noc_soc = new ApplicationsNocSoc();
+                        if (preg_match("/^resi_/", $fkey) && !preg_match("/^resi_office_/", $fkey)) {
+                            $resi->$fkey = $value;
+                        } elseif (preg_match("/^office_/", $fkey)) {
+                            $office->$fkey = $value;
+                        } elseif (preg_match("/^resi_office_/", $fkey)) {
+                            $resiOffice->$fkey = $value;
+                        } elseif (preg_match("/^busi_/", $fkey)) {
+                            $busi->$fkey = $value;
+                        } elseif (preg_match("/^builder_/", $fkey)) {
+                            $builder_profile->$fkey = $value;
+                        } elseif (preg_match("/^property_apf_/", $fkey)) {
+                            $property_apf->$fkey = $value;
+                        } elseif (preg_match("/^indiv_property_/", $fkey)) {
+                            $indiv_propery->$fkey = $value;
+                        } elseif (preg_match("/^noc_soc_/", $fkey)) {
+                            $noc_soc->$fkey = $value;
+                        } elseif (preg_match("/^noc_/", $fkey) && !preg_match("/^noc_soc_/", $fkey)) {
+                            $noc_busi->$fkey = $value;
+                        } else {
+                            $model->$fkey = $value;
+                        }
                     }
                 }
 
@@ -1701,6 +1730,24 @@ class ManageApplicationsController extends Controller {
                 $model->loan_type_id = $loan_type_id;
                 if ($model->save()) {
 #Save Application id
+                    $resi->application_id = $model->id;
+                    $resi->save();
+                    $busi->application_id = $model->id;
+                    $busi->save();
+                    $builder_profile->application_id = $model->id;
+                    $builder_profile->save();
+                    $office->application_id = $model->id;
+                    $office->save();
+                    $resiOffice->application_id = $model->id;
+                    $resiOffice->save();
+                    $property_apf->application_id = $model->id;
+                    $property_apf->save();
+                    $indiv_propery->application_id = $model->id;
+                    $indiv_propery->save();
+                    $noc_busi->application_id = $model->id;
+                    $noc_busi->save();
+                    $noc_soc->application_id = $model->id;
+                    $noc_soc->save();
                     $model->application_id = self::getApplicationId($model->id, $model->institute_id);
                     self::updateLatLong($model->id);
                     $model->save();
@@ -1775,89 +1822,105 @@ class ManageApplicationsController extends Controller {
     public function updateLatLong($id) {
         $model = $this->findModel($id);
 //Lat long
-        if ($model->resi_address_verification == 1) {
+        $applicationResi = ApplicationsResi::findOne(['application_id' => $id]);
+        $applicationBusi = ApplicationsBusi::findOne(['application_id' => $id]);
+        $applicationOffice = ApplicationsOffice::findOne(['application_id' => $id]);
+        $applicationResiOffice = ApplicationsResiOffice::findOne(['application_id' => $id]);
+        $applicationBuilderProfile = ApplicationsBuilderProfile::findOne(['application_id' => $id]);
+        $applicationPropertyApf = ApplicationsPropertyApf::findOne(['application_id' => $id]);
+        $applicationIndivProperty = ApplicationsIndivProperty::findOne(['application_id' => $id]);
+        $applicationNocSoc = ApplicationsNocSoc::findOne(['application_id' => $id]);
+        $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $id]);
+        if (!empty($applicationResi) && $applicationResi->resi_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->resi_address_pincode, $model->resi_address);
+            $latlong = Applications::getLatLong($applicationResi->resi_address_pincode, $applicationResi->resi_address);
 
             if (!empty($latlong)) {
-                $model->resi_address_lat = $latlong['latitude'];
-                $model->resi_address_long = $latlong['longitude'];
+                $applicationResi->resi_address_lat = $latlong['latitude'];
+                $applicationResi->resi_address_long = $latlong['longitude'];
+                $applicationResi->save();
             }
         }
-        if ($model->office_address_verification == 1) {
+        if (!empty($applicationOffice) && $applicationOffice->office_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->office_address_pincode, $model->office_address);
+            $latlong = Applications::getLatLong($applicationOffice->office_address_pincode, $applicationOffice->office_address);
 
             if (!empty($latlong)) {
-                $model->office_address_lat = $latlong['latitude'];
-                $model->office_address_long = $latlong['longitude'];
+                $applicationOffice->office_address_lat = $latlong['latitude'];
+                $applicationOffice->office_address_long = $latlong['longitude'];
+                $applicationOffice->save();
             }
         }
-        if ($model->busi_address_verification == 1) {
+        if (!empty($applicationBusi) && $applicationBusi->busi_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->busi_address_pincode, $model->busi_address);
+            $latlong = Applications::getLatLong($applicationBusi->busi_address_pincode, $applicationBusi->busi_address);
 
             if (!empty($latlong)) {
-                $model->busi_address_lat = $latlong['latitude'];
-                $model->busi_address_long = $latlong['longitude'];
+                $applicationBusi->busi_address_lat = $latlong['latitude'];
+                $applicationBusi->busi_address_long = $latlong['longitude'];
+                $applicationBusi->save();
             }
         }
-        if ($model->noc_address_verification == 1) {
+        if (!empty($applicationNocBusi) && $applicationNocBusi->noc_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->noc_address_pincode, $model->noc_address);
+            $latlong = Applications::getLatLong($applicationNocBusi->noc_address_pincode, $applicationNocBusi->noc_address);
 
             if (!empty($latlong)) {
-                $model->noc_address_lat = $latlong['latitude'];
-                $model->noc_address_long = $latlong['longitude'];
+                $applicationNocBusi->noc_address_lat = $latlong['latitude'];
+                $applicationNocBusi->noc_address_long = $latlong['longitude'];
+                $applicationNocBusi->save();
             }
         }
-        if ($model->resi_office_address_verification == 1) {
+        if (!empty($applicationResiOffice) && $applicationResiOffice->resi_office_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->resi_office_address_pincode, $model->resi_office_address);
+            $latlong = Applications::getLatLong($applicationResiOffice->resi_office_address_pincode, $applicationResiOffice->resi_office_address);
 
             if (!empty($latlong)) {
-                $model->resi_office_address_lat = $latlong['latitude'];
-                $model->resi_office_address_long = $latlong['longitude'];
+                $applicationResiOffice->resi_office_address_lat = $latlong['latitude'];
+                $applicationResiOffice->resi_office_address_long = $latlong['longitude'];
+                $applicationResiOffice->save();
             }
         }
-        if ($model->builder_profile_address_verification == 1) {
+        if (!empty($applicationBuilderProfile) && $applicationBuilderProfile->builder_profile_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->builder_profile_address_pincode, $model->builder_profile_address);
+            $latlong = Applications::getLatLong($applicationBuilderProfile->builder_profile_address_pincode, $applicationBuilderProfile->builder_profile_address);
 
             if (!empty($latlong)) {
-                $model->builder_profile_address_lat = $latlong['latitude'];
-                $model->builder_profile_address_long = $latlong['longitude'];
+                $applicationBuilderProfile->builder_profile_address_lat = $latlong['latitude'];
+                $applicationBuilderProfile->builder_profile_address_long = $latlong['longitude'];
+                $applicationBuilderProfile->save();
             }
         }
-        if ($model->property_apf_address_verification == 1) {
+        if (!empty($applicationPropertyApf) && $applicationPropertyApf->property_apf_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->property_apf_address_pincode, $model->property_apf_address);
+            $latlong = Applications::getLatLong($applicationPropertyApf->property_apf_address_pincode, $applicationPropertyApf->property_apf_address);
 
             if (!empty($latlong)) {
-                $model->property_apf_address_lat = $latlong['latitude'];
-                $model->property_apf_address_long = $latlong['longitude'];
+                $applicationPropertyApf->property_apf_address_lat = $latlong['latitude'];
+                $applicationPropertyApf->property_apf_address_long = $latlong['longitude'];
+                $applicationPropertyApf->save();
             }
         }
-        if ($model->indiv_property_address_verification == 1) {
+        if (!empty($applicationIndivProperty) && $applicationIndivProperty->indiv_property_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->indiv_property_address_pincode, $model->indiv_property_address);
+            $latlong = Applications::getLatLong($applicationIndivProperty->indiv_property_address_pincode, $applicationIndivProperty->indiv_property_address);
 
             if (!empty($latlong)) {
-                $model->indiv_property_address_lat = $latlong['latitude'];
-                $model->indiv_property_address_long = $latlong['longitude'];
+                $applicationIndivProperty->indiv_property_address_lat = $latlong['latitude'];
+                $applicationIndivProperty->indiv_property_address_long = $latlong['longitude'];
+                $applicationIndivProperty->save();
             }
         }
-        if ($model->noc_soc_address_verification == 1) {
+        if (!empty($applicationNocSoc) && $applicationNocSoc->noc_soc_address_verification == 1) {
             $latlong = array();
-            $latlong = Applications::getLatLong($model->noc_soc_address_pincode, $model->noc_soc_address);
+            $latlong = Applications::getLatLong($applicationNocSoc->noc_soc_address_pincode, $applicationNocSoc->noc_soc_address);
 
             if (!empty($latlong)) {
-                $model->noc_soc_address_lat = $latlong['latitude'];
-                $model->noc_soc_address_long = $latlong['longitude'];
+                $applicationNocSoc->noc_soc_address_lat = $latlong['latitude'];
+                $applicationNocSoc->noc_soc_address_long = $latlong['longitude'];
+                $applicationNocSoc->save();
             }
         }
-
-        $model->save();
     }
 
     public function actionDownloadExcel() {
