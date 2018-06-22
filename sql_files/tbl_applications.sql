@@ -148,3 +148,10 @@ CREATE TABLE `tbl_applications` (
 
 ALTER TABLE `tbl_applications` 
 ADD COLUMN `version` INT(11) NULL DEFAULT 0 AFTER `ocr_receipt_feedback`;
+
+ALTER TABLE `tbl_applications` 
+CHANGE COLUMN `pan_dob` `pan_dob` DATETIME NULL ,
+CHANGE COLUMN `pan_date_of_issue` `pan_date_of_issue` DATETIME NULL ,
+CHANGE COLUMN `ac_dob` `ac_dob` DATETIME NULL ,
+CHANGE COLUMN `passport_validity` `passport_validity` DATETIME NULL ,
+CHANGE COLUMN `passport_date_of_issue` `passport_date_of_issue` DATETIME NULL ;
