@@ -308,7 +308,7 @@ class Api extends \yii\db\ActiveRecord {
         if(!empty($verification_details)) {
             #verification details
             $select_fields = self::getSelectionFields($verification_type);
-            $model_name = self::getModelName($verification_type);
+            $model_name = "app\\modules\\applications\\models\\".self::getModelName($verification_type);
             $application_details = $model_name::find()
                         ->select("{$select_fields}")
                         ->where(['id' => $app_id])->asArray()->one();
