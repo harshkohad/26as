@@ -1360,6 +1360,7 @@ class ManageApplicationsController extends Controller {
                 $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
             }
             return $return_html;
+            
         }
     }
 
