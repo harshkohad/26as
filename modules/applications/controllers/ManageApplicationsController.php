@@ -1296,25 +1296,41 @@ class ManageApplicationsController extends Controller {
             $applications_model = Applications::findOne($app_id);
             $applicationResi = ApplicationsResi::findOne(['application_id' => $app_id]);
             $applicationBusi = ApplicationsBusi::findOne(['application_id' => $app_id]);
+            $applicationOffice = ApplicationsOffice::findOne(['application_id' => $app_id]);
+            $applicationResiOffice = ApplicationsResiOffice::findOne(['application_id' => $app_id]);
+            $applicationBuilderProfile = ApplicationsBuilderProfile::findOne(['application_id' => $app_id]);
+            $applicationPropertyApf = ApplicationsPropertyApf::findOne(['application_id' => $app_id]);
+            $applicationIndivProperty = ApplicationsIndivProperty::findOne(['application_id' => $app_id]);
+            $applicationNocSoc = ApplicationsNocSoc::findOne(['application_id' => $app_id]);
             $applicationNocBusi = ApplicationsNocBusi::findOne(['application_id' => $app_id]);
             if (empty($applicationResi))
                 $applicationResi = new ApplicationsResi();
-
             if (empty($applicationBusi))
                 $applicationBusi = new ApplicationsBusi();
-
+            if (empty($applicationOffice))
+                $applicationOffice = new ApplicationsOffice();
+            if (empty($applicationResiOffice))
+                $applicationResiOffice = new ApplicationsResiOffice();
+            if (empty($applicationBuilderProfile))
+                $applicationBuilderProfile = new ApplicationsBuilderProfile();
+            if (empty($applicationPropertyApf))
+                $applicationPropertyApf = new ApplicationsPropertyApf();
+            if (empty($applicationIndivProperty))
+                $applicationIndivProperty = new ApplicationsIndivProperty();
+            if (empty($applicationNocSoc))
+                $applicationNocSoc = new ApplicationsNocSoc();
             if (empty($applicationNocBusi))
                 $applicationNocBusi = new ApplicationsNocBusi();
 
             if ($applicationResi->resi_address_verification == 1 ||
                     $applicationBusi->busi_address_verification == 1 ||
-                    $applications_model->office_address_verification == 1 ||
+                    $applicationOffice->office_address_verification == 1 ||
                     $applicationNocBusi->noc_address_verification == 1 ||
-                    $applications_model->resi_office_address_verification == 1 ||
-                    $applications_model->builder_profile_address_verification == 1 ||
-                    $applications_model->property_apf_address_verification == 1 ||
-                    $applications_model->indiv_property_address_verification == 1 ||
-                    $applications_model->noc_soc_address_verification == 1
+                    $applicationResiOffice->resi_office_address_verification == 1 ||
+                    $applicationBuilderProfile->builder_profile_address_verification == 1 ||
+                    $applicationPropertyApf->property_apf_address_verification == 1 ||
+                    $applicationIndivProperty->indiv_property_address_verification == 1 ||
+                    $applicationNocSoc->noc_soc_address_verification == 1
             ) {
                 if ($applicationResi->resi_address_verification == 1) {
                     self::verifierModalRow($app_id, 1, $applicationResi, 'resi_address_pincode', $is_manage, $return_html);
@@ -1322,31 +1338,32 @@ class ManageApplicationsController extends Controller {
                 if ($applicationBusi->busi_address_verification == 1) {
                     self::verifierModalRow($app_id, 2, $applicationBusi, 'busi_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 3, $applications_model, 'office_address_pincode', $is_manage, $return_html);
+                if ($applicationOffice->office_address_verification == 1) {
+                    self::verifierModalRow($app_id, 3, $applicationOffice, 'office_address_pincode', $is_manage, $return_html);
                 }
                 if ($applicationNocBusi->noc_address_verification == 1) {
                     self::verifierModalRow($app_id, 4, $applicationNocBusi, 'noc_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->resi_office_address_verification == 1) {
-                    self::verifierModalRow($app_id, 5, $applications_model, 'resi_office_address_pincode', $is_manage, $return_html);
+                if ($applicationResiOffice->resi_office_address_verification == 1) {
+                    self::verifierModalRow($app_id, 5, $applicationResiOffice, 'resi_office_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->builder_profile_address_verification == 1) {
-                    self::verifierModalRow($app_id, 6, $applications_model, 'builder_profile_address_pincode', $is_manage, $return_html);
+                if ($applicationBuilderProfile->builder_profile_address_verification == 1) {
+                    self::verifierModalRow($app_id, 6, $applicationBuilderProfile, 'builder_profile_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->property_apf_address_verification == 1) {
-                    self::verifierModalRow($app_id, 7, $applications_model, 'property_apf_address_pincode', $is_manage, $return_html);
+                if ($applicationPropertyApf->property_apf_address_verification == 1) {
+                    self::verifierModalRow($app_id, 7, $applicationPropertyApf, 'property_apf_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->indiv_property_address_verification == 1) {
-                    self::verifierModalRow($app_id, 8, $applications_model, 'indiv_property_address_pincode', $is_manage, $return_html);
+                if ($applicationIndivProperty->indiv_property_address_verification == 1) {
+                    self::verifierModalRow($app_id, 8, $applicationIndivProperty, 'indiv_property_address_pincode', $is_manage, $return_html);
                 }
-                if ($applications_model->noc_soc_address_verification == 1) {
-                    self::verifierModalRow($app_id, 9, $applications_model, 'noc_soc_address_pincode', $is_manage, $return_html);
+                if ($applicationNocSoc->noc_soc_address_verification == 1) {
+                    self::verifierModalRow($app_id, 9, $applicationNocSoc, 'noc_soc_address_pincode', $is_manage, $return_html);
                 }
             } else {
                 $return_html .= '<div><h4 style="color:#e70606;font-weight:bold">Please select "Send for verification" option for any Address Verification</h4></div>';
             }
             return $return_html;
+            
         }
     }
 
@@ -1588,7 +1605,7 @@ class ManageApplicationsController extends Controller {
                 if (!empty($data)) {
                     foreach ($data as $key => $dataDtl) {
                         $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}','{$dataDtl['Pan Card No']}','{$dataDtl['Mobile No']}','{$dataDtl['Aadhaar Card No']}')" . "> Dedupe Check</button><br>
-                        <input type='text' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}' rel='$key'/> ";
+                        <input type='hidden' class='profile_ids' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}' rel='$key'/> ";
                     }
                 }
 //                print_r($data);
