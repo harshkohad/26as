@@ -25,6 +25,7 @@ use app\modules\applications\models\ApplicationsPropertyApf;
 use app\modules\applications\models\ApplicationsIndivProperty;
 use app\modules\applications\models\ApplicationsNocSoc;
 
+
 /**
  * 
  */

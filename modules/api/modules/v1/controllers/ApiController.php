@@ -19,6 +19,7 @@ use app\modules\applications\models\ApplicationsPropertyApf;
 use app\modules\applications\models\ApplicationsIndivProperty;
 use app\modules\applications\models\ApplicationsNocSoc;
 
+
 /**
  * A UserController Class.
  * User activities from version one can be controlled here.
