@@ -15,16 +15,6 @@ use app\modules\applications\models\Kyc;
 use app\modules\applications\models\ApplicationsVerifiersRevoked;
 use app\models\Notifications;
 use mdm\admin\models\UserDetails;
-use app\modules\applications\models\ApplicationsResi;
-use app\modules\applications\models\ApplicationsBusi;
-use app\modules\applications\models\ApplicationsOffice;
-use app\modules\applications\models\ApplicationsNocBusi;
-use app\modules\applications\models\ApplicationsResiOffice;
-use app\modules\applications\models\ApplicationsBuilderProfile;
-use app\modules\applications\models\ApplicationsPropertyApf;
-use app\modules\applications\models\ApplicationsIndivProperty;
-use app\modules\applications\models\ApplicationsNocSoc;
-
 
 /**
  * 
@@ -595,9 +585,8 @@ class Api extends \yii\db\ActiveRecord {
     
     function update_site_details($received_data, $verification_type, $user_id) {    
         $return_array = array();
-        $model_name = self::getModelName($verification_type);
-        $obj = new $model_name;  
-        $model = $obj::find()
+        $model_name = "app\\modules\\applications\\models\\".self::getModelName($verification_type);
+        $model = $model_name::find()
                 ->where(['application_id' => $received_data['id']])
                 ->one();
         
