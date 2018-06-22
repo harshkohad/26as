@@ -591,6 +591,9 @@ class Api extends \yii\db\ActiveRecord {
                 ->one();
         
         foreach ($received_data as $key => $value) {
+            if($key == 'verification_type') {
+                continue;
+            }
             $model->$key = $value;
         }
         if ($model->save()) {
