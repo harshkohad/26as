@@ -308,10 +308,12 @@ class Api extends \yii\db\ActiveRecord {
         if(!empty($verification_details)) {
             #verification details
             $select_fields = self::getSelectionFields($verification_type);
-            $model_name = self::getModelName($verification_type);
+            $model_name = "app\\modules\\applications\\models\\".self::getModelName($verification_type);
             $application_details = $model_name::find()
                         ->select("{$select_fields}")
-                        ->where(['id' => $app_id])->asArray()->one();
+                        ->where(['application_id' => $app_id])->asArray()->one();
+			$app_model = Applications::find()->where(['id' => $app_id])->one();	
+			$application_details['application_id'] = $app_model->application_id;	
             $return_array['verification_details'] = $application_details;
             #doc details
             if(in_array($verification_type, $docs_array)) {
@@ -585,12 +587,15 @@ class Api extends \yii\db\ActiveRecord {
     
     function update_site_details($received_data, $verification_type, $user_id) {    
         $return_array = array();
-        $model_name = self::getModelName($verification_type);
+        $model_name = "app\\modules\\applications\\models\\".self::getModelName($verification_type);
         $model = $model_name::find()
                 ->where(['application_id' => $received_data['id']])
                 ->one();
         
         foreach ($received_data as $key => $value) {
+            if($key == 'verification_type' || $key == 'id') {
+                continue;
+            }
             $model->$key = $value;
         }
         if ($model->save()) {
