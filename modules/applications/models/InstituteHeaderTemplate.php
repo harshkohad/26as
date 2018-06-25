@@ -162,38 +162,142 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
                 $select = "";
                 $srno = 1;
                 $header[] = "Sr.No";
+                $busi = $resi = $office = $resi_office = 'application_id';
+                $application = "id";
                 foreach ($fields as $key => $value) {
                     $header[] = $key;
+
                     if (preg_match("/(,)/", $value)) {
+                        $explode = explode(",", $value);
+                        if (is_array($explode)) {
+                            foreach ($explode as $exp) {
+                                if (empty($exp))
+                                    continue;
+                                if (preg_match("/resi_/", $value) && !preg_match("/resi_office_/", $value)) {
+                                    $resi .=",$value";
+                                } elseif (preg_match("/office_/", $value)) {
+                                    $office .=",$value";
+                                } elseif (preg_match("/busi_/", $value)) {
+                                    $busi .=",$value";
+                                } elseif (preg_match("/resi_office_/", $value)) {
+                                    $resi_office .=",$value";
+                                } else {
+                                    $application .= ",$value";
+                                }
+                            }
+                        }
+
                         $value = str_replace(",", ",' ',", $value);
+                    } else {
+                        if (preg_match("/resi_/", $value) && !preg_match("/resi_office_/", $value)) {
+                            $resi .=",$value";
+                        } elseif (preg_match("/office_/", $value)) {
+                            $office .=",$value";
+                        } elseif (preg_match("/busi_/", $value)) {
+                            $busi .=",$value";
+                        } elseif (preg_match("/resi_office_/", $value)) {
+                            $resi_office .=",$value";
+                        } else {
+                            $application .= ",$value";
+                        }
                     }
-                    $name = str_replace(" ", "_", $key);
-                    if (empty($select))
-                        $select .= "concat($value) as $name";
-                    else
-                        $select .= ",concat($value) as $name";
                 }
+
 
                 $header[] = "Remarks";
                 $where = "";
+                $resiData = $busiData = $officeData = $resiOffice = [];
+                $finalData = [];
                 if (!empty($start_date))
                     $where .= " AND date(created_on)>='{$start_date}'";
                 if (!empty($end_date))
                     $where .= " AND date(created_on)<='{$end_date}'";
-                $sql = "select id,$select from tbl_applications where institute_id=$institute_id $where";
-                $finalData = array();
-                $results = Yii::$app->db->createCommand($sql)->queryAll();
-                if (!empty($results)) {
-                    $id = 1;
-                    $finalResult = [];
-                    foreach ($results as $key => $result) {
-                        $finalResult[$key]['Sr.No'] = $id;
-                        $results[$key]['Remarks'] = $this->getReport($result['id']);
-                        $finalResult[$key] = array_merge($finalResult[$key], $results[$key]);
-                        unset($finalResult[$key]['id']);
-                        $id++;
+                if (!empty($application)) {
+                    $sql = "select $application from tbl_applications where institute_id=$institute_id $where";
+                    $results = Yii::$app->db->createCommand($sql)->queryAll();
+                    if (!empty($results)) {
+                        foreach ($results as $resVal) {
+                            foreach ($resVal as $key => $value) {
+                                $finalData[$resVal['id']][$key] = $value;
+                            }
+                        }
                     }
                 }
+
+                if (!empty($resi)) {
+                    $sql = "select $resi from tbl_applications_resi";
+                    $results = Yii::$app->db->createCommand($sql)->queryAll();
+                    if (!empty($results)) {
+                        foreach ($results as $resVal) {
+                            foreach ($resVal as $key => $value) {
+                                $finalData[$resVal['application_id']][$key] = $value;
+                            }
+                        }
+                    }
+                }
+                if (!empty($office)) {
+                    $sql = "select $office from tbl_applications_office";
+                    $results = Yii::$app->db->createCommand($sql)->queryAll();
+                    if (!empty($results)) {
+                        foreach ($results as $resVal) {
+                            foreach ($resVal as $key => $value) {
+                                $finalData[$resVal['application_id']][$key] = $value;
+                            }
+                        }
+                    }
+                }
+                if (!empty($busi)) {
+                    $sql = "select $busi from tbl_applications_busi";
+                    $results = Yii::$app->db->createCommand($sql)->queryAll();
+                    if (!empty($results)) {
+                        foreach ($results as $resVal) {
+                            foreach ($resVal as $key => $value) {
+                                $finalData[$resVal['application_id']][$key] = $value;
+                            }
+                        }
+                    }
+                }
+                if (!empty($resi_office)) {
+                    $sql = "select $resi_office from tbl_applications_resi_office";
+                    $results = Yii::$app->db->createCommand($sql)->queryAll();
+                    if (!empty($results)) {
+                        foreach ($results as $resVal) {
+                            foreach ($resVal as $key => $value) {
+                                $finalData[$resVal['application_id']][$key] = $value;
+                            }
+                        }
+                    }
+                }
+
+
+                if (!empty($finalData)) {
+                    foreach ($finalData as $key => $finalDataDtl) {
+                        $finalData[$key]['Remarks'] = $this->getReport($key);
+                    }
+                }
+                $id = 1;
+                $finalResult = [];
+                if (!empty($finalData)) {
+                    foreach ($finalData as $key => $value) {
+                        $finalResult[$key]["Sr.No"] = $id;
+                        $temp = [];
+                        foreach ($fields as $key1 => $field) {
+                            $finalResult [$key][$key1] = "";
+                            if (preg_match("/(,)/", $field)) {
+                                $explode = explode(",", $field);
+                                foreach ($explode as $expl) {
+                                    $finalResult[$key][$key1] .= " " . $value[$expl];
+                                }
+                            } else {
+                                $finalResult [$key][$key1] = $value[$field];
+                            }
+                        }
+                        $finalResult [$key]['Remarks'] = $value["Remarks"];
+
+                        $id ++;
+                    }
+                }
+                
                 return ['data' => $finalResult, 'columns' => $header];
                 $isDownload = $this->downloadFile($header, $results);
                 return true;
@@ -203,72 +307,110 @@ class InstituteHeaderTemplate extends \yii\db\ActiveRecord {
     }
 
     public function getReport($id) {
-        $sql = "select resi_status,resi_available_status,busi_status,busi_available_status,
-                 office_status,office_available_status,resi_office_status,resi_office_available_status
-                 from tbl_applications where id=$id";
+        $sql = "select resi_status,resi_available_status from tbl_applications_resi where application_id=$id";
         $result = Yii::$app->db->createCommand($sql)->queryOne();
+        $paragraph = "";
         $model = new ApplicationParagraph();
         $sourceIds = $model->getTypeOfVerification();
-        $paragraph = "";
         if (!empty($result)) {
-            if ($result['resi_status'] == 1) {
-                $paragraph .= $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id);
-                $paragraph .= $this->getParagraph(array_search("Business Verification", $sourceIds), $result['busi_available_status'], $id);
-                $paragraph .= $this->getParagraph(array_search("Office Verification", $sourceIds), $result['office_available_status'], $id);
-                $paragraph .= $this->getParagraph(array_search("Residence/Office Verification", $sourceIds), $result['resi_office_available_status'], $id);
-            }
+            if ($result['resi_status'] == 1)
+                $paragraph .= $this->getParagraph(array_search("Residence Verification", $sourceIds), $result['resi_available_status'], $id, 'tbl_applications_resi');
+        }
+        $sql = "select busi_status,busi_available_status from tbl_applications_busi where application_id=$id";
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        if (!empty($result)) {
+            if ($result['busi_status'] == 1)
+                $paragraph .= $this->getParagraph(array_search("Business Verification", $sourceIds), $result['busi_available_status'], $id, 'tbl_applications_busi');
+        }
+        $sql = "select office_status,office_available_status from tbl_applications_office where application_id=$id";
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        if (!empty($result)) {
+            if ($result['office_status'] == 1)
+                $paragraph .= $this->getParagraph(array_search("Office Verification", $sourceIds), $result['office_available_status'], $id, 'tbl_applications_office');
+        }
+        $sql = "select resi_office_status,resi_office_available_status from tbl_applications_resi_office where application_id=$id";
+        $result = Yii::$app->db->createCommand($sql)->queryOne();
+        if (!empty($result)) {
+            if ($result['resi_office_status'] == 1)
+                $paragraph .= $this->getParagraph(array_search("Residence/Office Verification", $sourceIds), $result['resi_office_available_status'], $id, 'tbl_applications_resi_office');
         }
         if (empty($paragraph))
             $paragraph = "N/A";
         return $paragraph;
     }
 
-    public function getParagraph($source, $doorStatus, $recordId) {
+    public function getParagraph($source, $doorStatus, $recordId, $source_table = '') {
         $model = new ApplicationParagraph();
         $loantypes = new LoanTypes();
         $sql = "SELECT paragraph from tbl_application_paragraph where type_of_verification=$source AND door_status=$doorStatus";
         $result = Yii::$app->db->createCommand($sql)->queryOne();
         $replacedPara = "";
+        $other_select = "application_id";
+        $application_select = "id";
         if (!empty($result)) {
             $paragraph = $result['paragraph'];
             if (preg_match_all('/{+(.*?)}/', $paragraph, $matches)) {
-                if (!empty($matches) AND isset($matches[1])) {
-                    $select = implode(",", $matches[1]);
-                    $sql = "select $select from tbl_applications where id=$recordId";
-                    $results = Yii::$app->db->createCommand($sql)->queryOne();
-                    if (!empty($results)) {
-                        foreach ($results as $field => $value) {
-                            $fieldVar = "{" . $field . "}";
-                            if ($field == 'applicant_type') {
-                                $results[$field] = $model->applicant_type[$results[$field]];
-                            } elseif ($field == 'loan_type_id') {
-                                $loans = $loantypes->find()->where(['id' => $results[$field]])->asArray()->one();
-                                $results[$fieldVar] = $loans['loan_name'];
-                            } elseif (preg_match("/designation/", $field)) {
-                                $results[$fieldVar] = (isset($model->designation[$results[$field]]) ? $model->designation[$results[$field]] : "");
-                            } elseif (preg_match("/type_of_business/", $field)) {
-                                $results[$fieldVar] = (isset($model->type_of_business[$results[$field]]) ? $model->type_of_business[$results[$field]] : "");
-                            } elseif (preg_match("/ownership_status/", $field)) {
-                                $results[$fieldVar] = (isset($model->ownership_status[$results[$field]]) ? $model->ownership_status[$results[$field]] : "");
-                            } elseif (preg_match("/locality_type/", $field)) {
-                                $results[$fieldVar] = (isset($model->locality_type[$results[$field]]) ? $model->locality_type[$results[$field]] : "");
-                            } elseif (preg_match("/available_status/", $field)) {
-                                $results[$fieldVar] = (isset($model->available_status[$results[$field]]) ? $model->available_status[$results[$field]] : "");
-                            } elseif (preg_match("/property_status/", $field)) {
-                                $results[$fieldVar] = (isset($model->property_status[$results[$field]]) ? $model->property_status[$results[$field]] : "");
-                            } elseif (preg_match("/property_type/", $field)) {
-                                $results[$fieldVar] = (isset($model->property_type[$results[$field]]) ? $model->property_type[$results[$field]] : "");
-                            } else {
-                                $results[$fieldVar] = $value;
-                            }
-                            unset($results[$field]);
+                if (!empty($matches)) {
+                    foreach ($matches[1] as $match) {
+                        if (preg_match("/resi_/", $match) OR preg_match("/resi_office_/", $match) OR preg_match("/busi_/", $match) OR preg_match("/office_/", $match)) {
+                            $other_select .= ",$match";
+                        } else {
+                            $application_select .= ",$match";
                         }
-                        $keys = array_keys($results);
-                        $values = array_values($results);
                     }
                 }
-                $replacedPara = str_replace($keys, $values, $paragraph) . PHP_EOL;
             }
+            $finalResult = [];
+            if (!empty($application_select)) {
+                $sql = "select $application_select from tbl_applications where id=$recordId";
+                $results = Yii::$app->db->createCommand($sql)->queryOne();
+                if (!empty($results)) {
+                    foreach ($results as $key => $val) {
+                        $finalResult[$key] = $val;
+                    }
+                }
+            }
+            if (!empty($other_select)) {
+                $sql = "select $other_select from $source_table where application_id=$recordId";
+                $results = Yii::$app->db->createCommand($sql)->queryOne();
+                if (!empty($results)) {
+                    foreach ($results as $key => $val) {
+                        $finalResult[$key] = $val;
+                    }
+                }
+            }
+            $results = $finalResult;
+            if (!empty($results)) {
+                foreach ($results as $field => $value) {
+                    $fieldVar = "{" . $field . "}";
+                    if ($field == 'applicant_type') {
+                        $results[$field] = $model->applicant_type[$results[$field]];
+                    } elseif ($field == 'loan_type_id') {
+                        $loans = $loantypes->find()->where(['id' => $results[$field]])->asArray()->one();
+                        $results[$fieldVar] = $loans['loan_name'];
+                    } elseif (preg_match("/designation/", $field)) {
+                        $results[$fieldVar] = (isset($model->designation[$results[$field]]) ? $model->designation[$results[$field]] : "");
+                    } elseif (preg_match("/type_of_business/", $field)) {
+                        $results[$fieldVar] = (isset($model->type_of_business[$results[$field]]) ? $model->type_of_business[$results[$field]] : "");
+                    } elseif (preg_match("/ownership_status/", $field)) {
+                        $results[$fieldVar] = (isset($model->ownership_status[$results[$field]]) ? $model->ownership_status[$results[$field]] : "");
+                    } elseif (preg_match("/locality_type/", $field)) {
+                        $results[$fieldVar] = (isset($model->locality_type[$results[$field]]) ? $model->locality_type[$results[$field]] : "");
+                    } elseif (preg_match("/available_status/", $field)) {
+                        $results[$fieldVar] = (isset($model->available_status[$results[$field]]) ? $model->available_status[$results[$field]] : "");
+                    } elseif (preg_match("/property_status/", $field)) {
+                        $results[$fieldVar] = (isset($model->property_status[$results[$field]]) ? $model->property_status[$results[$field]] : "");
+                    } elseif (preg_match("/property_type/", $field)) {
+                        $results[$fieldVar] = (isset($model->property_type[$results[$field]]) ? $model->property_type[$results[$field]] : "");
+                    } else {
+                        $results[$fieldVar] = $value;
+                    }
+                    unset($results[$field]);
+                }
+                $keys = array_keys($results);
+                $values = array_values($results);
+            }
+            $replacedPara = str_replace($keys, $values, $paragraph) . PHP_EOL;
         }
         return $replacedPara;
     }
