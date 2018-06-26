@@ -52,22 +52,7 @@ class ManageApplicationsController extends Controller {
     public $jsOptions = array(
         'position' => \yii\web\View::POS_HEAD
     );
-    public $excel_columns_applications = array(
-        'First Name' => 'first_name',
-        'Middle Name' => 'middle_name',
-        'Last Name' => 'last_name',
-        'Date Of Birth' => 'date_of_birth',
-        'Aadhaar Card No' => 'aadhaar_card_no',
-        'Pan Card No' => 'pan_card_no',
-        'Mobile No' => 'mobile_no',
-        'Alternate Contact No' => 'alternate_contact_no',
-        'Company Name' => 'company_name',
-        'Address' => 'address',
-        'Case Id' => 'case_id',
-        'Branch Name' => 'branch',
-        'Applicant Type' => 'applicant_type',
-        'Profile Type' => 'profile_type',
-        'Date Of Application' => 'date_of_application',
+    public $excel_columns_application_verification = array(
         'Residence Address' => 'resi_address',
         'Residence Pincode' => 'resi_address_pincode',
         'Residence Triggers' => 'resi_address_trigger',
@@ -110,11 +95,35 @@ class ManageApplicationsController extends Controller {
         'First Name' => 'first_name',
         'Middle Name' => 'middle_name',
         'Last Name' => 'last_name',
+        // 'Date Of Birth' => 'date_of_birth',
         'Aadhaar Card No' => 'aadhaar_card_no',
         'Pan Card No' => 'pan_card_no',
         'Mobile No' => 'mobile_no',
+        'Alternate Contact No' => 'alternate_contact_no',
         'Company Name' => 'company_name',
         'Address' => 'address',
+            // 'Case Id' => 'case_id',
+            // 'Branch Name' => 'branch',
+            // 'Applicant Type' => 'applicant_type',
+            // 'Profile Type' => 'profile_type',
+            // 'Date Of Application' => 'date_of_application',
+    );
+    public $excel_columns_applications = array(
+        'First Name' => 'first_name',
+        'Middle Name' => 'middle_name',
+        'Last Name' => 'last_name',
+        'Date Of Birth' => 'date_of_birth',
+        'Aadhaar Card No' => 'aadhaar_card_no',
+        'Pan Card No' => 'pan_card_no',
+        'Mobile No' => 'mobile_no',
+        'Alternate Contact No' => 'alternate_contact_no',
+        'Company Name' => 'company_name',
+        'Address' => 'address',
+        'Case Id' => 'case_id',
+        'Branch Name' => 'branch',
+        'Applicant Type' => 'applicant_type',
+        'Profile Type' => 'profile_type',
+        'Date Of Application' => 'date_of_application',
     );
 
     /**
@@ -1715,26 +1724,40 @@ class ManageApplicationsController extends Controller {
                             $value = date("Y-m-d", strtotime($value));
                         }
                         $fkey = $this->excel_columns_applications[$key];
-                        if (preg_match("/^resi_/", $fkey) && !preg_match("/^resi_office_/", $fkey)) {
-                            $resi->$fkey = "$value";
-                        } elseif (preg_match("/^office_/", $fkey)) {
+                        $model->$fkey = $value;
+                    }
+                    if (array_key_exists($key, $this->excel_columns_application_verification)) {
+                        $fkey = $this->excel_columns_application_verification[$key];
+                        if (preg_match("/^resi_/", $fkey) || preg_match("/^resi_office_/", $fkey)) {
+                            if (preg_match("/^resi_/", $fkey) && !preg_match("/^resi_office_/", $fkey)) {
+                                $resi->$fkey = $value;
+                            }
+                            if (preg_match("/^resi_office_/", $fkey)) {
+                                $resiOffice->$fkey = $value;
+                            }
+                        }
+                        if (preg_match("/^office_/", $fkey)) {
                             $office->$fkey = $value;
-                        } elseif (preg_match("/^resi_office_/", $fkey)) {
-                            $resiOffice->$fkey = $value;
-                        } elseif (preg_match("/^busi_/", $fkey)) {
+                        }
+                        if (preg_match("/^busi_/", $fkey)) {
                             $busi->$fkey = $value;
-                        } elseif (preg_match("/^builder_/", $fkey)) {
+                        }
+                        if (preg_match("/^builder_/", $fkey)) {
                             $builder_profile->$fkey = $value;
-                        } elseif (preg_match("/^property_apf_/", $fkey)) {
+                        }
+                        if (preg_match("/^property_apf_/", $fkey)) {
                             $property_apf->$fkey = $value;
-                        } elseif (preg_match("/^indiv_property_/", $fkey)) {
+                        }
+                        if (preg_match("/^indiv_property_/", $fkey)) {
                             $indiv_propery->$fkey = $value;
-                        } elseif (preg_match("/^noc_soc_/", $fkey)) {
-                            $noc_soc->$fkey = $value;
-                        } elseif (preg_match("/^noc_/", $fkey) && !preg_match("/^noc_soc_/", $fkey)) {
-                            $noc_busi->$fkey = $value;
-                        } else {
-                            $model->$fkey = $value;
+                        }
+                        if (preg_match("/^noc_/", $fkey) || preg_match("/^noc_soc_/", $fkey)) {
+                            if (preg_match("/^noc_/", $fkey) && !preg_match("/^noc_soc_/", $fkey)) {
+                                $noc_busi->$fkey = $value;
+                            }
+                            if (preg_match("/^noc_soc_/", $fkey)) {
+                                $noc_soc->$fkey = $value;
+                            }
                         }
                     }
                 }
@@ -1775,6 +1798,15 @@ class ManageApplicationsController extends Controller {
                     $apps_data->save();
                 } else {
                     $errors = self::processDbErrors($model->getErrors());
+                    $errors .= self::processDbErrors($resi->getErrors());
+                    $errors .= self::processDbErrors($busi->getErrors());
+                    $errors .= self::processDbErrors($builder_profile->getErrors());
+                    $errors .= self::processDbErrors($office->getErrors());
+                    $errors .= self::processDbErrors($resiOffice->getErrors());
+                    $errors .= self::processDbErrors($property_apf->getErrors());
+                    $errors .= self::processDbErrors($indiv_propery->getErrors());
+                    $errors .= self::processDbErrors($noc_busi->getErrors());
+                    $errors .= self::processDbErrors($noc_soc->getErrors());
                     throw new \Exception($errors);
                 }
             }

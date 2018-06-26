@@ -56,12 +56,12 @@ class ApplicationsOffice extends \yii\db\ActiveRecord {
         return [
             [['application_id'], 'required'],
             [['application_id', 'office_employment_years', 'office_status', 'office_is_reachable', 'office_available_status', 'office_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on'], 'safe'],
-            [['office_not_reachable_remarks'], 'string'],
+            [['created_on', 'updated_on', 'office_address_pincode', 'office_address_lat', 'office_address_long', 'office_not_reachable_remarks'], 'safe'],
+            //[['office_not_reachable_remarks'], 'string'],
             [['office_reason_for_closed'], 'string', 'max' => 100],
             [['office_company_name_board', 'office_designation', 'office_met_person', 'office_met_person_designation', 'office_department', 'office_nature_of_company', 'office_net_salary_amount', 'office_tpc_for_applicant', 'office_tpc_for_company', 'office_landmark'], 'string', 'max' => 150],
             [['office_structure', 'office_remarks', 'office_address', 'office_address_trigger'], 'string', 'max' => 1000],
-            [['office_address_pincode'], 'string', 'max' => 10],
+            //[['office_address_pincode'], 'string', 'max' => 10],
             //[['office_address_lat', 'office_address_long'], 'string', 'max' => 45],
         ];
     }
