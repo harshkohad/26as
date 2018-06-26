@@ -32,12 +32,29 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
                 ['class' => 'yii\grid\SerialColumn'],
                 'name',
                 [
+                    'attribute' => 'created_by',
+                    'label' => 'Created By',
+                    'value' => function ($data) {
+                        if ($data->created_by == NULL) {
+                            return "Not Generated";
+                        } else {
+                            $user_details = User::findIdentity($data->created_by);
+
+                            if (!empty($user_details->username))
+                                return $user_details->username;
+                            else
+                                return 'Not Found';
+                        }
+                    },
+                ],
+                'created_at',
+                [
                     'attribute' => 'Action',
                     'filter' => false,
                     'format' => 'raw',
                     'value' => [$searchModel, "getViewButton"],
                 ],
-                            ],
+            ],
         ]);
         ?>
     </div>
@@ -71,6 +88,6 @@ yii\bootstrap\Modal::end();
 
 <script type="text/javascript">
     function getForm(id) {
-        
+
     }
 </script>

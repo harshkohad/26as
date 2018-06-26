@@ -36,6 +36,10 @@ return [
             'url' => ['/applications/institutes/index']
         ],
         [
+            'label' => 'Manage Loan Types',
+            'url' => ['/applications/loan-types/index']
+        ],
+        [
             'label' => 'Manage Paragraphs',
             'url' => ['/applications/manage-applications/manage-paragraphs']
         ],
