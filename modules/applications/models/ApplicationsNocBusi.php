@@ -45,13 +45,13 @@ class ApplicationsNocBusi extends \yii\db\ActiveRecord
     {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'noc_is_reachable', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on'], 'safe'],
+            [['application_id', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on', 'noc_address_pincode', 'noc_is_reachable'], 'safe'],
             [['noc_not_reachable_remarks'], 'string'],
             [['noc_structure', 'noc_address', 'noc_address_trigger'], 'string', 'max' => 1000],
             [['noc_status'], 'string', 'max' => 45],
             [['noc_soc_chairman_name', 'noc_soc_secretary_name', 'noc_soc_tresurer_name'], 'string', 'max' => 200],
-            [['noc_address_pincode'], 'string', 'max' => 10],
+//            [['noc_address_pincode'], 'string', 'max' => 10],
         ];
     }
 

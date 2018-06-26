@@ -66,14 +66,14 @@ class ApplicationsBusi extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_ownership_status', 'busi_area', 'busi_locality', 'busi_locality_type', 'busi_activity_seen', 'busi_status', 'busi_is_reachable', 'busi_available_status', 'busi_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on'], 'safe'],
+            [['application_id', 'busi_staff_declared', 'busi_staff_seen', 'busi_years_in_business', 'busi_type_of_business', 'busi_ownership_status', 'busi_area', 'busi_locality', 'busi_locality_type', 'busi_activity_seen', 'busi_status', 'busi_available_status', 'busi_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on', 'busi_address_pincode', 'busi_address_lat', 'busi_address_long', 'busi_is_reachable'], 'safe'],
             [['busi_not_reachable_remarks'], 'string'],
             [['busi_tpc_neighbor_1', 'busi_tpc_neighbor_2', 'busi_company_name_board', 'busi_met_person', 'busi_designation', 'busi_nature_of_business', 'busi_ownership_status_text', 'busi_locality_text', 'busi_landmark_1', 'busi_landmark_2'], 'string', 'max' => 150],
             [['busi_designation_others', 'busi_rented_owner_name', 'busi_reason_for_closed'], 'string', 'max' => 100],
             [['busi_structure', 'busi_remarks', 'busi_address', 'busi_address_trigger'], 'string', 'max' => 1000],
             [['busi_rent_amount'], 'string', 'max' => 500],
-            [['busi_address_pincode'], 'string', 'max' => 10],
+//            [['busi_address_pincode'], 'string', 'max' => 10],
             //[['busi_address_lat', 'busi_address_long'], 'string', 'max' => 45],
         ];
     }
