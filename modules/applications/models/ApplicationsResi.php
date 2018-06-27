@@ -64,13 +64,13 @@ class ApplicationsResi extends \yii\db\ActiveRecord {
         return [
             [['application_id'], 'required'],
             [['application_id', 'resi_home_area', 'resi_ownership_status', 'resi_stay_years', 'resi_total_family_members', 'resi_working_members', 'resi_locality', 'resi_locality_type', 'resi_market_feedback', 'resi_status', 'resi_is_reachable', 'resi_available_status', 'resi_shifted_tenure', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on', 'resi_rent_amount', 'resi_rented_owner_name', 'resi_not_reachable_remarks', 'resi_relation'], 'safe'],
+            [['created_on', 'updated_on', 'resi_rent_amount', 'resi_rented_owner_name', 'resi_not_reachable_remarks', 'resi_relation', 'resi_address_pincode'], 'safe'],
             //[['resi_not_reachable_remarks'], 'string'],
             [['resi_society_name_plate', 'resi_door_name_plate', 'resi_tpc_neighbor_1', 'resi_tpc_neighbor_2', 'resi_met_person', 'resi_ownership_status_text', 'resi_locality_text', 'resi_landmark_1', 'resi_landmark_2'], 'string', 'max' => 150],
             [['resi_structure', 'resi_remarks', 'resi_address', 'resi_address_trigger'], 'string', 'max' => 1000],
             //[['resi_rented_owner_name'], 'string', 'max' => 100],
             //[['resi_rent_amount'], 'string', 'max' => 500],
-            [['resi_address_pincode'], 'string', 'max' => 10],
+            //[['resi_address_pincode'], 'string', 'max' => 10],
             //[['resi_address_lat', 'resi_address_long'], 'string', 'max' => 45],
         ];
     }

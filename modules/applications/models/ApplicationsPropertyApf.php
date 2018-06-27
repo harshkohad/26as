@@ -54,12 +54,12 @@ class ApplicationsPropertyApf extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['application_id'], 'required'],
-            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'property_apf_is_reachable', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['created_on', 'updated_on'], 'safe'],
+            [['application_id', 'property_apf_property_status', 'property_apf_no_of_workers', 'property_apf_total_flats', 'property_apf_how_many_sold', 'property_apf_total_shops', 'property_apf_area', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
+            [['created_on', 'updated_on', 'property_apf_address_pincode', 'property_apf_is_reachable'], 'safe'],
             [['property_apf_not_reachable_remarks'], 'string'],
             [['property_apf_met_person', 'property_apf_met_person_designation', 'property_apf_mode_of_payment', 'property_apf_construction_stock', 'property_apf_work_completed', 'property_apf_possession', 'property_apf_apf', 'property_apf_delay_in_work', 'property_apf_tpc', 'property_apf_landmark'], 'string', 'max' => 150],
             [['property_apf_address', 'property_apf_address_trigger'], 'string', 'max' => 1000],
-            [['property_apf_address_pincode'], 'string', 'max' => 10],
+//            [['property_apf_address_pincode'], 'string', 'max' => 10],
             //[['property_apf_address_lat', 'property_apf_address_long'], 'string', 'max' => 45],
         ];
     }
