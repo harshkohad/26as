@@ -2067,6 +2067,8 @@ class ManageApplicationsController extends Controller {
             $model->door_status = $_REQUEST['ApplicationParagraph']['door_status'];
             $model->created_at = date("Y-m-d H:i:s");
             $model->created_by = Yii::$app->user->id;
+            $model->modified_at = date("Y-m-d H:i:s");
+            $model->modified_by = Yii::$app->user->id;
             $model->save();
             \Yii::$app->getSession()->setFlash('success', 'Record added Successfully.');
             return $this->redirect(['manage-paragraphs']);
