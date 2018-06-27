@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use mdm\admin\models\User;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\applications\models\InstitutesSearch */
+/* @var $searchModel app\modules\applications\models\LoanTypesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Manage Institutes';
+$this->title = 'Manage Loan Types';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="panel">
@@ -15,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
-            <?= Html::a('Create Institute', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Create Loan Type', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
         <?=
         GridView::widget([
@@ -24,8 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 //'id',
-                'name',
-                'abbreviation',
+                'loan_name',
+                [
+                    'attribute' => 'loan_type',
+                    'label' => 'Loan Type',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return $model->getLoanType($model->loan_type);
+                    },
+                    'filter' => ['1' => 'ASSET VERIFICATION', '2' => 'LIABILITIES VERIFICATION', '3' => 'VENDOR VERIFICATION'],
+                ],
                 [
                     'attribute' => 'created_by',
                     'label' => 'Created By',
@@ -43,14 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ],
                 'created_on',
-                //'download_pdf',
-                //'download_excel',
-                //'char_count',
-                // 'is_alphanumeric',
-                // 'file_name',
-                // 'is_active',
-                // 'created_by',
-                // 'created_on',
                 // 'updated_by',
                 // 'updated_on',
                 // 'is_deleted',
@@ -60,3 +61,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
     </div>
 </section>
+
