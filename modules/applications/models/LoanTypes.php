@@ -32,6 +32,7 @@ class LoanTypes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['loan_name', 'loan_type'], 'required'],
             [['loan_type', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
             [['created_on', 'updated_on'], 'safe'],
             [['loan_name'], 'string', 'max' => 150],
@@ -53,5 +54,23 @@ class LoanTypes extends \yii\db\ActiveRecord
             'updated_on' => 'Updated On',
             'is_deleted' => 'Is Deleted',
         ];
+    }
+    
+    public function getLoanType($loan_type) {
+        $return = '';
+
+        switch ($loan_type) {
+            case 1:
+                $return = 'ASSET VERIFICATION';
+                break;
+            case 2:
+                $return = 'LIABILITIES VERIFICATION';
+                break;
+            case 3:
+                $return = 'VENDOR VERIFICATION';
+                break;        
+        }
+
+        return $return;
     }
 }

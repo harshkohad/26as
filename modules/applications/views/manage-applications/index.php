@@ -71,6 +71,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'profile_type',
                     // 'area_id',
                     'date_of_application',
+                    [
+                        'attribute' => 'created_by',
+                        'label' => 'Created By',
+                        'value' => function ($data) {
+                            if ($data->created_by == NULL) {
+                                return "Not Generated";
+                            } else {
+                                $user_details = User::findIdentity($data->created_by);
+
+                                if (!empty($user_details->username))
+                                    return $user_details->username;
+                                else
+                                    return 'Not Found';
+                            }
+                        },
+                    ],
+                    'created_on',
                     // 'resi_society_name_plate',
                     // 'resi_door_name_plate',
                     // 'resi_tpc_neighbor_1',
@@ -136,8 +153,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'mobile_user_assigned_date',
                     // 'mobile_user_status',
                     // 'mobile_user_status_updated_on',
-                    // 'created_by',
-                    // 'created_on',
                     // 'updated_by',
                     // 'updated_on',
                     // 'is_deleted',

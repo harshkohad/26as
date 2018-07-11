@@ -4,12 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\applications\models\Institutes */
+/* @var $model app\modules\applications\models\LoanTypes */
 
-$this->title = 'View Institute: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Institutes', 'url' => ['index']];
+$this->title = 'View Loan Type: ' . $model->loan_name;
+$this->params['breadcrumbs'][] = ['label' => 'Loan Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <section class="panel">
     <div class="panel-body">
         <p>
@@ -27,12 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="row">
             <div class="col-lg-3">
-                <label class="control-label" for="name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('name') ?></label>
-                <div class="readonlydiv"><?= $model->name ?></div>
+                <label class="control-label" for="loan_name" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_name') ?></label>
+                <div class="readonlydiv"><?= $model->loan_name ?></div>
             </div>
             <div class="col-lg-3">
-                <label class="control-label" for="abbreviation" style=" margin-top: 0px;"><?= $model->getAttributeLabel('abbreviation') ?></label>
-                <div class="readonlydiv"><?= $model->abbreviation ?></div>
+                <label class="control-label" for="loan_type" style=" margin-top: 0px;"><?= $model->getAttributeLabel('loan_type') ?></label>
+                <div class="readonlydiv"><?= $model->getLoanType($model->loan_type) ?></div>
             </div>
         </div>
     </div>
