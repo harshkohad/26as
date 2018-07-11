@@ -105,10 +105,10 @@ yii\bootstrap\Modal::end();
 
 <script>//
 //
-    function getForm(first_name, middle_name, last_name, pan_card, mobile_no, aadhar_card) {
+    function getDedupeModal(first_name, middle_name, last_name, pan_card, mobile_no, aadhar_card, id) {
         var url = '<?php echo yii\helpers\Url::to(["manage-applications/get-applicant-profile"]); ?>'
         $('#profile_modal').modal('show');
-        var dataString = "inputFirstName=" + first_name + "&inputMiddleName=" + middle_name + "&inputLastName=" + last_name + "&inputMobileNumber=" + mobile_no + "&inputPanCard=" + pan_card + "&inputAadhaarCard=" + aadhar_card + "&isAjaxCall=1";
+        var dataString = "inputFirstName=" + first_name + "&inputMiddleName=" + middle_name + "&inputLastName=" + last_name + "&inputMobileNumber=" + mobile_no + "&inputPanCard=" + pan_card + "&inputAadhaarCard=" + aadhar_card + "&id=" + id + "&isAjaxCall=1";
         $.ajax({
             url: url, // Url to which the request is send
             type: 'POST', // Type of request to be send, called as method
@@ -121,7 +121,8 @@ yii\bootstrap\Modal::end();
         $(document).on('click', '.btn_select_record', function () {
             var value = $(this).val();
             var dest = $(this).attr('rel');
-            $("#profile_id_" + dest).val(value);
+            var id = $(this).attr('id');
+            $("#profile_id_" + id).val(dest);
             $('#profile_modal').modal('hide');
 //            document.getElementById("profile_id_" + dest).value = value;
         });

@@ -936,13 +936,16 @@ class ManageApplicationsController extends Controller {
         $return_data = '';
         if (Yii::$app->request->post()) {
             $data = Yii::$app->request->post();
-
             $query_condition = array();
 
             $query = '';
 
             if (!empty($data['inputFirstName'])) {
                 $query_condition["first_name"] = $data['inputFirstName'];
+            }
+            $id = "";
+            if (!empty($data['id']) OR $data['id'] == 0) {
+                $id = $data['id'];
             }
             if (!empty($data['inputMiddleName'])) {
                 $query_condition["middle_name"] = $data['inputMiddleName'];
@@ -995,7 +998,7 @@ class ManageApplicationsController extends Controller {
                     $return_data .= "<td>{$app_profile['aadhaar_card_no']}</td>";
                     $return_data .= "<td>{$app_profile['company_name']}</td>";
                     $return_data .= "<td>{$app_profile['address']}</td>";
-                    $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="' . $app_profile['id'] . '" rel="' . $app_profile['first_name'] . '_' . $app_profile['middle_name'] . '_' . $app_profile['last_name'] . '">
+                    $return_data .= '<td><button style="margin-bottom: 10px !important;" type="button" class="btn btn-primary btn_select_record" value="' . $app_profile['id'] . '" rel="' . $app_profile['first_name'] . ' ' . $app_profile['middle_name'] . ' ' . $app_profile['last_name'] . '" id=' . $id . '>
                                      <i class="fa fa-external-link"></i> Select</button></td>';
                     $return_data .= '</tr>';
                 }
@@ -1612,8 +1615,8 @@ class ManageApplicationsController extends Controller {
                 ]);
                 if (!empty($data)) {
                     foreach ($data as $key => $dataDtl) {
-                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getForm('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}','{$dataDtl['Pan Card No']}','{$dataDtl['Mobile No']}','{$dataDtl['Aadhaar Card No']}')" . "> Dedupe Check</button><br>
-                        <input type='hidden' class='profile_ids' name='profile_id[$key]' value='' id='profile_id_{$dataDtl['First Name']}_{$dataDtl['Middle Name']}_{$dataDtl['Last Name']}' rel='$key'/> ";
+                        $data[$key]['Dedupe Check'] = "<button type='button' class='btn btn-block btn-primary btn-sm' onclick=" . "getDedupeModal('{$dataDtl['First Name']}','{$dataDtl['Middle Name']}','{$dataDtl['Last Name']}','{$dataDtl['Pan Card No']}','{$dataDtl['Mobile No']}','{$dataDtl['Aadhaar Card No']}','$key')" . "> Dedupe Check</button><br>
+                        <input class='profile_ids' name='profile_id[$key]' value='' id='profile_id_$key' rel='$key'/> ";
                     }
                 }
 //                print_r($data);
