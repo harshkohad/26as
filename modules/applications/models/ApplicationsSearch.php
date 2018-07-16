@@ -8,7 +8,6 @@ use yii\data\ActiveDataProvider;
 use app\modules\applications\models\Applications;
 use mdm\admin\models\UserDetails;
 
-
 /**
  * ApplicationsSearch represents the model behind the search form about `app\modules\applications\models\Applications`.
  */
@@ -41,7 +40,7 @@ class ApplicationsSearch extends Applications {
      */
     public function search($params) {
         $where_cond = \app\components\CommonUtility::checkAuditMode();
-        
+
         $query = Applications::find()->where($where_cond)->orderBy([
             'id' => SORT_DESC,
         ]);
@@ -64,12 +63,15 @@ class ApplicationsSearch extends Applications {
 
         if (!empty($userData)) {
             if (!empty($userData->institute_id) && $userData->institute_id != 0) {
-                $query->andFilterWhere(['institute_id' => $userData->institute_id]);
+                $institute_id = explode(",", $userData->institute_id);
+                $query->andFilterWhere(["IN", 'institute_id', $institute_id]);
             }
             if (!empty($userData->loan_id) && $userData->loan_id != 0) {
-                $query->andFilterWhere(['loan_type_id' => $userData->loan_id]);
+                $loan_id = explode(",", $userData->loan_id);
+                $query->andFilterWhere(["IN", 'loan_type_id', $loan_id]);
             }
         }
+//        echo "<pre/>",print_r($query);die;
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

@@ -944,9 +944,12 @@ class ManageApplicationsController extends Controller {
                 $query_condition["first_name"] = $data['inputFirstName'];
             }
             $id = "";
-            if (!empty($data['id']) OR $data['id'] == 0) {
-                $id = $data['id'];
+            if (isset($data['id'])) {
+                if (!empty($data['id']) OR $data['id'] == 0) {
+                    $id = $data['id'];
+                }
             }
+
             if (!empty($data['inputMiddleName'])) {
                 $query_condition["middle_name"] = $data['inputMiddleName'];
             }
