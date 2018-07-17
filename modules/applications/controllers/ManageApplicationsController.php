@@ -39,6 +39,15 @@ use app\modules\applications\models\ApplicationsBuilderProfile;
 use app\modules\applications\models\ApplicationsPropertyApf;
 use app\modules\applications\models\ApplicationsIndivProperty;
 use app\modules\applications\models\ApplicationsNocSoc;
+use app\modules\applications\models\ApplicationsBuilderProfileHistory;
+use app\modules\applications\models\ApplicationsBusiHistory;
+use app\modules\applications\models\ApplicationsIndivPropertyHistory;
+use app\modules\applications\models\ApplicationsNocBusiHistory;
+use app\modules\applications\models\ApplicationsNocSocHistory;
+use app\modules\applications\models\ApplicationsOfficeHistory;
+use app\modules\applications\models\ApplicationsPropertyApfHistory;
+use app\modules\applications\models\ApplicationsResiHistory;
+use app\modules\applications\models\ApplicationsResiOfficeHistory;
 
 /**
  * ManageApplicationsController implements the CRUD actions for Applications model.
@@ -944,9 +953,12 @@ class ManageApplicationsController extends Controller {
                 $query_condition["first_name"] = $data['inputFirstName'];
             }
             $id = "";
-            if (!empty($data['id']) OR $data['id'] == 0) {
-                $id = $data['id'];
+            if (isset($data['id'])) {
+                if (!empty($data['id']) OR $data['id'] == 0) {
+                    $id = $data['id'];
+                }
             }
+
             if (!empty($data['inputMiddleName'])) {
                 $query_condition["middle_name"] = $data['inputMiddleName'];
             }
@@ -2082,8 +2094,33 @@ class ManageApplicationsController extends Controller {
             $applicationData->application_status = 2;
             $applicationData->save(false);
             $modelHistory->save(false);
+            $modelHistoryId = $modelHistory->id;
+            $this->saveHistoryData(new ApplicationsBuilderProfile, new ApplicationsBuilderProfileHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsBusi, new ApplicationsBusiHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsIndivProperty, new ApplicationsIndivProperty, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsNocBusi, new ApplicationsNocBusiHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsNocSoc, new ApplicationsNocSocHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsOffice, new ApplicationsOfficeHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsPropertyApf, new ApplicationsPropertyApfHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsResi, new ApplicationsResiHistory, $modelHistoryId, $app_id);
+            $this->saveHistoryData(new ApplicationsResiOffice, new ApplicationsResiOfficeHistory, $modelHistoryId, $app_id);
         }
         echo "Done";
+    }
+
+    public function saveHistoryData($modelHistory, $newModel, $history_id = '', $application_id = '') {
+        $applicationData = $modelHistory->findOne(['application_id' => $application_id]);
+        if (!empty($applicationData)) {
+            $newModel->application_id = $history_id;
+            foreach ($applicationData as $key => $value) {
+                if (in_array($key, ['application_id', 'id'])) {
+                    continue;
+                } else {
+                    $newModel->$key = $value;
+                }
+            }
+            $newModel->save(false);
+        }
     }
 
     public function actionCreateParagraph() {

@@ -15,6 +15,10 @@ if (Yii::$app->controller->action->id == 'create') {
 }
 
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJsFile(
+        Yii::$app->request->BaseUrl . '/js/jquery.tokeninput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.css");
 ?>
 <section class="panel">
     <div class="panel-body">
@@ -46,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="row">
-            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->dropDownList($instituteData, ['prompt' => 'Select Institute'])->label('Institute Name') ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput_loan"]); ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -68,3 +72,24 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php ActiveForm::end(); ?>
     </div>
 </section>
+<?php
+$this->registerJs("$(function(){
+        $('#tokeninput').tokenInput($instituteData, {
+            theme: 'facebook',
+        });
+        $('#tokeninput_loan').tokenInput($loanData, {
+            theme: 'facebook',
+        });
+});");
+?>
+
+<style>
+    div.token-input-dropdown-facebook {           
+        z-index: 11001 !important;
+    }
+    .table {
+        width: 69%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+</style>
