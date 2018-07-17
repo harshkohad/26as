@@ -315,7 +315,7 @@ class Api extends \yii\db\ActiveRecord {
 			$app_model = Applications::find()->where(['id' => $app_id])->one();	
 			$application_details['application_id'] = $app_model->application_id;	
                         
-            //Replace null with empty string            
+            //Replace null values with empty string            
             array_walk_recursive($application_details, function (&$item, $key) {
                 $item = null === $item ? '' : $item;
             });
