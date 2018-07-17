@@ -118,7 +118,7 @@ class UserController extends BaseController {
             if ($model->userDetails->institute_id == 0) {
                 $institute->name = "All";
             }
-            $institute_Data= Institutes::find()->where(['id' => $model->userDetails->institute_id])->one();
+            $institute_Data = Institutes::find()->where(['id' => $model->userDetails->institute_id])->one();
             if (!empty($institute_Data)) {
                 $institute->name = $institute_Data->name;
             }
@@ -126,7 +126,7 @@ class UserController extends BaseController {
             if ($model->userDetails->loan_id == 0) {
                 $LoanTypes->loan_name = "All";
             }
-            $LoanTypes_Data= LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
+            $LoanTypes_Data = LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
             if (!empty($LoanTypes_Data)) {
                 $LoanTypes->loan_name = $LoanTypes_Data->loan_name;
             }
@@ -345,6 +345,7 @@ class UserController extends BaseController {
             $model = $this->findModel($id);
         }
 
+
         $institutes = new Institutes();
         $LoanTypes = new LoanTypes();
         $AuthItem = new AuthItem();
@@ -357,23 +358,61 @@ class UserController extends BaseController {
                 $roles[$data->name] = $data->name;
             }
         }
-        $instituteData[0] = 'All';
+//        $instituteData[0] = 'All';
+        $instituteData[] = array('id' => 0, 'name' => 'all');
         if (!empty($institutes->find()->asArray()->all()))
             $institutesDtl = $institutes->find()->asArray()->all();
         if (!empty($institutesDtl)) {
             foreach ($institutesDtl as $institute) {
-                $instituteData[$institute['id']] = $institute['name'];
+                $instituteData[] = array('id' => $institute['id'], 'name' => $institute['name']);
+//                $instituteData[$institute['id']] = $institute['name'];
             }
         }
-
-        $loanData[0] = 'All';
+        $instituteData = json_encode($instituteData);
+//        $loanData[0] = 'All';
+        $loanData[] = array('id' => 0, 'name' => "All");
         if (!empty($LoanTypes->find()->asArray()->all()))
             $loans = $LoanTypes->find()->asArray()->all();
         if (!empty($loans)) {
             foreach ($loans as $loan) {
-                $loanData[$loan['id']] = $loan['loan_name'];
+//                $loanData[$loan['id']] = $loan['loan_name'];
+                $loanData[$loan['id']] = array('id' => $loan['id'], 'name' => $loan['loan_name']);
             }
         }
+        $loanData = json_encode($loanData);
+        $prePopulateInistitutes = [];
+        if (!empty($userDetails->institute_id)) {
+            $ids = explode(",", $userDetails->institute_id);
+            $institutesPreDtl = $institutes->find()->where(["IN", "id", $ids])->asArray()->all();
+            if (!empty($institutesPreDtl)) {
+                foreach ($institutesPreDtl as $key => $value) {
+                    $prePopulateInistitutes[] = ['id' => $value['id'], 'name' => $value['name']];
+                }
+            }
+            if (!empty($prePopulateInistitutes)) {
+                $prePopulateInistitutes = json_encode($prePopulateInistitutes);
+            } else {
+                $prePopulateInistitutes = '';
+            }
+        }
+        $prePopulateLoan = [];
+        if (!empty($userDetails->loan_id)) {
+            $ids = explode(",", $userDetails->loan_id);
+            $loanPreDtl = $LoanTypes->find()->where(["IN", "id", $ids])->asArray()->all();
+//            echo "<pre/>",print_r($loanPreDtl);die;
+            if (!empty($loanPreDtl)) {
+                foreach ($loanPreDtl as $key => $value) {
+                    $prePopulateLoan[] = ['id' => $value['id'], 'name' => $value['loan_name']];
+                }
+            }
+            if (!empty($prePopulateLoan)) {
+                $prePopulateLoan = json_encode($prePopulateLoan);
+            } else {
+                $prePopulateLoan = '';
+            }
+        }
+//        $institute_Data = Institutes::find()->where(['IN', 'id', [$model->userDetails->institute_ids]])->all();
+        $selectedInstitutes = $userDetails->getSelectedInstitutes($userDetails->institute_id);
         if ($userDetails->load(Yii::$app->request->post())) {
             $model->status = $_POST['User']['status'];
             $model->update(FALSE);
@@ -382,18 +421,20 @@ class UserController extends BaseController {
                 if ($model->userDetails->institute_id == 0) {
                     $institute->name = "All";
                 }
-                $institute_Data= Institutes::find()->where(['id' => $model->userDetails->institute_id])->one();
-                if (!empty($institute_Data)) {
-                    $institute->name = $institute_Data->name;
-                }
-                $LoanTypes = new LoanTypes();
-                if ($model->userDetails->loan_id == 0) {
-                    $LoanTypes->loan_name = "All";
-                }
-                $LoanTypes_Data= LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
-                if (!empty($LoanTypes_Data)) {
-                    $LoanTypes->loan_name = $LoanTypes_Data->loan_name;
-                }
+                $instituteIds = $model->userDetails->institute_id;
+                $institute_Data = Institutes::find()->where(['IN', 'id', [$instituteIds]])->all();
+
+//                if (!empty($institute_Data)) {
+//                    $institute->name = $institute_Data->name;
+//                }
+//                $LoanTypes = new LoanTypes();
+//                if ($model->userDetails->loan_id == 0) {
+//                    $LoanTypes->loan_name = "All";
+//                }
+//                $LoanTypes_Data = LoanTypes::find()->where(['id' => $model->userDetails->institute_id])->one();
+//                if (!empty($LoanTypes_Data)) {
+//                    $LoanTypes->loan_name = $LoanTypes_Data->loan_name;
+//                }
                 return $this->render('view', [
                             'model' => $model,
                             'userDetails' => $userDetails,
@@ -408,7 +449,9 @@ class UserController extends BaseController {
                     'instituteData' => $instituteData,
                     'loanData' => $loanData,
                     'roles' => $roles,
-                    'statusData' => $statusData
+                    'statusData' => $statusData,
+                    'prePopulateInistitutes' => $prePopulateInistitutes,
+                    'prePopulateLoan' => $prePopulateLoan
         ]);
     }
 
@@ -431,24 +474,25 @@ class UserController extends BaseController {
                 $roles[$data->name] = $data->name;
             }
         }
-        $instituteData[0] = 'All';
+        $instituteData[] = ['id' => 0, 'name' => 'All'];
         if (!empty($institutes->find()->asArray()->all()))
             $institutesDtl = $institutes->find()->asArray()->all();
         if (!empty($institutesDtl)) {
             foreach ($institutesDtl as $institute) {
-                $instituteData[$institute['id']] = $institute['name'];
+                $instituteData[] = array('id' => $institute['id'], 'name' => $institute['name']);
             }
         }
-
-        $loanData[0] = 'All';
+        $instituteData = json_encode($instituteData);
+        $loanData[] = ['id' => 0, 'name' => 'All'];
         if (!empty($LoanTypes->find()->asArray()->all()))
             $loans = $LoanTypes->find()->asArray()->all();
         if (!empty($loans)) {
             foreach ($loans as $loan) {
-                $loanData[$loan['id']] = $loan['loan_name'];
+                $loanData[] = array('id' => $loan['id'], 'name' => $loan['loan_name']);
+//                $loanData[$loan['id']] = $loan['loan_name'];
             }
         }
-
+        $loanData = json_encode($loanData);
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 $userDetailsmodel->load(Yii::$app->getRequest()->post());

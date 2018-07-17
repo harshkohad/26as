@@ -62,6 +62,7 @@ use Yii;
  * @property integer $is_deleted
  */
 class Applications extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
@@ -76,15 +77,15 @@ class Applications extends \yii\db\ActiveRecord {
         return [
             [['first_name', 'last_name', 'date_of_application', 'applicant_type', 'profile_type', 'institute_id', 'loan_type_id', 'date_of_birth', 'aadhaar_card_no', 'pan_card_no', 'mobile_no', 'alternate_contact_no', 'case_id', 'branch', 'company_name', 'address'], 'required'],
             [['profile_id', 'institute_id', 'loan_type_id', 'applicant_type', 'profile_type', 'area_id', 'application_status', 'created_by', 'updated_by', 'is_deleted'], 'integer'],
-            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'created_on', 'updated_on', 'application_id', 'pan_first_name', 'pan_last_name', 'pan_middle_name', 'pan_address', 'pan_pan_no', 'pan_dob', 
-              'pan_date_of_issue', 'pan_is_complete', 'ac_first_name', 'ac_last_name', 'ac_middle_name', 'ac_aadhar_no', 'ac_dob', 'ac_address', 'ac_mobile_no', 'ac_is_complete', 'passport_first_name', 'passport_last_name', 'passport_middle_name', 'passport_passport_no', 'passport_passport_no',
-              'passport_address', 'passport_validity', 'passport_date_of_issue', 'passport_is_complete', 'electricity_name', 'electricity_address', 'electricity_is_complete', 'telephone_is_complete', 'telephone_mobile_no', 'telephone_amount', 'telephone_name', 'telephone_address', 
-              'voter_first_name', 'voter_last_name', 'voter_middle_name', 'voter_address', 'voter_voter_id_no', 'voter_is_complete', 'driving_is_complete', 'driving_name', 'driving_driving_license_number', 'driving_validity', 'driving_date_of_issue', 'company_name', 'company_designation',
-              'shop_act_is_complete', 'shop_act_name', 'shop_act_shop_act_no', 'shop_act_address', 'shop_act_from_date', 'shop_act_till_date', 'gst_name', 'gst_is_complete', 'gst_gst_no', 'gst_address', 'rent_agreement_met_name', 'rent_agreement_owner_name', 'rent_agreement_rent_amount', 
-              'rent_agreement_deposit_amount', 'rent_agreement_is_complete', 'rent_agreement_validity', 'sale_agreement_is_complete', 'sale_agreement_seller_name', 'sale_agreement_purchaser_name', 'sale_agreement_address', 'oc_cc_plan_cts_no', 'oc_cc_plan_is_complete', 'oc_cc_plan_issuing_authority',
-              'oc_cc_plan_signature', 'ocr_receipt_builder_name', 'ocr_receipt_met_person', 'ocr_receipt_designation', 'ocr_receipt_signature', 'ocr_receipt_tpc', 'ocr_receipt_landmark', 'ocr_receipt_amount', 'ocr_receipt_receipt_no', 'ocr_receipt_is_complete'], 'safe'],
-            [['first_name', 'middle_name', 'last_name', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name', 
-              'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year'], 'string', 'max' => 150],
+            [['date_of_application', 'financial_date_of_filing', 'bank_dated_transaction', 'bank_account_opening_date', 'bank_date_of_birth', 'created_on', 'updated_on', 'application_id', 'pan_first_name', 'pan_last_name', 'pan_middle_name', 'pan_address', 'pan_pan_no', 'pan_dob',
+            'pan_date_of_issue', 'pan_is_complete', 'ac_first_name', 'ac_last_name', 'ac_middle_name', 'ac_aadhar_no', 'ac_dob', 'ac_address', 'ac_mobile_no', 'ac_is_complete', 'passport_first_name', 'passport_last_name', 'passport_middle_name', 'passport_passport_no', 'passport_passport_no',
+            'passport_address', 'passport_validity', 'passport_date_of_issue', 'passport_is_complete', 'electricity_name', 'electricity_address', 'electricity_is_complete', 'telephone_is_complete', 'telephone_mobile_no', 'telephone_amount', 'telephone_name', 'telephone_address',
+            'voter_first_name', 'voter_last_name', 'voter_middle_name', 'voter_address', 'voter_voter_id_no', 'voter_is_complete', 'driving_is_complete', 'driving_name', 'driving_driving_license_number', 'driving_validity', 'driving_date_of_issue', 'company_name', 'company_designation',
+            'shop_act_is_complete', 'shop_act_name', 'shop_act_shop_act_no', 'shop_act_address', 'shop_act_from_date', 'shop_act_till_date', 'gst_name', 'gst_is_complete', 'gst_gst_no', 'gst_address', 'rent_agreement_met_name', 'rent_agreement_owner_name', 'rent_agreement_rent_amount',
+            'rent_agreement_deposit_amount', 'rent_agreement_is_complete', 'rent_agreement_validity', 'sale_agreement_is_complete', 'sale_agreement_seller_name', 'sale_agreement_purchaser_name', 'sale_agreement_address', 'oc_cc_plan_cts_no', 'oc_cc_plan_is_complete', 'oc_cc_plan_issuing_authority',
+            'oc_cc_plan_signature', 'ocr_receipt_builder_name', 'ocr_receipt_met_person', 'ocr_receipt_designation', 'ocr_receipt_signature', 'ocr_receipt_tpc', 'ocr_receipt_landmark', 'ocr_receipt_amount', 'ocr_receipt_receipt_no', 'ocr_receipt_is_complete'], 'safe'],
+            [['first_name', 'middle_name', 'last_name', 'financial_pan_card_no', 'financial_name', 'financial_sales', 'financial_share_capital', 'financial_net_profit', 'financial_debtors', 'financial_creditors', 'financial_total_loans', 'financial_depriciation', 'bank_bank_name',
+            'bank_account_holder', 'bank_account_number', 'bank_pan_card_no', 'bank_current_balance', 'financial_assessment_year'], 'string', 'max' => 150],
             [['bank_address', 'bank_narration'], 'string', 'max' => 1000],
             ['aadhaar_card_no', 'match', 'pattern' => '/^[0-9-]+$/', 'skipOnError' => true],
             ['aadhaar_card_no', 'validateAAdharCard'],
@@ -543,7 +544,7 @@ class Applications extends \yii\db\ActiveRecord {
                 $applicationIndivProperty = new ApplicationsIndivProperty();
             if (empty($applicationNocSoc))
                 $applicationNocSoc = new ApplicationsNocSoc();
-            
+
             if ($applicationResi->resi_address_verification == 1 ||
                     $applicationBusi->busi_address_verification == 1 ||
                     $applicationOffice->office_address_verification == 1 ||
@@ -755,9 +756,9 @@ class Applications extends \yii\db\ActiveRecord {
     public function getDedupCheckButton() {
         
     }
-    
+
     public function getBadge($status) {
-        if($status == 0) {
+        if ($status == 0) {
             return '<span class="badge" style="background: #ff6c60 !important;">NOT-VERIFIED</span>';
         } else {
             return '<span class="badge" style="background: #a9d86e !important;">VERIFIED</span>';

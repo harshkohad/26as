@@ -8,6 +8,10 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('rbac-admin', 'Users'), 'url
 $this->params['breadcrumbs'][] = $this->title;
 
 $controllerId = $this->context->uniqueId . '/';
+$this->registerJsFile(
+        Yii::$app->request->BaseUrl . '/js/jquery.tokeninput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.css");
 ?>
 <div class="device-credentials-update">
 
@@ -118,16 +122,19 @@ $controllerId = $this->context->uniqueId . '/';
                         <?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div>
-                        <?= $form->field($userDetails, 'institute_id')->dropDownList($instituteData, ['prompt' => 'Select Institute'])->label('Institute Name') ?>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div>
-                        <?= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?>
-                    </div>
-                </div>
+                <div class="col-lg-4"><?= $form->field($userDetails, 'institute_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?></div>
+                <div class="col-lg-4"><?= $form->field($userDetails, 'loan_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput_loan"]); ?></div>
+                <!--                <div class="col-lg-4">
+                                    <div>
+                                        <?//= $form->field($userDetails, 'institute_id')->dropDownList($instituteData, ['prompt' => 'Select Institute'])->label('Institute Name') ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div>
+                                        <?//= $form->field($userDetails, 'loan_id')->dropDownList($loanData, ['prompt' => 'Select Loan Type'])->label('Loan Type') ?>
+                                    </div>
+                                </div>-->
+
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -143,4 +150,18 @@ $controllerId = $this->context->uniqueId . '/';
 <?php ActiveForm::end(); ?>
 
 
-</div>    
+</div>  
+
+
+<?php
+$this->registerJs("$(function(){
+        $('#tokeninput').tokenInput($instituteData, {
+            theme: 'facebook',
+            prePopulate: $prePopulateInistitutes
+        });
+        $('#tokeninput_loan').tokenInput($loanData, { 
+            theme: 'facebook',
+            prePopulate: $prePopulateLoan
+        });
+});");
+?>

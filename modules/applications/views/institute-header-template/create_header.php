@@ -29,7 +29,7 @@ $form = ActiveForm::begin(['id' => 'create_command', 'action' => 'save-header'])
                         <?= $form->field($model, 'header')->textInput(['maxlength' => 255, 'class' => 'form-control']); ?>
                         <?= $form->field($model, 'institute_id')->hiddenInput(['maxlength' => 255, 'class' => 'form-control'])->label(FALSE); ?>
                     </div></td>
-                <td><?= $form->field($model, 'fields')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?>
+                <td><?= $form->field($model, 'fields')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?></td>
                 <td><div class="col-lg-12" style="text-align: right;">
                         <?= Html::Button('Add', ['class' => 'btn btn-success', 'id' => 'add_header']) ?>
                     </div></td>
