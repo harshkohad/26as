@@ -155,7 +155,7 @@ class ManageApplicationsController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new ApplicationsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 1);
         $dataProvider->pagination = ['pageSize' => 10];
 
         return $this->render('index', [

@@ -2,7 +2,7 @@
 
 return [
     'label' => 'Announcements',
-    'icon' => 'fa fa-book',
+    'icon' => 'fa fa-bullhorn',
     'url' => ['#'],
     'items' => [
         [

@@ -38,7 +38,7 @@ class ApplicationsSearch extends Applications {
      *
      * @return ActiveDataProvider
      */
-    public function search($params) {
+    public function search($params, $pdf_download = 0) {
         $where_cond = \app\components\CommonUtility::checkAuditMode();
 
         $query = Applications::find()->where($where_cond)->orderBy([
@@ -70,6 +70,9 @@ class ApplicationsSearch extends Applications {
                 $loan_id = explode(",", $userData->loan_id);
                 $query->andFilterWhere(["IN", 'loan_type_id', $loan_id]);
             }
+        }
+        if($pdf_download) {
+            $query->andFilterWhere(['application_status', 3]);
         }
 //        echo "<pre/>",print_r($query);die;
         // grid filtering conditions
