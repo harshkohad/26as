@@ -767,9 +767,8 @@ class Applications extends \yii\db\ActiveRecord {
     
     public function getPdfDownloadButton($id) {
         $return = '';
-            $return = '<div><button type="button" class="btn btn-block btn-info btn-sm downloadPdf" value="' . $id . '"><i class="fa fa-download"></i> Download PDF</button></div>';
-        
-
+            $return = '<div>'
+                    . '<a class="btn btn-success" href="/acs/web/generate_mis/generate-mis/download-pdf/"'.$id.'><i class="fa fa-download"></i> Download PDF</a>';
         return $return;
     }
 }

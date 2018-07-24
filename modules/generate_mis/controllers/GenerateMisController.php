@@ -48,7 +48,9 @@ class GenerateMisController extends \yii\web\Controller {
     public function actionPdfIndex() {
         $searchModel = new ApplicationsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->where('application_status = 3');
         $dataProvider->pagination = ['pageSize' => 10];
+        
 
         return $this->render('pdfindex', [
                     'searchModel' => $searchModel,

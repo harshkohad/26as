@@ -70,7 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'Download PDF',
                         'format' => 'raw',
                         'value' => function ($model) {
-                            return $model->getPdfDownloadButton($model->id);
+                            //return $model->getPdfDownloadButton($model->id);
+                            echo $model->id;
                         },
                     ],
                 ],
