@@ -394,11 +394,12 @@ class UserController extends BaseController {
                     $prePopulateInistitutes[] = ['id' => $value['id'], 'name' => $value['name']];
                 }
             }
-            if (!empty($prePopulateInistitutes)) {
-                $prePopulateInistitutes = json_encode($prePopulateInistitutes);
-            } else {
-                $prePopulateInistitutes = '';
-            }
+//            if (!empty($prePopulateInistitutes)) {
+//                $prePopulateInistitutes = json_encode($prePopulateInistitutes);
+//            } else {
+//                $prePopulateInistitutes = '';
+//            }
+            //$prePopulateInistitutes = json_encode($prePopulateInistitutes);
         }
         $prePopulateLoan = [];
         if (!empty($userDetails->loan_id)) {
@@ -410,11 +411,11 @@ class UserController extends BaseController {
                     $prePopulateLoan[] = ['id' => $value['id'], 'name' => $value['loan_name']];
                 }
             }
-            if (!empty($prePopulateLoan)) {
-                $prePopulateLoan = json_encode($prePopulateLoan);
-            } else {
-                $prePopulateLoan = '';
-            }
+//            if (!empty($prePopulateLoan)) {
+//                $prePopulateLoan = json_encode($prePopulateLoan);
+//            } else {
+//                $prePopulateLoan = '';
+//            }
         }
 //        $institute_Data = Institutes::find()->where(['IN', 'id', [$model->userDetails->institute_ids]])->all();
         $selectedInstitutes = $userDetails->getSelectedInstitutes($userDetails->institute_id);
@@ -448,6 +449,9 @@ class UserController extends BaseController {
                 ]);
             }
         }
+//        print_r($prePopulateInistitutes);
+//        print_r($prePopulateLoan);
+//        die;
         return $this->render('update', [
                     'model' => $model,
                     'userDetails' => $userDetails,
@@ -455,8 +459,8 @@ class UserController extends BaseController {
                     'loanData' => $loanData,
                     'roles' => $roles,
                     'statusData' => $statusData,
-                    'prePopulateInistitutes' => $prePopulateInistitutes,
-                    'prePopulateLoan' => $prePopulateLoan
+                    'prePopulateInistitutes' => json_encode($prePopulateInistitutes),
+                    'prePopulateLoan' => json_encode($prePopulateLoan)
         ]);
     }
 
