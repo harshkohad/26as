@@ -24,6 +24,8 @@ use app\modules\applications\models\Institutes;
 use app\modules\applications\models\LoanTypes;
 use mdm\admin\models\AuthItem;
 use mdm\admin\models\searchs\AuthItem as AuthItemSearch;
+use app\modules\manage_mobile_app\models\TblMobileUsers;
+use app\modules\api\modules\v1\models\TblOauthAccessTokens;
 
 /**
  * User controller
@@ -144,8 +146,11 @@ class UserController extends BaseController {
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id) {
+    public function actionDelete($id) {        
         $this->findModel($id)->delete();
+        
+        //Delete Access Token & mobile user data
+        $this->deleteUserData($id);
 
         return $this->redirect(['index']);
     }
@@ -545,6 +550,14 @@ class UserController extends BaseController {
                     "userData" => $userData,
                     "changeModel" => $changeModel,
         ]);
+    }
+    
+    public function deleteUserData($id) {
+        $mobile_user = TblMobileUsers::findOne(['user_id' => $id]);
+        $mobile_user->delete();
+        
+        $access_token = TblOauthAccessTokens::findOne(['user_id' => $id]);
+        $access_token->delete();        
     }
 
 }

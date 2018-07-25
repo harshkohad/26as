@@ -12,6 +12,10 @@ use yii\helpers\Url;
 $this->title = Yii::t('rbac-admin', 'Manage Users');
 $this->params['breadcrumbs'][] = $this->title;
 $controllerId = $this->context->uniqueId . '/';
+
+if(isset($test)) {
+    echo $test;
+}
 ?>
 <div class="user-index">
     <div class="panel panel-default">

@@ -1290,8 +1290,8 @@ class ManageApplicationsController extends Controller {
         $return_html .= '<option value="">Select Verifier</option>';
         if (!empty($allVerifiers_data)) {
             foreach ($allVerifiers_data as $allVerifiers) {
-                $selected = isset($selected_id['mobile_user_id']) ? (($selected_id['mobile_user_id'] == $allVerifiers['id']) ? 'selected' : '') : '';
-                $return_html .= '<option value ="' . $allVerifiers['id'] . '" ' . $selected . '>';
+                $selected = isset($selected_id['mobile_user_id']) ? (($selected_id['mobile_user_id'] == $allVerifiers['user_id']) ? 'selected' : '') : '';
+                $return_html .= '<option value ="' . $allVerifiers['user_id'] . '" ' . $selected . '>';
                 $return_html .= $allVerifiers['field_agent_name'];
                 $return_html .= '</option>';
             }
