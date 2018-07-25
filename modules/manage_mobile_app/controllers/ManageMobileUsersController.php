@@ -122,6 +122,9 @@ class ManageMobileUsersController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
+        
+        //Delete Access Token
+        $this->deleteUserData($id);
 
         return $this->redirect(['index']);
     }
@@ -139,6 +142,12 @@ class ManageMobileUsersController extends Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function deleteUserData($id) {
+        
+        $access_token = TblOauthAccessTokens::findOne(['user_id' => $id]);
+        $access_token->delete();        
     }
 
 }
