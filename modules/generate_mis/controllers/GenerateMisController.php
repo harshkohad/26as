@@ -7,6 +7,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\modules\applications\models\Institutes;
 use app\modules\applications\models\InstituteHeaderTemplate;
+use app\modules\applications\models\Applications;
+use app\modules\applications\models\ApplicationsSearch;
 
 class GenerateMisController extends \yii\web\Controller {
 
@@ -41,6 +43,19 @@ class GenerateMisController extends \yii\web\Controller {
             }
         }
         $this->redirect(['index']);
+    }
+    
+    public function actionPdfIndex() {
+        $searchModel = new ApplicationsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->where('application_status = 3');
+        $dataProvider->pagination = ['pageSize' => 10];
+        
+
+        return $this->render('pdfindex', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 
 }

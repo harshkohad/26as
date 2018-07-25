@@ -764,4 +764,11 @@ class Applications extends \yii\db\ActiveRecord {
             return '<span class="badge" style="background: #a9d86e !important;">VERIFIED</span>';
         }
     }
+    
+    public function getPdfDownloadButton($id) {
+        $return = '';
+            $return = '<div>'
+                    . '<a class="btn btn-success" href="/acs/web/generate_mis/generate-mis/download-pdf/"'.$id.'><i class="fa fa-download"></i> Download PDF</a>';
+        return $return;
+    }
 }

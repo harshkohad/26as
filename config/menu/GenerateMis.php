@@ -1,8 +1,17 @@
 <?php
 
 return [
-    'label' => 'Generate MIS',
-    'icon' => 'fa fa-book',
-    'url' => ['/generate_mis/generate-mis/index']
+    'label' => 'Reports',
+    'icon' => 'fa fa-file-text',
+    'url' => ['#'],
+    'items' => [
+        [
+            'label' => 'Generate MIS',
+            'url' => ['/generate_mis/generate-mis/index']
+        ],
+        [
+            'label' => 'Generate PDF',
+            'url' => ['/generate_mis/generate-mis/pdf-index']
+        ],        
+    ]
 ];
-
