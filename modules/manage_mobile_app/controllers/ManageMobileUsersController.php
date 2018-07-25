@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use mdm\admin\models\UserDetails;
+use app\modules\api\modules\v1\models\TblOauthAccessTokens;
 
 /**
  * ManageMobileUsersController implements the CRUD actions for TblMobileUsers model.
