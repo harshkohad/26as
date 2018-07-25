@@ -44,25 +44,22 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
         <div class="row">
             <div class="col-lg-3"><?= $form->field($userDetails, 'country')->dropDownList(Yii::$app->commonUtility->getCountryDropdown(), ['prompt' => '(Select Country)']) ?></div>
             <div class="col-lg-3"><?= $form->field($userDetails, 'pin')->input('text', ['maxlength' => 6]) ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'address')->textArea() ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?></div>
-            <div class="col-lg-3"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput"]); ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->textInput(['maxlength' => 255, 'class' => 'form-control', "id" => "tokeninput_loan"]); ?></div>
+            <div class="col-lg-4"><?= $form->field($userDetails, 'address')->textArea() ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <h3>Account Deails</h3><hr />
+                <h3>Account Details</h3><hr />
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3"><?= $form->field($model, 'username') ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'email') ?></div>
             <div class="col-lg-3"><?= $form->field($model, 'password')->passwordInput() ?></div>
-            <div class="col-lg-3"></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?></div>
+        </div>
+        <div class="row">            
+            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->textInput(["id" => "tokeninput"]); ?></div>
+            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->textInput(["id" => "tokeninput_loan"]); ?></div>
         </div>
         <div class="row">
             <div class="col-lg-12" style="text-align: right;">
