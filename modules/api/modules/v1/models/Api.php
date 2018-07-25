@@ -118,7 +118,7 @@ class Api extends \yii\db\ActiveRecord {
         }
 
         #check if token already present
-        $token_details = TblOauthAccessTokens::find()->where(['mobile_unique_code' => $mobile_unique_code])->one();
+        $token_details = TblOauthAccessTokens::find()->where(['mobile_unique_code' => $mobile_unique_code, 'user_id' => $user_id])->one();
         if (!empty($token_details)) {
             if (strtotime($token_details->expires) > strtotime(date('Y-m-d H:i:s'))) {
                 $token = $token_details->access_token;
