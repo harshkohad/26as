@@ -711,7 +711,7 @@ class Applications extends \yii\db\ActiveRecord {
         $table_data = \Yii::$app->getDb()->createCommand($query)->queryOne();
         $tag = '';
         if (!empty($table_data)) {
-            $verifier_data = TblMobileUsers::find(['user_id' => $table_data['mobile_user_id']])->one();
+            $verifier_data = TblMobileUsers::findOne(['user_id' => $table_data['mobile_user_id']]);
             switch ($table_data['mobile_user_status']) {
                 case 1:
                     $tag = '<div style="float:right;"><span class="badge bg-purple">IN PROGRESS</span> : ' . $verifier_data->field_agent_name . '</div>';
