@@ -54,7 +54,7 @@ class UserDetails extends \yii\db\ActiveRecord {
             ['designation', 'match', 'pattern' => '/^[a-zA-Z0-9\.\s]+$/'],
             ['zip', 'match', 'pattern' => '/^[\d]+$/'],
             [['mobile', 'phone'], 'match', 'pattern' => '/^\+{0,1}[0-9]{9,12}$/', 'message' => '{attribute} should be like "+ followed by max 12 digits"'],
-            ['address', 'match', 'pattern' => '/^[a-zA-Z\.\-\d\s\,]+$/', 'message' => 'Only [.,-] special char allowed.'],
+            //['address', 'match', 'pattern' => '/^[a-zA-Z\.\-\d\s\,]+$/', 'message' => 'Only [.,-] special char allowed.'],
             [['user_id'], 'required', 'on' => 'changePassword'],
         ];
     }

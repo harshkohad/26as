@@ -558,10 +558,14 @@ class UserController extends BaseController {
     
     public function deleteUserData($id) {
         $mobile_user = TblMobileUsers::findOne(['user_id' => $id]);
-        $mobile_user->delete();
+        if(!empty($mobile_user)) {
+            $mobile_user->delete();
+        }
         
         $access_token = TblOauthAccessTokens::findOne(['user_id' => $id]);
-        $access_token->delete();        
+        if(!empty($access_token)) {
+            $access_token->delete();        
+        }
     }
 
 }
