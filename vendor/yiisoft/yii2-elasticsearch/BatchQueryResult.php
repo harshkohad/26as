@@ -7,7 +7,7 @@
 
 namespace yii\elasticsearch;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * BatchQueryResult represents a batch query from which you can retrieve data in batches.
@@ -37,7 +37,7 @@ use yii\base\Object;
  * @author Konstantin Sirotkin <beowulfenator@gmail.com>
  * @since 2.0.4
  */
-class BatchQueryResult extends Object implements \Iterator
+class BatchQueryResult extends BaseObject implements \Iterator
 {
     /**
      * @var Connection the DB connection to be used when performing batch query.
@@ -183,7 +183,7 @@ class BatchQueryResult extends Object implements \Iterator
     /**
      * Returns the index of the current dataset.
      * This method is required by the interface [[\Iterator]].
-     * @return integer the index of the current row.
+     * @return int the index of the current row.
      */
     public function key()
     {
@@ -203,7 +203,7 @@ class BatchQueryResult extends Object implements \Iterator
     /**
      * Returns whether there is a valid dataset at the current position.
      * This method is required by the interface [[\Iterator]].
-     * @return boolean whether there is a valid dataset at the current position.
+     * @return bool whether there is a valid dataset at the current position.
      */
     public function valid()
     {

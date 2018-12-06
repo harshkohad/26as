@@ -34,7 +34,7 @@ use yii\helpers\Url;
 class ActionColumn extends Column
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $headerOptions = ['class' => 'action-column'];
     /**
@@ -129,7 +129,7 @@ class ActionColumn extends Column
 
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -148,16 +148,10 @@ class ActionColumn extends Column
             'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
             'data-method' => 'post',
         ]);
-		$this->initDefaultButton('emp-edit', 'pencil');
-		$this->initDefaultButton('emp-view', 'eye-open');
-		$this->initDefaultButton('emp-delete', 'trash', [
-            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this employee?'),
-            'data-method' => 'post',
-        ]);
     }
 
     /**
-     * Initializes the default button rendering callback for single button
+     * Initializes the default button rendering callback for single button.
      * @param string $name Button name as it's written in template
      * @param string $iconName The part of Bootstrap glyphicon class that makes it unique
      * @param array $additionalOptions Array of additional options
@@ -195,7 +189,7 @@ class ActionColumn extends Column
      * Creates a URL for the given action and model.
      * This method is called for each button and each row.
      * @param string $action the button name (or action ID)
-     * @param \yii\db\ActiveRecord $model the data model
+     * @param \yii\db\ActiveRecordInterface $model the data model
      * @param mixed $key the key associated with the data model
      * @param int $index the current row index
      * @return string the created URL
@@ -204,16 +198,16 @@ class ActionColumn extends Column
     {
         if (is_callable($this->urlCreator)) {
             return call_user_func($this->urlCreator, $action, $model, $key, $index, $this);
-        } else {
-            $params = is_array($key) ? $key : ['id' => (string) $key];
-            $params[0] = $this->controller ? $this->controller . '/' . $action : $action;
-
-            return Url::toRoute($params);
         }
+
+        $params = is_array($key) ? $key : ['id' => (string) $key];
+        $params[0] = $this->controller ? $this->controller . '/' . $action : $action;
+
+        return Url::toRoute($params);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function renderDataCellContent($model, $key, $index)
     {
@@ -231,9 +225,9 @@ class ActionColumn extends Column
             if ($isVisible && isset($this->buttons[$name])) {
                 $url = $this->createUrl($name, $model, $key, $index);
                 return call_user_func($this->buttons[$name], $url, $model, $key);
-            } else {
-                return '';
             }
+
+            return '';
         }, $this->template);
     }
 }

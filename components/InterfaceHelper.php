@@ -9,7 +9,7 @@ use yii\base\Object;
  *
  * @author pratik
  */
-class InterfaceHelper extends Object {
+class InterfaceHelper extends BaseObject {
 
     /**
      * Normalize interface name

@@ -12,7 +12,7 @@ use mdm\admin\components\Helper;
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 2.5
  */
-class Assignment extends Object
+class Assignment extends BaseObject
 {
     /**
      * @var integer User id

@@ -11,7 +11,7 @@ use yii\base\Object;
  *
  * @author pratik
  */
-class SnmpHelper extends Object {
+class SnmpHelper extends BaseObject {
 
     const SNMP_REQUEST_TYPE_GET = 'get';
     const SNMP_REQUEST_TYPE_WALK = 'walk';

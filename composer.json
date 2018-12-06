@@ -15,7 +15,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": ">=2.0.5",
+        "yiisoft/yii2": ">=2.0.15.1",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
 
@@ -38,7 +38,7 @@
         "2amigos/yii2-table-export-widget": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "phpoffice/phpword": "v0.13.*",
-        "2amigos/yii2-file-upload-widget": "~1.0",
+        "2amigos/yii2-file-upload-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

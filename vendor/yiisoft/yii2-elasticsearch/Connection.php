@@ -17,7 +17,7 @@ use yii\helpers\Json;
  * elasticsearch Connection is used to connect to an elasticsearch cluster version 0.20 or higher
  *
  * @property string $driverName Name of the DB driver. This property is read-only.
- * @property boolean $isActive Whether the DB connection is established. This property is read-only.
+ * @property bool $isActive Whether the DB connection is established. This property is read-only.
  * @property QueryBuilder $queryBuilder This property is read-only.
  *
  * @author Carsten Brandt <mail@cebe.cc>
@@ -50,6 +50,9 @@ class Connection extends Component
      *  //'auth' => ['username' => 'yiiuser', 'password' => 'yiipw'], // Disabled auth regardless of `auth` property of the class
      * ]
      * ```
+     *
+     *  - `protocol`: explicitly sets the protocol for the current node (useful when manually defining a HTTPS cluster)
+     *
      * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html#cluster-nodes-info
      */
     public $nodes = [
@@ -72,6 +75,15 @@ class Connection extends Component
      */
     public $auth = [];
     /**
+     * Elasticsearch has no knowledge of protocol used to access its nodes. Specifically, cluster autodetection request
+     * returns node hosts and ports, but not the protocols to access them. Therefore we need to specify a default protocol here,
+     * which can be overridden for specific nodes in the [[nodes]] property.
+     * If [[autodetectCluster]] is true, all nodes received from cluster will be set to use the protocol defined by [[defaultProtocol]]
+     * @var string Default protocol to connect to nodes
+     * @since 2.0.5
+     */
+    public $defaultProtocol = 'http';
+    /**
      * @var float timeout to use for connecting to an elasticsearch node.
      * This value will be used to configure the curl `CURLOPT_CONNECTTIMEOUT` option.
      * If not set, no explicit timeout will be set for curl.
@@ -92,9 +104,15 @@ class Connection extends Component
 
     public function init()
     {
-        foreach ($this->nodes as $node) {
+        foreach ($this->nodes as &$node) {
             if (!isset($node['http_address'])) {
                 throw new InvalidConfigException('Elasticsearch node needs at least a http_address configured.');
+            }
+            if (!isset($node['protocol'])) {
+                $node['protocol'] = $this->defaultProtocol;
+            }
+            if (!in_array($node['protocol'], ['http', 'https'])) {
+                throw new InvalidConfigException('Valid node protocol settings are "http" and "https".');
             }
         }
     }
@@ -112,7 +130,7 @@ class Connection extends Component
 
     /**
      * Returns a value indicating whether the DB connection is established.
-     * @return boolean whether the DB connection is established
+     * @return bool whether the DB connection is established
      */
     public function getIsActive()
     {
@@ -151,22 +169,34 @@ class Connection extends Component
     {
         $node = reset($this->nodes);
         $host = $node['http_address'];
+        $protocol = isset($node['protocol']) ? $node['protocol'] : $this->defaultProtocol;
         if (strncmp($host, 'inet[/', 6) === 0) {
             $host = substr($host, 6, -1);
         }
-        $response = $this->httpRequest('GET', 'http://' . $host . '/_nodes');
+        $response = $this->httpRequest('GET', "$protocol://$host/_nodes");
         if (!empty($response['nodes'])) {
-            // Make sure that nodes have an 'http_address' property, which is not the case if you're using AWS
-            // Elasticsearch service (at least as of Oct., 2015).
-            foreach ($response['nodes'] as &$node) {
-                if (!isset($node['http_address'])) {
-                    $node['http_address'] = $host;
-                }
+            $nodes = $response['nodes'];
+        } else {
+            $nodes = [];
+        }
+
+        foreach ($nodes as $key => &$node) {
+            // Make sure that nodes have an 'http_address' property, which is not the case
+            // if you're using AWS Elasticsearch service (at least as of Oct., 2015, still the case in July, 2017).
+            // it should be there according to the docs: https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-info.html
+            if (!isset($node['http_address'])) {
+                unset($nodes[$key]);
             }
-            $this->nodes = $response['nodes'];
+
+            // Protocol is not a standard ES node property, so we add it manually
+            $node['protocol'] = $this->defaultProtocol;
+        }
+
+        if (!empty($nodes)) {
+            $this->nodes = array_values($nodes);
         } else {
             curl_close($this->_curl);
-            throw new Exception('Cluster autodetection did not find any active node.');
+            throw new Exception('Cluster autodetection did not find any active node. Make sure a GET /_nodes reguest on the hosts defined in the config returns the "http_address" field for each node.');
         }
     }
 
@@ -231,6 +261,21 @@ class Connection extends Component
     }
 
     /**
+     * Creates a bulk command for execution.
+     * @param array $config the configuration for the [[BulkCommand]] class
+     * @return BulkCommand the DB command
+     * @since 2.0.5
+     */
+    public function createBulkCommand($config = [])
+    {
+        $this->open();
+        $config['db'] = $this;
+        $command = new BulkCommand($config);
+
+        return $command;
+    }
+
+    /**
      * Creates new query builder instance
      * @return QueryBuilder
      */
@@ -245,7 +290,7 @@ class Connection extends Component
      * @param string|array $url URL
      * @param array $options URL options
      * @param string $body request body
-     * @param boolean $raw if response body contains JSON and should be decoded
+     * @param bool $raw if response body contains JSON and should be decoded
      * @return mixed response
      * @throws Exception
      * @throws InvalidConfigException
@@ -278,7 +323,7 @@ class Connection extends Component
      * @param string|array $url URL
      * @param array $options URL options
      * @param string $body request body
-     * @param boolean $raw if response body contains JSON and should be decoded
+     * @param bool $raw if response body contains JSON and should be decoded
      * @return mixed response
      * @throws Exception
      * @throws InvalidConfigException
@@ -295,7 +340,7 @@ class Connection extends Component
      * @param string|array $url URL
      * @param array $options URL options
      * @param string $body request body
-     * @param boolean $raw if response body contains JSON and should be decoded
+     * @param bool $raw if response body contains JSON and should be decoded
      * @return mixed response
      * @throws Exception
      * @throws InvalidConfigException
@@ -312,7 +357,7 @@ class Connection extends Component
      * @param string|array $url URL
      * @param array $options URL options
      * @param string $body request body
-     * @param boolean $raw if response body contains JSON and should be decoded
+     * @param bool $raw if response body contains JSON and should be decoded
      * @return mixed response
      * @throws Exception
      * @throws InvalidConfigException
@@ -346,7 +391,11 @@ class Connection extends Component
             }
         }
 
-        return [$this->nodes[$this->activeNode]['http_address'], $url];
+        $node = $this->nodes[$this->activeNode];
+        $protocol = isset($node['protocol']) ? $node['protocol'] : $this->defaultProtocol;
+        $host = $node['http_address'];
+
+        return [$protocol, $host, $url];
     }
 
     /**
@@ -355,7 +404,7 @@ class Connection extends Component
      * @param string $method method name
      * @param string $url URL
      * @param string $requestBody request body
-     * @param boolean $raw if response body contains JSON and should be decoded
+     * @param bool $raw if response body contains JSON and should be decoded
      * @return mixed if request failed
      * @throws Exception if request failed
      * @throws InvalidConfigException
@@ -374,7 +423,7 @@ class Connection extends Component
             CURLOPT_RETURNTRANSFER => false,
             CURLOPT_HEADER         => false,
             // http://www.php.net/manual/en/function.curl-setopt.php#82418
-            CURLOPT_HTTPHEADER     => ['Expect:'],
+            CURLOPT_HTTPHEADER     => ['Expect:', 'Content-Type: application/json'],
 
             CURLOPT_WRITEFUNCTION  => function ($curl, $data) use (&$body) {
                 $body .= $data;
@@ -425,15 +474,15 @@ class Connection extends Component
         }
 
         if (is_array($url)) {
-            list($host, $q) = $url;
+            list($protocol, $host, $q) = $url;
             if (strncmp($host, 'inet[', 5) == 0) {
                 $host = substr($host, 5, -1);
                 if (($pos = strpos($host, '/')) !== false) {
                     $host = substr($host, $pos + 1);
                 }
             }
-            $profile = $method . ' ' . $q . '#' . $requestBody;
-            $url = 'http://' . $host . '/' . $q;
+            $profile = "$method $q#$requestBody";
+            $url = "$protocol://$host/$q";
         } else {
             $profile = false;
         }
@@ -476,8 +525,13 @@ class Connection extends Component
                         'responseBody' => $body,
                     ]);
                 }
-                if (isset($headers['content-type']) && (!strncmp($headers['content-type'], 'application/json', 16) || !strncmp($headers['content-type'], 'text/plain', 10))) {
-                    return $raw ? $body : Json::decode($body);
+                if (isset($headers['content-type'])) {
+                    if (!strncmp($headers['content-type'], 'application/json', 16)) {
+                        return $raw ? $body : Json::decode($body);
+                    }
+                    if (!strncmp($headers['content-type'], 'text/plain', 10)) {
+                        return $raw ? $body : array_filter(explode("\n", $body));
+                    }
                 }
                 throw new Exception('Unsupported data received from elasticsearch: ' . $headers['content-type'], [
                     'requestMethod' => $method,

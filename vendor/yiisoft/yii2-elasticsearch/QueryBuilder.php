@@ -7,6 +7,7 @@
 
 namespace yii\elasticsearch;
 
+use yii\base\BaseObject;
 use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
 use yii\helpers\Json;
@@ -17,7 +18,7 @@ use yii\helpers\Json;
  * @author Carsten Brandt <mail@cebe.cc>
  * @since 2.0
  */
-class QueryBuilder extends \yii\base\Object
+class QueryBuilder extends BaseObject
 {
     /**
      * @var Connection the database connection.
@@ -51,7 +52,7 @@ class QueryBuilder extends \yii\base\Object
         } elseif ($query->fields !== null) {
             $fields = [];
             $scriptFields = [];
-            foreach($query->fields as $key => $field) {
+            foreach ($query->fields as $key => $field) {
                 if (is_int($key)) {
                     $fields[] = $field;
                 } else {
@@ -72,14 +73,17 @@ class QueryBuilder extends \yii\base\Object
             $parts['size'] = $query->limit;
         }
         if ($query->offset > 0) {
-            $parts['from'] = (int) $query->offset;
+            $parts['from'] = (int)$query->offset;
         }
         if (isset($query->minScore)) {
-            $parts['min_score'] = (float) $query->minScore;
+            $parts['min_score'] = (float)$query->minScore;
+        }
+        if (isset($query->explain)) {
+            $parts['explain'] = $query->explain;
         }
 
         if (empty($query->query)) {
-            $parts['query'] = ["match_all" => (object) []];
+            $parts['query'] = ["match_all" => (object)[]];
         } else {
             $parts['query'] = $query->query;
         }
@@ -112,6 +116,9 @@ class QueryBuilder extends \yii\base\Object
         }
         if (!empty($query->suggest)) {
             $parts['suggest'] = $query->suggest;
+        }
+        if (!empty($query->postFilter)) {
+            $parts['post_filter'] = $query->postFilter;
         }
 
         $sort = $this->buildOrderBy($query->orderBy);
@@ -185,6 +192,14 @@ class QueryBuilder extends \yii\base\Object
             'not like' => 'buildLikeCondition',
             'or like' => 'buildLikeCondition',
             'or not like' => 'buildLikeCondition',
+            'lt' => 'buildHalfBoundedRangeCondition',
+            '<' => 'buildHalfBoundedRangeCondition',
+            'lte' => 'buildHalfBoundedRangeCondition',
+            '<=' => 'buildHalfBoundedRangeCondition',
+            'gt' => 'buildHalfBoundedRangeCondition',
+            '>' => 'buildHalfBoundedRangeCondition',
+            'gte' => 'buildHalfBoundedRangeCondition',
+            '>=' => 'buildHalfBoundedRangeCondition',
         ];
 
         if (empty($condition)) {
@@ -293,7 +308,7 @@ class QueryBuilder extends \yii\base\Object
 
         list($column, $values) = $operands;
 
-        $values = (array) $values;
+        $values = (array)$values;
 
         if (empty($values) || $column === []) {
             return $operator === 'in' ? ['terms' => ['_uid' => []]] : []; // this condition is equal to WHERE false
@@ -320,7 +335,12 @@ class QueryBuilder extends \yii\base\Object
             } else {
                 $filter = ['ids' => ['values' => array_values($values)]];
                 if ($canBeNull) {
-                    $filter = ['or' => [$filter, ['missing' => ['field' => $column, 'existence' => true, 'null_value' => true]]]];
+                    $filter = [
+                        'or' => [
+                            $filter,
+                            ['missing' => ['field' => $column, 'existence' => true, 'null_value' => true]]
+                        ]
+                    ];
                 }
             }
         } else {
@@ -329,13 +349,63 @@ class QueryBuilder extends \yii\base\Object
             } else {
                 $filter = ['in' => [$column => array_values($values)]];
                 if ($canBeNull) {
-                    $filter = ['or' => [$filter, ['missing' => ['field' => $column, 'existence' => true, 'null_value' => true]]]];
+                    $filter = [
+                        'or' => [
+                            $filter,
+                            ['missing' => ['field' => $column, 'existence' => true, 'null_value' => true]]
+                        ]
+                    ];
                 }
             }
         }
         if ($operator == 'not in') {
             $filter = ['not' => $filter];
         }
+
+        return $filter;
+    }
+
+    /**
+     * Builds a half-bounded range condition
+     * (for "gt", ">", "gte", ">=", "lt", "<", "lte", "<=" operators)
+     * @param string $operator
+     * @param array $operands
+     * @return array Filter expression
+     */
+    private function buildHalfBoundedRangeCondition($operator, $operands)
+    {
+        if (!isset($operands[0], $operands[1])) {
+            throw new InvalidParamException("Operator '$operator' requires two operands.");
+        }
+
+        list($column, $value) = $operands;
+        if ($column == '_id') {
+            $column = '_uid';
+        }
+
+        $range_operator = null;
+
+        if (in_array($operator, ['gte', '>='])) {
+            $range_operator = 'gte';
+        } elseif (in_array($operator, ['lte', '<='])) {
+            $range_operator = 'lte';
+        } elseif (in_array($operator, ['gt', '>'])) {
+            $range_operator = 'gt';
+        } elseif (in_array($operator, ['lt', '<'])) {
+            $range_operator = 'lt';
+        }
+
+        if ($range_operator === null) {
+            throw new InvalidParamException("Operator '$operator' is not implemented.");
+        }
+
+        $filter = [
+            'range' => [
+                $column => [
+                    $range_operator => $value
+                ]
+            ]
+        ];
 
         return $filter;
     }

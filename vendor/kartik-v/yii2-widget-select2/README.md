@@ -1,5 +1,15 @@
-yii2-widget-select2
-===================
+<h1 align="center">
+    <a href="http://demos.krajee.com" title="Krajee Demos" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/krajee-logo-b.png" alt="Krajee Logo"/>
+    </a>
+    <br>
+    yii2-widget-select2
+    <hr>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTP3NZQ6G2AYU"
+       title="Donate via Paypal" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
+    </a>
+</h1>
 
 [![Stable Version](https://poser.pugx.org/kartik-v/yii2-widget-select2/v/stable)](https://packagist.org/packages/kartik-v/yii2-widget-select2)
 [![Unstable Version](https://poser.pugx.org/kartik-v/yii2-widget-select2/v/unstable)](https://packagist.org/packages/kartik-v/yii2-widget-select2)
@@ -30,9 +40,9 @@ or add
 
 to the ```require``` section of your `composer.json` file.
 
-## Latest Release
+## Release Changes
 
-> NOTE: The latest version of the module is v2.0.9. Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-widget-select2/blob/master/CHANGE.md) for details.
+> NOTE: Refer the [CHANGE LOG](https://github.com/kartik-v/yii2-widget-select2/blob/master/CHANGE.md) for details on changes to various releases.
 
 The widget has a major version revamp with v2.0. This release includes updates to use Select2 plugin release v4.0. Select2 release v4.0 is a major rewrite over Select2 v3.x and hence quite a few enhancements or changes should be expected. To use the earlier plugin release v3.5.2, you must point it to the [v1.0.1 release](https://github.com/kartik-v/yii2-widget-select2/releases/tag/v1.0.1) of the widget.
 

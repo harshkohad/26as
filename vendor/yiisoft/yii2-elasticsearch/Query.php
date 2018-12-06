@@ -133,14 +133,20 @@ class Query extends Component implements QueryInterface
      */
     public $filter;
     /**
+     * @var string|array The `post_filter` part of the search query for differentially filter search results and aggregations.
+     * @see https://www.elastic.co/guide/en/elasticsearch/guide/current/_post_filter.html
+     * @since 2.0.5
+     */
+    public $postFilter;
+    /**
      * @var array The highlight part of this search query. This is an array that allows to highlight search results
      * on one or more fields.
-     * @see http://www.elastic.co/guide/en/elasticsearch/reference/1.x/search-request-highlighting.html
+     * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-highlighting.html
      */
     public $highlight;
     /**
      * @var array List of aggregations to add to this query.
-     * @see http://www.elastic.co/guide/en/elasticsearch/reference/1.x/search-aggregations.html
+     * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
      */
     public $aggregations = [];
     /**
@@ -165,6 +171,12 @@ class Query extends Component implements QueryInterface
      * @since 2.0.4
      */
     public $options = [];
+    /**
+     * @var bool Enables explanation for each hit on how its score was computed.
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-explain.html
+     * @since 2.0.5
+     */
+    public $explain;
 
 
     /**
@@ -244,7 +256,7 @@ class Query extends Component implements QueryInterface
      * Executes the query and returns a single row of result.
      * @param Connection $db the database connection used to execute the query.
      * If this parameter is not given, the `elasticsearch` application component will be used.
-     * @return array|boolean the first row (in terms of an array) of the query result. False is returned if the query
+     * @return array|bool the first row (in terms of an array) of the query result. False is returned if the query
      * results in nothing.
      */
     public function one($db = null)
@@ -361,7 +373,7 @@ class Query extends Component implements QueryInterface
      * @param string $q the COUNT expression. This parameter is ignored by this implementation.
      * @param Connection $db the database connection used to execute the query.
      * If this parameter is not given, the `elasticsearch` application component will be used.
-     * @return integer number of records
+     * @return int number of records
      */
     public function count($q = '*', $db = null)
     {
@@ -380,7 +392,7 @@ class Query extends Component implements QueryInterface
      * Returns a value indicating whether the query result contains any row of data.
      * @param Connection $db the database connection used to execute the query.
      * If this parameter is not given, the `elasticsearch` application component will be used.
-     * @return boolean whether the query result contains any row of data.
+     * @return bool whether the query result contains any row of data.
      */
     public function exists($db = null)
     {
@@ -412,20 +424,23 @@ class Query extends Component implements QueryInterface
     }
 
     /**
+     * @deprecated since 2.0.5 use addAggragate() instead
+     *
      * Adds an aggregation to this query.
      * @param string $name the name of the aggregation
      * @param string $type the aggregation type. e.g. `terms`, `range`, `histogram`...
      * @param string|array $options the configuration options for this aggregation. Can be an array or a json string.
      * @return $this the query object itself
-     * @see http://www.elastic.co/guide/en/elasticsearch/reference/1.x/search-aggregations.html
+     * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
      */
     public function addAggregation($name, $type, $options)
     {
-        $this->aggregations[$name] = [$type => $options];
-        return $this;
+        return $this->addAggregate($name, [$type => $options]);
     }
 
     /**
+     * @deprecated since 2.0.5 use addAggragate() instead
+     *
      * Adds an aggregation to this query.
      *
      * This is an alias for [[addAggregation]].
@@ -434,13 +449,26 @@ class Query extends Component implements QueryInterface
      * @param string $type the aggregation type. e.g. `terms`, `range`, `histogram`...
      * @param string|array $options the configuration options for this aggregation. Can be an array or a json string.
      * @return $this the query object itself
-     * @see http://www.elastic.co/guide/en/elasticsearch/reference/1.x/search-aggregations.html
+     * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
      */
     public function addAgg($name, $type, $options)
     {
-        return $this->addAggregation($name, $type, $options);
+        return $this->addAggregate($name, [$type => $options]);
     }
 
+    /**
+     * Adds an aggregation to this query. Supports nested aggregations.
+     * @param string $name the name of the aggregation
+     * @param string $type the aggregation type. e.g. `terms`, `range`, `histogram`...
+     * @param string|array $options the configuration options for this aggregation. Can be an array or a json string.
+     * @return $this the query object itself
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/2.3/search-aggregations.html
+     */
+    public function addAggregate($name, $options)
+    {
+        $this->aggregations[$name] = $options;
+        return $this;
+    }
     /**
      * Adds a suggester to this query.
      * @param string $name the name of the suggester
@@ -459,8 +487,8 @@ class Query extends Component implements QueryInterface
     // TODO support multi query via static method http://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html
 
     /**
-     * Sets the querypart of this search query.
-     * @param string $query
+     * Sets the query part of this search query.
+     * @param string|array $query
      * @return $this the query object itself
      */
     public function query($query)
@@ -595,7 +623,7 @@ class Query extends Component implements QueryInterface
 
     /**
      * Sets the search timeout.
-     * @param integer $timeout A search timeout, bounding the search request to be executed within the specified time value
+     * @param int $timeout A search timeout, bounding the search request to be executed within the specified time value
      * and bail with the hits accumulated up to that point when expired. Defaults to no timeout.
      * @return $this the query object itself
      * @see http://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html#_parameters_5
@@ -654,4 +682,29 @@ class Query extends Component implements QueryInterface
         return $this;
     }
 
+    /**
+     * Set the `post_filter` part of the search query.
+     * @param string|array $filter
+     * @return $this the query object itself
+     * @see $postFilter
+     * @since 2.0.5
+     */
+    public function postFilter($filter)
+    {
+        $this->postFilter = $filter;
+        return $this;
+    }
+
+    /**
+     * Explain for how the score of each document was computer
+     * @param $explain
+     * @return $this
+     * @see $explain
+     * @since 2.0.5
+     */
+    public function explain($explain)
+    {
+        $this->explain = $explain;
+        return $this;
+    }
 }
