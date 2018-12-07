@@ -23,8 +23,9 @@ app\assets\BucketmdAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <!--<link href="<?= Yii::$app->view->theme->baseUrl;?>/css/custom-skin.css" rel="stylesheet">-->  
+        <!--54323760_l_blurred.jpg-->
     </head>
-    <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/54323760_l_blurred.jpg'); overflow-y:hidden;">
+    <body class="hold-transition login-page sidebar-mini" style="background-image: url('../images/Webp.net-resizeimage.jpg'); overflow-y:hidden;">
 
         <?php $this->beginBody() ?>
         <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message): ?>
