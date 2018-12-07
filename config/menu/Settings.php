@@ -27,21 +27,21 @@ return [
             'label' => 'Manage Routes',
             'url' => ['/admin/route/index']
         ],
-        [
-            'label' => 'Manage Templates',
-            'url' => ['/applications/institute-header-template/create-template']
-        ],
-        [
-            'label' => 'Manage Institutes',
-            'url' => ['/applications/institutes/index']
-        ],
-        [
-            'label' => 'Manage Loan Types',
-            'url' => ['/applications/loan-types/index']
-        ],
-        [
-            'label' => 'Manage Paragraphs',
-            'url' => ['/applications/manage-applications/manage-paragraphs']
-        ],
+//        [
+//            'label' => 'Manage Templates',
+//            'url' => ['/applications/institute-header-template/create-template']
+//        ],
+//        [
+//            'label' => 'Manage Institutes',
+//            'url' => ['/applications/institutes/index']
+//        ],
+//        [
+//            'label' => 'Manage Loan Types',
+//            'url' => ['/applications/loan-types/index']
+//        ],
+//        [
+//            'label' => 'Manage Paragraphs',
+//            'url' => ['/applications/manage-applications/manage-paragraphs']
+//        ],
     ]
 ];
