@@ -31,22 +31,7 @@ use yii\helpers\Html;
     </div>
     <!--logo end-->
 
-    <div class="nav notify-row" id="top_menu">
-        <!--  notification start -->
-        <ul class="nav top-menu">
-            <!-- alerts dropdown start-->
-            <li id="header_inbox_bar" class="dropdown">
-                <?php echo \app\components\CommonUtility::getAlerts(); ?>
-            </li>
-            <!-- alerts dropdown end-->
-            <!-- notification dropdown start-->
-            <li id="header_notification_bar" class="dropdown">
-                <?php echo \app\components\CommonUtility::getNotifications(); ?>
-            </li>
-            <!-- notification dropdown end -->
-        </ul>
-        <!--  notification end -->
-    </div>
+    
     <div class="top-nav clearfix">
         <!--search & user info start-->
         <ul class="nav pull-right top-menu">

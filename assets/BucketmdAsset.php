@@ -19,6 +19,7 @@ class BucketmdAsset extends AssetBundle
         'css/bootstrap-reset.css',
         'css/bootstrap-switch.css',
         'css/bootstrap-toggle.min.css',
+        'css/orange-theme.css',
     ];
     public $js = [
         'js/scripts.js',

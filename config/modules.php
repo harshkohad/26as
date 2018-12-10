@@ -50,19 +50,7 @@ return [
     'test' => [
         'class' => 'app\modules\test\Module'
     ],
-    'generate_mis' => [
-        'class' => 'app\modules\generate_mis\Module'
-    ],
-    'api' => [
-        'class' => 'app\modules\api\Api',
-    ],
-    'manage_mobile_app' => [
-        'class' => 'app\modules\manage_mobile_app\Module',
-    ],
-    'applications' => [
-        'class' => 'app\modules\applications\Module',
-    ],
-    'announcements' => [
-        'class' => 'app\modules\announcements\Module',
+    'request' => [
+        'class' => 'app\modules\request\Module'
     ],
 ];

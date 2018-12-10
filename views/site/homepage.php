@@ -8,32 +8,32 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
     <div class="col-md-3">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon orange"><i class="fa fa-gavel"></i></span>
+            <span class="mini-stat-icon orange"><i class="fa fa-share-square-o"></i></span>
             <div class="mini-stat-info">
-                <span>320</span>
-                New Order Received
+                <span>5</span>
+                New Request
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon tar"><i class="fa fa-tag"></i></span>
+            <span class="mini-stat-icon pink"><i class="fa fa-refresh"></i></span>
             <div class="mini-stat-info">
-                <span>22,450</span>
-                Copy Sold Today
+                <span>13</span>
+                In-Progress Request
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon pink"><i class="fa fa-money"></i></span>
+            <span class="mini-stat-icon green"><i class="fa fa-check"></i></span>
             <div class="mini-stat-info">
-                <span>34,320</span>
-                Dollar Profit Today
+                <span>98</span>
+                Completed Request
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+<!--    <div class="col-md-3">
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon green"><i class="fa fa-eye"></i></span>
             <div class="mini-stat-info">
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 Unique Visitors
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 <!--<script type="text/javascript">
     $(function () {
