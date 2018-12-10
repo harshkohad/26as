@@ -6,6 +6,16 @@
             <span class="preview"></span>
         </td>
         <td>
+            <select name="as_years[]" class="a_years" required>
+            {% for (var j = 0; j < assessment_years.length; j++) { %} 
+                <option value='{%= assessment_years[j] %}'>{%= assessment_years[j] %}</option>   
+            {% } %}
+            </select>
+        </td>
+        <td>
+            <label>Comments: <input name="asi_comments[]" required></label>
+        </td>
+        <td>
             <p class="name">{%=file.name%}</p>
             <strong class="error text-danger"></strong>
         </td>

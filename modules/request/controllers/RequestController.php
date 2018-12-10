@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class RequestController extends Controller
 {
+    const IMG_UPLOAD_DIR_NAME = "uploads/26as/";
     /**
      * {@inheritdoc}
      */
@@ -67,9 +68,14 @@ class RequestController extends Controller
         $model = new Request();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->unique_id = $model->getRandomUniqueId(12);
+            $model->created_by = Yii::$app->user->id;
             if ($model->save()) {
                 #create folders
-                
+                $dirname = self::IMG_UPLOAD_DIR_NAME . $model->unique_id;
+                if (!file_exists($dirname)) {
+                    mkdir($dirname);
+                    mkdir($dirname . '/thumbs');
+                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }

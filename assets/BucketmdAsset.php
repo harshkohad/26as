@@ -23,7 +23,7 @@ class BucketmdAsset extends AssetBundle
     ];
     public $js = [
         'js/scripts.js',
-        'js/jquery-ui/jquery-ui-1.10.1.custom.min.js',
+        //'js/jquery-ui/jquery-ui-1.10.1.custom.min.js',
         'js/jquery.dcjqaccordion.2.7.js',
         'js/bootstrap-switch.js',
         'js/jquery.scrollTo.min.js',

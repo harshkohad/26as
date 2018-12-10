@@ -50,15 +50,15 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bucket-md/as
         $this->registerJsFile(
                 '@web/js/site_common.js'
         );
-        $this->registerJsFile(
-                'http://' . $_SERVER['HTTP_HOST'] . ':3000/socket.io/socket.io.js'
-        );
+//        $this->registerJsFile(
+//                'http://' . $_SERVER['HTTP_HOST'] . ':3000/socket.io/socket.io.js'
+//        );
         $this->registerJsFile(
                 '@web/js/time_elapsed_string.js'
         );
-        $this->registerJsFile(
-                '@web/js/notifications.js'
-        );
+//        $this->registerJsFile(
+//                '@web/js/notifications.js'
+//        );
         ?>
     </body>
 </html>

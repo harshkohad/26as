@@ -3,6 +3,7 @@
 namespace app\modules\request\models;
 
 use Yii;
+use app\modules\request\models\AssessmentYearDetails;
 
 /**
  * This is the model class for table "tbl_itr_request".
@@ -20,6 +21,8 @@ use Yii;
  */
 class Request extends \yii\db\ActiveRecord
 {
+    const IMG_UPLOAD_DIR_NAME = "uploads/26as/";
+    
     /**
      * {@inheritdoc}
      */
@@ -105,5 +108,27 @@ class Request extends \yii\db\ActiveRecord
                 break;
         }
         return $return;
+    }
+    
+    public function getImgThumbs($request_id, $assessment_year) {
+        $model = Request::findOne($request_id); 
+        $return_html = '';
+        $return_html_sub = '';
+        if(!empty($model)) {
+            $asImages = AssessmentYearDetails::find()->where(['itr_request_id' => $request_id, 'assessment_year' => $assessment_year, 'is_deleted' => '0'])->all();
+            if(!empty($asImages)) {
+                foreach ($asImages as $asImage) {                    
+                    $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::IMG_UPLOAD_DIR_NAME . $model->unique_id . '/thumbs/' . $asImage['image_url'] . '" class="user-image" alt="AS Image" width="40"></a>';
+                    $return_html_sub .= '<li> '.$image_link;
+                    $return_html_sub .= $asImage['remarks'].'<li>';
+                }
+                if(!empty($return_html_sub)) {
+                    $return_html = '<ul class="nav nav-pills nav-stacked labels-info " style="border-bottom : none !important;">';
+                    $return_html .= $return_html_sub;
+                    $return_html .= '</ul>';
+                }
+            }
+        }
+        return $return_html;
     }
 }

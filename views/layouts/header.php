@@ -41,7 +41,7 @@ use yii\helpers\Html;
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="" src="dist/img/avatar1_small.jpg">
+                    <!--<img alt="" src="dist/img/avatar1_small.jpg">-->
                     <span class="username"><?= Yii::$app->user->identity->userDetails->first_name . ' ' . Yii::$app->user->identity->userDetails->last_name; ?></span>
                     <b class="caret"></b>
                 </a>
