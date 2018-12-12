@@ -13,7 +13,7 @@
             </select>
         </td>
         <td>
-            <label>Comments: <input name="asi_comments[]" required></label>
+            <label>Comments: <br><input name="asi_comments[]" required></label>
         </td>
         <td>
             <p class="name">{%=file.name%}</p>

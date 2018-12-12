@@ -8,6 +8,7 @@ use app\modules\networkDiscovery\models\InventoryDashboard;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\components\BaseController;
+use app\modules\request\models\Request;
 
 class SiteController extends BaseController {
 
@@ -46,7 +47,10 @@ class SiteController extends BaseController {
     }
 
     public function actionIndex() {
-        return $this->render('homepage');
+        $model = new Request();
+        return $this->render('homepage', [
+            'model' => $model,
+        ]);
     }
 
     public function actionTermsAndConditions() {

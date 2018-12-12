@@ -57,10 +57,6 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
             <div class="col-lg-3"><?= $form->field($model, 'password')->passwordInput() ?></div>
             <div class="col-lg-3"><?= $form->field($userDetails, 'role_id')->dropDownList($roles, ['prompt' => 'Select Role'])->label('Role') ?></div>
         </div>
-        <div class="row">            
-            <div class="col-lg-3"><?= $form->field($userDetails, 'institute_id')->textInput(["id" => "tokeninput"]); ?></div>
-            <div class="col-lg-3"><?= $form->field($userDetails, 'loan_id')->textInput(["id" => "tokeninput_loan"]); ?></div>
-        </div>
         <div class="row">
             <div class="col-lg-12" style="text-align: right;">
                 <?= Html::submitButton(Yii::t('rbac-admin', (Yii::$app->controller->action->id == 'create') ? 'Create' : 'Signup'), ['class' => 'btn btn-primary btn-flat', 'name' => 'signup-button']) ?>
@@ -69,21 +65,9 @@ $this->registerCssFile(Yii::$app->request->BaseUrl . "/css/token-input-facebook.
         <?php ActiveForm::end(); ?>
     </div>
 </section>
-<?php
-$this->registerJs("$(function(){
-        $('#tokeninput').tokenInput($instituteData, {
-            theme: 'facebook',
-        });
-        $('#tokeninput_loan').tokenInput($loanData, {
-            theme: 'facebook',
-        });
-});");
-?>
+
 
 <style>
-    div.token-input-dropdown-facebook {           
-        z-index: 11001 !important;
-    }
     .table {
         width: 69%;
         max-width: 100%;

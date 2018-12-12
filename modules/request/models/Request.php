@@ -118,9 +118,13 @@ class Request extends \yii\db\ActiveRecord
             $asImages = AssessmentYearDetails::find()->where(['itr_request_id' => $request_id, 'assessment_year' => $assessment_year, 'is_deleted' => '0'])->all();
             if(!empty($asImages)) {
                 foreach ($asImages as $asImage) {                    
-                    $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::IMG_UPLOAD_DIR_NAME . $model->unique_id . '/thumbs/' . $asImage['image_url'] . '" class="user-image" alt="AS Image" width="40"></a>';
-                    $return_html_sub .= '<li> '.$image_link;
-                    $return_html_sub .= $asImage['remarks'].'<li>';
+                    $image_link = '<a href="#" class="pop_kyc"><img src="' . Yii::$app->request->BaseUrl . '/' . self::IMG_UPLOAD_DIR_NAME . $model->unique_id . '/thumbs/' . $asImage['image_url'] . '" class="user-image" alt="AS Image" width="100"></a>';
+                    $return_html_sub .= '<li>';
+                    $return_html_sub .= '<div class="row" style="padding-bottom: 10px;">';
+                    $return_html_sub .= '<div class="col-lg-2">'.$image_link.'</div>';
+                    $return_html_sub .= '<div class="col-lg-6">'.$asImage['remarks'].'</div>';
+                    $return_html_sub .= '</div>';
+                    $return_html_sub .= '</li>';
                 }
                 if(!empty($return_html_sub)) {
                     $return_html = '<ul class="nav nav-pills nav-stacked labels-info " style="border-bottom : none !important;">';
@@ -130,5 +134,51 @@ class Request extends \yii\db\ActiveRecord
             }
         }
         return $return_html;
+    }
+    
+    function thumbnailCreator($newfile_name, $dirname, $thumbs_folder_name, $thumb_width, $thumb_height) {
+        $file_ext = pathinfo($newfile_name, PATHINFO_EXTENSION);
+        //upload image path
+        $upload_image = $dirname . '/' . $newfile_name;
+
+        $thumbnail = $dirname . '/' . $thumbs_folder_name . '/' . $newfile_name;
+        list($width, $height) = getimagesize($upload_image);
+        $thumb_create = imagecreatetruecolor($thumb_width, $thumb_height);
+        switch ($file_ext) {
+            case 'jpg':
+                $source = imagecreatefromjpeg($upload_image);
+                break;
+            case 'jpeg':
+                $source = imagecreatefromjpeg($upload_image);
+                break;
+            case 'png':
+                $source = imagecreatefrompng($upload_image);
+                break;
+            case 'gif':
+                $source = imagecreatefromgif($upload_image);
+                break;
+            default:
+                $source = imagecreatefromjpeg($upload_image);
+        }
+
+        imagecopyresized($thumb_create, $source, 0, 0, 0, 0, $thumb_width, $thumb_height, $width, $height);
+        switch ($file_ext) {
+            case 'jpg' || 'jpeg':
+                imagejpeg($thumb_create, $thumbnail, 100);
+                break;
+            case 'png':
+                imagepng($thumb_create, $thumbnail, 100);
+                break;
+
+            case 'gif':
+                imagegif($thumb_create, $thumbnail, 100);
+                break;
+            default:
+                imagejpeg($thumb_create, $thumbnail, 100);
+        }
+    }    
+    
+    public function getStatusCount($status) {
+        echo Request::find()->where(['itr_request_status' => $status])->count();
     }
 }

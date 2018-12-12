@@ -471,8 +471,6 @@ class UserController extends BaseController {
     public function actionCreate() {
         $model = new Signup();
         $userDetailsmodel = new UserDetails;
-        $institutes = new Institutes();
-        $LoanTypes = new LoanTypes();
         $AuthItem = new AuthItem();
         $AuthItem->find(['type' => 1]);
         $searchModel = new AuthItemSearch(['type' => 1]);
@@ -483,25 +481,6 @@ class UserController extends BaseController {
                 $roles[$data->name] = $data->name;
             }
         }
-        $instituteData[] = ['id' => 0, 'name' => 'All'];
-        if (!empty($institutes->find()->asArray()->all()))
-            $institutesDtl = $institutes->find()->asArray()->all();
-        if (!empty($institutesDtl)) {
-            foreach ($institutesDtl as $institute) {
-                $instituteData[] = array('id' => $institute['id'], 'name' => $institute['name']);
-            }
-        }
-        $instituteData = json_encode($instituteData);
-        $loanData[] = ['id' => 0, 'name' => 'All'];
-        if (!empty($LoanTypes->find()->asArray()->all()))
-            $loans = $LoanTypes->find()->asArray()->all();
-        if (!empty($loans)) {
-            foreach ($loans as $loan) {
-                $loanData[] = array('id' => $loan['id'], 'name' => $loan['loan_name']);
-//                $loanData[$loan['id']] = $loan['loan_name'];
-            }
-        }
-        $loanData = json_encode($loanData);
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 $userDetailsmodel->load(Yii::$app->getRequest()->post());
@@ -518,8 +497,6 @@ class UserController extends BaseController {
         return $this->render('signup', [
                     'model' => $model,
                     'userDetails' => $userDetailsmodel,
-                    'instituteData' => $instituteData,
-                    'loanData' => $loanData,
                     'AuthItem' => $AuthItem,
                     'roles' => $roles,
         ]);

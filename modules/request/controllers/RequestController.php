@@ -37,6 +37,7 @@ class RequestController extends Controller
     public function actionIndex()
     {
         $searchModel = new RequestSearch();
+        $searchModel->created_by = Yii::$app->user->id; 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -76,7 +77,7 @@ class RequestController extends Controller
                     mkdir($dirname);
                     mkdir($dirname . '/thumbs');
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         }
         

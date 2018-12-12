@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\itr_request\models\ItrRequest */
 
 $this->title = $model->pan_card_number;
-$this->params['breadcrumbs'][] = ['label' => 'Requests', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Process', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php 

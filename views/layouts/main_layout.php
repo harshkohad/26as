@@ -22,7 +22,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bucket-md/as
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
-
+    <?php
+        $this->registerCssFile('@web/css/imgareaselect.css');
+    ?>
     </head>
     <body>
         <section id="container">
@@ -59,6 +61,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/bucket-md/as
 //        $this->registerJsFile(
 //                '@web/js/notifications.js'
 //        );
+        $this->registerJsFile('@web/js/jquery.imgareaselect.js');
+        $this->registerJsFile('@web/js/jquery.form.js');
         ?>
     </body>
 </html>
