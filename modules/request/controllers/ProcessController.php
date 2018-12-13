@@ -146,7 +146,6 @@ class ProcessController extends \yii\web\Controller {
         $newImageWidth = ceil($width * $scale);
         $newImageHeight = ceil($height * $scale);
         $newImage = imagecreatetruecolor($newImageWidth, $newImageHeight);
-        //$source = imagecreatefromjpeg($image);
         $source = $model->getImageFromExt($image, $file_ext);        
         imagecopyresampled($newImage, $source, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $width, $height);
         $quality = 90;
@@ -154,7 +153,6 @@ class ProcessController extends \yii\web\Controller {
             $quality = 9;
         }
         $model->saveFinalImage($file_ext, $newImage, $image, $quality);
-//        imagejpeg($newImage, $image, 90);
         chmod($image, 0777);
         return $image;
     }
@@ -178,7 +176,6 @@ class ProcessController extends \yii\web\Controller {
             $nw = ceil($w1 * $ratio);
             $nh = ceil($h1 * $ratio);
             $nimg = imagecreatetruecolor($w1,$h1); 
-            //$im_src = imagecreatefromjpeg($imagePath);
             $im_src = $model->getImageFromExt($imagePath, $file_ext);       
             imagecopyresampled($nimg,$im_src,0,0,$x1,$y1,$w1,$h1,$w1,$h1);
             #save final image
@@ -187,7 +184,6 @@ class ProcessController extends \yii\web\Controller {
                 $quality = 9;
             }
             $model->saveFinalImage($file_ext, $nimg, $imagePath_f, $quality);
-//            imagejpeg($nimg,$imagePath_f,90);
             #thumbnail
             $upload_img = $model->thumbnailCreator($_POST['image_name'], self::IMG_UPLOAD_DIR_NAME.$unique_id, 'thumbs', '200', '160');
             if(!empty($nimg)) {

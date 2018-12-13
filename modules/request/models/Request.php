@@ -177,7 +177,7 @@ class Request extends \yii\db\ActiveRecord
                 imagejpeg($new_path, $org_image, $quality);
                 break;
             case 'png':
-                imagepng($new_path, $org_image, $quality);
+                imagepng($new_path, $org_image);
                 break;
             case 'gif':
                 imagegif($new_path, $org_image, $quality);

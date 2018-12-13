@@ -199,6 +199,12 @@ $this->registerJs("
         });
         
         function saveCropImage(params) {
+        params['image_name'] = $('#image_name').val();
+        params['request_id'] = $('#request_id').val();
+        params['unique_id'] = $('#unique_id').val();
+        params['as_year'] = $('#as_year').val();
+        params['image_remarks'] = $('#image_remarks').val();
+        
         $.ajax({
             url: params['targetUrl'],
             cache: false,
@@ -212,11 +218,11 @@ $this->registerJs("
                 y1:params['y_axis'],
                 x2:params['x2_axis'],
                 y2:params['y2_axis'],
-                image_name :$('#image_name').val(),
-                request_id: $('#request_id').val(),
-                unique_id: $('#unique_id').val(),
-                as_year: $('#as_year').val(),
-                image_remarks: $('#image_remarks').val(),
+                image_name:params['image_name'],
+                request_id:params['request_id'],
+                unique_id:params['unique_id'],
+                as_year:params['as_year'],
+                image_remarks:params['image_remarks'],
             },
             type: 'Post',
             success: function (response) {
