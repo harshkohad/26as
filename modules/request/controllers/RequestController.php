@@ -135,4 +135,14 @@ class RequestController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    public function actionCheckPan($pannumber) {
+        $model = Request::find()
+            ->where(['pan_card_number' => $pannumber])
+            ->count();
+        if(!empty($model)) {
+            return '<div class="alert alert-danger">Record Exist for Pan Card : '.$pannumber.'</div>';
+        }
+        return '';
+    }
 }

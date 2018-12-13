@@ -136,49 +136,54 @@ class Request extends \yii\db\ActiveRecord
         return $return_html;
     }
     
-    function thumbnailCreator($newfile_name, $dirname, $thumbs_folder_name, $thumb_width, $thumb_height) {
+    public function thumbnailCreator($newfile_name, $dirname, $thumbs_folder_name, $thumb_width, $thumb_height) {
         $file_ext = pathinfo($newfile_name, PATHINFO_EXTENSION);
         //upload image path
         $upload_image = $dirname . '/' . $newfile_name;
-
         $thumbnail = $dirname . '/' . $thumbs_folder_name . '/' . $newfile_name;
         list($width, $height) = getimagesize($upload_image);
         $thumb_create = imagecreatetruecolor($thumb_width, $thumb_height);
-        switch ($file_ext) {
-            case 'jpg':
-                $source = imagecreatefromjpeg($upload_image);
-                break;
-            case 'jpeg':
-                $source = imagecreatefromjpeg($upload_image);
-                break;
-            case 'png':
-                $source = imagecreatefrompng($upload_image);
-                break;
-            case 'gif':
-                $source = imagecreatefromgif($upload_image);
-                break;
-            default:
-                $source = imagecreatefromjpeg($upload_image);
-        }
-
+        $source = $this->getImageFromExt($upload_image, $file_ext);
         imagecopyresized($thumb_create, $source, 0, 0, 0, 0, $thumb_width, $thumb_height, $width, $height);
-        switch ($file_ext) {
-            case 'jpg' || 'jpeg':
-                imagejpeg($thumb_create, $thumbnail, 100);
-                break;
-            case 'png':
-                imagepng($thumb_create, $thumbnail, 100);
-                break;
-
-            case 'gif':
-                imagegif($thumb_create, $thumbnail, 100);
-                break;
-            default:
-                imagejpeg($thumb_create, $thumbnail, 100);
-        }
+        $this->saveFinalImage($file_ext, $thumb_create, $thumbnail, 100);
     }    
     
     public function getStatusCount($status) {
         echo Request::find()->where(['itr_request_status' => $status])->count();
+    }
+    
+    public function getImageFromExt($image, $file_ext) {
+        switch ($file_ext) {
+            case 'jpg':
+            case 'jpeg':
+                $source = imagecreatefromjpeg($image);
+                break;
+            case 'png':
+                $source = imagecreatefrompng($image);
+                break;
+            case 'gif':
+                $source = imagecreatefromgif($image);
+                break;
+            default:
+                $source = imagecreatefromjpeg($image);
+        }
+        return $source;
+    }
+    
+    public function saveFinalImage($file_ext, $new_path, $org_image, $quality) {
+        switch ($file_ext) {
+            case 'jpg':
+            case 'jpeg':
+                imagejpeg($new_path, $org_image, $quality);
+                break;
+            case 'png':
+                imagepng($new_path, $org_image, $quality);
+                break;
+            case 'gif':
+                imagegif($new_path, $org_image, $quality);
+                break;
+            default:
+                imagejpeg($new_path, $org_image, $quality);
+        }
     }
 }

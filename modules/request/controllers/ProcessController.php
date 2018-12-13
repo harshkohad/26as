@@ -104,15 +104,18 @@ class ProcessController extends \yii\web\Controller {
     }
     
     public function actionTempUpload() {
+//        ini_set('display_errors', 1);
+//        error_reporting(E_ALL);
         $max_width = "1000";
-        $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg");
+        $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg","JPG", "JPEG");
         $file_tmp = $_FILES['photoimg']['tmp_name'];
         $size = $_FILES['photoimg']['size'];
         $name = $_FILES['photoimg']['name'];
         $dirname = self::IMG_UPLOAD_DIR_NAME.'tmp/';
         $newfile_name = date('dmYHis') . $_FILES['photoimg']['name'];
         if (strlen($name)) {
-            list($txt, $ext) = explode(".", $name);
+            //list($txt, $ext) = explode(".", $name);
+            $ext = pathinfo($name, PATHINFO_EXTENSION);
             if (in_array($ext, $valid_formats)) {
                 if ($size < (1024 * 1024)) { // Image size max 1 MB
                     $filePath = $dirname . $newfile_name;
@@ -122,10 +125,10 @@ class ProcessController extends \yii\web\Controller {
                         //Scale the image if it is greater than the width set above
                         if ($width > $max_width) {
                             $scale = $max_width / $width;
-                            $uploaded = $this->resizeImage($filePath, $width, $height, $scale);
+                            $uploaded = $this->resizeImage($filePath, $width, $height, $scale, $ext);
                         } else {
                             $scale = 1;
-                            $uploaded = $this->resizeImage($filePath, $width, $height, $scale);
+                            $uploaded = $this->resizeImage($filePath, $width, $height, $scale, $ext);
                         }
                         echo "<img id='photo' file-name='" . $newfile_name . "' class='' src='" . Yii::$app->request->baseUrl.'/'.$filePath . "' class='preview'/>";
                     }
@@ -138,8 +141,29 @@ class ProcessController extends \yii\web\Controller {
         exit;
     }
     
+    public function resizeImage($image, $width, $height, $scale, $file_ext) {
+        $model = new Request();
+        $newImageWidth = ceil($width * $scale);
+        $newImageHeight = ceil($height * $scale);
+        $newImage = imagecreatetruecolor($newImageWidth, $newImageHeight);
+        //$source = imagecreatefromjpeg($image);
+        $source = $model->getImageFromExt($image, $file_ext);        
+        imagecopyresampled($newImage, $source, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $width, $height);
+        $quality = 90;
+        if(strtoupper($file_ext) == 'PNG') {
+            $quality = 9;
+        }
+        $model->saveFinalImage($file_ext, $newImage, $image, $quality);
+//        imagejpeg($newImage, $image, 90);
+        chmod($image, 0777);
+        return $image;
+    }
+    
     public function actionSaveCroppedImage() {
+        ini_set('display_errors', 1);
+        error_reporting(E_ALL);        
         $post = isset($_POST) ? $_POST: array();
+        $model = new Request();
         $path = self::IMG_UPLOAD_DIR_NAME.'tmp/';
         $t_width = 300; // Maximum thumbnail width
         $return_data = array();
@@ -148,17 +172,24 @@ class ProcessController extends \yii\web\Controller {
         if(isset($_POST['t']) and $_POST['t'] == "ajax") {
             extract($_POST);
             $imagePath = $path.$_POST['image_name'];
+            $file_ext = pathinfo($_POST['image_name'], PATHINFO_EXTENSION);
             $imagePath_f = self::IMG_UPLOAD_DIR_NAME.$unique_id.'/'.$_POST['image_name'];
             $ratio = ($t_width/$w1); 
             $nw = ceil($w1 * $ratio);
             $nh = ceil($h1 * $ratio);
-            $nimg = imagecreatetruecolor($w1,$h1);
-            $im_src = imagecreatefromjpeg($imagePath);
+            $nimg = imagecreatetruecolor($w1,$h1); 
+            //$im_src = imagecreatefromjpeg($imagePath);
+            $im_src = $model->getImageFromExt($imagePath, $file_ext);       
             imagecopyresampled($nimg,$im_src,0,0,$x1,$y1,$w1,$h1,$w1,$h1);
             #save final image
-            imagejpeg($nimg,$imagePath_f,90);
+            $quality = 90;
+            if(strtoupper($file_ext) == 'PNG') {
+                $quality = 9;
+            }
+            $model->saveFinalImage($file_ext, $nimg, $imagePath_f, $quality);
+//            imagejpeg($nimg,$imagePath_f,90);
             #thumbnail
-            $upload_img = Request::thumbnailCreator($_POST['image_name'], self::IMG_UPLOAD_DIR_NAME.$unique_id, 'thumbs', '200', '160');
+            $upload_img = $model->thumbnailCreator($_POST['image_name'], self::IMG_UPLOAD_DIR_NAME.$unique_id, 'thumbs', '200', '160');
             if(!empty($nimg)) {
                 $this->saveImgDetails($_POST);
                 $return_data['status'] = 'success';
@@ -178,18 +209,7 @@ class ProcessController extends \yii\web\Controller {
         $sizes = getimagesize($image);
         $width = $sizes[0];
         return $width;
-    }
-
-    public function resizeImage($image, $width, $height, $scale) {
-        $newImageWidth = ceil($width * $scale);
-        $newImageHeight = ceil($height * $scale);
-        $newImage = imagecreatetruecolor($newImageWidth, $newImageHeight);
-        $source = imagecreatefromjpeg($image);
-        imagecopyresampled($newImage, $source, 0, 0, 0, 0, $newImageWidth, $newImageHeight, $width, $height);
-        imagejpeg($newImage, $image, 90);
-        chmod($image, 0777);
-        return $image;
-    }
+    }   
     
     public function saveImgDetails($p_data) {
         $model = new AssessmentYearDetails();
